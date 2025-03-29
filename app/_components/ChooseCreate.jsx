@@ -11,7 +11,7 @@ function ChooseCreate() {
         className={`bg-background flex ${isOpen ? "absolute bottom-0 h-64 border-t-2 border-t-blue-500" : "bottom-0 hidden h-0"} w-full flex-col items-center justify-center`}
       >
         <div
-          className={`relative flex w-full flex-col items-center justify-center ${isOpen ? "h-56" : "h-0"}`}
+          className={`bg-background relative flex w-full flex-col items-center justify-center ${isOpen ? "h-56" : "h-0"}`}
         >
           <span className="absolute top-1 right-3">
             <XMarkIcon
