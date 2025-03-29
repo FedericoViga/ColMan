@@ -3,10 +3,18 @@
 import { useSearchParams, useRouter } from "next/navigation";
 import useDebounce from "../_hooks/useDebounce";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
+import { useEffect, useRef } from "react";
 
 function SearchGames() {
+  const searchRef = useRef(null);
   const searchParams = useSearchParams();
   const router = useRouter();
+
+  useEffect(() => {
+    searchRef.current.addEventListener("keydown", (e) => {
+      e.key === "Enter" ? searchRef.current.blur() : null;
+    });
+  });
 
   const loadDataDebounced = useDebounce(handleSearch, 700);
 
@@ -23,6 +31,7 @@ function SearchGames() {
     <div className="w-full">
       <div className="relative">
         <input
+          ref={searchRef}
           type="search"
           name="search-games"
           id="search-games"

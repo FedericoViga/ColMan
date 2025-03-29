@@ -146,7 +146,7 @@ function InsertGameForm({ platforms, platformsIdAndName }) {
             ></textarea>
           </div>
 
-          {platforms.lenght !== 0 ? (
+          {platforms.length !== 0 ? (
             <div>
               <p className="text-primary mt-3">Piattaforme</p>
               {platformsToArray.map((platform, i) => (

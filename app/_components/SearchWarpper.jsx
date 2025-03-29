@@ -47,7 +47,7 @@ function SearchWarpper({ platforms }) {
         <div
           className={`w-full ${isExpanded ? "max-h-96 opacity-100" : "hidden max-h-0 opacity-0"} transition-all duration-400`}
         >
-          {platforms.lenght !== 0 ? (
+          {platforms.length !== 0 ? (
             <>
               {platformsToArray.map((platform, i) => (
                 <PlatformFilterSelector
