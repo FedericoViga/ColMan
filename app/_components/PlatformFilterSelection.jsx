@@ -24,7 +24,7 @@ function PlatformFilterSelector({ platformDetails, id, curActive, onActive }) {
       <select
         required={isSelectedActive}
         name="platform"
-        className="bg-background border-primary mt-1 rounded border p-1"
+        className="bg-background border-primary mt-1 cursor-pointer rounded border p-1"
         value={!isSelectedActive ? isSelectedActive : undefined}
         onChange={(e) => {
           onActive(id);

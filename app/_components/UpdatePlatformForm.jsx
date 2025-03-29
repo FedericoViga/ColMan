@@ -11,9 +11,10 @@ function UpdatePlatformForm({ platformDetails }) {
   return (
     <>
       <form action={updatePlatform} className="container">
+        <h1 className="mt-4 text-center text-2xl">Modifica</h1>
         <input type="hidden" name="platformId" value={id} />
 
-        <div className="my-5 flex flex-col justify-items-start gap-4 py-5 text-lg">
+        <div className="mt-3 mb-4 flex flex-col justify-items-start gap-4 py-5 text-lg">
           <div className="flex flex-col gap-1">
             <label className="text-primary">Piattaforma</label>
             <input

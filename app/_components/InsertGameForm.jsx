@@ -41,7 +41,7 @@ function InsertGameForm({ platforms, platformsIdAndName }) {
               className={`relative m-auto flex aspect-square max-w-60 flex-col items-center justify-center gap-2 ${selectedImage === null || selectedImage === placeholderImage ? "border-primary rounded border border-dashed" : ""}`}
             >
               <label
-                className={`flex h-10 w-10 cursor-pointer items-center justify-center rounded bg-blue-600 text-2xl ${selectedImage === null || selectedImage === placeholderImage ? "" : "absolute right-2 bottom-2 z-50"}`}
+                className={`flex h-10 w-10 cursor-pointer items-center justify-center text-2xl ${selectedImage === null || selectedImage === placeholderImage ? "rounded border-2 border-blue-500" : "absolute right-2 bottom-2 z-50 rounded bg-blue-500"}`}
                 htmlFor="img"
               >
                 {selectedImage === null ||

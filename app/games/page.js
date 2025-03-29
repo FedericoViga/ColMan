@@ -1,6 +1,6 @@
 function Page() {
   return (
-    <div>
+    <div className="container">
       Qui lista piattaforme cliccabili e ognuna carica la sua lista giochi
     </div>
   );

@@ -10,7 +10,7 @@ function PlatformsWrapper({ platformsByOwners }) {
       <p className="text-foreground my-7 text-center text-2xl">
         Lista piattaforme
       </p>
-      <p className="text-primary text-center">
+      <p className="text-primary text-center text-lg">
         Seleziona una piattaforma per visualizzare i dettagli
       </p>
       {platformsByOwners.map((platform, i) => (

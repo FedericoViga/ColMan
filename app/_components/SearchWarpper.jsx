@@ -39,7 +39,7 @@ function SearchWarpper({ platforms }) {
         <div className="flex">
           <button
             onClick={() => setOpenFilters((isExp) => !isExp)}
-            className={`text-primary rounded-lg border-2 border-slate-600 p-1 text-sm ${isExpanded ? "!text-foreground !border-blue-500" : "border-primary"}`}
+            className={`text-primary rounded-lg border-slate-600 p-1 text-sm ${isExpanded ? "!text-foreground border-2 !border-blue-500" : "border-primary border"}`}
           >
             Piattaforme
           </button>

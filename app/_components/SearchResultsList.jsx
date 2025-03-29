@@ -11,8 +11,8 @@ async function SearchResultsList({ queryString, platformFilter }) {
       )}
       {fetchedGames !== undefined && (
         <>
-          <p className="text-primary mb-4 self-start pl-[9px] font-bold tracking-wide">
-            <span className="text-foreground text-lg">
+          <p className="text-primary mb-4 self-start pl-[9px] text-lg font-bold tracking-wide">
+            <span className="text-foreground text-xl">
               {fetchedGames.length}
             </span>{" "}
             {fetchedGames.length === 1
