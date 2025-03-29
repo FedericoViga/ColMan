@@ -38,8 +38,19 @@ function InsertGameForm({ platforms, platformsIdAndName }) {
 
           <div className="mt-4">
             <div
-              className={`relative m-auto flex aspect-square max-w-60 items-center justify-center ${selectedImage === null || selectedImage === placeholderImage ? "border-primary rounded border border-dashed" : ""}`}
+              className={`relative m-auto flex aspect-square max-w-60 flex-col items-center justify-center gap-2 ${selectedImage === null || selectedImage === placeholderImage ? "border-primary rounded border border-dashed" : ""}`}
             >
+              <label
+                className={`flex h-9 w-9 cursor-pointer items-center justify-center rounded bg-blue-600 text-2xl ${selectedImage === null || selectedImage === placeholderImage ? "" : "absolute right-2 bottom-2 z-50"}`}
+                htmlFor="img"
+              >
+                {selectedImage === null ||
+                selectedImage === placeholderImage ? (
+                  <PlusIcon className="h-5 w-5" />
+                ) : (
+                  <PencilIcon className="h-5 w-5" />
+                )}
+              </label>
               {selectedImage === null || selectedImage === placeholderImage ? (
                 <p className="text-primary">Scegli Immagine</p>
               ) : (
@@ -53,17 +64,6 @@ function InsertGameForm({ platforms, platformsIdAndName }) {
                   className="object-cover"
                 />
               )}
-              <label
-                className="absolute right-1.5 bottom-1.5 flex h-9 w-9 cursor-pointer items-center justify-center rounded bg-blue-600 text-2xl"
-                htmlFor="img"
-              >
-                {selectedImage === null ||
-                selectedImage === placeholderImage ? (
-                  <PlusIcon className="h-5 w-5" />
-                ) : (
-                  <PencilIcon className="h-5 w-5" />
-                )}
-              </label>
               <input
                 required
                 id="img"
