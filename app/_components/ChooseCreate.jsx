@@ -40,7 +40,7 @@ function ChooseCreate() {
         </div>
       </div>
       <div
-        className={`bg-background fixed right-7 bottom-7 flex ${!isOpen ? "size-12" : "hidden size-0"} items-center justify-center rounded-lg border-2 border-blue-500 text-5xl`}
+        className={`bg-background fixed right-7 bottom-7 flex ${!isOpen ? "size-14" : "hidden size-0"} items-center justify-center rounded-lg border-2 border-blue-500 text-5xl`}
         onClick={() => setisOpen((isOpen) => !isOpen)}
       >
         <PlusIcon className="h-7 w-7" />
