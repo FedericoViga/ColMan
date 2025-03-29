@@ -8,7 +8,7 @@ function ChooseCreate() {
   return (
     <>
       <div
-        className={`bg-background flex ${isOpen ? "absolute bottom-0 h-64 border-t-2 border-t-blue-500" : "bottom-0 hidden h-0"} w-full flex-col items-center justify-center`}
+        className={`bg-background flex ${isOpen ? "fixed bottom-0 h-64 border-t-2 border-t-blue-500" : "bottom-0 hidden h-0"} w-full flex-col items-center justify-center`}
       >
         <div
           className={`bg-background relative flex w-full flex-col items-center justify-center ${isOpen ? "h-56" : "h-0"}`}
