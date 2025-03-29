@@ -77,7 +77,6 @@ function InsertGameForm({ platforms, platformsIdAndName }) {
                     file ? URL.createObjectURL(file) : placeholderImage,
                   );
                 }}
-                capture="environment"
               />
             </div>
           </div>
