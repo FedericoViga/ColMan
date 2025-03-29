@@ -16,9 +16,9 @@ export async function updateGame(oldImage, formData) {
   if (!session) throw new Error("Devi essere loggato");
 
   const id = Number(formData.get("gameId"));
-  const gameName = formData.get("gameName");
+  const gameName = formData.get("gameName").trim();
   const gameRegion = formData.get("gameRegion");
-  const contentDescription = formData.get("contentDescription");
+  const contentDescription = formData.get("contentDescription").trim();
 
   let isSealed = formData.get("isSealed");
   let isCollector = formData.get("isCollector");
@@ -76,8 +76,8 @@ export async function updatePlatform(formData) {
   if (!session) throw new Error("Devi essere loggato");
 
   const id = Number(formData.get("platformId"));
-  const platformName = formData.get("platformName");
-  const platformOwner = formData.get("platformOwner");
+  const platformName = formData.get("platformName").trim();
+  const platformOwner = formData.get("platformOwner").trim();
 
   const updateData = {
     id,
@@ -134,7 +134,7 @@ export async function deletePlatform(id) {
 
 //INSERT
 export async function insertGame(platformsIdAndName, formData) {
-  const gameName = formData.get("gameName");
+  const gameName = formData.get("gameName").trim();
   const gameRegion = formData.get("gameRegion");
 
   let isSealed = formData?.get("isSealed");
@@ -144,7 +144,7 @@ export async function insertGame(platformsIdAndName, formData) {
   isSpecial ? (isSpecial = true) : null;
   isCollector ? (isCollector = true) : null;
 
-  const contentDescription = formData.get("contentDescription");
+  const contentDescription = formData.get("contentDescription").trim();
 
   // rimuove i valori "" degli altri select, perchè si può avere solo una piattaforma per gioco
   const platform = formData
@@ -170,7 +170,6 @@ export async function insertGame(platformsIdAndName, formData) {
     isSpecial,
     isCollector,
     contentDescription,
-    gameImages: null,
     platform,
     platformId,
     gameImages: imagePath,
@@ -191,8 +190,8 @@ export async function insertGame(platformsIdAndName, formData) {
 }
 
 export async function insertPlatform(formData) {
-  const platformName = formData.get("platformName");
-  const platformOwner = formData.get("platformOwner");
+  const platformName = formData.get("platformName").trim();
+  const platformOwner = formData.get("platformOwner").trim();
 
   const newPlatform = {
     platformName,
