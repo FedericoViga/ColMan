@@ -4,14 +4,29 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
-function CreateSelector({ cookies }) {
+function CreateSelector({ deleteGameCookie, deletePlatformCookie }) {
+  const [isOpen, setisOpen] = useState(false);
+
+  //notifiche toast per la cancellazione di gioco o piattaforma
   useEffect(() => {
-    if (cookies) {
-      toast.success(cookies);
-    }
+    if (deleteGameCookie?.value)
+      toast.success(deleteGameCookie?.value, {
+        style: {
+          border: "1px solid oklch(0.723 0.219 149.579)",
+          background: " var(--background)",
+          color: "var(--foreground)",
+        },
+      });
+    if (deletePlatformCookie?.value)
+      toast.success(deletePlatformCookie?.value, {
+        style: {
+          border: "1px solid oklch(0.723 0.219 149.579)",
+          background: " var(--background)",
+          color: "var(--foreground)",
+        },
+      });
   }, []);
 
-  const [isOpen, setisOpen] = useState(false);
   return (
     <>
       <div

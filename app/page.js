@@ -15,7 +15,8 @@ export const metadata = {
 
 export default async function Page({ searchParams }) {
   const cookieStore = await cookies();
-  const readCookie = cookieStore?.get("insertPlatform")?.value;
+  const deletePlatformCookie = cookieStore?.get("deletePlatform");
+  const deleteGameCookie = cookieStore?.get("deleteGame");
 
   const platforms = await getAllPlatforms();
   const filters = await searchParams;
@@ -31,7 +32,10 @@ export default async function Page({ searchParams }) {
         queryString={queryString}
         platformFilter={platformFilter}
       />
-      <CreateSelector cookies={readCookie} />
+      <CreateSelector
+        deleteGameCookie={deleteGameCookie}
+        deletePlatformCookie={deletePlatformCookie}
+      />
     </div>
   );
 }

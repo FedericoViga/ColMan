@@ -117,7 +117,16 @@ export async function deleteGame(id, images) {
 
   //cancella gioco
   const { data, error } = await supabase.from("games").delete().eq("id", id);
-  if (error) throw new Error("Il gioco non può essere cancellato");
+  if (error) {
+    throw new Error("Il gioco non può essere cancellato");
+  } else {
+    const cookieStore = await cookies();
+    cookieStore.set("deleteGame", `Gioco eliminato!`, {
+      httpOnly: false,
+      maxAge: 8,
+      path: "/",
+    });
+  }
 
   // cancella immagine nel bucket
   const imageToDelete = images.split("//").at(-1);
@@ -142,7 +151,16 @@ export async function deletePlatform(id) {
     .delete()
     .eq("id", id);
 
-  if (error) throw new Error("La piattaforma non può essere cancellata");
+  if (error) {
+    throw new Error("La piattaforma non può essere cancellata");
+  } else {
+    const cookieStore = await cookies();
+    cookieStore.set("deletePlatform", `Piattaforma eliminata!`, {
+      httpOnly: false,
+      maxAge: 8,
+      path: "/",
+    });
+  }
 
   redirect("/");
 }
@@ -220,7 +238,6 @@ export async function insertPlatform(formData) {
     cookieStore.set("insertPlatform", `piattaforma ${platformName} aggiunta!`, {
       httpOnly: false,
       maxAge: 10,
-      path: "/",
     });
   }
 
