@@ -5,6 +5,7 @@ import { ArrowPathIcon, PencilIcon } from "@heroicons/react/24/solid";
 import { updateGame } from "../_lib/actions";
 import Image from "next/image";
 import { useState } from "react";
+import toast from "react-hot-toast";
 
 function UpdateGameForm({ gameDetails }) {
   const [selectedImage, setSelectedImage] = useState(null);
@@ -20,13 +21,30 @@ function UpdateGameForm({ gameDetails }) {
     gameImages,
   } = gameDetails;
 
-  // binda l'immagine corrente a formdata perchè deve essere cancellata dal bucket
-  const updateGameAndImage = updateGame.bind(null, gameImages);
+  async function handleUpdateGame(formData) {
+    const res = await updateGame(gameImages, formData);
+    if (res?.error) {
+      toast.error(res.error, {
+        style: {
+          border: "1px solid oklch(0.637 0.237 25.331)",
+          background: "var(--background)",
+          color: "var(--foreground)",
+        },
+      });
+    } else {
+      toast.success("Piattaforma Aggiornata!", {
+        style: {
+          border: "1px solid oklch(0.723 0.219 149.579)",
+          background: " var(--background)",
+          color: "var(--foreground)",
+        },
+      });
+    }
+  }
 
-  console.log(gameImages);
   return (
     <>
-      <form action={updateGameAndImage} className="container">
+      <form action={handleUpdateGame} className="container">
         <input type="hidden" name="gameId" value={id} />
         <h1 className="mt-4 mb-10 text-center text-2xl">Modifica gioco</h1>
 

@@ -84,6 +84,7 @@ function InsertGameForm({ platforms, platformsIdAndName }) {
           <div className="flex flex-col gap-1">
             <label className="text-primary">Titolo</label>
             <input
+              autoCapitalize="sentences"
               required
               name="gameName"
               type="text"
@@ -138,6 +139,7 @@ function InsertGameForm({ platforms, platformsIdAndName }) {
           <div className="flex flex-col gap-1">
             <label className="text-primary mt-2">Contenuto</label>
             <textarea
+              autoCapitalize="sentences"
               required
               name="contentDescription"
               rows="6"

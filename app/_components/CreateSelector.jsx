@@ -1,9 +1,16 @@
 "use client";
 import { PlusIcon, XMarkIcon } from "@heroicons/react/24/solid";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 
-function ChooseCreate() {
+function CreateSelector({ cookies }) {
+  useEffect(() => {
+    if (cookies) {
+      toast.success(cookies);
+    }
+  }, []);
+
   const [isOpen, setisOpen] = useState(false);
   return (
     <>
@@ -49,4 +56,4 @@ function ChooseCreate() {
   );
 }
 
-export default ChooseCreate;
+export default CreateSelector;

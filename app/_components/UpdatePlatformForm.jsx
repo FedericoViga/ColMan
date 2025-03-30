@@ -4,13 +4,35 @@ import { useFormStatus } from "react-dom";
 
 import { ArrowPathIcon } from "@heroicons/react/24/solid";
 import { updatePlatform } from "../_lib/actions";
+import toast from "react-hot-toast";
 
 function UpdatePlatformForm({ platformDetails }) {
   const { id, platformName, platformOwner } = platformDetails;
 
+  async function handleUpdatePlatform(formData) {
+    const res = await updatePlatform(formData);
+    if (res?.error) {
+      toast.error(res.error, {
+        style: {
+          border: "1px solid oklch(0.637 0.237 25.331)",
+          background: "var(--background)",
+          color: "var(--foreground)",
+        },
+      });
+    } else {
+      toast.success("Piattaforma Aggiornata!", {
+        style: {
+          border: "1px solid oklch(0.723 0.219 149.579)",
+          background: " var(--background)",
+          color: "var(--foreground)",
+        },
+      });
+    }
+  }
+
   return (
     <>
-      <form action={updatePlatform} className="container">
+      <form action={handleUpdatePlatform} className="container">
         <h1 className="mt-4 text-center text-2xl">Modifica</h1>
         <input type="hidden" name="platformId" value={id} />
 

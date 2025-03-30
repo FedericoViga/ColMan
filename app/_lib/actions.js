@@ -3,6 +3,7 @@
 import { auth, signIn } from "./auth";
 import { supabase } from "./supabase";
 import { revalidatePath } from "next/cache";
+import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { v4 as uuidv4 } from "uuid";
 
@@ -14,6 +15,9 @@ export async function signInAction() {
 export async function updateGame(oldImage, formData) {
   const session = await auth();
   if (!session) throw new Error("Devi essere loggato");
+
+  console.log("FORMDATA", formData);
+  console.log("OLDIMAGE", oldImage);
 
   const id = Number(formData.get("gameId"));
   const gameName = formData.get("gameName").trim();
@@ -28,7 +32,8 @@ export async function updateGame(oldImage, formData) {
   isCollector ? (isCollector = true) : null;
 
   const newImage = formData.get("gameImages");
-  const imageName = `${uuidv4()}-${newImage.name}`.replaceAll("/", "");
+  const imageName =
+    `${uuidv4()}-${newImage.name.replaceAll(" ", "-")}`.replaceAll("/", "");
   const newImagePath = `https://igyqtugipdfweornkjrg.supabase.co/storage/v1/object/public/games-images//${imageName}`;
 
   const updateData = {
@@ -42,31 +47,38 @@ export async function updateGame(oldImage, formData) {
     gameImages: newImagePath,
   };
 
-  // aggiorna il gioco
-  const { error } = await supabase
-    .from("games")
-    .update(updateData)
-    .eq("id", id);
-
-  if (error) throw new Error("Il gioco non può essere aggiornato");
+  // aggiorna gioco
+  try {
+    const toUpdateGameData = await supabase
+      .from("games")
+      .update(updateData)
+      .eq("id", id);
+  } catch (error) {
+    console.log(error);
+    return { error: "Errore aggiornamento dati" };
+  }
 
   // cancella dal bucket l'immagine attuale prima di caricare quella nuova
   const imageToDelete = oldImage.split("//").at(-1);
 
-  const { error: fileRemoveError } = await supabase.storage
-    .from("games-images")
-    .remove([imageToDelete]);
-
-  if (fileRemoveError) {
-    throw new Error("Non è stato possibile cancellare l'immagine dal database");
+  try {
+    const toDeleteOldImage = await supabase.storage
+      .from("games-images")
+      .remove([imageToDelete]);
+  } catch (error) {
+    console.log(error);
+    return { error: "Non è stato possibile cancellare la vecchia immagine" };
   }
 
   // carica nuova imamgine nel bucket
-  const { error: storageError } = await supabase.storage
-    .from("games-images")
-    .upload(imageName, newImage);
-
-  if (storageError) throw new Error("L'immagine non può essere caricata");
+  try {
+    const toUploadNewImage = await supabase.storage
+      .from("games-images")
+      .upload(imageName, newImage);
+  } catch (error) {
+    console.log(error);
+    return { error: "Non è stato possibile caricare la nuova foto" };
+  }
 
   revalidatePath("/games/[gameId]/update-game", "page");
 }
@@ -85,12 +97,15 @@ export async function updatePlatform(formData) {
     platformOwner,
   };
 
-  const { error } = await supabase
-    .from("platforms")
-    .update(updateData)
-    .eq("id", id);
-
-  if (error) throw new Error("Il gioco non può essere aggiornato");
+  try {
+    const toUpdatePlatformData = await supabase
+      .from("platforms")
+      .update(updateData)
+      .eq("id", id);
+  } catch (error) {
+    console.log(error);
+    return { error: "Errore aggiornamento piattaforma" };
+  }
 
   revalidatePath("/platforms/[platformId]/update-platform", "page");
 }
@@ -156,8 +171,6 @@ export async function insertGame(platformsIdAndName, formData) {
     (plat) => plat.platformName === platform,
   )[0].id;
 
-  //https://igyqtugipdfweornkjrg.supabase.co/storage/v1/object/public/games-images//20250327_155314.jpg
-
   const image = formData.get("gameImages");
 
   const imageName = `${uuidv4()}-${image.name}`.replaceAll("/", "");
@@ -200,7 +213,16 @@ export async function insertPlatform(formData) {
 
   const { error } = await supabase.from("platforms").insert([newPlatform]);
 
-  if (error) throw new Error("La piattaforma non può essere inserita");
+  if (error) {
+    throw new Error("La piattaforma non può essere inserita");
+  } else {
+    const cookieStore = await cookies();
+    cookieStore.set("insertPlatform", `piattaforma ${platformName} aggiunta!`, {
+      httpOnly: false,
+      maxAge: 10,
+      path: "/",
+    });
+  }
 
   redirect("/");
 }

@@ -2,7 +2,8 @@ import { getAllPlatforms } from "./_lib/data-service";
 import HeroRecap from "./_components/HeroRecap";
 import SearchWarpper from "./_components/SearchWarpper";
 import SearchResultsList from "./_components/SearchResultsList";
-import ChooseCreate from "./_components/ChooseCreate";
+import CreateSelector from "./_components/CreateSelector";
+import { cookies } from "next/headers";
 
 export const metadata = {
   title: {
@@ -13,6 +14,9 @@ export const metadata = {
 };
 
 export default async function Page({ searchParams }) {
+  const cookieStore = await cookies();
+  const readCookie = cookieStore?.get("insertPlatform")?.value;
+
   const platforms = await getAllPlatforms();
   const filters = await searchParams;
 
@@ -27,7 +31,7 @@ export default async function Page({ searchParams }) {
         queryString={queryString}
         platformFilter={platformFilter}
       />
-      <ChooseCreate />
+      <CreateSelector cookies={readCookie} />
     </div>
   );
 }

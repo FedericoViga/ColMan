@@ -1,6 +1,7 @@
 import { Titillium_Web } from "next/font/google";
 
 import Header from "@/app/_components/Header";
+import { Toaster } from "react-hot-toast";
 
 import "./_styles/globals.css";
 
@@ -24,7 +25,13 @@ export default async function RootLayout({ children }) {
     <html lang="it" className="scroll-smooth">
       <body className={`${TitilliumWeb.className} tracking-wide antialiased`}>
         <Header />
-        <main>{children}</main>
+        <main>
+          <Toaster
+            position="bottom-center"
+            toastOptions={{ error: { duration: 3000 } }}
+          />
+          {children}
+        </main>
       </body>
     </html>
   );

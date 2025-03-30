@@ -12,6 +12,7 @@ function InsertPlatformForm() {
           <div className="flex flex-col gap-1">
             <label className="text-primary">Nome</label>
             <input
+              autoCapitalize="sentences"
               required
               name="platformName"
               type="text"
@@ -22,6 +23,7 @@ function InsertPlatformForm() {
           <div className="flex flex-col gap-1">
             <label className="text-primary">Produttore</label>
             <input
+              autoCapitalize="sentences"
               required
               name="platformOwner"
               type="text"
