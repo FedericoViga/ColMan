@@ -12,7 +12,8 @@ export async function getUser(email) {
 export const getAllPlatforms = async function () {
   const { data, error } = await supabase
     .from("platforms")
-    .select("id, platformName, platformOwner, platformLogo");
+    .select("id, platformName, platformOwner, platformLogo")
+    .order("platformName", { ascending: true });
 
   if (error) {
     console.log(error);

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { PencilSquareIcon } from "@heroicons/react/24/solid";
-import DeletePlatform from "./DeletePlatform";
+import DeletePlatformButton from "./DeletePlatformButton";
 
 function PlatformFullCard({ platformDetails }) {
   const { id, platformName, platformOwner } = platformDetails;
@@ -28,7 +28,7 @@ function PlatformFullCard({ platformDetails }) {
         </p>
       </div>
 
-      <div className="mt-5 flex min-w-24 items-center justify-center gap-1 self-start rounded border border-blue-500 py-1">
+      <div className="mt-5 flex min-w-24 cursor-pointer items-center justify-center gap-1 self-start rounded border border-blue-500 py-1">
         <PencilSquareIcon className="h-4 w-4" />
         <Link
           href={`/platforms/${normalizedId}-${normalizedPlatformOwner}-${normalizedPlatform}/update-platform`}
@@ -37,7 +37,10 @@ function PlatformFullCard({ platformDetails }) {
           Modifica
         </Link>
       </div>
-      <DeletePlatform platformId={normalizedId} platformName={platformName} />
+      <DeletePlatformButton
+        platformId={normalizedId}
+        platformName={platformName}
+      />
     </div>
   );
 }

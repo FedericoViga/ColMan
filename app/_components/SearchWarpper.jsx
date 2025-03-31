@@ -7,7 +7,6 @@ import PlatformFilterSelector from "./PlatformFilterSelection";
 import { useRouter } from "next/navigation";
 
 function SearchWarpper({ platforms }) {
-  const [curOpen, setCurOpen] = useState(null);
   const [curActive, setCurActive] = useState();
   const [isExpanded, setOpenFilters] = useState(false);
   const router = useRouter();

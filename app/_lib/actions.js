@@ -191,6 +191,12 @@ export async function insertGame(platformsIdAndName, formData) {
 
   const image = formData.get("gameImages");
 
+  // rinomina il nome del file come gameName-platform (es. metroid-prime-gamecube)
+  Object.defineProperty(image, "name", {
+    writable: true,
+    value: `${gameName.toLowerCase().replaceAll(" ", "-")}-${platform.toLowerCase().replaceAll(" ", "-")}`,
+  });
+
   const imageName = `${uuidv4()}-${image.name}`.replaceAll("/", "");
   const imagePath = `https://igyqtugipdfweornkjrg.supabase.co/storage/v1/object/public/games-images//${imageName}`;
 
@@ -208,7 +214,15 @@ export async function insertGame(platformsIdAndName, formData) {
 
   const { error } = await supabase.from("games").insert([newGame]);
 
-  if (error) throw new Error("Il gioco non può essere inserito");
+  if (error) {
+    throw new Error("Il gioco non può essere inserito");
+  } else {
+    const cookieStore = await cookies();
+    cookieStore.set("insertGame", `Gioco aggiunto!`, {
+      httpOnly: false,
+      maxAge: 8,
+    });
+  }
 
   // upload immagine nel databse
   const { error: storageError } = await supabase.storage
@@ -237,7 +251,7 @@ export async function insertPlatform(formData) {
     const cookieStore = await cookies();
     cookieStore.set("insertPlatform", `piattaforma ${platformName} aggiunta!`, {
       httpOnly: false,
-      maxAge: 10,
+      maxAge: 8,
     });
   }
 

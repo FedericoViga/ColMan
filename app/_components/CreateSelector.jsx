@@ -4,36 +4,32 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
-function CreateSelector({ deleteGameCookie, deletePlatformCookie }) {
+function CreateSelector({
+  insertGameCookie,
+  insertPlatformCookie,
+  deleteGameCookie,
+  deletePlatformCookie,
+}) {
   const [isOpen, setisOpen] = useState(false);
 
   //notifiche toast per la cancellazione di gioco o piattaforma
   useEffect(() => {
-    if (deleteGameCookie?.value)
-      toast.success(deleteGameCookie?.value, {
-        style: {
-          border: "1px solid oklch(0.723 0.219 149.579)",
-          background: " var(--background)",
-          color: "var(--foreground)",
-        },
-      });
-    if (deletePlatformCookie?.value)
-      toast.success(deletePlatformCookie?.value, {
-        style: {
-          border: "1px solid oklch(0.723 0.219 149.579)",
-          background: " var(--background)",
-          color: "var(--foreground)",
-        },
-      });
+    if (insertGameCookie?.value) toast.success(insertGameCookie?.value);
+    if (insertPlatformCookie?.value) toast.success(insertPlatformCookie?.value);
+    if (deleteGameCookie?.value) toast.success(deleteGameCookie?.value);
+    if (deletePlatformCookie?.value) toast.success(deletePlatformCookie?.value);
   }, []);
 
   return (
     <>
       <div
-        className={`bg-background flex ${isOpen ? "fixed bottom-0 h-64 border-t-2 border-t-blue-500" : "bottom-0 hidden h-0"} w-full flex-col items-center justify-center`}
+        className={`absolute h-full w-full ${isOpen ? "bg-background block opacity-70" : "hidden"}`}
+      ></div>
+      <div
+        className={`bg-background fixed bottom-0 transition-all transition-discrete duration-400 ${isOpen ? "flex h-64 border-t-2 border-t-blue-500" : "h-0 border-t-2 border-t-blue-500 opacity-0"} w-full flex-col items-center justify-center`}
       >
         <div
-          className={`bg-background relative flex w-full flex-col items-center justify-center ${isOpen ? "h-56" : "h-0"}`}
+          className={`bg-background relative w-full flex-col items-center justify-center transition-all transition-discrete duration-240 ${isOpen ? "flex h-56 opacity-100" : "hidden h-0 opacity-0"}`}
         >
           <span className="absolute top-1 right-3">
             <XMarkIcon

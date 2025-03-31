@@ -13,18 +13,18 @@ function PlatformsAccordion({ platformDetails, id, curOpen, onOpen }) {
       >
         <span>{platformDetails[0]}</span>
         {isSelectorOpen ? (
-          <span className="text-lg">+</span>
+          <span className="text-xl">+</span>
         ) : (
-          <span className="text-lg">-</span>
+          <span className="text-xl">-</span>
         )}
       </button>
       <ul
-        className={`grid max-h-fit transition-all duration-200 ${isSelectorOpen ? "border-primary grid-rows-[1fr] rounded border border-t-0 opacity-100" : "grid-rows-[0fr] opacity-0"}`}
+        className={`grid max-h-fit ${isSelectorOpen ? "border-primary grid-rows-[1fr] rounded border border-t-0 opacity-100" : "grid-rows-[0fr] opacity-0"}`}
       >
         {platformDetails[1].map((elem) => (
           <li
             key={elem.id}
-            className={`hover:bg-blue-500 ${isSelectorOpen ? "h-auto px-2 py-2.5" : "h-0"}`}
+            className={`hover:bg-blue-500 ${isSelectorOpen ? "h-auto px-2 py-3" : "h-0"}`}
           >
             <Link
               className="inline-block w-full"

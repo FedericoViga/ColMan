@@ -12,21 +12,9 @@ function UpdatePlatformForm({ platformDetails }) {
   async function handleUpdatePlatform(formData) {
     const res = await updatePlatform(formData);
     if (res?.error) {
-      toast.error(res.error, {
-        style: {
-          border: "1px solid oklch(0.637 0.237 25.331)",
-          background: "var(--background)",
-          color: "var(--foreground)",
-        },
-      });
+      toast.error(res.error);
     } else {
-      toast.success("Piattaforma Aggiornata!", {
-        style: {
-          border: "1px solid oklch(0.723 0.219 149.579)",
-          background: " var(--background)",
-          color: "var(--foreground)",
-        },
-      });
+      toast.success("Piattaforma Aggiornata!");
     }
   }
 
@@ -75,7 +63,7 @@ function Button() {
     <div
       className={`flex items-center justify-center gap-1 ${pending ? "text-primary" : "rounded border border-blue-500"} p-1.5 text-base`}
     >
-      <ArrowPathIcon className="h-4 w-4" />
+      <ArrowPathIcon className={`h-4 w-4 ${pending ? "animate-spin" : ""}`} />
       <button disabled={pending}>
         {pending ? "Aggiornando..." : "Aggiorna"}
       </button>

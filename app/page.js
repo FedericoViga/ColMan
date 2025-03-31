@@ -17,6 +17,8 @@ export default async function Page({ searchParams }) {
   const cookieStore = await cookies();
   const deletePlatformCookie = cookieStore?.get("deletePlatform");
   const deleteGameCookie = cookieStore?.get("deleteGame");
+  const insertGameCookie = cookieStore?.get("insertGame");
+  const insertPlatformCookie = cookieStore?.get("insertPlatform");
 
   const platforms = await getAllPlatforms();
   const filters = await searchParams;
@@ -35,6 +37,8 @@ export default async function Page({ searchParams }) {
       <CreateSelector
         deleteGameCookie={deleteGameCookie}
         deletePlatformCookie={deletePlatformCookie}
+        insertGameCookie={insertGameCookie}
+        insertPlatformCookie={insertPlatformCookie}
       />
     </div>
   );

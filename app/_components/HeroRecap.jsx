@@ -22,6 +22,7 @@ async function GameCount() {
 
 async function CollectorCount() {
   const numCollectors = await countCollectors();
+
   return (
     <p className="text-primary text-3xl font-bold">
       <span className="text-5xl font-bold text-blue-500">{numCollectors}</span>{" "}
@@ -35,10 +36,12 @@ async function PlatformsCount() {
 
   return (
     <Link href="/platforms">
-      <p className="text-primary text-3xl font-bold">
-        <span className="text-5xl font-bold text-blue-500">{numPlatforms}</span>{" "}
-        {numPlatforms !== 1 ? "PIATTAFORME" : "PIATTAFORMA"}
-      </p>
+      <div className="flex items-center justify-center gap-1">
+        <span className="text-5xl font-bold text-blue-500">{numPlatforms}</span>
+        <p className="text-primary text-3xl font-bold underline decoration-2 underline-offset-2">
+          {numPlatforms !== 1 ? "PIATTAFORME" : "PIATTAFORMA"}
+        </p>
+      </div>
     </Link>
   );
 }

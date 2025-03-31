@@ -28,7 +28,24 @@ export default async function RootLayout({ children }) {
         <main>
           <Toaster
             position="bottom-center"
-            toastOptions={{ error: { duration: 3000 } }}
+            gutter={12}
+            toastOptions={{
+              success: {
+                style: {
+                  border: "1px solid oklch(0.723 0.219 149.579)",
+                  background: " var(--background)",
+                  color: "var(--foreground)",
+                },
+              },
+              error: {
+                duration: 3000,
+                style: {
+                  border: "1px solid oklch(0.637 0.237 25.331)",
+                  background: "var(--background)",
+                  color: "var(--foreground)",
+                },
+              },
+            }}
           />
           {children}
         </main>
