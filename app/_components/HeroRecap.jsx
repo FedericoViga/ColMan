@@ -12,10 +12,12 @@ async function GameCount() {
 
   return (
     <Link href="/games">
-      <p className="text-primary text-3xl font-bold">
-        <span className="text-5xl font-bold text-blue-500">{numGames}</span>{" "}
-        {numGames !== 1 ? "GIOCHI" : "GIOCO"}
-      </p>
+      <div className="flex items-center justify-center gap-1">
+        <span className="text-5xl font-bold text-blue-500">{numGames}</span>
+        <p className="text-primary text-3xl font-bold underline decoration-2 underline-offset-3">
+          {numGames !== 1 ? "GIOCHI" : "GIOCO"}
+        </p>
+      </div>
     </Link>
   );
 }
@@ -38,7 +40,7 @@ async function PlatformsCount() {
     <Link href="/platforms">
       <div className="flex items-center justify-center gap-1">
         <span className="text-5xl font-bold text-blue-500">{numPlatforms}</span>
-        <p className="text-primary text-3xl font-bold underline decoration-2 underline-offset-2">
+        <p className="text-primary text-3xl font-bold underline decoration-2 underline-offset-3">
           {numPlatforms !== 1 ? "PIATTAFORME" : "PIATTAFORMA"}
         </p>
       </div>

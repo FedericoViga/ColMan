@@ -5,7 +5,9 @@ async function SearchResultsList({ queryString, platformFilter }) {
   const fetchedGames = await fetchGames(queryString, platformFilter);
 
   return (
-    <div className="container mt-3 mb-10 flex w-full flex-col items-center justify-center !px-0">
+    <div
+      className={`border-primary container mt-3 mb-10 flex w-full flex-col items-center justify-center ${fetchedGames && fetchedGames.length !== 0 && "border-b"} !px-0`}
+    >
       {fetchedGames === undefined && (
         <p className="text-primary mt-5 text-xl">Cerca un gioco...</p>
       )}

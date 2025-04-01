@@ -23,7 +23,7 @@ function GameCard({ game }) {
       href={`/games/${normalizedId}-${normalizedPlatform}`}
       className="w-full px-2"
     >
-      <div className="border-primary flex h-48 w-full items-start gap-3 overflow-auto border-y">
+      <div className="border-primary flex h-48 w-full items-start gap-3 overflow-auto border-t">
         <div className="aspect relative min-h-32 min-w-32">
           <Image
             src={gameImages ? gameImages : placeholderImageSmall}

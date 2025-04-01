@@ -1,3 +1,4 @@
+import { PAGE_SIZE } from "./constants";
 import { supabase } from "./supabase";
 
 export async function getUser(email) {
@@ -112,6 +113,7 @@ export async function getFullGame(id, platform) {
 
   return data;
 }
+
 export async function getFullPlatform(id) {
   const { data, error } = await supabase
     .from("platforms")
@@ -124,4 +126,30 @@ export async function getFullPlatform(id) {
   }
 
   return data;
+}
+
+export async function fetchGamesWithPagination(page) {
+  let query = supabase.from("games").select("*", { count: "exact" });
+
+  if (page) {
+    const from = (page - 1) * PAGE_SIZE;
+    const to = from + PAGE_SIZE - 1;
+    query = query.range(from, to);
+  }
+
+  // setta route /games come param ?page=1
+  if (!page) {
+    page = 1;
+    const from = (page - 1) * PAGE_SIZE;
+    const to = from + PAGE_SIZE - 1;
+    query = query.range(from, to);
+  }
+
+  const { data, error, count } = await query;
+
+  if (error) {
+    console.log(error);
+  }
+
+  return { data, count };
 }
