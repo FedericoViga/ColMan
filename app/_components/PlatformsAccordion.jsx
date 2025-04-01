@@ -19,7 +19,7 @@ function PlatformsAccordion({ platformDetails, id, curOpen, onOpen }) {
         )}
       </button>
       <ul
-        className={`grid max-h-fit ${isSelectorOpen ? "border-primary grid-rows-[1fr] rounded border border-t-0 opacity-100" : "grid-rows-[0fr] opacity-0"}`}
+        className={`grid max-h-fit ${isSelectorOpen ? "border-primary grid-rows-[1fr] rounded border border-t-0" : "grid-rows-[0fr] overflow-hidden"}`}
       >
         {platformDetails[1].map((elem) => (
           <li

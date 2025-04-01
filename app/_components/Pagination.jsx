@@ -33,7 +33,7 @@ function Pagination({ count }) {
   if (pageCount <= 1) return null;
 
   return (
-    <div className="border-primary flex items-center justify-between border-t-1 py-3">
+    <div className="border-primary flex items-center justify-between border-t-1 py-3 tracking-wider">
       <p>
         <span className="font-bold">{(currentPage - 1) * PAGE_SIZE + 1}</span>-
         <span className="font-bold">

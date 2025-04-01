@@ -44,7 +44,7 @@ function SearchWarpper({ platforms }) {
           </button>
         </div>
         <div
-          className={`w-full ${isExpanded ? "max-h-96 opacity-100" : "hidden max-h-0 opacity-0"} transition-all duration-400`}
+          className={`w-full transition-all transition-discrete duration-300 ${isExpanded ? "max-h-96 opacity-100" : "max-h-0 overflow-hidden opacity-0"}`}
         >
           {platforms.length !== 0 ? (
             <>
