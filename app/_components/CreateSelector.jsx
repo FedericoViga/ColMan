@@ -11,15 +11,11 @@ function CreateSelector({
   deletePlatformCookie,
 }) {
   const [isOpen, setisOpen] = useState(false);
-
   //notifiche toast per la cancellazione di gioco o piattaforma
   useEffect(() => {
     if (insertGameCookie?.value) toast.success(insertGameCookie?.value);
     if (insertPlatformCookie?.value) toast.success(insertPlatformCookie?.value);
-    if (deleteGameCookie?.value)
-      toast.success(deleteGameCookie?.value, {
-        id: "deleteGame",
-      });
+    if (deleteGameCookie?.value) toast.success(deleteGameCookie?.value);
     if (deletePlatformCookie?.value) toast.success(deletePlatformCookie?.value);
   }, []);
 

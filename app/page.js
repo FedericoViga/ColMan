@@ -13,6 +13,8 @@ export const metadata = {
   description: "",
 };
 
+export const revalidate = 0;
+
 export default async function Page({ searchParams }) {
   const cookieStore = await cookies();
   const deletePlatformCookie = cookieStore?.get("deletePlatform");
