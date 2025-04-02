@@ -16,7 +16,10 @@ function CreateSelector({
   useEffect(() => {
     if (insertGameCookie?.value) toast.success(insertGameCookie?.value);
     if (insertPlatformCookie?.value) toast.success(insertPlatformCookie?.value);
-    if (deleteGameCookie?.value) toast.success(deleteGameCookie?.value);
+    if (deleteGameCookie?.value)
+      toast.success(deleteGameCookie?.value, {
+        id: "deleteGame",
+      });
     if (deletePlatformCookie?.value) toast.success(deletePlatformCookie?.value);
   }, []);
 
