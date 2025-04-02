@@ -3,7 +3,6 @@ import HeroRecap from "./_components/HeroRecap";
 import SearchWarpper from "./_components/SearchWarpper";
 import SearchResultsList from "./_components/SearchResultsList";
 import CreateSelector from "./_components/CreateSelector";
-import { cookies } from "next/headers";
 
 export const metadata = {
   title: {
@@ -13,15 +12,7 @@ export const metadata = {
   description: "",
 };
 
-export const revalidate = 0;
-
 export default async function Page({ searchParams }) {
-  const cookieStore = await cookies();
-  const deletePlatformCookie = cookieStore?.get("deletePlatform");
-  const deleteGameCookie = cookieStore?.get("deleteGame");
-  const insertGameCookie = cookieStore?.get("insertGame");
-  const insertPlatformCookie = cookieStore?.get("insertPlatform");
-
   const platforms = await getAllPlatforms();
   const filters = await searchParams;
 
@@ -36,12 +27,7 @@ export default async function Page({ searchParams }) {
         queryString={queryString}
         platformFilter={platformFilter}
       />
-      <CreateSelector
-        deleteGameCookie={deleteGameCookie}
-        deletePlatformCookie={deletePlatformCookie}
-        insertGameCookie={insertGameCookie}
-        insertPlatformCookie={insertPlatformCookie}
-      />
+      <CreateSelector />
     </div>
   );
 }

@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import PlatformsAccordion from "./PlatformsAccordion";
-import CreatePlatformLink from "./CreatePlatformLink";
+import ToCreateButton from "./ToCreateButton";
 
 function PlatformsWrapper({ platformsByOwners }) {
   const [curOpen, setCurOpen] = useState(null);
@@ -25,7 +25,7 @@ function PlatformsWrapper({ platformsByOwners }) {
           />
         ))}
       </div>
-      <CreatePlatformLink />
+      <ToCreateButton url={"/platforms/insert-platform"} />
     </>
   );
 }

@@ -1,22 +1,28 @@
 "use client";
 import { PlusIcon, XMarkIcon } from "@heroicons/react/24/solid";
+import Cookies from "js-cookie";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
-function CreateSelector({
-  insertGameCookie,
-  insertPlatformCookie,
-  deleteGameCookie,
-  deletePlatformCookie,
-}) {
+function CreateSelector() {
   const [isOpen, setisOpen] = useState(false);
+
   //notifiche toast per la cancellazione di gioco o piattaforma
   useEffect(() => {
-    if (insertGameCookie?.value) toast.success(insertGameCookie?.value);
-    if (insertPlatformCookie?.value) toast.success(insertPlatformCookie?.value);
-    if (deleteGameCookie?.value) toast.success(deleteGameCookie?.value);
-    if (deletePlatformCookie?.value) toast.success(deletePlatformCookie?.value);
+    const insertGameCookie = Cookies.get("insertGame");
+    const deleteGameCookie = Cookies.get("deleteGame");
+    const insertPlatformCookie = Cookies.get("insertPlatform");
+    const deletePlatformCookie = Cookies.get("deletePlatform");
+
+    if (insertGameCookie)
+      toast.success(insertGameCookie, { id: "insert-game" });
+    if (deleteGameCookie)
+      toast.success(deleteGameCookie, { id: "delete-game" });
+    if (insertPlatformCookie)
+      toast.success(insertPlatformCookie, { id: "insert-platform" });
+    if (deletePlatformCookie)
+      toast.success(deletePlatformCookie, { id: "delete-platform" });
   }, []);
 
   return (

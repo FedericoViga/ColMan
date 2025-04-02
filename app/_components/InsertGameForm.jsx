@@ -41,18 +41,20 @@ function InsertGameForm({ platforms, platformsIdAndName }) {
               className={`relative m-auto flex aspect-square max-w-60 flex-col items-center justify-center gap-2 ${selectedImage === null || selectedImage === placeholderImage ? "border-primary rounded border border-dashed" : ""}`}
             >
               <label
-                className={`flex h-10 w-10 cursor-pointer items-center justify-center text-2xl ${selectedImage === null || selectedImage === placeholderImage ? "rounded border-2 border-blue-500" : "absolute right-2 bottom-2 z-50 rounded bg-blue-500"}`}
+                className={`flex h-10 w-10 cursor-pointer items-center justify-center text-2xl ${selectedImage === null || selectedImage === placeholderImage ? "h-full w-full rounded border-0" : "absolute right-2 bottom-2 z-50 rounded bg-blue-500"}`}
                 htmlFor="img"
               >
                 {selectedImage === null ||
                 selectedImage === placeholderImage ? (
-                  <PlusIcon className="h-5 w-5" />
+                  <PlusIcon className="text-primary h-10 w-10" />
                 ) : (
                   <PencilIcon className="h-5 w-5" />
                 )}
               </label>
               {selectedImage === null || selectedImage === placeholderImage ? (
-                <p className="text-primary">Scegli Immagine</p>
+                <p className="text-primary absolute top-[60%]">
+                  Scegli Immagine
+                </p>
               ) : (
                 <Image
                   priority

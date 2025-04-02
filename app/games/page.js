@@ -1,5 +1,6 @@
 import GameCard from "../_components/GameCard";
 import Pagination from "../_components/Pagination";
+import ToCreateButton from "../_components/ToCreateButton";
 import { fetchGamesWithPagination } from "../_lib/data-service";
 
 async function Page({ searchParams }) {
@@ -16,6 +17,7 @@ async function Page({ searchParams }) {
         <GameCard game={game} key={game.id} />
       ))}
       <Pagination count={count} />
+      <ToCreateButton url={"/games/insert-game"} />
     </div>
   );
 }
