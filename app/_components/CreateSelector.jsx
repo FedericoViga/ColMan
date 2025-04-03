@@ -15,14 +15,22 @@ function CreateSelector() {
     const insertPlatformCookie = Cookies.get("insertPlatform");
     const deletePlatformCookie = Cookies.get("deletePlatform");
 
-    if (insertGameCookie)
+    if (insertGameCookie) {
       toast.success(insertGameCookie, { id: "insert-game" });
-    if (deleteGameCookie)
+      Cookies.remove("insertGame");
+    }
+    if (deleteGameCookie) {
       toast.success(deleteGameCookie, { id: "delete-game" });
-    if (insertPlatformCookie)
+      Cookies.remove("deleteGame");
+    }
+    if (insertPlatformCookie) {
       toast.success(insertPlatformCookie, { id: "insert-platform" });
-    if (deletePlatformCookie)
+      Cookies.remove("insertPlatform");
+    }
+    if (deletePlatformCookie) {
       toast.success(deletePlatformCookie, { id: "delete-platform" });
+      Cookies.remove("deletePlatform");
+    }
   }, []);
 
   return (

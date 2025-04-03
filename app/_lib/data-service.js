@@ -153,3 +153,31 @@ export async function fetchGamesWithPagination(page) {
 
   return { data, count };
 }
+export async function fetchCollectorsWithPagination(page) {
+  let query = supabase
+    .from("games")
+    .select("*", { count: "exact" })
+    .eq("isCollector", "TRUE");
+
+  if (page) {
+    const from = (page - 1) * PAGE_SIZE;
+    const to = from + PAGE_SIZE - 1;
+    query = query.range(from, to);
+  }
+
+  // setta route /games come param ?page=1
+  if (!page) {
+    page = 1;
+    const from = (page - 1) * PAGE_SIZE;
+    const to = from + PAGE_SIZE - 1;
+    query = query.range(from, to);
+  }
+
+  const { data, error, count } = await query;
+
+  if (error) {
+    console.log(error);
+  }
+
+  return { data, count };
+}

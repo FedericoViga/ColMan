@@ -26,10 +26,16 @@ async function CollectorCount() {
   const numCollectors = await countCollectors();
 
   return (
-    <p className="text-primary text-3xl font-bold">
-      <span className="text-5xl font-bold text-blue-500">{numCollectors}</span>{" "}
-      {numCollectors !== 1 ? "COLLECTOR'S EDITIONS" : "COLLECTOR'S EDITION"}
-    </p>
+    <Link href="/games/collectors">
+      <div className="flex items-center justify-center gap-1">
+        <span className="text-5xl font-bold text-blue-500">
+          {numCollectors}
+        </span>
+        <p className="text-primary text-3xl font-bold underline decoration-2 underline-offset-3">
+          {numCollectors !== 1 ? "COLLECTOR'S EDITIONS" : "COLLECTOR'S EDITION"}
+        </p>
+      </div>
+    </Link>
   );
 }
 

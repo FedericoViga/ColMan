@@ -123,7 +123,6 @@ export async function deleteGame(id, images) {
     const cookieStore = await cookies();
     cookieStore.set("deleteGame", `Gioco eliminato!`, {
       httpOnly: false,
-      maxAge: 8,
       path: "/",
     });
   }
@@ -157,7 +156,6 @@ export async function deletePlatform(id) {
     const cookieStore = await cookies();
     cookieStore.set("deletePlatform", `Piattaforma eliminata!`, {
       httpOnly: false,
-      maxAge: 8,
       path: "/",
     });
   }
@@ -220,7 +218,6 @@ export async function insertGame(platformsIdAndName, formData) {
     const cookieStore = await cookies();
     cookieStore.set("insertGame", `Gioco aggiunto!`, {
       httpOnly: false,
-      maxAge: 8,
     });
   }
 
@@ -251,7 +248,6 @@ export async function insertPlatform(formData) {
     const cookieStore = await cookies();
     cookieStore.set("insertPlatform", `piattaforma ${platformName} aggiunta!`, {
       httpOnly: false,
-      maxAge: 8,
     });
   }
 

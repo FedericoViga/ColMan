@@ -41,18 +41,18 @@ function InsertGameForm({ platforms, platformsIdAndName }) {
               className={`relative m-auto flex aspect-square max-w-60 flex-col items-center justify-center gap-2 ${selectedImage === null || selectedImage === placeholderImage ? "border-primary rounded border border-dashed" : ""}`}
             >
               <label
-                className={`flex h-10 w-10 cursor-pointer items-center justify-center text-2xl ${selectedImage === null || selectedImage === placeholderImage ? "h-full w-full rounded border-0" : "absolute right-2 bottom-2 z-50 rounded bg-blue-500"}`}
+                className={`z-50 flex h-10 w-10 cursor-pointer items-center justify-center text-2xl ${selectedImage === null || selectedImage === placeholderImage ? "h-full w-full rounded border-0" : "absolute right-2 bottom-2 z-50 rounded bg-blue-500"}`}
                 htmlFor="img"
               >
                 {selectedImage === null ||
                 selectedImage === placeholderImage ? (
-                  <PlusIcon className="text-primary h-10 w-10" />
+                  <PlusIcon className="h-10 w-10 text-slate-500" />
                 ) : (
                   <PencilIcon className="h-5 w-5" />
                 )}
               </label>
               {selectedImage === null || selectedImage === placeholderImage ? (
-                <p className="text-primary absolute top-[60%]">
+                <p className="absolute top-[60%] text-slate-500">
                   Scegli Immagine
                 </p>
               ) : (
@@ -112,8 +112,9 @@ function InsertGameForm({ platforms, platformsIdAndName }) {
           </div>
 
           <div className="mt-2.5 flex flex-row-reverse justify-end gap-2">
-            <label>Sigillato</label>
+            <label htmlFor="sealed">Sigillato</label>
             <input
+              id="sealed"
               name="isSealed"
               type="checkbox"
               className="mt-1 h-4 w-4 accent-blue-500"
@@ -121,8 +122,11 @@ function InsertGameForm({ platforms, platformsIdAndName }) {
           </div>
 
           <div className="mt-2.5 flex flex-row-reverse justify-end gap-2">
-            <label>Edizione speciale (Steelbook, Deluxe ecc.)</label>
+            <label htmlFor="special">
+              Edizione speciale (Steelbook, Deluxe ecc.)
+            </label>
             <input
+              id="special"
               name="isSpecial"
               type="checkbox"
               className="mt-1 h-4 w-4 accent-blue-500"
@@ -130,8 +134,9 @@ function InsertGameForm({ platforms, platformsIdAndName }) {
           </div>
 
           <div className="mt-2.5 flex flex-row-reverse justify-end gap-2">
-            <label>Collector's Edition</label>
+            <label htmlFor="collector">Collector's Edition</label>
             <input
+              id="collector"
               name="isCollector"
               type="checkbox"
               className="mt-1 h-4 w-4 accent-blue-500"
