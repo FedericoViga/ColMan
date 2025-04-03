@@ -48,7 +48,7 @@ function Pagination({ count }) {
             onClick={prevPage}
             className="disabled:text-primary flex items-center justify-center"
           >
-            <ChevronLeftIcon className="h-4 w-4" />
+            <ChevronLeftIcon className="disabled:text-primary h-4 w-4 text-blue-500" />
             <span>Indietro</span>
           </button>
 
@@ -58,7 +58,7 @@ function Pagination({ count }) {
             className="disabled:text-primary flex items-center justify-center"
           >
             <span>Avanti</span>
-            <ChevronRightIcon className="h-4 w-4" />
+            <ChevronRightIcon className="disabled:text-primary h-4 w-4 text-blue-500" />
           </button>
         </div>
       </div>
