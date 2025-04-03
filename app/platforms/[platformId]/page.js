@@ -1,7 +1,5 @@
 import PlatformFullCard from "@/app/_components/PlatformFullCard";
-import SpinnerMini from "@/app/_components/SpinnerMini";
 import { getFullPlatform } from "@/app/_lib/data-service";
-import { Suspense } from "react";
 
 async function Page({ params }) {
   const platformParams = await params;
@@ -14,9 +12,7 @@ async function Page({ params }) {
 
   return (
     <div className="container">
-      <Suspense fallback={<SpinnerMini />}>
-        <PlatformFullCard platformDetails={getPlatformDetails} />
-      </Suspense>
+      <PlatformFullCard platformDetails={getPlatformDetails} />
     </div>
   );
 }
