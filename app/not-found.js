@@ -12,7 +12,7 @@ const PressStart2P = Press_Start_2P({
 function NotFound() {
   return (
     <main
-      className={`container mt-10 space-y-6 text-center ${PressStart2P.className}`}
+      className={`container mt-10 space-y-6 text-center ${PressStart2P.className} text-gray-300`}
     >
       <span className="text-lg">404</span>
       <h1 className="mt-5 px-5 text-xs uppercase">

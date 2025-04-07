@@ -14,7 +14,7 @@ function UpdatePlatformForm({ platformDetails }) {
     if (res?.error) {
       toast.error(res.error);
     } else {
-      toast.success("Piattaforma Aggiornata!");
+      toast.success("Piattaforma aggiornata!");
     }
   }
 

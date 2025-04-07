@@ -26,7 +26,7 @@ function UpdateGameForm({ gameDetails }) {
     if (res?.error) {
       toast.error(res.error);
     } else {
-      toast.success("Piattaforma Aggiornata!");
+      toast.success("Gioco aggiornato!");
     }
   }
 
@@ -34,6 +34,7 @@ function UpdateGameForm({ gameDetails }) {
     <>
       <form action={handleUpdateGame} className="container">
         <input type="hidden" name="gameId" value={id} />
+        <input type="hidden" name="platform" value={platform} />
         <h1 className="mt-4 mb-10 text-center text-2xl">Modifica gioco</h1>
 
         <div className="mt-4">

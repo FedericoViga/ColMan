@@ -16,10 +16,8 @@ export async function updateGame(oldImage, formData) {
   const session = await auth();
   if (!session) throw new Error("Devi essere loggato");
 
-  console.log("FORMDATA", formData);
-  console.log("OLDIMAGE", oldImage);
-
   const id = Number(formData.get("gameId"));
+  const platform = formData.get("platform");
   const gameName = formData.get("gameName").trim();
   const gameRegion = formData.get("gameRegion");
   const contentDescription = formData.get("contentDescription").trim();
@@ -32,22 +30,45 @@ export async function updateGame(oldImage, formData) {
   isCollector ? (isCollector = true) : null;
 
   const newImage = formData.get("gameImages");
+
+  let updateData;
+
+  if (newImage.size === 0) {
+    updateData = {
+      id,
+      gameName,
+      gameRegion,
+      isSealed,
+      isSpecial,
+      isCollector,
+      contentDescription,
+    };
+  }
+
+  // rinomina il nome del file come gameName-platform (es. metroid-prime-gamecube)
+  Object.defineProperty(newImage, "name", {
+    writable: true,
+    value: `${gameName.toLowerCase().replaceAll(" ", "-")}-${platform.toLowerCase().replaceAll(" ", "-")}`,
+  });
+
   const imageName =
     `${uuidv4()}-${newImage.name.replaceAll(" ", "-")}`.replaceAll("/", "");
   const newImagePath = `https://igyqtugipdfweornkjrg.supabase.co/storage/v1/object/public/games-images//${imageName}`;
 
-  const updateData = {
-    id,
-    gameName,
-    gameRegion,
-    isSealed,
-    isSpecial,
-    isCollector,
-    contentDescription,
-    gameImages: newImagePath,
-  };
+  if (newImage.size !== 0) {
+    updateData = {
+      id,
+      gameName,
+      gameRegion,
+      isSealed,
+      isSpecial,
+      isCollector,
+      contentDescription,
+      gameImages: newImagePath,
+    };
+  }
 
-  // aggiorna gioco
+  // aggiorna dati gioco
   try {
     const toUpdateGameData = await supabase
       .from("games")
@@ -58,13 +79,18 @@ export async function updateGame(oldImage, formData) {
     return { error: "Errore aggiornamento dati" };
   }
 
-  // cancella dal bucket l'immagine attuale prima di caricare quella nuova
-  const imageToDelete = oldImage.split("//").at(-1);
-
   try {
-    const toDeleteOldImage = await supabase.storage
-      .from("games-images")
-      .remove([imageToDelete]);
+    if (newImage.size === 0) {
+      revalidatePath("/games/[gameId]/update-game", "page");
+      return;
+    } else {
+      // cancella dal bucket l'immagine attuale prima di caricare quella nuova
+      const imageToDelete = oldImage.split("//").at(-1);
+
+      const toDeleteOldImage = await supabase.storage
+        .from("games-images")
+        .remove([imageToDelete]);
+    }
   } catch (error) {
     console.log(error);
     return { error: "Non è stato possibile cancellare la vecchia immagine" };
@@ -72,9 +98,13 @@ export async function updateGame(oldImage, formData) {
 
   // carica nuova imamgine nel bucket
   try {
-    const toUploadNewImage = await supabase.storage
-      .from("games-images")
-      .upload(imageName, newImage);
+    if (newImage.size === 0) {
+      return;
+    } else {
+      const toUploadNewImage = await supabase.storage
+        .from("games-images")
+        .upload(imageName, newImage);
+    }
   } catch (error) {
     console.log(error);
     return { error: "Non è stato possibile caricare la nuova foto" };
