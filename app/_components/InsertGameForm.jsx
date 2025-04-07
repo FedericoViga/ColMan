@@ -8,21 +8,11 @@ import { PencilIcon, PlusIcon } from "@heroicons/react/24/solid";
 import Image from "next/image";
 import placeholderImage from "@/public/placeholder-font-80-1000x1000.jpg";
 import Link from "next/link";
+import { groupByPlatformOwner } from "../_lib/utils";
 
 function InsertGameForm({ platforms, platformsIdAndName }) {
   const [curActive, setCurActive] = useState();
   const [selectedImage, setSelectedImage] = useState(null);
-
-  // genera un oggetto che contiene X oggetti e ognuno di essi è una coppia key-value dove la key è una stringa col nome del platformOwner e il value è un array di oggetti con la lista piattaforme e tutto il resto
-  function groupByPlatformOwner(platforms, property) {
-    return platforms.reduce((acc, curr) => {
-      if (!acc[curr[property]]) {
-        acc[curr[property]] = [];
-      }
-      acc[curr[property]].push(curr);
-      return acc;
-    }, {});
-  }
 
   const platformsByOwner = groupByPlatformOwner(platforms, "platformOwner");
   // converte in array per essere più semplice da manipolare

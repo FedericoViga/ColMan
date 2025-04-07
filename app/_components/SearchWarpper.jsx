@@ -5,6 +5,7 @@ import SearchBar from "./SearchBar";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import PlatformFilterSelectorHome from "./PlatformFilterSelectorHome";
+import { groupByPlatformOwner } from "../_lib/utils";
 
 function SearchWarpper({ platforms }) {
   const [curActive, setCurActive] = useState();
@@ -15,17 +16,6 @@ function SearchWarpper({ platforms }) {
   useEffect(() => {
     router.replace(`/`, { scroll: false });
   }, []);
-
-  // genera un oggetto che contiene X oggetti e ognuno di essi è una coppia key-value dove la key è una stringa col nome del platformOwner e il value è un array di oggetti con la lista piattaforme e tutto il resto
-  function groupByPlatformOwner(platforms, property) {
-    return platforms.reduce((acc, curr) => {
-      if (!acc[curr[property]]) {
-        acc[curr[property]] = [];
-      }
-      acc[curr[property]].push(curr);
-      return acc;
-    }, {});
-  }
 
   const platformsByOwner = groupByPlatformOwner(platforms, "platformOwner");
   // converte in array per essere più semplice da manipolare

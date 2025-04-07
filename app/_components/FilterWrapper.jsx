@@ -3,22 +3,12 @@
 import { useState } from "react";
 import PlatformFilterSelectorPagination from "./PlatformFilterSelectorPagination";
 import { useSearchParams } from "next/navigation";
+import { groupByPlatformOwner } from "../_lib/utils";
 
 function FilterWrapper({ platforms }) {
   const [curActive, setCurActive] = useState();
   const [isExpanded, setOpenFilters] = useState(false);
   const searchParams = useSearchParams();
-
-  // genera un oggetto che contiene X oggetti e ognuno di essi è una coppia key-value dove la key è una stringa col nome del platformOwner e il value è un array di oggetti con la lista piattaforme e tutto il resto
-  function groupByPlatformOwner(platforms, property) {
-    return platforms.reduce((acc, curr) => {
-      if (!acc[curr[property]]) {
-        acc[curr[property]] = [];
-      }
-      acc[curr[property]].push(curr);
-      return acc;
-    }, {});
-  }
 
   const platformsByOwner = groupByPlatformOwner(platforms, "platformOwner");
   // converte in array per essere più semplice da manipolare
