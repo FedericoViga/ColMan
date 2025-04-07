@@ -1,20 +1,13 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import SearchBar from "./SearchBar";
-import Link from "next/link";
-import { useRouter, useSearchParams } from "next/navigation";
-import PlatformFilterSelectorHome from "./PlatformFilterSelectorHome";
+import { useState } from "react";
+import PlatformFilterSelectorPagination from "./PlatformFilterSelectorPagination";
+import { useSearchParams } from "next/navigation";
 
-function SearchWarpper({ platforms }) {
+function FilterWrapper({ platforms }) {
   const [curActive, setCurActive] = useState();
   const [isExpanded, setOpenFilters] = useState(false);
-  const router = useRouter();
   const searchParams = useSearchParams();
-
-  useEffect(() => {
-    router.replace(`/`, { scroll: false });
-  }, []);
 
   // genera un oggetto che contiene X oggetti e ognuno di essi è una coppia key-value dove la key è una stringa col nome del platformOwner e il value è un array di oggetti con la lista piattaforme e tutto il resto
   function groupByPlatformOwner(platforms, property) {
@@ -32,14 +25,13 @@ function SearchWarpper({ platforms }) {
   const platformsToArray = Object.entries(platformsByOwner);
 
   return (
-    <div className="container flex flex-col items-center justify-center gap-5 py-3">
-      <SearchBar />
-      <span className="text-primary self-start">Filtra:</span>
-      <div className="w-full">
+    <>
+      <div className="mb-3 w-full">
         <div className="flex items-baseline gap-3">
+          <span className="text-primary">Filtra:</span>
           <button
             onClick={() => setOpenFilters((isExp) => !isExp)}
-            className={`text-primary rounded-lg border-slate-600 p-1 text-sm ${isExpanded ? "!text-foreground border-2 !border-blue-500" : "border-primary border"}`}
+            className={`text-primary rounded-lg border-slate-600 p-1 text-sm ${isExpanded ? "!text-foreground border-2 !border-blue-500" : "border-primary border-2"}`}
           >
             Piattaforme
           </button>
@@ -56,7 +48,7 @@ function SearchWarpper({ platforms }) {
           {platforms.length !== 0 ? (
             <>
               {platformsToArray.map((platform, i) => (
-                <PlatformFilterSelectorHome
+                <PlatformFilterSelectorPagination
                   platformDetails={platform}
                   key={platform[0]}
                   id={i}
@@ -80,10 +72,10 @@ function SearchWarpper({ platforms }) {
         </div>
       </div>
       <hr
-        className={`${isExpanded ? "border-blue-500" : "border-primary"} w-full`}
+        className={`${isExpanded ? "border-blue-500" : "border-primary"} mb-4 w-full`}
       />
-    </div>
+    </>
   );
 }
 
-export default SearchWarpper;
+export default FilterWrapper;

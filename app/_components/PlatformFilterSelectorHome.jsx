@@ -1,6 +1,12 @@
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
-function PlatformFilterSelector({ platformDetails, id, curActive, onActive }) {
+function PlatformFilterSelectorHome({
+  platformDetails,
+  id,
+  curActive,
+  onActive,
+  onExpanded,
+}) {
   const searchParams = useSearchParams();
   const router = useRouter();
   // state per togliere il testo se viene selezionata una nuova piattaforma
@@ -11,8 +17,10 @@ function PlatformFilterSelector({ platformDetails, id, curActive, onActive }) {
     const params = new URLSearchParams(searchParams);
     if (filter.target.value === "---") {
       params.set("platform", "all");
+      onExpanded(false);
     } else {
       params.set("platform", filter.target.value);
+      onExpanded(false);
     }
 
     router.replace(`?${params.toString()}`, { scroll: false });
@@ -31,7 +39,6 @@ function PlatformFilterSelector({ platformDetails, id, curActive, onActive }) {
           handleFilter(e);
         }}
       >
-        {/* <option hidden></option> */}
         <option>---</option>
         {platformDetails[1].map((elem) => (
           <option key={elem.id} value={elem.platformName}>
@@ -43,4 +50,4 @@ function PlatformFilterSelector({ platformDetails, id, curActive, onActive }) {
   );
 }
 
-export default PlatformFilterSelector;
+export default PlatformFilterSelectorHome;

@@ -19,6 +19,7 @@ function Pagination({ count }) {
     const params = new URLSearchParams(searchParams);
     params.set("page", next);
     router.push(`?${params.toString()}`, { scroll: false });
+    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
     return params;
   }
 
@@ -48,7 +49,9 @@ function Pagination({ count }) {
             onClick={prevPage}
             className="disabled:text-primary flex items-center justify-center"
           >
-            <ChevronLeftIcon className="disabled:text-primary h-4 w-4 text-blue-500" />
+            <ChevronLeftIcon
+              className={`${currentPage === 1 && "text-primary"} h-4 w-4 text-blue-500`}
+            />
             <span>Indietro</span>
           </button>
 
@@ -58,7 +61,9 @@ function Pagination({ count }) {
             className="disabled:text-primary flex items-center justify-center"
           >
             <span>Avanti</span>
-            <ChevronRightIcon className="disabled:text-primary h-4 w-4 text-blue-500" />
+            <ChevronRightIcon
+              className={`${currentPage === pageCount && "text-primary"} h-4 w-4 text-blue-500`}
+            />
           </button>
         </div>
       </div>

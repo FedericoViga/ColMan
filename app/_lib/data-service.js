@@ -128,31 +128,63 @@ export async function getFullPlatform(id) {
   return data;
 }
 
-export async function fetchGamesWithPagination(page) {
-  let query = supabase.from("games").select("*", { count: "exact" });
+export async function fetchGamesWithPagination(page, platformFilter) {
+  // se non c'è il param platfom o se è "all" li fetcha tutti
+  if (platformFilter === undefined || platformFilter === "all") {
+    let queryAll = supabase.from("games").select("*", { count: "exact" });
 
-  if (page) {
-    const from = (page - 1) * PAGE_SIZE;
-    const to = from + PAGE_SIZE - 1;
-    query = query.range(from, to);
+    if (page) {
+      const from = (page - 1) * PAGE_SIZE;
+      const to = from + PAGE_SIZE - 1;
+      queryAll = queryAll.range(from, to);
+    }
+
+    // setta route /games come param ?page=1
+    if (!page) {
+      page = 1;
+      const from = (page - 1) * PAGE_SIZE;
+      const to = from + PAGE_SIZE - 1;
+      queryAll = queryAll.range(from, to);
+    }
+
+    const { data, error, count } = await queryAll;
+
+    if (error) {
+      console.log(error);
+    }
+
+    return { data, count };
+  } else {
+    // se c'è il filtro piattaforma fetcha solo quelli del filtro
+    let queryWithPlatform = supabase
+      .from("games")
+      .select("*", { count: "exact" })
+      .eq("platform", platformFilter);
+
+    if (page) {
+      const from = (page - 1) * PAGE_SIZE;
+      const to = from + PAGE_SIZE - 1;
+      queryWithPlatform = queryWithPlatform.range(from, to);
+    }
+
+    // setta route /games come param ?page=1
+    if (!page) {
+      page = 1;
+      const from = (page - 1) * PAGE_SIZE;
+      const to = from + PAGE_SIZE - 1;
+      queryWithPlatform = queryWithPlatform.range(from, to);
+    }
+
+    const { data, error, count } = await queryWithPlatform;
+
+    if (error) {
+      console.log(error);
+    }
+
+    return { data, count };
   }
-
-  // setta route /games come param ?page=1
-  if (!page) {
-    page = 1;
-    const from = (page - 1) * PAGE_SIZE;
-    const to = from + PAGE_SIZE - 1;
-    query = query.range(from, to);
-  }
-
-  const { data, error, count } = await query;
-
-  if (error) {
-    console.log(error);
-  }
-
-  return { data, count };
 }
+
 export async function fetchCollectorsWithPagination(page) {
   let query = supabase
     .from("games")

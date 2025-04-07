@@ -10,10 +10,10 @@ async function Page({ searchParams }) {
 
   return (
     <div
-      className={`container my-5 flex flex-col gap-1 ${fetchedGames && fetchedGames.length !== 0 && "border-primary border-b"}`}
+      className={`container my-5 flex flex-col gap-1 ${fetchedGames && count !== 0 && "border-primary border-b"}`}
     >
       <h1 className="mb-8 text-center text-2xl">
-        Tutti le collector&apos;s editions
+        Tutte le collector&apos;s editions
       </h1>
       {games.map((game) => (
         <GameCard game={game} key={game.id} />
