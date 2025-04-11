@@ -109,6 +109,7 @@ export async function getFullGame(id, platform) {
 
   if (error) {
     console.log(error);
+    throw new Error("Non è stato possibile caricare i dettagli del gioco");
   }
 
   return data;
@@ -123,6 +124,9 @@ export async function getFullPlatform(id) {
 
   if (error) {
     console.log(error);
+    throw new Error(
+      "Non è stato possibile caricare i dettagli della piattaforma",
+    );
   }
 
   return data;
@@ -139,7 +143,7 @@ export async function fetchGamesWithPagination(page, platformFilter) {
       queryAll = queryAll.range(from, to);
     }
 
-    // setta route /games come param ?page=1
+    // setta route /games come param "?page=1"
     if (!page) {
       page = 1;
       const from = (page - 1) * PAGE_SIZE;
@@ -185,31 +189,63 @@ export async function fetchGamesWithPagination(page, platformFilter) {
   }
 }
 
-export async function fetchCollectorsWithPagination(page) {
-  let query = supabase
-    .from("games")
-    .select("*", { count: "exact" })
-    .eq("isCollector", "TRUE");
+export async function fetchCollectorsWithPagination(page, platformFilter) {
+  // se non c'è il param platfom o se è "all" li fetcha tutti
+  if (platformFilter === undefined || platformFilter === "all") {
+    let queryAll = supabase
+      .from("games")
+      .select("*", { count: "exact" })
+      .eq("isCollector", "TRUE");
 
-  if (page) {
-    const from = (page - 1) * PAGE_SIZE;
-    const to = from + PAGE_SIZE - 1;
-    query = query.range(from, to);
+    if (page) {
+      const from = (page - 1) * PAGE_SIZE;
+      const to = from + PAGE_SIZE - 1;
+      queryAll = queryAll.range(from, to);
+    }
+
+    // setta route /games come param "?page=1"
+    if (!page) {
+      page = 1;
+      const from = (page - 1) * PAGE_SIZE;
+      const to = from + PAGE_SIZE - 1;
+      queryAll = queryAll.range(from, to);
+    }
+
+    const { data, error, count } = await queryAll;
+
+    if (error) {
+      console.log(error);
+    }
+
+    return { data, count };
+  } else {
+    // se c'è il filtro piattaforma fetcha solo quelli del filtro
+    let queryWithPlatform = supabase
+      .from("games")
+      .select("*", { count: "exact" })
+      .eq("isCollector", "TRUE")
+      .eq("platform", platformFilter);
+
+    if (page) {
+      const from = (page - 1) * PAGE_SIZE;
+      const to = from + PAGE_SIZE - 1;
+      queryWithPlatform = queryWithPlatform.range(from, to);
+    }
+
+    // setta route /games come param ?page=1
+    if (!page) {
+      page = 1;
+      const from = (page - 1) * PAGE_SIZE;
+      const to = from + PAGE_SIZE - 1;
+      queryWithPlatform = queryWithPlatform.range(from, to);
+    }
+
+    const { data, error, count } = await queryWithPlatform;
+
+    if (error) {
+      console.log(error);
+    }
+
+    return { data, count };
   }
-
-  // setta route /games come param ?page=1
-  if (!page) {
-    page = 1;
-    const from = (page - 1) * PAGE_SIZE;
-    const to = from + PAGE_SIZE - 1;
-    query = query.range(from, to);
-  }
-
-  const { data, error, count } = await query;
-
-  if (error) {
-    console.log(error);
-  }
-
-  return { data, count };
 }

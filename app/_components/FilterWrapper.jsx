@@ -9,6 +9,7 @@ function FilterWrapper({ platforms }) {
   const [curActive, setCurActive] = useState();
   const [isExpanded, setOpenFilters] = useState(false);
   const searchParams = useSearchParams();
+  const [selectedFilter, setSelectedFilter] = useState();
 
   const platformsByOwner = groupByPlatformOwner(platforms, "platformOwner");
   // converte in array per essere più semplice da manipolare
@@ -29,7 +30,7 @@ function FilterWrapper({ platforms }) {
             {searchParams.get("platform") === "all" ||
             !searchParams.has("platform")
               ? "Tutte"
-              : searchParams.get("platform")}
+              : (selectedFilter ?? searchParams.get("platform"))}
           </span>
         </div>
         <div
@@ -45,6 +46,8 @@ function FilterWrapper({ platforms }) {
                   curActive={curActive}
                   onActive={setCurActive}
                   onExpanded={setOpenFilters}
+                  selectedFilter={selectedFilter}
+                  onSelectedFilter={setSelectedFilter}
                 />
               ))}
             </>

@@ -6,6 +6,7 @@ function PlatformFilterSelectorHome({
   curActive,
   onActive,
   onExpanded,
+  onSelectedFilter,
 }) {
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -20,6 +21,7 @@ function PlatformFilterSelectorHome({
       onExpanded(false);
     } else {
       params.set("platform", filter.target.value);
+      onSelectedFilter(filter.target.value);
       onExpanded(false);
     }
 

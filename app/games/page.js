@@ -13,8 +13,8 @@ async function Page({ searchParams }) {
     pageParams.page,
     pageParams.platform,
   );
-
   const platforms = await getAllPlatforms();
+
   const { data: games, count } = fetchedGames;
 
   return (

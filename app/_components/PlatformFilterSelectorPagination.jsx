@@ -1,4 +1,5 @@
 import { useSearchParams, useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 function PlatformFilterSelectorPagination({
   platformDetails,
@@ -6,11 +7,18 @@ function PlatformFilterSelectorPagination({
   curActive,
   onActive,
   onExpanded,
+  onSelectedFilter,
+  selectedFilter,
 }) {
   const searchParams = useSearchParams();
   const router = useRouter();
   // state per togliere il testo se viene selezionata una nuova piattaforma
   const isSelectedActive = id === curActive;
+
+  useEffect(() => {
+    const params = new URLSearchParams(searchParams);
+    params.has("platform") ? onSelectedFilter(params.get("platform")) : null;
+  }, []);
 
   /* setta il search param in base alla piattaforma scelta */
   function handleFilter(filter) {
@@ -22,6 +30,7 @@ function PlatformFilterSelectorPagination({
     } else {
       params.set("platform", filter.target.value);
       params.set("page", "1");
+      onSelectedFilter(filter.target.value);
       onExpanded(false);
     }
 
@@ -35,7 +44,9 @@ function PlatformFilterSelectorPagination({
         required={isSelectedActive}
         name="platform"
         className="bg-background border-primary focus mt-1 cursor-pointer rounded border p-1 focus:border-blue-500 focus:ring-blue-500"
-        value={!isSelectedActive ? isSelectedActive : undefined}
+        value={
+          !isSelectedActive ? isSelectedActive || selectedFilter : undefined
+        }
         onChange={(e) => {
           onActive(id);
           handleFilter(e);

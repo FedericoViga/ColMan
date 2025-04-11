@@ -33,6 +33,7 @@ export async function updateGame(oldImage, formData) {
 
   let updateData;
 
+  // se non c'è una nuova immagine aggiorna tutto tranne l'immagine
   if (newImage.size === 0) {
     updateData = {
       id,
@@ -55,6 +56,7 @@ export async function updateGame(oldImage, formData) {
     `${uuidv4()}-${newImage.name.replaceAll(" ", "-")}`.replaceAll("/", "");
   const newImagePath = `https://igyqtugipdfweornkjrg.supabase.co/storage/v1/object/public/games-images//${imageName}`;
 
+  // se c'è una nuova immagine aggiorna tutto compresa l'immagine
   if (newImage.size !== 0) {
     updateData = {
       id,
@@ -79,14 +81,13 @@ export async function updateGame(oldImage, formData) {
     return { error: "Errore aggiornamento dati" };
   }
 
+  // cancella dal bucket l'immagine attuale prima di caricare quella nuova
   try {
     if (newImage.size === 0) {
       revalidatePath("/games/[gameId]/update-game", "page");
       return;
     } else {
-      // cancella dal bucket l'immagine attuale prima di caricare quella nuova
       const imageToDelete = oldImage.split("//").at(-1);
-
       const toDeleteOldImage = await supabase.storage
         .from("games-images")
         .remove([imageToDelete]);

@@ -10,6 +10,7 @@ import { groupByPlatformOwner } from "../_lib/utils";
 function SearchWarpper({ platforms }) {
   const [curActive, setCurActive] = useState();
   const [isExpanded, setOpenFilters] = useState(false);
+  const [selectedFilter, setSelectedFilter] = useState();
   const router = useRouter();
   const searchParams = useSearchParams();
 
@@ -37,7 +38,7 @@ function SearchWarpper({ platforms }) {
             {searchParams.get("platform") === "all" ||
             !searchParams.has("platform")
               ? "Tutte"
-              : searchParams.get("platform")}
+              : selectedFilter}
           </span>
         </div>
         <div
@@ -53,6 +54,7 @@ function SearchWarpper({ platforms }) {
                   curActive={curActive}
                   onActive={setCurActive}
                   onExpanded={setOpenFilters}
+                  onSelectedFilter={setSelectedFilter}
                 />
               ))}
             </>
