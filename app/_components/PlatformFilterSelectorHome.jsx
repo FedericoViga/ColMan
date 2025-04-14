@@ -6,6 +6,7 @@ function PlatformFilterSelectorHome({
   curActive,
   onActive,
   onExpanded,
+  selectedFilter,
   onSelectedFilter,
 }) {
   const searchParams = useSearchParams();

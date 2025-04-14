@@ -67,13 +67,11 @@ export const countCollectors = async function () {
 export const fetchGames = async function (queryString, platformFilter) {
   if (queryString === undefined) return;
 
-  const normalizedQuery = queryString.replaceAll(" ", "+");
-
   if (platformFilter === "all" || platformFilter === undefined) {
     const { data, error } = await supabase
       .from("games")
       .select("*, platforms(platformName)")
-      .textSearch("gameName", `${normalizedQuery}`);
+      .textSearch("gameName", `'${queryString}'`);
 
     if (error) {
       console.log(error);
@@ -86,7 +84,7 @@ export const fetchGames = async function (queryString, platformFilter) {
       .from("games")
       .select("*, platforms(platformName)")
       .eq("platform", platformFilter)
-      .textSearch("gameName", `${normalizedQuery}`);
+      .textSearch("gameName", `'${queryString}'`);
 
     if (error) {
       console.log(error);

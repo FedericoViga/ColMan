@@ -23,14 +23,14 @@ function SearchWarpper({ platforms }) {
   const platformsToArray = Object.entries(platformsByOwner);
 
   return (
-    <div className="container flex flex-col items-center justify-center gap-5 py-3">
+    <div className="container flex flex-col items-center justify-center gap-6 py-3">
       <SearchBar />
-      <span className="text-primary self-start">Filtra:</span>
       <div className="w-full">
         <div className="flex items-baseline gap-3">
+          <span className="text-primary">Filtra:</span>
           <button
             onClick={() => setOpenFilters((isExp) => !isExp)}
-            className={`text-primary rounded-lg border-slate-600 p-1 text-sm ${isExpanded ? "!text-foreground border-2 !border-blue-500" : "border-primary border"}`}
+            className={`text-primary cursor-pointer rounded-lg border-2 border-slate-600 p-1 text-sm ${isExpanded ? "!text-foreground border-2 !border-blue-500" : "border-primary border"}`}
           >
             Piattaforme
           </button>
@@ -54,6 +54,7 @@ function SearchWarpper({ platforms }) {
                   curActive={curActive}
                   onActive={setCurActive}
                   onExpanded={setOpenFilters}
+                  selectedFilter={selectedFilter}
                   onSelectedFilter={setSelectedFilter}
                 />
               ))}

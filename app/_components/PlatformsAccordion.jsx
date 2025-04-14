@@ -4,12 +4,12 @@ function PlatformsAccordion({ platformDetails, id, curOpen, onOpen }) {
   // state per chiudere il dropdown dei filtri se viene selezionato un nuovo dropdown
   const isSelectorOpen = id === curOpen;
   return (
-    <div className={`my-7`}>
+    <div className={`my-8`}>
       <button
         onClick={() => {
           onOpen(id);
         }}
-        className={`${isSelectorOpen ? "border-2 border-blue-500" : "border-primary border"} flex w-full justify-between rounded px-1.5 py-2 text-lg`}
+        className={`${isSelectorOpen ? "border-2 border-blue-500" : "border-primary border"} flex w-full justify-between rounded px-2 py-2 text-lg`}
       >
         <span>{platformDetails[0]}</span>
         {isSelectorOpen ? (
