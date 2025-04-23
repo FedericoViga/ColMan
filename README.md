@@ -8,8 +8,6 @@
 In questa prima versione ho mantenuto un design semplice con priorità alla funzionalità, anche se non mancano transizioni css per dare più fluidità e ovviamente i vari spinner di caricamento e indicatori per le richieste asincrone grazie a Next, Suspense e useTransition di React.
 </p>
 
-![Colman homepage](https://drive.google.com/file/d/1It2b2iEdw-iU7eWOwYLATtZBryJNU5PL/view?usp=sharing)
-
 ## Tecnologie usate
 
 - **Next.Js**
