@@ -1,12 +1,13 @@
 <div align="center">
 
   <h1>Colman</h1>
-  <hr>
 
 </div>
 <p>Colman sta per collection manager, è una Web App sviluppata con Next.Js, Tailwind e Supabase per dispositi mobili per gestire la mia collezione di videogiochi in modo rapido.<br>
 In questa prima versione ho mantenuto un design semplice con priorità alla funzionalità, anche se non mancano transizioni css per dare più fluidità e ovviamente i vari spinner di caricamento e indicatori per le richieste asincrone grazie a Next, Suspense e useTransition di React.
 </p>
+
+![schermate-Colman](colman-showcase.png)
 
 ## Tecnologie usate
 
