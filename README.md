@@ -3,7 +3,8 @@
   <h1>Colman</h1>
 
 </div>
-<p>Colman sta per "collection manager" ed è una web app full stack (React, Next.Js, Tailwind e Supabase) per dispositi mobili per gestire la mia collezione di videogiochi in modo rapido.<br>
+<p>Colman sta per "collection manager" ed è una web app full stack (React, Next.Js, Tailwind e Supabase) per dispositivi mobili per gestire la mia collezione di videogiochi in modo rapido.<br>
+
 In questa prima versione ho mantenuto un design semplice (ispirato all'app mobile di eBay) con priorità alla funzionalità, ma non mancano transizioni css per dare più fluidità e i vari spinner di caricamento e indicatori per le richieste asincrone grazie a Next.Js, Suspense e useTransition di React.<br>
 Le notifiche toast di avvenuta aggiunta/modifica/eliminazione sono gestite con la fantastica libreria React Hot Toast.
 
