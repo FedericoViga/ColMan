@@ -3,8 +3,12 @@
   <h1>Colman</h1>
 
 </div>
-<p>Colman sta per collection manager, è una Web App sviluppata con Next.Js, Tailwind e Supabase per dispositi mobili per gestire la mia collezione di videogiochi in modo rapido.<br>
-In questa prima versione ho mantenuto un design semplice con priorità alla funzionalità, anche se non mancano transizioni css per dare più fluidità e ovviamente i vari spinner di caricamento e indicatori per le richieste asincrone grazie a Next, Suspense e useTransition di React.
+<p>Colman sta per "collection manager" ed è una web app full stack (React, Next.Js, Tailwind e Supabase) per dispositi mobili per gestire la mia collezione di videogiochi in modo rapido.<br>
+In questa prima versione ho mantenuto un design semplice (ispirato all'app mobile di eBay) con priorità alla funzionalità, ma non mancano transizioni css per dare più fluidità e i vari spinner di caricamento e indicatori per le richieste asincrone grazie a Next.Js, Suspense e useTransition di React.<br>
+Le notifiche toast di avvenuta aggiunta/modifica/eliminazione sono gestite con la fantastica libreria React Hot Toast.
+
+Con questa applicazione si possono inserire/modificare/eliminare nuovi giochi direttamente nel database di Supabase (PostgreSQL) prendendo le foto dalla galleria del telefono e compilando una "scheda prodotto" vera e propria con le informazioni sul gioco.
+
 </p>
 
 ![schermate-Colman](colman-showcase.png)
@@ -25,7 +29,7 @@ In questa prima versione ho mantenuto un design semplice con priorità alla funz
 - Lista di tutti i videogiochi con paginazione e filtro piattaforma;
 - Lista di tutte le collector's editions con paginazione e filtro piattaforma;
 - Lista di tutte le piattaforme;
-- Funzione di aggiunta giochi e piattaforme con i propri dati (immagine, nome, regione, contenuti ecc.);
+- Funzione di aggiunta giochi e piattaforme con i relativi dati (immagine, nome, regione, contenuti ecc.);
 - Checkbox per giochi sigillati, edizioni speciali e collector's editions;
 - Funzione di modifica delle schede di giochi e piattaforme;
 - Funzione di eliminazione giochi e piattaforme;
