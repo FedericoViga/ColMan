@@ -20,6 +20,7 @@ function InsertPlatformForm() {
               autoComplete="off"
             />
           </div>
+
           <div className="flex flex-col gap-1">
             <label className="text-primary">Produttore</label>
             <input

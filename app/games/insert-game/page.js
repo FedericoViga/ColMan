@@ -3,7 +3,6 @@ import { getAllPlatforms } from "@/app/_lib/data-service";
 
 async function Page() {
   const platforms = await getAllPlatforms();
-
   const platformsIdAndName = platforms.map(({ id, platformName }) => ({
     id,
     platformName,

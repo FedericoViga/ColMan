@@ -14,7 +14,7 @@ function GameCard({ game }) {
     gameImages,
   } = game;
 
-  // elimina "-" al'inizio dell stringa nel caso che Supabase metta l'id negativo
+  // elimina "-" al'inizio della stringa nel caso che Supabase metta l'id negativo
   const normalizedId = id.toString().startsWith("-") ? id.slice(1) : id;
   const normalizedPlatform = platform.toLowerCase().replaceAll(" ", "-");
 

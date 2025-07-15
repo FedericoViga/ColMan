@@ -35,9 +35,11 @@ function CreateSelector() {
 
   return (
     <>
+      {/* layer opaco  */}
       <div
-        className={`absolute h-full w-full ${isOpen ? "bg-background block opacity-70" : "hidden"}`}
+        className={`fixed top-0 h-full w-full ${isOpen ? "bg-background block opacity-70" : "hidden"}`}
       ></div>
+      {/* container scelta gioco o piattaforma */}
       <div
         className={`bg-background fixed bottom-0 transition-all transition-discrete duration-400 ${isOpen ? "flex h-64 border-t-2 border-t-blue-500" : "h-0 border-t-2 border-t-blue-500 opacity-0"} w-full flex-col items-center justify-center`}
       >
