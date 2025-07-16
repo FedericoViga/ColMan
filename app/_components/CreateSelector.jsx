@@ -36,9 +36,11 @@ function CreateSelector() {
 
   // rimuove lo scroll quando è aperto il componente CreateSelector
   useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = "hidden";
-    } else document.body.style.overflow = "scroll";
+    if (isOpen) document.body.style.overflow = "hidden";
+
+    return () => {
+      document.body.style.overflow = "scroll";
+    };
   }, [isOpen]);
 
   return (
