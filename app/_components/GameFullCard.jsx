@@ -59,20 +59,23 @@ function GameFullCard({ gameDetails }) {
           <p>Contenuto non specificato.</p>
         )}
       </div>
-      <div className="mt-5 flex min-w-24 cursor-pointer items-center justify-center gap-1 self-start rounded border border-blue-500 py-1">
-        <PencilSquareIcon className="w-4r h-4" />
-        <Link
-          href={`/games/${normalizedId}-${normalizedPlatform}/update-game`}
-          className="inline-block"
-        >
-          Modifica
-        </Link>
+
+      <div className="flex gap-4">
+        <div className="mt-5 flex min-w-24 flex-3/6 cursor-pointer items-center justify-center gap-1 self-start rounded border border-blue-500 py-1 text-base">
+          <PencilSquareIcon className="h-4 w-4" />
+          <Link
+            href={`/games/${normalizedId}-${normalizedPlatform}/update-game`}
+            className="inline-block"
+          >
+            Modifica
+          </Link>
+        </div>
+        <DeleteGameButton
+          gameId={normalizedId}
+          gameName={gameName}
+          gameImages={gameImages}
+        />
       </div>
-      <DeleteGameButton
-        gameId={normalizedId}
-        gameName={gameName}
-        gameImages={gameImages}
-      />
     </div>
   );
 }

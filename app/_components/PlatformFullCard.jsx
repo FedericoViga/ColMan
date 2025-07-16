@@ -28,19 +28,21 @@ function PlatformFullCard({ platformDetails }) {
         </p>
       </div>
 
-      <div className="mt-5 flex min-w-24 cursor-pointer items-center justify-center gap-1 self-start rounded border border-blue-500 py-1">
-        <PencilSquareIcon className="h-4 w-4" />
-        <Link
-          href={`/platforms/${normalizedId}-${normalizedPlatformOwner}-${normalizedPlatform}/update-platform`}
-          className="inline-block"
-        >
-          Modifica
-        </Link>
+      <div className="flex gap-4">
+        <div className="mt-5 flex min-w-24 flex-3/6 cursor-pointer items-center justify-center gap-1 self-start rounded border border-blue-500 py-1 text-base">
+          <PencilSquareIcon className="h-4 w-4" />
+          <Link
+            href={`/platforms/${normalizedId}-${normalizedPlatformOwner}-${normalizedPlatform}/update-platform`}
+            className="inline-block"
+          >
+            Modifica
+          </Link>
+        </div>
+        <DeletePlatformButton
+          platformId={normalizedId}
+          platformName={platformName}
+        />
       </div>
-      <DeletePlatformButton
-        platformId={normalizedId}
-        platformName={platformName}
-      />
     </div>
   );
 }
