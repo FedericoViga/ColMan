@@ -7,7 +7,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import PlatformFilterSelectorHome from "./PlatformFilterSelectorHome";
 import { groupByPlatformOwner } from "../_lib/utils";
 
-function SearchWarpper({ platforms }) {
+function SearchWrapper({ platforms }) {
   const [curActive, setCurActive] = useState();
   const [isExpanded, setOpenFilters] = useState(false);
   const [selectedFilter, setSelectedFilter] = useState();
@@ -25,6 +25,8 @@ function SearchWarpper({ platforms }) {
   return (
     <div className="container flex flex-col items-center justify-center gap-6 py-3">
       <SearchBar />
+
+      {/* filtro piattaforme */}
       <div className="w-full">
         <div className="flex items-baseline gap-3">
           <span className="text-primary">Filtra:</span>
@@ -79,4 +81,4 @@ function SearchWarpper({ platforms }) {
   );
 }
 
-export default SearchWarpper;
+export default SearchWrapper;

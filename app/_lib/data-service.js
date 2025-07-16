@@ -65,7 +65,7 @@ export const countCollectors = async function () {
 };
 
 export const fetchGames = async function (queryString, platformFilter) {
-  if (queryString === undefined) return;
+  if (!queryString) return;
 
   if (platformFilter === "all" || platformFilter === undefined) {
     const { data, error } = await supabase

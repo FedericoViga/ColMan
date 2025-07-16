@@ -1,6 +1,6 @@
 import { getAllPlatforms } from "./_lib/data-service";
 import HeroRecap from "./_components/HeroRecap";
-import SearchWarpper from "./_components/SearchWarpper";
+import SearchWrapper from "./_components/SearchWrapper";
 import SearchResultsList from "./_components/SearchResultsList";
 import CreateSelector from "./_components/CreateSelector";
 
@@ -22,7 +22,7 @@ export default async function Page({ searchParams }) {
   return (
     <div className="flex flex-col gap-2">
       <HeroRecap />
-      <SearchWarpper platforms={platforms} />
+      <SearchWrapper platforms={platforms} />
       <SearchResultsList
         queryString={queryString}
         platformFilter={platformFilter}

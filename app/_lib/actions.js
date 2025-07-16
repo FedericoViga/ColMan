@@ -12,6 +12,8 @@ export async function signInAction() {
 }
 
 // UPDATE
+
+// aggiorna gioco
 export async function updateGame(oldImage, formData) {
   const session = await auth();
   if (!session) throw new Error("Devi essere loggato");
@@ -114,6 +116,7 @@ export async function updateGame(oldImage, formData) {
   revalidatePath("/games/[gameId]/update-game", "page");
 }
 
+// aggiorna piattaforma
 export async function updatePlatform(formData) {
   const session = await auth();
   if (!session) throw new Error("Devi essere loggato");
@@ -142,6 +145,8 @@ export async function updatePlatform(formData) {
 }
 
 // DELETE
+
+// cancella gioco
 export async function deleteGame(id, images) {
   const session = await auth();
   if (!session) throw new Error("Devi essere loggato");
@@ -172,6 +177,7 @@ export async function deleteGame(id, images) {
   redirect("/");
 }
 
+// cancella piattaforma
 export async function deletePlatform(id) {
   const session = await auth();
   if (!session) throw new Error("Devi essere loggato");
@@ -195,6 +201,8 @@ export async function deletePlatform(id) {
 }
 
 //INSERT
+
+// inserisci gioco
 export async function insertGame(platformsIdAndName, formData) {
   const gameName = formData.get("gameName").trim();
   const gameRegion = formData.get("gameRegion");
@@ -262,6 +270,7 @@ export async function insertGame(platformsIdAndName, formData) {
   redirect("/");
 }
 
+// inserisci piattaforma
 export async function insertPlatform(formData) {
   const platformName = formData.get("platformName").trim();
   const platformOwner = formData.get("platformOwner").trim();

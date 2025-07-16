@@ -8,7 +8,8 @@ import toast from "react-hot-toast";
 function CreateSelector() {
   const [isOpen, setisOpen] = useState(false);
 
-  //notifiche toast per la cancellazione di gioco o piattaforma
+  // notifiche toast per inserimento/cancellazione di gioco o piattaforma
+  // legge il rispetivo cookie e se è presente renderizza la notifica e rimuove il cookie
   useEffect(() => {
     const insertGameCookie = Cookies.get("insertGame");
     const deleteGameCookie = Cookies.get("deleteGame");
@@ -33,13 +34,20 @@ function CreateSelector() {
     }
   }, []);
 
+  // rimuove lo scroll quando è aperto il componente CreateSelector
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else document.body.style.overflow = "scroll";
+  }, [isOpen]);
+
   return (
     <>
-      {/* layer opaco  */}
+      {/* layer di background opaco visibile mentre è aperto il componente */}
       <div
         className={`fixed top-0 h-full w-full ${isOpen ? "bg-background block opacity-70" : "hidden"}`}
       ></div>
-      {/* container scelta gioco o piattaforma */}
+
       <div
         className={`bg-background fixed bottom-0 transition-all transition-discrete duration-400 ${isOpen ? "flex h-64 border-t-2 border-t-blue-500" : "h-0 border-t-2 border-t-blue-500 opacity-0"} w-full flex-col items-center justify-center`}
       >

@@ -8,18 +8,19 @@ async function SearchResultsList({ queryString, platformFilter }) {
     <div
       className={`border-primary container mt-3 mb-10 flex w-full flex-col items-center justify-center ${fetchedGames && fetchedGames.length !== 0 && "border-b"} !px-0`}
     >
-      {fetchedGames === undefined && (
+      {!queryString && (
         <p className="text-primary mt-5 text-xl">Cerca un gioco...</p>
       )}
-      {fetchedGames !== undefined && (
+
+      {fetchedGames && (
         <>
           <p className="text-primary mb-4 self-start pl-[9px] text-lg font-bold tracking-wide">
             <span className="text-foreground text-xl">
               {fetchedGames.length}
             </span>{" "}
             {fetchedGames.length === 1
-              ? "Risultato trovato"
-              : "Risultati trovati"}
+              ? `Risultato trovato per ${queryString}`
+              : `Risultati trovati per ${queryString}`}
           </p>
           {fetchedGames.map((game) => (
             <GameCard game={game} key={game.id} />

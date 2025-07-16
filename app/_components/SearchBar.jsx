@@ -10,6 +10,7 @@ function SearchGames() {
   const searchParams = useSearchParams();
   const router = useRouter();
 
+  // avvia ricerca premendo enter e nasconde la tastiera virtuale da mobile
   useEffect(() => {
     searchRef.current.addEventListener("keydown", (e) => {
       e.key === "Enter" ? searchRef.current.blur() : null;
@@ -27,6 +28,7 @@ function SearchGames() {
     }
     router.replace(`?${params.toString()}`, { scroll: false });
   }
+
   return (
     <div className="w-full">
       <div className="relative">
@@ -35,7 +37,6 @@ function SearchGames() {
           type="search"
           name="search-games"
           id="search-games"
-          /* className="w-full rounded border p-3" */
           className="border-primary block w-full rounded-lg border p-2.5 ps-10 text-white placeholder-gray-400 focus-within:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none"
           placeholder="Cerca gioco"
           onChange={(e) => loadDataDebounced(e.target.value)}
