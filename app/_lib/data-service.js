@@ -71,7 +71,8 @@ export const fetchGames = async function (queryString, platformFilter) {
     const { data, error } = await supabase
       .from("games")
       .select("*, platforms(platformName)")
-      .textSearch("gameName", `'${queryString}'`);
+      .textSearch("gameName", `'${queryString}'`)
+      .order("gameName", { ascending: true });
 
     if (error) {
       console.log(error);
@@ -84,7 +85,8 @@ export const fetchGames = async function (queryString, platformFilter) {
       .from("games")
       .select("*, platforms(platformName)")
       .eq("platform", platformFilter)
-      .textSearch("gameName", `'${queryString}'`);
+      .textSearch("gameName", `'${queryString}'`)
+      .order("gameName", { ascending: true });
 
     if (error) {
       console.log(error);
