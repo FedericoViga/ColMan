@@ -5,6 +5,7 @@ import Image from "next/image";
 import placeholderImageSmall from "@/public/placeholder-400x400.png";
 import UpdateLink from "./UpdateLink";
 import ContentDescription from "./ContentDescription";
+import { FLAGS } from "../_lib/constants";
 
 function GameFullCard({ gameDetails }) {
   const {
@@ -22,7 +23,10 @@ function GameFullCard({ gameDetails }) {
   const normalizedId = id.toString().startsWith("-") ? id.slice(1) : id;
   const normalizedPlatform = platform.toLowerCase().replaceAll(" ", "-");
 
-  // converte il testo in array e fa il trim
+  // prende l'emoji della bandiera che corrisponde alla regione del gioco
+  const { flag } = FLAGS.filter((obj) => obj.region === gameRegion)[0];
+
+  // converte il testo del contunto in array e fa il trim
   const textToList = contentDescription
     .split(/\s+e\s+|,/g)
     .map((elem) => elem.trim());
@@ -45,7 +49,10 @@ function GameFullCard({ gameDetails }) {
       {/* Piattaforma e regione */}
       <p className="text-xl">
         {platform}{" "}
-        <span className="text-primary ms-1.5 text-lg">{gameRegion}</span>
+        <span className="text-primary ms-1.5 text-lg">
+          {" "}
+          {`${gameRegion} ${flag}`}
+        </span>
       </p>
 
       {isCollector !== null && (
