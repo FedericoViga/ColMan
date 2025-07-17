@@ -12,6 +12,7 @@ function DeleteGame({ gameId, gameName, gameImages }) {
       deleteGame(gameId, gameImages);
     }
   }
+
   return (
     <div className="mt-5 flex min-w-24 flex-3/6 cursor-pointer items-center justify-center gap-1 self-start rounded border border-red-500 py-1 text-base">
       <TrashIcon className="h-4 w-4" />

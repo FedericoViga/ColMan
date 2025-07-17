@@ -8,7 +8,7 @@ import toast from "react-hot-toast";
 function CreateSelector() {
   const [isOpen, setisOpen] = useState(false);
 
-  // notifiche toast per inserimento/cancellazione di gioco o piattaforma
+  // notifiche toast per inserimento/cancellazione gioco o piattaforma
   // legge il rispetivo cookie e se è presente renderizza la notifica e rimuove il cookie
   useEffect(() => {
     const insertGameCookie = Cookies.get("insertGame");
@@ -82,6 +82,7 @@ function CreateSelector() {
           </div>
         </div>
       </div>
+
       <div
         className={`bg-background fixed right-6 bottom-7 flex ${!isOpen ? "size-14" : "hidden size-0"} cursor-pointer items-center justify-center rounded-lg border-2 border-blue-500 text-5xl`}
         onClick={() => setisOpen((isOpen) => !isOpen)}

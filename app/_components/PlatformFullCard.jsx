@@ -1,8 +1,7 @@
 "use client";
 
-import Link from "next/link";
-import { PencilSquareIcon } from "@heroicons/react/24/solid";
 import DeletePlatformButton from "./DeletePlatformButton";
+import UpdateLink from "./UpdateLink";
 
 function PlatformFullCard({ platformDetails }) {
   const { id, platformName, platformOwner } = platformDetails;
@@ -29,15 +28,10 @@ function PlatformFullCard({ platformDetails }) {
       </div>
 
       <div className="flex gap-4">
-        <div className="mt-5 flex min-w-24 flex-3/6 cursor-pointer items-center justify-center gap-1 self-start rounded border border-blue-500 py-1 text-base">
-          <PencilSquareIcon className="h-4 w-4" />
-          <Link
-            href={`/platforms/${normalizedId}-${normalizedPlatformOwner}-${normalizedPlatform}/update-platform`}
-            className="inline-block"
-          >
-            Modifica
-          </Link>
-        </div>
+        <UpdateLink
+          linkHref={`/platforms/${normalizedId}-${normalizedPlatformOwner}-${normalizedPlatform}/update-platform`}
+        />
+
         <DeletePlatformButton
           platformId={normalizedId}
           platformName={platformName}
