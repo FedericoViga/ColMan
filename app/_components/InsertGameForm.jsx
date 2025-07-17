@@ -93,11 +93,11 @@ function InsertGameForm({ platforms, platformsIdAndName }) {
               className="bg-background border-primary rounded border p-1 text-base"
             >
               <option hidden></option>
-              <option value="ITA 🇮🇹">ITA 🇮🇹</option>
-              <option value="PAL-ITA 🇪🇺🇮🇹">PAL-ITA 🇪🇺🇮🇹</option>
-              <option value="PAL 🇪🇺">PAL 🇪🇺</option>
-              <option value="NTSC-U 🇺🇸">NTSC-U 🇺🇸</option>
-              <option value="NTSC-J 🇯🇵">NTSC-J 🇯🇵</option>
+              <option value="ITA">ITA</option>
+              <option value="PAL-ITA">PAL-ITA</option>
+              <option value="PAL">PAL</option>
+              <option value="NTSC-U">NTSC-U</option>
+              <option value="NTSC-J">NTSC-J</option>
             </select>
           </div>
 
