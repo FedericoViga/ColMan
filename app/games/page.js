@@ -3,17 +3,18 @@ import GameCard from "../_components/GameCard";
 import Pagination from "../_components/Pagination";
 import ToCreateButton from "../_components/ToCreateButton";
 import {
+  countGames,
   fetchGamesWithPagination,
   getAllPlatforms,
 } from "../_lib/data-service";
 
 async function Page({ searchParams }) {
-  const platforms = await getAllPlatforms();
   const pageParams = await searchParams;
-  const fetchedGames = await fetchGamesWithPagination(
-    pageParams.page,
-    pageParams.platform,
-  );
+  const [numGames, platforms, fetchedGames] = await Promise.all([
+    countGames(),
+    getAllPlatforms(),
+    fetchGamesWithPagination(pageParams.page, pageParams.platform),
+  ]);
 
   const { data: games, count } = fetchedGames;
 
@@ -21,7 +22,7 @@ async function Page({ searchParams }) {
     <div
       className={`container my-5 flex flex-col gap-1 ${fetchedGames && count !== 0 && "border-primary border-b"}`}
     >
-      <h1 className="mb-8 text-center text-2xl">Tutti i giochi</h1>
+      <h1 className="mb-8 text-center text-2xl">Tutti i {numGames} giochi</h1>
       <FilterWrapper platforms={platforms} />
 
       {count === 0 ? (
