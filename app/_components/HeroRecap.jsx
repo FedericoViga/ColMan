@@ -1,15 +1,11 @@
-import { Suspense } from "react";
 import {
   countGames,
   countPlatforms,
   countCollectors,
 } from "../_lib/data-service";
-import SpinnerMini from "./SpinnerMini";
 import Link from "next/link";
 
-async function GameCount() {
-  const numGames = await countGames();
-
+async function GameCount({ numGames }) {
   return (
     <Link href="/games">
       <div className="flex items-center justify-center gap-1">
@@ -22,9 +18,7 @@ async function GameCount() {
   );
 }
 
-async function CollectorCount() {
-  const numCollectors = await countCollectors();
-
+async function CollectorCount({ numCollectors }) {
   return (
     <Link href="/games/collectors">
       <div className="flex items-center justify-center gap-1">
@@ -39,9 +33,7 @@ async function CollectorCount() {
   );
 }
 
-async function PlatformsCount() {
-  const numPlatforms = await countPlatforms();
-
+async function PlatformsCount({ numPlatforms }) {
   return (
     <Link href="/platforms">
       <div className="flex items-center justify-center gap-1">
@@ -55,17 +47,17 @@ async function PlatformsCount() {
 }
 
 async function HeroRecap() {
+  const [numGames, numCollectors, numPlatforms] = await Promise.all([
+    countGames(),
+    countCollectors(),
+    countPlatforms(),
+  ]);
+
   return (
     <div className="container flex flex-col items-center justify-center gap-3 py-5 text-center">
-      <Suspense fallback={<SpinnerMini />}>
-        <GameCount />
-      </Suspense>
-      <Suspense fallback={<SpinnerMini />}>
-        <CollectorCount />
-      </Suspense>
-      <Suspense fallback={<SpinnerMini />}>
-        <PlatformsCount />
-      </Suspense>
+      <GameCount numGames={numGames} />
+      <CollectorCount numCollectors={numCollectors} />
+      <PlatformsCount numPlatforms={numPlatforms} />
     </div>
   );
 }

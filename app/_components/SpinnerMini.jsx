@@ -1,5 +1,5 @@
 function SpinnerMini() {
-  return <div className="spinner-mini mb-1"></div>;
+  return <div className="spinner-mini"></div>;
 }
 
 export default SpinnerMini;
