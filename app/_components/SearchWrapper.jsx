@@ -26,16 +26,18 @@ function SearchWrapper({ platforms }) {
     <div className="container flex flex-col items-center justify-center gap-6 py-3">
       <SearchBar />
 
-      {/* filtro piattaforme */}
+      {/* Filtro piattaforme */}
       <div className="w-full">
         <div className="flex items-baseline gap-3">
           <span className="text-primary">Filtra:</span>
+
           <button
             onClick={() => setOpenFilters((isExp) => !isExp)}
-            className={`text-primary cursor-pointer rounded-lg border-2 border-slate-600 p-1 text-sm ${isExpanded ? "!text-foreground border-2 !border-blue-500" : "border-primary border"}`}
+            className={`text-primary cursor-pointer rounded-lg border-2 border-slate-600 p-1 text-sm ${isExpanded || selectedFilter !== undefined ? "!text-foreground border-2 !border-blue-500" : "border-primary border"}`}
           >
             Piattaforme
           </button>
+
           <span>
             {searchParams.get("platform") === "all" ||
             !searchParams.has("platform")
@@ -56,7 +58,6 @@ function SearchWrapper({ platforms }) {
                   curActive={curActive}
                   onActive={setCurActive}
                   onExpanded={setOpenFilters}
-                  selectedFilter={selectedFilter}
                   onSelectedFilter={setSelectedFilter}
                 />
               ))}

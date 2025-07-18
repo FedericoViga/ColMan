@@ -26,6 +26,7 @@ function PlatformFilterSelectorPagination({
     if (filter.target.value === "---") {
       params.set("platform", "all");
       params.set("page", "1");
+      onSelectedFilter(undefined);
       onExpanded(false);
     } else {
       params.set("platform", filter.target.value);

@@ -1,3 +1,4 @@
+"use client";
 import { useRouter, useSearchParams } from "next/navigation";
 
 function PlatformFilterSelectorHome({
@@ -6,7 +7,6 @@ function PlatformFilterSelectorHome({
   curActive,
   onActive,
   onExpanded,
-  selectedFilter,
   onSelectedFilter,
 }) {
   const searchParams = useSearchParams();
@@ -19,6 +19,7 @@ function PlatformFilterSelectorHome({
     const params = new URLSearchParams(searchParams);
     if (filter.target.value === "---") {
       params.set("platform", "all");
+      onSelectedFilter(undefined);
       onExpanded(false);
     } else {
       params.set("platform", filter.target.value);
