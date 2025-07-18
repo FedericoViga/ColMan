@@ -1,9 +1,9 @@
-function PacmanLoader() {
+function SpinnerInset() {
   return (
     <div className="mx-auto mt-14 mb-7 flex items-center justify-center">
-      <div className="pacman-loader"></div>
+      <div className="spinner-inset"></div>
     </div>
   );
 }
 
-export default PacmanLoader;
+export default SpinnerInset;

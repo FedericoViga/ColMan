@@ -1,7 +1,7 @@
-import PacmanLoader from "./_components/PacmanLoader";
+import SpinnerInset from "./_components/SpinnerInset";
 
 function Loading() {
-  return <PacmanLoader />;
+  return <SpinnerInset />;
 }
 
 export default Loading;
