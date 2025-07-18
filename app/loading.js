@@ -1,7 +1,7 @@
-import Spinner from "@/app/_components/Spinner";
+import PacmanLoader from "./_components/PacmanLoader";
 
 function Loading() {
-  return <Spinner />;
+  return <PacmanLoader />;
 }
 
 export default Loading;
