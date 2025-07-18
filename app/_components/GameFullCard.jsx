@@ -20,20 +20,22 @@ function GameFullCard({ gameDetails }) {
     gameImages,
   } = gameDetails;
 
+  // elimina "-" al'inizio della stringa nel caso che Supabase metta l'id signed negativo
   const normalizedId = id.toString().startsWith("-") ? id.slice(1) : id;
   const normalizedPlatform = platform.toLowerCase().replaceAll(" ", "-");
 
   // prende l'emoji della bandiera che corrisponde alla regione del gioco
-  const { flag } = FLAGS.filter((obj) => obj.region === gameRegion)[0];
+  const { flag } = FLAGS.find((obj) => obj.region === gameRegion);
 
-  // converte il testo del contunto in array e fa il trim
+  // converte in arrray il testo del contenuto e fa il trim
+  // la regex trova le virgole e la lettera "e" preceduta e seguita da uno spazio come separatori dell'array
+  // in questo modo divide ogni elemento della lista separato da virgole e opzionalmente l'elemento finale separato dalla "e"
   const textToList = contentDescription
     .split(/\s+e\s+|,/g)
     .map((elem) => elem.trim());
 
   return (
     <div className="mt-3 mb-10 flex flex-col gap-3">
-      {/* Immagine */}
       <div className="relative aspect-square">
         <Image
           src={gameImages ? gameImages : placeholderImageSmall}
@@ -43,10 +45,8 @@ function GameFullCard({ gameDetails }) {
         />
       </div>
 
-      {/* Titolo */}
       <h1 className="font text-3xl font-bold">{gameName}</h1>
 
-      {/* Piattaforma e regione */}
       <p className="text-xl">
         {platform}{" "}
         <span className="text-primary ms-1.5 text-lg">

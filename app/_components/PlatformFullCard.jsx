@@ -13,6 +13,7 @@ function PlatformFullCard({ platformDetails }) {
   return (
     <div className="mt-3 mb-10 flex flex-col gap-4">
       <h1 className="text-center text-2xl">Dettagli piattaforma</h1>
+
       <div>
         <p className="text-primary mt-5 text-lg">Piattaforma</p>
         <p className="font border-primary rounded border p-1.5 text-xl">

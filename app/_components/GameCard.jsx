@@ -15,12 +15,12 @@ function GameCard({ game }) {
     gameImages,
   } = game;
 
-  // elimina "-" al'inizio della stringa nel caso che Supabase metta l'id negativo
+  // elimina "-" al'inizio della stringa nel caso che Supabase metta l'id signed negativo
   const normalizedId = id.toString().startsWith("-") ? id.slice(1) : id;
   const normalizedPlatform = platform.toLowerCase().replaceAll(" ", "-");
 
   // prende l'emoji della bandiera che corrisponde alla regione del gioco
-  const { flag } = FLAGS.filter((obj) => obj.region === gameRegion)[0];
+  const { flag } = FLAGS.find((obj) => obj.region === gameRegion);
 
   return (
     <Link
@@ -59,9 +59,11 @@ function GameCard({ game }) {
           </div>
 
           <h5 className="my-1.5 text-xl font-bold">{gameName}</h5>
+
           <p className="text-primary mb-1.5 text-sm font-normal dark:text-gray-400">
             {`${gameRegion} ${flag}`}
           </p>
+
           <span>{platform}</span>
         </div>
       </div>
