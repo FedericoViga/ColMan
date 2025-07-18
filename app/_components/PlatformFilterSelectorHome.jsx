@@ -19,7 +19,7 @@ function PlatformFilterSelectorHome({
     const params = new URLSearchParams(searchParams);
     if (filter.target.value === "---") {
       params.set("platform", "all");
-      onSelectedFilter(undefined);
+      onSelectedFilter("Tutte");
       onExpanded(false);
     } else {
       params.set("platform", filter.target.value);

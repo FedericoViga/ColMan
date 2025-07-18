@@ -33,7 +33,7 @@ function SearchWrapper({ platforms }) {
 
           <button
             onClick={() => setOpenFilters((isExp) => !isExp)}
-            className={`text-primary cursor-pointer rounded-lg border-2 border-slate-600 p-1 text-sm ${isExpanded || selectedFilter !== undefined ? "!text-foreground border-2 !border-blue-500" : "border-primary border"}`}
+            className={`text-primary cursor-pointer rounded-lg border-2 border-slate-600 p-1 text-sm ${isExpanded || (selectedFilter !== "Tutte" && selectedFilter !== undefined) ? "!text-foreground border-2 !border-blue-500" : "border-primary border"}`}
           >
             Piattaforme
           </button>

@@ -22,7 +22,7 @@ function FilterWrapper({ platforms }) {
           <span className="text-primary">Filtra:</span>
           <button
             onClick={() => setOpenFilters((isExp) => !isExp)}
-            className={`text-primary cursor-pointer rounded-lg border-slate-600 p-1 text-sm ${isExpanded || selectedFilter !== undefined ? "!text-foreground border-2 !border-blue-500" : "border-primary border-2"}`}
+            className={`text-primary cursor-pointer rounded-lg border-slate-600 p-1 text-sm ${isExpanded || (selectedFilter !== "Tutte" && selectedFilter !== undefined) ? "!text-foreground border-2 !border-blue-500" : "border-primary border-2"}`}
           >
             Piattaforme
           </button>
