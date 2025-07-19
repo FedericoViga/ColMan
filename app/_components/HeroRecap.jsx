@@ -24,7 +24,7 @@ async function CollectorCount({ numCollectors }) {
       <div className="flex items-center justify-center gap-1">
         <span className="text-5xl font-bold text-blue-500">26</span>
         <p
-          className={`text-primary font-bold underline decoration-2 underline-offset-3 ${numCollectors > 99 ? "text-2xl" : "text-3xl"}`}
+          className={`text-primary font-bold underline decoration-2 underline-offset-3 ${10 > 9 ? "text-2xl" : "text-3xl"}`}
         >
           {numCollectors !== 1 ? "COLLECTOR'S EDITIONS" : "COLLECTOR'S EDITION"}
         </p>
