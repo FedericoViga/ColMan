@@ -28,8 +28,8 @@ function GameFullCard({ gameDetails }) {
   const { flag } = FLAGS.find((obj) => obj.region === gameRegion);
 
   // converte in arrray il testo del contenuto e fa il trim
-  // la regex trova le virgole e la lettera "e" preceduta e seguita da uno spazio come separatori dell'array
-  // in questo modo divide ogni elemento della lista separato da virgole e opzionalmente l'elemento finale separato dalla "e"
+  // la regex trova il carattere "," e il carattere "e" preceduto e seguito da uno spazio come separatori dell'array
+  // in questo modo divide ogni elemento della lista separato dalle virgole e opzionalmente l'elemento finale separato dalla "e"
   const textToList = contentDescription
     .split(/\s+e\s+|,/g)
     .map((elem) => elem.trim());

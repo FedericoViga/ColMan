@@ -47,7 +47,7 @@ function UpdatePlatformForm({ platformDetails }) {
             />
           </div>
 
-          <div className="mt-5 flex items-center justify-center gap-1 self-start">
+          <div className="mt-5 flex items-center justify-center gap-1">
             <Button />
           </div>
         </div>
@@ -60,14 +60,13 @@ function Button() {
   const { pending } = useFormStatus();
 
   return (
-    <div
-      className={`flex items-center justify-center gap-1 ${pending ? "text-primary" : "rounded border border-blue-500"} p-1.5 text-base`}
+    <button
+      disabled={pending}
+      className={`flex items-center justify-center gap-1 ${pending ? "text-primary" : "rounded border-2 border-blue-500"} p-1.5 text-base`}
     >
       <ArrowPathIcon className={`h-4 w-4 ${pending ? "animate-spin" : ""}`} />
-      <button disabled={pending}>
-        {pending ? "Aggiornando..." : "Aggiorna"}
-      </button>
-    </div>
+      {pending ? "Aggiornando..." : "Modifica piattaforma"}
+    </button>
   );
 }
 
