@@ -29,22 +29,19 @@ function SearchWrapper({ platforms }) {
       {/* Filtro piattaforme */}
       <div className="w-full">
         <div className="flex items-baseline gap-3">
-          <span className="text-primary">Filtra:</span>
+          <span className="text-primary">Piattaforma</span>
 
           <button
             onClick={() => setOpenFilters((isExp) => !isExp)}
             className={`text-primary cursor-pointer rounded-lg border-2 border-slate-600 p-1 text-sm ${isExpanded || (selectedFilter !== "Tutte" && selectedFilter !== undefined) ? "!text-foreground border-2 !border-blue-500" : "border-primary border"}`}
           >
-            Piattaforme
-          </button>
-
-          <span>
             {searchParams.get("platform") === "all" ||
             !searchParams.has("platform")
               ? "Tutte"
               : selectedFilter}
-          </span>
+          </button>
         </div>
+
         <div
           className={`w-full transition-all transition-discrete duration-300 ${isExpanded ? "max-h-96 opacity-100" : "max-h-0 overflow-hidden opacity-0"}`}
         >
