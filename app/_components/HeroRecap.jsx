@@ -25,7 +25,9 @@ async function CollectorCount({ numCollectors }) {
         <span className="text-5xl font-bold text-blue-500">
           {numCollectors}
         </span>
-        <p className="text-primary text-3xl font-bold underline decoration-2 underline-offset-3">
+        <p
+          className={`text-primary font-bold underline decoration-2 underline-offset-3 ${numCollectors > 99 ? "text-2xl" : "text-3xl"}`}
+        >
           {numCollectors !== 1 ? "COLLECTOR'S EDITIONS" : "COLLECTOR'S EDITION"}
         </p>
       </div>

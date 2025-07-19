@@ -3,16 +3,16 @@
 import { useEffect, useState } from "react";
 import SearchBar from "./SearchBar";
 import Link from "next/link";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import PlatformFilterSelectorHome from "./PlatformFilterSelectorHome";
 import { groupByPlatformOwner } from "../_lib/utils";
+import PlatformSelectorButton from "./PlatformSelectorButton";
 
 function SearchWrapper({ platforms }) {
   const [curActive, setCurActive] = useState();
   const [isExpanded, setOpenFilters] = useState(false);
   const [selectedFilter, setSelectedFilter] = useState();
   const router = useRouter();
-  const searchParams = useSearchParams();
 
   useEffect(() => {
     router.replace(`/`, { scroll: false });
@@ -31,15 +31,11 @@ function SearchWrapper({ platforms }) {
         <div className="flex items-baseline gap-3">
           <span className="text-primary">Piattaforma</span>
 
-          <button
-            onClick={() => setOpenFilters((isExp) => !isExp)}
-            className={`text-primary cursor-pointer rounded-lg border-2 border-slate-600 p-1 text-sm ${isExpanded || (selectedFilter !== "Tutte" && selectedFilter !== undefined) ? "!text-foreground border-2 !border-blue-500" : "border-primary border"}`}
-          >
-            {searchParams.get("platform") === "all" ||
-            !searchParams.has("platform")
-              ? "Tutte"
-              : selectedFilter}
-          </button>
+          <PlatformSelectorButton
+            onOpenFilters={setOpenFilters}
+            isExpanded={isExpanded}
+            filter={selectedFilter}
+          />
         </div>
 
         <div
