@@ -33,7 +33,7 @@ function InsertPlatformForm() {
             />
           </div>
 
-          <div className="mt-3 flex items-center justify-center gap-1 self-start">
+          <div className="mt-3 flex items-center justify-center gap-1">
             <Button>Crea piattaforma</Button>
           </div>
         </div>
@@ -47,7 +47,7 @@ function Button() {
 
   return (
     <div
-      className={`text-foreground mt-5 flex items-center justify-center gap-1 self-start ${pending ? "text-primary" : "rounded border border-blue-500"} px-1.5 py-1 text-base`}
+      className={`text-foreground mt-5 flex items-center justify-center gap-1 self-start ${pending ? "text-primary" : "rounded border-2 border-blue-500"} px-5 py-1 text-base`}
     >
       <button disabled={pending}>
         {pending ? "Creando nuova piattaforma..." : "Crea piattaforma"}

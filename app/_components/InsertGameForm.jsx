@@ -173,7 +173,7 @@ function InsertGameForm({ platforms, platformsIdAndName }) {
             </>
           )}
 
-          <div className="mt-5 flex items-center justify-center gap-1 self-start">
+          <div className="mt-5 flex items-center justify-center gap-1">
             <Button>Crea gioco</Button>
           </div>
         </div>
@@ -186,13 +186,12 @@ function Button() {
   const { pending } = useFormStatus();
 
   return (
-    <div
-      className={`text-foreground mt-5 flex items-center justify-center gap-1 self-start ${pending ? "text-primary" : "rounded border border-blue-500"} px-1.5 py-1 text-base`}
+    <button
+      disabled={pending}
+      className={`text-foreground mt-5 flex items-center justify-center gap-1 self-start ${pending ? "text-primary" : "rounded border-2 border-blue-500"} px-5 py-1 text-base`}
     >
-      <button disabled={pending}>
-        {pending ? "Creando nuovo gioco..." : "Crea gioco"}
-      </button>
-    </div>
+      {pending ? "Creando nuovo gioco..." : "Crea gioco"}
+    </button>
   );
 }
 
