@@ -25,14 +25,12 @@ async function Page({ searchParams }) {
       className={`container my-5 flex flex-col gap-1 ${fetchedGames && count !== 0 && "border-primary border-b"}`}
     >
       <h1 className="mb-4 text-center text-2xl">
-        Tutti i{" "}
-        <span className="text-2xl font-bold text-blue-500">{numGames}</span>{" "}
+        Tutti i <span className="text-2xl font-bold text-blue-500">421</span>{" "}
         giochi
       </h1>
 
       <p className="text-primary mb-5 text-center text-lg">
-        Hai {numGames} giochi di cui {numCollectors} sono collector&apos;s
-        editions
+        Hai 421 giochi di cui 26 sono collector&apos;s editions
       </p>
 
       <FilterWrapper platforms={platforms} />
