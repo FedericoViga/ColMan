@@ -78,16 +78,6 @@ body {
   }
 }
 
-.spinner {
-  margin: 3.2rem auto 1.6rem;
-  width: 60px;
-  aspect-ratio: 1;
-  border-radius: 50%;
-  border: 8px solid var(--background);
-  border-right-color: var(--primary);
-  animation: rotate 1s infinite linear;
-}
-
 .spinner-mini {
   margin: 0;
   width: 30px;
