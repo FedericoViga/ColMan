@@ -20,7 +20,7 @@ function Page() {
         <p>
           Maggiori informazioni su{" "}
           <a
-            href="https://github.com/FedericoViga"
+            href="https://github.com/FedericoViga/ColMan"
             className="text-blue-400 underline underline-offset-3"
           >
             GitHub
