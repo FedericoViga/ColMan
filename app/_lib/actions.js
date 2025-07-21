@@ -27,9 +27,9 @@ export async function updateGame(oldImage, formData) {
   let isSealed = formData.get("isSealed");
   let isCollector = formData.get("isCollector");
   let isSpecial = formData.get("isSpecial");
-  isSealed ? (isSealed = true) : null;
-  isSpecial ? (isSpecial = true) : null;
-  isCollector ? (isCollector = true) : null;
+  isSealed ? isSealed : null;
+  isSpecial ? isSpecial : null;
+  isCollector ? isCollector : null;
 
   const newImage = formData.get("gameImages");
 
@@ -210,9 +210,9 @@ export async function insertGame(platformsIdAndName, formData) {
   let isSealed = formData?.get("isSealed");
   let isCollector = formData?.get("isCollector");
   let isSpecial = formData?.get("isSpecial");
-  isSealed ? (isSealed = true) : null;
-  isSpecial ? (isSpecial = true) : null;
-  isCollector ? (isCollector = true) : null;
+  isSealed ? isSealed : null;
+  isSpecial ? isSpecial : null;
+  isCollector ? isCollector : null;
 
   const contentDescription = formData.get("contentDescription").trim();
 

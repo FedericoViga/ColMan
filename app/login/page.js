@@ -32,7 +32,7 @@ function Page() {
         <h2 className="text-primary text-lg font-bold">
           Accedi per visualizzare ColMan
         </h2>
-        <p>Acceso autorizzato solo per uno specifico account Google</p>
+        <p>Accesso autorizzato solo per uno specifico account Google</p>
         <SigninButton />
       </div>
 
