@@ -27,7 +27,7 @@ function GameCard({ game }) {
       href={`/games/${normalizedId}-${normalizedPlatform}`}
       className="w-full px-2"
     >
-      <div className="border-primary flex h-48 w-full items-start gap-3 overflow-auto border-t">
+      <div className="border-primary flex min-h-48 w-full items-start gap-3 overflow-auto border-t">
         <div className="aspect relative min-h-32 min-w-32">
           <Image
             src={gameImages ? gameImages : placeholderImageSmall}
@@ -58,7 +58,7 @@ function GameCard({ game }) {
             )}
           </div>
 
-          <div className="max-h-20 overflow-y-scroll">
+          <div className="max-h-24 overflow-auto">
             <h5 className="my-1.5 text-lg font-bold">{gameName}</h5>
           </div>
 
@@ -66,7 +66,7 @@ function GameCard({ game }) {
             {`${gameRegion} ${flag}`}
           </p>
 
-          <span>{platform}</span>
+          <span className="mb-3">{platform}</span>
         </div>
       </div>
     </Link>
