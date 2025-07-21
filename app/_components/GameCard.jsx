@@ -37,30 +37,32 @@ function GameCard({ game }) {
           />
         </div>
 
-        <div className="mt-3.5 flex flex-1 flex-col pr-2 leading-normal">
-          <div className="flex">
+        <div className="mt-3.5 flex flex-1 flex-col leading-normal">
+          <div className="flex flex-wrap gap-1.5">
             {isCollector !== null && (
-              <span className="me-1.5 max-w-fit rounded bg-yellow-900 px-1 py-0.5 text-xs text-yellow-300">
+              <span className="max-w-fit rounded bg-yellow-900 px-1 py-0.5 text-xs text-yellow-300">
                 Collector's Edition
               </span>
             )}
 
             {isSealed !== null && (
-              <span className="me-1.5 max-w-fit rounded bg-blue-900 px-1 py-0.5 text-xs text-blue-300">
+              <span className="max-w-fit rounded bg-blue-900 px-1 py-0.5 text-xs text-blue-300">
                 Sigillato
               </span>
             )}
 
             {isSpecial !== null && (
-              <span className="me-1.5 max-w-fit rounded bg-green-900 px-1 py-0.5 text-xs text-green-300">
+              <span className="max-w-fit rounded bg-green-900 px-1 py-0.5 text-xs text-green-300">
                 Edizione Speciale
               </span>
             )}
           </div>
 
-          <h5 className="my-1.5 text-xl font-bold">{gameName}</h5>
+          <div className="max-h-20 overflow-y-scroll">
+            <h5 className="my-1.5 text-lg font-bold">{gameName}</h5>
+          </div>
 
-          <p className="text-primary mb-1.5 text-sm font-normal dark:text-gray-400">
+          <p className="text-primary my-1.5 font-normal dark:text-gray-400">
             {`${gameRegion} ${flag}`}
           </p>
 

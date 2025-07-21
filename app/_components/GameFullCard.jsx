@@ -55,19 +55,25 @@ function GameFullCard({ gameDetails }) {
         </span>
       </p>
 
-      {isCollector !== null && (
-        <p className="mt-1 max-w-fit rounded border border-yellow-300 bg-yellow-900 px-1 py-0.5 text-yellow-300">
-          Collector's Edition
-        </p>
-      )}
+      <div className="flex flex-wrap gap-3">
+        {isCollector !== null && (
+          <p className="mt-1 max-w-fit rounded border border-yellow-300 bg-yellow-900 px-1 py-0.5 text-yellow-300">
+            Collector's Edition
+          </p>
+        )}
 
-      {isSealed !== null && (
-        <p className="mt-1 max-w-fit rounded border border-blue-300 bg-blue-900 px-1 py-0.5 text-blue-300">
-          Sigillato
-        </p>
-      )}
+        {isSealed !== null && (
+          <p className="mt-1 max-w-fit rounded border border-blue-300 bg-blue-900 px-1 py-0.5 text-blue-300">
+            Sigillato
+          </p>
+        )}
 
-      {isSpecial !== null && <p>Edizione speciale</p>}
+        {isSpecial !== null && (
+          <p className="mt-1 max-w-fit rounded border border-green-300 bg-green-900 px-1 py-0.5 text-green-300">
+            Edizione speciale
+          </p>
+        )}
+      </div>
 
       <ContentDescription
         description={contentDescription}

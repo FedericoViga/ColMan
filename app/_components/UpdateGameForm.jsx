@@ -74,6 +74,7 @@ function UpdateGameForm({ gameDetails }) {
               type="text"
               className="border-primary rounded border p-1.5 text-base"
               defaultValue={gameName}
+              autoComplete="off"
             />
           </div>
 
