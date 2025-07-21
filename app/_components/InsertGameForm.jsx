@@ -13,6 +13,8 @@ import { groupByPlatformOwner } from "../_lib/utils";
 function InsertGameForm({ platforms, platformsIdAndName }) {
   const [curActive, setCurActive] = useState();
   const [selectedImage, setSelectedImage] = useState(null);
+  const [titleLength, setTitleLength] = useState(0);
+  const [descriptionLength, setDescriptionLength] = useState(0);
 
   const platformsByOwner = groupByPlatformOwner(platforms, "platformOwner");
   // converte in array per essere più semplice da manipolare
@@ -74,14 +76,19 @@ function InsertGameForm({ platforms, platformsIdAndName }) {
           </div>
 
           <div className="flex flex-col gap-1">
-            <label className="text-primary">Titolo</label>
+            <div className="flex items-baseline justify-between">
+              <label className="text-primary">Titolo</label>
+              <span className="text-primary text-sm">{titleLength}/100</span>
+            </div>
             <input
               autoCapitalize="sentences"
-              required
               name="gameName"
               type="text"
               className="border-primary rounded border p-1.5 text-base"
               autoComplete="off"
+              maxLength="100"
+              required
+              onChange={(e) => setTitleLength(e.target.value.length)}
             />
           </div>
 
@@ -134,7 +141,12 @@ function InsertGameForm({ platforms, platformsIdAndName }) {
           </div>
 
           <div className="flex flex-col gap-1">
-            <label className="text-primary mt-2">Contenuto</label>
+            <div className="flex items-baseline justify-between">
+              <label className="text-primary mt-2">Contenuto</label>
+              <span className="text-primary text-sm">
+                {descriptionLength}/500
+              </span>
+            </div>
             <textarea
               autoCapitalize="sentences"
               required
@@ -142,6 +154,8 @@ function InsertGameForm({ platforms, platformsIdAndName }) {
               rows="6"
               id=""
               className="border-primary rounded border p-1.5 text-base"
+              maxLength="500"
+              onChange={(e) => setDescriptionLength(e.target.value.length)}
             ></textarea>
           </div>
 

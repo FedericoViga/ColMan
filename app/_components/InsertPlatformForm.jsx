@@ -18,6 +18,7 @@ function InsertPlatformForm() {
               type="text"
               className="border-primary rounded border p-1.5 text-base"
               autoComplete="off"
+              maxLength="50"
             />
           </div>
 
@@ -30,6 +31,7 @@ function InsertPlatformForm() {
               type="text"
               className="border-primary rounded border p-1.5 text-base"
               autoComplete="off"
+              maxLength="50"
             />
           </div>
 

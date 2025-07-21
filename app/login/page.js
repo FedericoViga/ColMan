@@ -4,7 +4,7 @@ function Page() {
   return (
     <div className="section flex min-h-dvh flex-col items-center justify-center gap-10 text-center">
       <h1 className="text-primary text-5xl font-bold">ColMan</h1>
-      <div className="gap- flex flex-col">
+      <div className="flex flex-col gap-2">
         <p>
           ColMan sta per Collection Manager ed è una Single Page Application
           sviluppata da{" "}

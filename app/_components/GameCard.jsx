@@ -58,7 +58,7 @@ function GameCard({ game }) {
             )}
           </div>
 
-          <div className="max-h-24 overflow-auto">
+          <div>
             <h5 className="my-1.5 text-lg font-bold">{gameName}</h5>
           </div>
 

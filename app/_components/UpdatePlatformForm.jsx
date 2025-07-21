@@ -33,6 +33,7 @@ function UpdatePlatformForm({ platformDetails }) {
               type="text"
               className="border-primary rounded border p-1.5 text-base"
               defaultValue={platformName}
+              maxLength="50"
             />
           </div>
 
@@ -44,6 +45,7 @@ function UpdatePlatformForm({ platformDetails }) {
               type="text"
               className="border-primary rounded border p-1.5 text-base"
               defaultValue={platformOwner}
+              maxLength="50"
             />
           </div>
 

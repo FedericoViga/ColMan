@@ -21,6 +21,10 @@ function UpdateGameForm({ gameDetails }) {
     gameImages,
   } = gameDetails;
 
+  const [nameLength, setNameLength] = useState(gameName.length);
+  //prettier-ignore
+  const [descriptionLength, setDescriptionLength] = useState(contentDescription.length);
+
   async function handleUpdateGame(formData) {
     const res = await updateGame(gameImages, formData);
     if (res?.error) {
@@ -68,13 +72,19 @@ function UpdateGameForm({ gameDetails }) {
 
         <div className="my-5 flex flex-col justify-items-start gap-4 py-5 text-lg">
           <div className="flex flex-col gap-1">
-            <label className="text-primary">Titolo</label>
+            <div className="flex items-baseline justify-between">
+              <label className="text-primary">Titolo</label>
+              <span className="text-primary text-sm">{nameLength}/100</span>
+            </div>
             <input
               name="gameName"
               type="text"
               className="border-primary rounded border p-1.5 text-base"
               defaultValue={gameName}
               autoComplete="off"
+              maxLength="100"
+              required
+              onChange={(e) => setNameLength(e.target.value.length)}
             />
           </div>
 
@@ -125,13 +135,21 @@ function UpdateGameForm({ gameDetails }) {
           </div>
 
           <div className="flex flex-col gap-1">
-            <label className="text-primary mt-2">Contenuto:</label>
+            <div className="flex items-baseline justify-between">
+              <label className="text-primary mt-2">Contenuto</label>
+              <span className="text-primary text-sm">
+                {descriptionLength}/500
+              </span>
+            </div>
             <textarea
               name="contentDescription"
               rows="6"
               id=""
               className="border-primary rounded border p-1.5 text-base"
               defaultValue={contentDescription}
+              maxLength="500"
+              required
+              onChange={(e) => setDescriptionLength(e.target.value.length)}
             ></textarea>
           </div>
 
