@@ -127,3 +127,43 @@ body {
     transform: rotate(360deg);
   }
 }
+
+.delete-loader {
+  color: #fff;
+  display: inline-block;
+  position: relative;
+  font-size: 24px;
+  font-family: Arial, Helvetica, sans-serif;
+  box-sizing: border-box;
+}
+
+.delete-loader::after {
+  content: "";
+  width: 3px;
+  height: 3px;
+  background: currentColor;
+  position: absolute;
+  bottom: 10px;
+  right: -7px;
+  box-sizing: border-box;
+  animation: animloader 1.25s linear infinite;
+}
+
+@keyframes animloader {
+  25% {
+    box-shadow:
+      10px 0 rgba(255, 255, 255, 0),
+      20px 0 rgba(255, 255, 255, 0);
+  }
+
+  50% {
+    box-shadow:
+      10px 0 white,
+      20px 0 rgba(255, 255, 255, 0);
+  }
+  100% {
+    box-shadow:
+      10px 0 white,
+      20px 0 white;
+  }
+}
