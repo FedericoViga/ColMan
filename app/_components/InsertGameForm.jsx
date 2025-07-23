@@ -161,7 +161,7 @@ function InsertGameForm({ platforms, platformsIdAndName }) {
 
           {platforms.length !== 0 ? (
             <div>
-              <p className="text-primary mt-3">Piattaforme</p>
+              <p className="text-primary mt-3">Piattaforma</p>
               {platformsToArray.map((platform, i) => (
                 <PlatformSelector
                   platformDetails={platform}
@@ -202,7 +202,7 @@ function Button() {
   return (
     <button
       disabled={pending}
-      className={`text-foreground mt-5 flex items-center justify-center gap-1 self-start ${pending ? "text-primary" : "rounded border-2 border-blue-500"} px-5 py-1 text-base`}
+      className={`text-foreground mt-5 flex items-center justify-center gap-1 self-start ${pending ? "text-primary" : "rounded border-2 border-blue-500"} px-5 py-1`}
     >
       {pending ? "Creando nuovo gioco..." : "Crea gioco"}
     </button>
