@@ -1,7 +1,14 @@
 import { useSearchParams } from "next/navigation";
+import { useEffect } from "react";
 
 function PlatformSelectorButton({ onOpenFilters, filter, isExpanded }) {
   const searchParams = useSearchParams();
+
+  useEffect(() => {
+    if (isExpanded) {
+      window.scrollTo(0, 0);
+    }
+  }, [isExpanded]);
 
   return (
     <button
