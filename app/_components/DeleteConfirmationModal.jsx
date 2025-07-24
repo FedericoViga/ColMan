@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { deleteGame, deletePlatform } from "../_lib/actions";
+import { ExclamationCircleIcon } from "@heroicons/react/24/outline";
 
 function DeleteConfirmationModal({
   deletionTarget,
@@ -31,24 +32,32 @@ function DeleteConfirmationModal({
   return (
     <>
       <div className="bg-background/90 fixed top-0 right-0 bottom-0 left-0 container flex items-center justify-center backdrop-blur-sm">
-        <div className="bg-background flex flex-col items-center justify-center gap-7 rounded-lg border-2 border-blue-500 px-4 py-6 text-center">
-          <p className="text-primary text-lg">
-            Sei sicuro di voler eliminare{" "}
-            <span className="text-gray-50">
-              {deletionTarget === "game" && targetInfo?.gameName}
-              {deletionTarget === "platform" && targetInfo?.platformName}
-            </span>
-            ?
-          </p>
-          <div className="flex gap-6">
+        <div className="bg-background flex flex-col items-center justify-center gap-7 rounded-lg border-2 border-red-500 px-4 py-6 text-center">
+          <div className="flex flex-col gap-4 text-left">
+            <div className="flex items-baseline gap-2">
+              <ExclamationCircleIcon className="h-9 w-9 self-center text-red-500" />
+              <span className="text-2xl">Conferma eliminazione</span>
+            </div>
+
+            <p className="text-primary text-lg">
+              Sei sicuro di voler eliminare{" "}
+              <span className="text-gray-50">
+                {deletionTarget === "game" && targetInfo?.gameName}
+                {deletionTarget === "platform" && targetInfo?.platformName}
+              </span>
+              ?
+            </p>
+          </div>
+
+          <div className="flex gap-9">
             <button
-              className="rounded-lg border-2 border-red-500 px-3 py-1"
+              className="rounded-lg border-2 border-red-500 px-2.5 py-1"
               onClick={confirmedDelete}
             >
               Elimina
             </button>
             <button
-              className="border-primary rounded-lg border px-3 py-1"
+              className="border-primary rounded-lg border px-2.5 py-1"
               onClick={onClose}
             >
               Annulla
