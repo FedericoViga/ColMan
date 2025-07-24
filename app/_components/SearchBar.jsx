@@ -15,7 +15,7 @@ function SearchBar({ onOpenFilters }) {
     searchRef.current.addEventListener("keydown", (e) => {
       e.key === "Enter" ? searchRef.current.blur() : null;
     });
-  });
+  }, []);
 
   // chiude il filtro piattaforme al focus della search bar
   useEffect(() => {
