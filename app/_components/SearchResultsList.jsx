@@ -14,13 +14,13 @@ async function SearchResultsList({ queryString, platformFilter }) {
 
       {fetchedGames && (
         <>
-          <p className="text-primary mb-4 self-start pl-[9px] text-lg font-bold tracking-wide">
+          <p className="text-primary mb-4 self-start px-[9px] text-lg font-bold tracking-wide">
             <span className="text-foreground text-xl">
               {fetchedGames.length}
             </span>{" "}
             {fetchedGames.length === 1
-              ? `Risultato trovato per ${queryString}`
-              : `Risultati trovati per ${queryString}`}
+              ? `Risultato trovato per ${queryString} ${platformFilter && platformFilter !== "all" ? "in " + platformFilter : ""}`
+              : `Risultati trovati per ${queryString} ${platformFilter && platformFilter !== "all" ? "in " + platformFilter : ""}`}
           </p>
           {fetchedGames.map((game) => (
             <GameCard game={game} key={game.id} />

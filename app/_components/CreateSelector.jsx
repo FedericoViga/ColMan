@@ -47,7 +47,7 @@ function CreateSelector() {
     <>
       {/* layer di background opaco visibile mentre è aperto il componente */}
       <div
-        className={`fixed top-0 h-full w-full ${isOpen ? "bg-background/90 block" : "hidden"}`}
+        className={`fixed top-0 h-full w-full ${isOpen ? "bg-background/80 block" : "hidden"}`}
       ></div>
 
       <div
