@@ -32,6 +32,7 @@ function DeleteGameButton({ gameId, gameName, gameImages }) {
           {isOpenModal && (
             <DeleteConfirmationModal
               onClose={() => setIsOpenModal(false)}
+              isOpenModal={isOpenModal}
               isPending={isPending}
               onTransition={startTransition}
               targetInfo={{ gameId, gameName, gameImages }}

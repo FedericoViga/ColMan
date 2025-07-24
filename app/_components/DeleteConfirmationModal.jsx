@@ -1,11 +1,22 @@
+import { useEffect } from "react";
 import { deleteGame, deletePlatform } from "../_lib/actions";
 
 function DeleteConfirmationModal({
   deletionTarget,
   targetInfo,
+  isOpenModal,
   onClose,
   onTransition,
 }) {
+  // rimuove lo scroll quando è aperto il componente
+  useEffect(() => {
+    if (isOpenModal) document.body.style.overflow = "hidden";
+
+    return () => {
+      document.body.style.overflow = "scroll";
+    };
+  }, [isOpenModal]);
+
   function confirmedDelete() {
     if (deletionTarget === "game") {
       onTransition(deleteGame(targetInfo?.gameId, targetInfo?.gameImages));
