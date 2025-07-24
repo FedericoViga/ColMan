@@ -14,7 +14,7 @@ async function SearchResultsList({ queryString, platformFilter }) {
 
       {fetchedGames && (
         <>
-          <p className="text-primary mb-4 self-start px-[9px] text-lg font-bold tracking-wide">
+          <p className="text-primary mb-4 self-start pr-3 pl-[9px] text-lg font-bold tracking-wide">
             <span className="text-foreground text-xl">
               {fetchedGames.length}
             </span>{" "}
