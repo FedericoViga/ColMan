@@ -29,6 +29,7 @@ function DeletePlatformButton({ platformId, platformName }) {
             <TrashIcon className="h-4 w-4" />
             Elimina
           </button>
+          
           {isOpenModal && (
             <DeleteConfirmationModal
               onClose={() => setIsOpenModal(false)}

@@ -24,7 +24,7 @@ function SearchWrapper({ platforms }) {
 
   return (
     <div className="container flex flex-col items-center justify-center gap-6 py-3">
-      <SearchBar />
+      <SearchBar onOpenFilters={setOpenFilters} />
 
       {/* Filtro piattaforme */}
       <div className="w-full">

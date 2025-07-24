@@ -5,7 +5,7 @@ import useDebounce from "../_hooks/useDebounce";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
 import { useEffect, useRef } from "react";
 
-function SearchGames() {
+function SearchBar({ onOpenFilters }) {
   const searchRef = useRef(null);
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -16,6 +16,13 @@ function SearchGames() {
       e.key === "Enter" ? searchRef.current.blur() : null;
     });
   });
+
+  // chiude il filtro piattaforme al focus della search bar
+  useEffect(() => {
+    searchRef.current.addEventListener("focus", () => {
+      onOpenFilters(false);
+    });
+  }, []);
 
   const loadDataDebounced = useDebounce(handleSearch, 700);
 
@@ -51,4 +58,4 @@ function SearchGames() {
   );
 }
 
-export default SearchGames;
+export default SearchBar;

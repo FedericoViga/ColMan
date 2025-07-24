@@ -40,7 +40,7 @@ function DeleteConfirmationModal({
             </span>
             ?
           </p>
-          <div className="flex gap-5">
+          <div className="flex gap-6">
             <button
               className="rounded-lg border-2 border-red-500 px-3 py-1"
               onClick={confirmedDelete}

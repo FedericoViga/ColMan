@@ -54,6 +54,7 @@ export async function updateGame(oldImage, formData) {
     value: `${gameName.toLowerCase().replaceAll(" ", "-")}-${platform.toLowerCase().replaceAll(" ", "-")}`,
   });
 
+  // al mome dell'immagine viene aggiunto un discriminator all'inizio della stringa con uuidv4 e vengono sostiuiti tutti gli spazi con "-"
   const imageName =
     `${uuidv4()}-${newImage.name.replaceAll(" ", "-")}`.replaceAll("/", "");
   const newImagePath = `https://igyqtugipdfweornkjrg.supabase.co/storage/v1/object/public/games-images//${imageName}`;

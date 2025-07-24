@@ -18,6 +18,7 @@ function PlatformsAccordion({ platformDetails, id, curOpen, onOpen }) {
           <span className="text-xl">-</span>
         )}
       </button>
+
       <ul
         className={`grid max-h-fit ${isSelectorOpen ? "border-primary grid-rows-[1fr] rounded border border-t-0" : "grid-rows-[0fr] overflow-hidden"}`}
       >
