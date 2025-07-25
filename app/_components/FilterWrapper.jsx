@@ -8,7 +8,7 @@ import PlatformSelectorButton from "./PlatformSelectorButton";
 function FilterWrapper({ platforms }) {
   const [curActive, setCurActive] = useState();
   const [isExpanded, setOpenFilters] = useState(false);
-  const [selectedFilter, setSelectedFilter] = useState();
+  const [filterName, setFilterName] = useState("Tutte"); // valore del filtro mostrato nel button di selezione piattaforma
 
   const platformsByOwner = groupByPlatformOwner(platforms, "platformOwner");
   // converte in array per essere più semplice da manipolare
@@ -23,7 +23,7 @@ function FilterWrapper({ platforms }) {
           <PlatformSelectorButton
             onOpenFilters={setOpenFilters}
             isExpanded={isExpanded}
-            filter={selectedFilter}
+            filterName={filterName}
           />
         </div>
         <div
@@ -39,8 +39,8 @@ function FilterWrapper({ platforms }) {
                   curActive={curActive}
                   onActive={setCurActive}
                   onExpanded={setOpenFilters}
-                  selectedFilter={selectedFilter}
-                  onSelectedFilter={setSelectedFilter}
+                  onFilterName={setFilterName}
+                  filterName={filterName}
                 />
               ))}
             </>

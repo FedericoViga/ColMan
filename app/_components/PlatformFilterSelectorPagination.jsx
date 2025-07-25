@@ -7,8 +7,8 @@ function PlatformFilterSelectorPagination({
   curActive,
   onActive,
   onExpanded,
-  onSelectedFilter,
-  selectedFilter,
+  onFilterName,
+  filterName,
 }) {
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -17,7 +17,13 @@ function PlatformFilterSelectorPagination({
 
   useEffect(() => {
     const params = new URLSearchParams(searchParams);
-    params.has("platform") ? onSelectedFilter(params.get("platform")) : null;
+    const platform = params.get("platform");
+
+    if (platform) {
+      onFilterName(platform === "all" ? "Tutte" : platform);
+    } else {
+      onFilterName(filterName);
+    }
   }, []);
 
   /* setta il search param in base alla piattaforma scelta */
@@ -26,12 +32,10 @@ function PlatformFilterSelectorPagination({
     if (filter.target.value === "---") {
       params.set("platform", "all");
       params.set("page", "1");
-      onSelectedFilter("Tutte");
       onExpanded(false);
     } else {
       params.set("platform", filter.target.value);
       params.set("page", "1");
-      onSelectedFilter(filter.target.value);
       onExpanded(false);
     }
 
@@ -45,12 +49,11 @@ function PlatformFilterSelectorPagination({
         required={isSelectedActive}
         name="platform"
         className="bg-background border-primary mt-1 cursor-pointer rounded border p-1 focus:border-blue-500 focus:ring-blue-500"
-        value={
-          !isSelectedActive ? isSelectedActive || selectedFilter : undefined
-        }
+        value={!isSelectedActive ? isSelectedActive || filterName : undefined}
         onChange={(e) => {
           onActive(id);
           handleFilter(e);
+          onFilterName(e.target.value);
         }}
       >
         <option>---</option>
