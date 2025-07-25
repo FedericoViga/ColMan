@@ -116,7 +116,7 @@ function InsertGameForm({ platforms, platformsIdAndName }) {
               name="isSealed"
               type="checkbox"
               className="mt-1 h-4 w-4 accent-blue-500"
-              onChange={() => setSealedChecked((isCHecked) => !isCHecked)}
+              onChange={() => setSealedChecked((isChecked) => !isChecked)}
             />
           </div>
 
