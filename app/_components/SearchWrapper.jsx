@@ -11,7 +11,7 @@ import PlatformSelectorButton from "./PlatformSelectorButton";
 function SearchWrapper({ platforms }) {
   const [curActive, setCurActive] = useState();
   const [isExpanded, setOpenFilters] = useState(false);
-  const [selectedFilter, setSelectedFilter] = useState();
+  const [filterName, setFilterName] = useState("Tutte"); // valore del filtro mostrato nel button di selezione piattaforma
   const router = useRouter();
 
   useEffect(() => {
@@ -34,7 +34,7 @@ function SearchWrapper({ platforms }) {
           <PlatformSelectorButton
             onOpenFilters={setOpenFilters}
             isExpanded={isExpanded}
-            filter={selectedFilter}
+            filterName={filterName}
           />
         </div>
 
@@ -51,7 +51,7 @@ function SearchWrapper({ platforms }) {
                   curActive={curActive}
                   onActive={setCurActive}
                   onExpanded={setOpenFilters}
-                  onSelectedFilter={setSelectedFilter}
+                  onFilterName={setFilterName}
                 />
               ))}
             </>

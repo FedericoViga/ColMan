@@ -1,9 +1,6 @@
-import { useSearchParams } from "next/navigation";
 import { useEffect } from "react";
 
-function PlatformSelectorButton({ onOpenFilters, filter, isExpanded }) {
-  const searchParams = useSearchParams();
-
+function PlatformSelectorButton({ onOpenFilters, isExpanded, filterName }) {
   useEffect(() => {
     if (isExpanded) {
       window.scrollTo(0, 0);
@@ -13,11 +10,9 @@ function PlatformSelectorButton({ onOpenFilters, filter, isExpanded }) {
   return (
     <button
       onClick={() => onOpenFilters((isExp) => !isExp)}
-      className={`text-primary cursor-pointer rounded-lg border-2 border-slate-600 px-2 py-1 text-sm ${isExpanded || (filter !== "Tutte" && filter !== undefined) ? "!text-foreground border-2 !border-blue-500" : "border-primary border"}`}
+      className={`text-primary cursor-pointer rounded-lg border-2 border-slate-600 px-2 py-1 text-sm ${isExpanded || (filterName !== "Tutte" && filterName !== "---") ? "!text-foreground border-2 !border-blue-500" : "border-primary border"}`}
     >
-      {searchParams.get("platform") === "all" || !searchParams.has("platform")
-        ? "Tutte"
-        : filter}
+      {filterName === "---" ? "Tutte" : filterName}
     </button>
   );
 }

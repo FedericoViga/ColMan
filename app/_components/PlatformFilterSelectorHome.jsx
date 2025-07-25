@@ -7,7 +7,7 @@ function PlatformFilterSelectorHome({
   curActive,
   onActive,
   onExpanded,
-  onSelectedFilter,
+  onFilterName,
 }) {
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -19,11 +19,9 @@ function PlatformFilterSelectorHome({
     const params = new URLSearchParams(searchParams);
     if (filter.target.value === "---") {
       params.set("platform", "all");
-      onSelectedFilter("Tutte");
       onExpanded(false);
     } else {
       params.set("platform", filter.target.value);
-      onSelectedFilter(filter.target.value);
       onExpanded(false);
     }
 
@@ -40,6 +38,7 @@ function PlatformFilterSelectorHome({
         value={!isSelectedActive ? isSelectedActive : undefined}
         onChange={(e) => {
           onActive(id);
+          onFilterName(e.target.value);
           handleFilter(e);
         }}
       >
