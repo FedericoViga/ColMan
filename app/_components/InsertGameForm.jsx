@@ -15,6 +15,7 @@ function InsertGameForm({ platforms, platformsIdAndName }) {
   const [selectedImage, setSelectedImage] = useState(null);
   const [titleLength, setTitleLength] = useState(0);
   const [descriptionLength, setDescriptionLength] = useState(0);
+  const [isSealedChecked, setSealedChecked] = useState(false);
 
   const platformsByOwner = groupByPlatformOwner(platforms, "platformOwner");
   // converte in array per essere più semplice da manipolare
@@ -88,7 +89,7 @@ function InsertGameForm({ platforms, platformsIdAndName }) {
               autoComplete="off"
               maxLength="100"
               required
-              onChange={(e) => setTitleLength(e.target.value.length)}
+              onClick={(e) => setTitleLength(e.target.value.length)}
             />
           </div>
 
@@ -115,6 +116,7 @@ function InsertGameForm({ platforms, platformsIdAndName }) {
               name="isSealed"
               type="checkbox"
               className="mt-1 h-4 w-4 accent-blue-500"
+              onChange={() => setSealedChecked((isCHecked) => !isCHecked)}
             />
           </div>
 
@@ -148,6 +150,9 @@ function InsertGameForm({ platforms, platformsIdAndName }) {
               </span>
             </div>
             <textarea
+              defaultValue={
+                isSealedChecked ? "Gioco completo sigillato." : null
+              }
               autoCapitalize="sentences"
               required
               name="contentDescription"
