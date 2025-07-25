@@ -13,7 +13,9 @@ function CollectorCount({ numCollectors }) {
 
   async function initCountUp() {
     const countUpModule = await import("countup.js");
-    countUpAnim = new countUpModule.CountUp(countupRef.current, numCollectors);
+    countUpAnim = new countUpModule.CountUp(countupRef.current, numCollectors, {
+      useGrouping: false,
+    });
     if (!countUpAnim.error) {
       countUpAnim.start();
     } else {
@@ -23,16 +25,50 @@ function CollectorCount({ numCollectors }) {
 
   return (
     <Link href="/games/collectors">
-      <div className="flex items-center justify-center gap-1">
-        <span className="text-5xl font-bold text-blue-500" ref={countupRef}>
-          {countUpAnim ? countUpAnim : "0"}
-        </span>
-        <p
-          className={`text-primary font-bold underline decoration-2 underline-offset-3 ${numCollectors > 9 ? "text-2xl" : "text-3xl"}`}
-        >
-          {numCollectors !== 1 ? "COLLECTOR'S EDITIONS" : "COLLECTOR'S EDITION"}
-        </p>
-      </div>
+      {numCollectors >= 0 && numCollectors <= 9 && (
+        <>
+          <div className="flex items-center justify-center gap-1">
+            <span className="text-5xl font-bold text-blue-500" ref={countupRef}>
+              {countUpAnim ? countUpAnim : "0"}
+            </span>
+            <p className="text-primary text-3xl font-bold underline decoration-2 underline-offset-3">
+              COLLECTOR'S EDITIONS
+            </p>
+          </div>
+        </>
+      )}
+
+      {numCollectors >= 10 && numCollectors <= 99 && (
+        <>
+          <div className="flex items-center justify-center gap-1">
+            <span
+              className="min-w-14 text-5xl font-bold text-blue-500"
+              ref={countupRef}
+            >
+              {countUpAnim ? countUpAnim : "00"}
+            </span>
+            <p className="text-primary text-2xl font-bold underline decoration-2 underline-offset-3">
+              COLLECTOR'S EDITIONS
+            </p>
+          </div>
+        </>
+      )}
+
+      {numCollectors >= 100 && numCollectors <= 999 && (
+        <>
+          <div className="flex items-center justify-center gap-1">
+            <span
+              className="min-w-[82] text-5xl font-bold text-blue-500"
+              ref={countupRef}
+            >
+              {countUpAnim ? countUpAnim : "000"}
+            </span>
+            <p className="text-primary text-2xl font-bold underline decoration-2 underline-offset-3">
+              COLLECTOR'S EDITIONS
+            </p>
+          </div>
+        </>
+      )}
     </Link>
   );
 }
