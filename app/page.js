@@ -3,8 +3,6 @@ import HeroRecap from "./_components/HeroRecap";
 import SearchWrapper from "./_components/SearchWrapper";
 import SearchResultsList from "./_components/SearchResultsList";
 import CreateSelector from "./_components/CreateSelector";
-import { Suspense } from "react";
-import TripleSpinnerMini from "./_components/TripleSpinnerMini";
 
 export const metadata = {
   title: {
@@ -23,14 +21,15 @@ export default async function Page({ searchParams }) {
 
   return (
     <div className="flex flex-col gap-2">
-      <Suspense fallback={<TripleSpinnerMini />}>
-        <HeroRecap />
-      </Suspense>
+      <HeroRecap />
+
       <SearchWrapper platforms={platforms} />
+
       <SearchResultsList
         queryString={queryString}
         platformFilter={platformFilter}
       />
+
       <CreateSelector />
     </div>
   );
