@@ -202,7 +202,7 @@ function Button() {
   return (
     <button
       disabled={pending}
-      className={`text-foreground mt-5 flex items-center justify-center gap-1 self-start ${pending ? "text-primary" : "rounded border-2 border-blue-500"} px-5 py-1`}
+      className={`text-foreground mt-5 flex w-full items-center justify-center gap-1 ${pending ? "text-primary" : "rounded border-2 border-blue-500"} px-5 py-1`}
     >
       {pending ? "Creando nuovo gioco..." : "Crea gioco"}
     </button>
