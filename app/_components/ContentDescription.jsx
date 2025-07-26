@@ -1,7 +1,7 @@
 function ContentDescription({ description, textToList }) {
   return (
-    <div className="mt-3">
-      <span className="text-primary text-lg">Contenuto:</span>
+    <div className="mt-1.5">
+      <span className="text-primary text-lg">Contenuto</span>
       {description !== null ? (
         <ul className="mt-2 rounded border border-slate-800 bg-slate-800 p-2">
           {/* se è un solo elemento renderizza solo un <li> */}

@@ -261,7 +261,7 @@ export async function insertGame(platformsIdAndName, formData) {
     });
   }
 
-  // upload immagine nel databse
+  // upload immagine nel database
   const { error: storageError } = await supabase.storage
     .from("games-images")
     .upload(imageName, image);
@@ -287,7 +287,7 @@ export async function insertPlatform(formData) {
     throw new Error("La piattaforma non può essere inserita");
   } else {
     const cookieStore = await cookies();
-    cookieStore.set("insertPlatform", `piattaforma ${platformName} aggiunta!`, {
+    cookieStore.set("insertPlatform", `Piattaforma ${platformName} aggiunta!`, {
       httpOnly: false,
     });
   }
