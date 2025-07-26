@@ -1,9 +1,9 @@
 "use client";
 
 import { useSearchParams, useRouter } from "next/navigation";
-import useDebounce from "../_hooks/useDebounce";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
 import { useEffect, useRef } from "react";
+import { textDebounce } from "../_lib/utils";
 
 function SearchBar({ onOpenFilters }) {
   const searchRef = useRef(null);
@@ -24,7 +24,7 @@ function SearchBar({ onOpenFilters }) {
     });
   }, []);
 
-  const loadDataDebounced = useDebounce(handleSearch, 700);
+  const loadDataDebounced = textDebounce(handleSearch, 600);
 
   function handleSearch(searchQuery) {
     const params = new URLSearchParams(searchParams);
