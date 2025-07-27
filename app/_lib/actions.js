@@ -20,9 +20,12 @@ export async function updateGame(oldImage, formData) {
 
   const id = Number(formData.get("gameId"));
   const platform = formData.get("platform");
-  const gameName = formData.get("gameName").trim();
+  const gameName = formData.get("gameName").slice(0, 100).trim();
   const gameRegion = formData.get("gameRegion");
-  const contentDescription = formData.get("contentDescription").trim();
+  const contentDescription = formData
+    .get("contentDescription")
+    .slice(0, 500)
+    .trim();
 
   let isSealed = formData.get("isSealed");
   let isCollector = formData.get("isCollector");
@@ -123,8 +126,8 @@ export async function updatePlatform(formData) {
   if (!session) throw new Error("Devi essere loggato");
 
   const id = Number(formData.get("platformId"));
-  const platformName = formData.get("platformName").trim();
-  const platformOwner = formData.get("platformOwner").trim();
+  const platformName = formData.get("platformName").slice(0, 25).trim();
+  const platformOwner = formData.get("platformOwner").slice(0, 25).trim();
 
   const updateData = {
     id,
@@ -205,7 +208,7 @@ export async function deletePlatform(id) {
 
 // inserisci gioco
 export async function insertGame(platformsIdAndName, formData) {
-  const gameName = formData.get("gameName").trim();
+  const gameName = formData.get("gameName").slice(0, 100).trim();
   const gameRegion = formData.get("gameRegion");
 
   let isSealed = formData?.get("isSealed");
@@ -215,7 +218,10 @@ export async function insertGame(platformsIdAndName, formData) {
   isSpecial ? isSpecial : null;
   isCollector ? isCollector : null;
 
-  const contentDescription = formData.get("contentDescription").trim();
+  const contentDescription = formData
+    .get("contentDescription")
+    .slice(0, 500)
+    .trim();
 
   // rimuove i valori "" degli altri select, perchè si può avere solo una piattaforma per gioco
   const platform = formData
@@ -273,8 +279,8 @@ export async function insertGame(platformsIdAndName, formData) {
 
 // inserisci piattaforma
 export async function insertPlatform(formData) {
-  const platformName = formData.get("platformName").trim();
-  const platformOwner = formData.get("platformOwner").trim();
+  const platformName = formData.get("platformName").slice(0, 25).trim();
+  const platformOwner = formData.get("platformOwner").slice(0, 25).trim();
 
   const newPlatform = {
     platformName,

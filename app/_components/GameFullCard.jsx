@@ -7,6 +7,7 @@ import UpdateLink from "./UpdateLink";
 import ContentDescription from "./ContentDescription";
 import { FLAGS } from "../_lib/constants";
 import { ArrowTopRightOnSquareIcon } from "@heroicons/react/24/outline";
+import EbayLogoIcon from "./EbayLogoIcon";
 
 function GameFullCard({ gameDetails }) {
   const {
@@ -83,7 +84,7 @@ function GameFullCard({ gameDetails }) {
 
       <div className="mt-3 flex items-baseline gap-3">
         <span className="text-primary">Cercalo su </span>
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-3">
           <a
             href={`https://www.google.com/search?q=site%3A+it.m.wikipedia.org ${gameName}`}
             className="flex items-baseline gap-1 text-lg"
@@ -92,18 +93,15 @@ function GameFullCard({ gameDetails }) {
             Google
             <ArrowTopRightOnSquareIcon className="h-3 w-3" />
           </a>
-          <span className="text-primary">|</span>
+          <span className="text-primary w-0.5" aria-hidden="true">
+            |
+          </span>
           <a
             href={`https://www.ebay.it/sch/i.html?_nkw=${gameName.replaceAll(" ", "+")}+${platform.replaceAll(" ", "+")}&_sacat=139973&_from=R40&_trksid=p2334524.m570.l1313&rt=nc&_odkw=metroid+prime&_osacat=139973&LH_PrefLoc=1`}
-            className="flex items-baseline gap-1"
+            className="flex items-center gap-1"
             target="_blank"
           >
-            <span className="text-lg font-semibold">
-              <span className="text-[#f02d2d]">e</span>
-              <span className="text-[#0968f6]">b</span>
-              <span className="text-[#ffbd14]">a</span>
-              <span className="text-[#92c821]">y</span>
-            </span>
+            <EbayLogoIcon />
             <ArrowTopRightOnSquareIcon className="h-3 w-3" />
           </a>
         </div>

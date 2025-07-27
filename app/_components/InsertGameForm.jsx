@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import PlatformSelector from "./PlatformSelector";
 import { insertGame } from "../_lib/actions";
 import { useFormStatus } from "react-dom";
@@ -9,19 +9,29 @@ import Image from "next/image";
 import placeholderImage from "@/public/placeholder-font-80-1000x1000.jpg";
 import Link from "next/link";
 import { groupByPlatformOwner } from "../_lib/utils";
+import { SEALED_TEXT } from "../_lib/constants";
 
 function InsertGameForm({ platforms, platformsIdAndName }) {
   const [curActive, setCurActive] = useState();
   const [selectedImage, setSelectedImage] = useState(null);
   const [titleLength, setTitleLength] = useState(0);
-  const [descriptionLength, setDescriptionLength] = useState(0);
   const [isSealedChecked, setSealedChecked] = useState(false);
+  const [descriptionValue, setDescriptionValue] = useState("");
 
   const platformsByOwner = groupByPlatformOwner(platforms, "platformOwner");
   // converte in array per essere più semplice da manipolare
   const platformsToArray = Object.entries(platformsByOwner);
 
   const insertGameWithData = insertGame.bind(null, platformsIdAndName);
+
+  useEffect(() => {
+    if (descriptionValue.length > 0) return;
+    if (descriptionValue === SEALED_TEXT) return;
+
+    if (isSealedChecked) {
+      setDescriptionValue(SEALED_TEXT);
+    }
+  }, [isSealedChecked, descriptionValue]);
 
   return (
     <div className="container">
@@ -89,7 +99,7 @@ function InsertGameForm({ platforms, platformsIdAndName }) {
               autoComplete="off"
               maxLength="100"
               required
-              onClick={(e) => setTitleLength(e.target.value.length)}
+              onChange={(e) => setTitleLength(e.target.value.length)}
             />
           </div>
 
@@ -116,7 +126,9 @@ function InsertGameForm({ platforms, platformsIdAndName }) {
               name="isSealed"
               type="checkbox"
               className="mt-1 h-4 w-4 accent-blue-500"
-              onChange={() => setSealedChecked((isChecked) => !isChecked)}
+              onChange={() => {
+                setSealedChecked((isChecked) => !isChecked);
+              }}
             />
           </div>
 
@@ -146,13 +158,12 @@ function InsertGameForm({ platforms, platformsIdAndName }) {
             <div className="flex items-baseline justify-between">
               <label className="text-primary mt-2">Contenuto</label>
               <span className="text-primary text-sm">
-                {descriptionLength}/500
+                {descriptionValue.length}/500
               </span>
             </div>
+
             <textarea
-              defaultValue={
-                isSealedChecked ? "Gioco completo sigillato." : null
-              }
+              value={descriptionValue}
               autoCapitalize="sentences"
               required
               name="contentDescription"
@@ -160,7 +171,9 @@ function InsertGameForm({ platforms, platformsIdAndName }) {
               id=""
               className="border-primary rounded border p-1.5 text-base"
               maxLength="500"
-              onChange={(e) => setDescriptionLength(e.target.value.length)}
+              onChange={(e) => {
+                setDescriptionValue(e.target.value);
+              }}
             ></textarea>
           </div>
 
