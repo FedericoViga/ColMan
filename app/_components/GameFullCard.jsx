@@ -87,7 +87,7 @@ function GameFullCard({ gameDetails }) {
         <div className="flex items-center gap-3">
           <a
             href={`https://www.google.com/search?q=site%3A+it.m.wikipedia.org ${gameName}`}
-            className="flex items-baseline gap-1 text-lg"
+            className="mb-0.5 flex items-baseline gap-1 text-lg"
             target="_blank"
           >
             Google
@@ -96,6 +96,7 @@ function GameFullCard({ gameDetails }) {
           <span className="text-primary w-0.5" aria-hidden="true">
             |
           </span>
+
           <a
             href={`https://www.ebay.it/sch/i.html?_nkw=${gameName.replaceAll(" ", "+")}+${platform.replaceAll(" ", "+")}&_sacat=139973&_from=R40&_trksid=p2334524.m570.l1313&rt=nc&_odkw=metroid+prime&_osacat=139973&LH_PrefLoc=1`}
             className="flex items-center gap-1"

@@ -5,7 +5,7 @@ function EbayLogoIcon() {
       aria-labelledby="ebayLogoTitle"
       viewBox="0 0 122 48.592"
       width="48"
-      height="18"
+      height="20"
     >
       <title>{"eBay logo"}</title>
       <path
