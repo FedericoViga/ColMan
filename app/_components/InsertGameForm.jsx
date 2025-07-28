@@ -10,6 +10,7 @@ import placeholderImage from "@/public/placeholder-font-80-1000x1000.jpg";
 import Link from "next/link";
 import { groupByPlatformOwner } from "../_lib/utils";
 import { SEALED_TEXT } from "../_lib/constants";
+import ContentDescriptionInsert from "./ContentDescriptionInsert";
 
 function InsertGameForm({ platforms, platformsIdAndName }) {
   const [curActive, setCurActive] = useState();
@@ -17,13 +18,16 @@ function InsertGameForm({ platforms, platformsIdAndName }) {
   const [titleLength, setTitleLength] = useState(0);
   const [isSealedChecked, setSealedChecked] = useState(false);
   const [descriptionValue, setDescriptionValue] = useState("");
+  const [listView, setListView] = useState(false);
 
   const platformsByOwner = groupByPlatformOwner(platforms, "platformOwner");
   // converte in array per essere più semplice da manipolare
   const platformsToArray = Object.entries(platformsByOwner);
 
+  // server action
   const insertGameWithData = insertGame.bind(null, platformsIdAndName);
 
+  // gestione del testo automatico per gioco sigillato
   useEffect(() => {
     if (descriptionValue.length > 0) return;
     if (descriptionValue === SEALED_TEXT) return;
@@ -39,6 +43,7 @@ function InsertGameForm({ platforms, platformsIdAndName }) {
         <div className="mb-5 flex flex-col justify-items-start gap-4 py-5 text-lg">
           <h1 className="mb-4 text-center text-2xl">Crea un nuovo gioco</h1>
 
+          {/* IMMAGINE */}
           <div className="mt-4">
             <div
               className={`relative m-auto flex aspect-square max-w-60 flex-col items-center justify-center gap-2 ${selectedImage === null || selectedImage === placeholderImage ? "border-primary rounded border border-dashed" : ""}`}
@@ -86,6 +91,7 @@ function InsertGameForm({ platforms, platformsIdAndName }) {
             </div>
           </div>
 
+          {/* TITOLO */}
           <div className="flex flex-col gap-1">
             <div className="flex items-baseline justify-between">
               <label className="text-primary">Titolo</label>
@@ -103,6 +109,7 @@ function InsertGameForm({ platforms, platformsIdAndName }) {
             />
           </div>
 
+          {/* REGIONE */}
           <div className="flex flex-col gap-1">
             <label className="text-primary">Regione</label>
             <select
@@ -119,6 +126,7 @@ function InsertGameForm({ platforms, platformsIdAndName }) {
             </select>
           </div>
 
+          {/* SIGILLATO */}
           <div className="mt-2.5 flex flex-row-reverse justify-end gap-2">
             <label htmlFor="sealed">Sigillato</label>
             <input
@@ -132,6 +140,7 @@ function InsertGameForm({ platforms, platformsIdAndName }) {
             />
           </div>
 
+          {/* EDIZIONE SPECIALE */}
           <div className="mt-2.5 flex flex-row-reverse justify-end gap-2">
             <label htmlFor="special">
               Edizione speciale (Steelbook, Deluxe ecc.)
@@ -144,6 +153,7 @@ function InsertGameForm({ platforms, platformsIdAndName }) {
             />
           </div>
 
+          {/* COLLECTOR'S EDITION */}
           <div className="mt-2.5 flex flex-row-reverse justify-end gap-2">
             <label htmlFor="collector">Collector's Edition</label>
             <input
@@ -154,29 +164,15 @@ function InsertGameForm({ platforms, platformsIdAndName }) {
             />
           </div>
 
-          <div className="flex flex-col gap-1">
-            <div className="flex items-baseline justify-between">
-              <label className="text-primary mt-2">Contenuto</label>
-              <span className="text-primary text-sm">
-                {descriptionValue.length}/500
-              </span>
-            </div>
+          {/* CONTENUTO */}
+          <ContentDescriptionInsert
+            descriptionValue={descriptionValue}
+            onDescriptionValue={setDescriptionValue}
+            listView={listView}
+            onListView={setListView}
+          />
 
-            <textarea
-              value={descriptionValue}
-              autoCapitalize="sentences"
-              required
-              name="contentDescription"
-              rows="6"
-              id=""
-              className="border-primary rounded border p-1.5 text-base"
-              maxLength="500"
-              onChange={(e) => {
-                setDescriptionValue(e.target.value);
-              }}
-            ></textarea>
-          </div>
-
+          {/* PIATTAFORMA */}
           {platforms.length !== 0 ? (
             <div>
               <p className="text-primary mt-3">Piattaforma</p>
@@ -206,7 +202,7 @@ function InsertGameForm({ platforms, platformsIdAndName }) {
           )}
 
           <div className="mt-5 flex items-center justify-center gap-1">
-            <Button>Crea gioco</Button>
+            <Button onListView={setListView}>Crea gioco</Button>
           </div>
         </div>
       </form>
@@ -214,11 +210,12 @@ function InsertGameForm({ platforms, platformsIdAndName }) {
   );
 }
 
-function Button() {
+function Button({ onListView }) {
   const { pending } = useFormStatus();
 
   return (
     <button
+      onClick={() => onListView(false)}
       disabled={pending}
       className={`text-foreground mt-5 flex w-full items-center justify-center gap-1 ${pending ? "text-primary" : "rounded border-2 border-blue-500"} px-5 py-1`}
     >

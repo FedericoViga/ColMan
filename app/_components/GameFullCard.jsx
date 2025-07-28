@@ -8,6 +8,7 @@ import ContentDescription from "./ContentDescription";
 import { FLAGS } from "../_lib/constants";
 import { ArrowTopRightOnSquareIcon } from "@heroicons/react/24/outline";
 import EbayLogoIcon from "./EbayLogoIcon";
+import GoogleLogoIcon from "./GoogleLogoIcon";
 
 function GameFullCard({ gameDetails }) {
   const {
@@ -28,13 +29,6 @@ function GameFullCard({ gameDetails }) {
 
   // prende l'emoji della bandiera che corrisponde alla regione del gioco
   const { flag } = FLAGS.find((obj) => obj.region === gameRegion);
-
-  // converte in arrray il testo del contenuto e fa il trim
-  // la regex trova il carattere "," e il carattere "e" preceduto e seguito da uno spazio come separatori dell'array
-  // in questo modo divide ogni elemento della lista separato dalle virgole e opzionalmente l'elemento finale separato dalla "e"
-  const textToList = contentDescription
-    .split(/\s+e\s+|,/g)
-    .map((elem) => elem.trim());
 
   return (
     <div className="mt-3 mb-10 flex flex-col gap-3">
@@ -77,22 +71,20 @@ function GameFullCard({ gameDetails }) {
         )}
       </div>
 
-      <ContentDescription
-        description={contentDescription}
-        textToList={textToList}
-      />
+      <ContentDescription description={contentDescription} />
 
-      <div className="mt-3 flex items-baseline gap-3">
-        <span className="text-primary">Cercalo su </span>
+      <div className="mt-3 flex items-center gap-3">
+        <span className="text-primary">Cercalo su</span>
         <div className="flex items-center gap-3">
           <a
             href={`https://www.google.com/search?q=site%3A+it.m.wikipedia.org ${gameName}`}
-            className="mb-0.5 flex items-baseline gap-1 text-lg"
+            className="flex items-center gap-1 text-lg"
             target="_blank"
           >
-            Google
-            <ArrowTopRightOnSquareIcon className="h-3 w-3" />
+            <GoogleLogoIcon />
+            <ArrowTopRightOnSquareIcon className="text-primary h-3 w-3" />
           </a>
+
           <span className="text-primary w-0.5" aria-hidden="true">
             |
           </span>
@@ -103,7 +95,7 @@ function GameFullCard({ gameDetails }) {
             target="_blank"
           >
             <EbayLogoIcon />
-            <ArrowTopRightOnSquareIcon className="h-3 w-3" />
+            <ArrowTopRightOnSquareIcon className="text-primary h-3 w-3" />
           </a>
         </div>
       </div>

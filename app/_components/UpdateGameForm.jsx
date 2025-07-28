@@ -141,10 +141,10 @@ function UpdateGameForm({ gameDetails }) {
                 {descriptionLength}/500
               </span>
             </div>
+
             <textarea
               name="contentDescription"
               rows="6"
-              id=""
               className="border-primary rounded border p-1.5 text-base"
               defaultValue={contentDescription}
               maxLength="500"

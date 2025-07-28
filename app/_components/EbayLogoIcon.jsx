@@ -2,10 +2,10 @@ function EbayLogoIcon() {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      aria-labelledby="ebayLogoTitle"
       viewBox="0 0 122 48.592"
       width="48"
-      height="20"
+      height="19"
+      aria-label="ebay"
     >
       <title>{"eBay logo"}</title>
       <path
