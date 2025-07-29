@@ -12,3 +12,7 @@ export const FLAGS = [
 
 // testo di default per gioco sigillato
 export const SEALED_TEXT = "Gioco completo sigillato.";
+
+// Testo informativo per crezione liste in form di crezione gioco
+export const DESCRIPTION_PLACEHOLDER =
+  "Scrivi ogni contenuto del gioco seguito da una virgola (es. manuale, flyer, punti vip) e seleziona Lista per generare un'anteprima come lista che verrà visualizzata nella scheda del gioco.";

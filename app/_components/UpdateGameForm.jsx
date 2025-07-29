@@ -41,6 +41,7 @@ function UpdateGameForm({ gameDetails }) {
         <input type="hidden" name="platform" value={platform} />
         <h1 className="mt-4 mb-10 text-center text-2xl">Modifica gioco</h1>
 
+        {/* IMMAGINE */}
         <div className="mt-4">
           <div className="relative m-auto aspect-square max-w-60">
             <Image
@@ -70,6 +71,7 @@ function UpdateGameForm({ gameDetails }) {
           </div>
         </div>
 
+        {/* TITOLO */}
         <div className="my-5 flex flex-col justify-items-start gap-4 py-5 text-lg">
           <div className="flex flex-col gap-1">
             <div className="flex items-baseline justify-between">
@@ -88,6 +90,7 @@ function UpdateGameForm({ gameDetails }) {
             />
           </div>
 
+          {/* REGIONE */}
           <div className="flex flex-col gap-1">
             <label className="text-primary">Regione</label>
             <select
@@ -104,6 +107,7 @@ function UpdateGameForm({ gameDetails }) {
             </select>
           </div>
 
+          {/* SIGILLATO */}
           <div className="mt-2.5 flex flex-row-reverse justify-end gap-2">
             <label>Sigillato</label>
             <input
@@ -114,16 +118,7 @@ function UpdateGameForm({ gameDetails }) {
             />
           </div>
 
-          <div className="mt-2.5 flex flex-row-reverse justify-end gap-2">
-            <label>Collector's Edition</label>
-            <input
-              name="isCollector"
-              type="checkbox"
-              className="mt-1 h-4 w-4 accent-blue-500"
-              defaultChecked={isCollector ? true : false}
-            />
-          </div>
-
+          {/* EDIZIONE SPECIALE */}
           <div className="mt-2.5 flex flex-row-reverse justify-end gap-2">
             <label>Edizione speciale (Steelbook, Deluxe ecc.)</label>
             <input
@@ -134,6 +129,18 @@ function UpdateGameForm({ gameDetails }) {
             />
           </div>
 
+          {/* COLLECTOR'S EDITION */}
+          <div className="mt-2.5 flex flex-row-reverse justify-end gap-2">
+            <label>Collector's Edition</label>
+            <input
+              name="isCollector"
+              type="checkbox"
+              className="mt-1 h-4 w-4 accent-blue-500"
+              defaultChecked={isCollector ? true : false}
+            />
+          </div>
+
+          {/* CONTENUTO */}
           <div className="flex flex-col gap-1">
             <div className="flex items-baseline justify-between">
               <label className="text-primary mt-2">Contenuto</label>

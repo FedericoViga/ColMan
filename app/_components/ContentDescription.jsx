@@ -1,12 +1,22 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
+import CopyButton from "./CopyButton";
 
 function ContentDescription({ description }) {
   const [listView, setListView] = useState(true);
+  const descrRef = useRef(null);
+
+  // se l'utente mette una virgola come ultimo carattere la rimuove
+  const removeLastComma =
+    description[description.length - 1] === ","
+      ? description.slice(0, -1)
+      : description;
 
   // converte in arrray il testo del contenuto e fa il trim
   // la regex trova il carattere "," e il carattere "e" preceduto e seguito da uno spazio come separatori dell'array
   // in questo modo divide ogni elemento della lista separato dalle virgole e opzionalmente l'elemento finale separato dalla "e"
-  const textToList = description.split(/\s+e\s+|,/g).map((elem) => elem.trim());
+  const textToList = removeLastComma
+    .split(/\s+e\s+|,/g)
+    .map((elem) => elem.trim());
 
   function handleList() {
     if (listView) return;
@@ -40,24 +50,29 @@ function ContentDescription({ description }) {
         </div>
       </div>
       {listView ? (
-        <ul className="mt-2 rounded border border-slate-800 bg-slate-800 p-3">
-          {/* se è un solo elemento renderizza solo un <li> */}
-          {textToList.length === 1 && <li>{textToList[0]}</li>}
+        <>
+          <ul
+            className="relative mt-2 rounded border border-slate-800 bg-slate-800 p-3"
+            ref={descrRef}
+          >
+            <CopyButton elemRef={descrRef} />
 
-          {/* se sono più elementi: */}
-          {/* se la stringa non termina con "." aggiunge ";" alla fine */}
-          {/* converte la prima lettera di ogni stringa in maiuscola */}
-          {/* all'ultimo elemento toglie ";" finale e mette "." */}
-          {textToList.length > 1 &&
-            textToList.map((elem, i) => (
-              <li className="my-1 list-inside list-disc" key={i}>
-                {elem[elem.length - 1] !== "."
-                  ? elem.charAt(0).toUpperCase() + elem.slice(1) + ";"
-                  : elem.charAt(0).toUpperCase() +
-                    elem.slice(1).replace(";", ".")}
-              </li>
-            ))}
-        </ul>
+            {/* se è un solo elemento renderizza solo un <li> */}
+            {textToList.length === 1 && <li>{textToList[0]}</li>}
+
+            {/* se sono più elementi: */}
+            {/* se la stringa non termina con "." aggiunge ";" alla fine */}
+            {/* converte la prima lettera di ogni stringa in maiuscola */}
+            {/* all'ultimo elemento toglie ";" finale e mette "." */}
+            {textToList.length > 1 &&
+              textToList.map((elem, i) => (
+                <li className="my-1 list-inside list-disc" key={i}>
+                  {elem.charAt(0).toUpperCase() +
+                    elem.slice(1).replaceAll(/[.,;]/g, "")}
+                </li>
+              ))}
+          </ul>
+        </>
       ) : (
         <p className="mt-2 rounded border border-slate-800 bg-slate-800 p-3">
           {description}
