@@ -9,29 +9,22 @@ function CreateSelector() {
   const [isOpen, setisOpen] = useState(false);
 
   // notifiche toast per inserimento/eliminazione gioco o piattaforma
-  // legge il rispetivo cookie e se è presente renderizza la notifica e rimuove il cookie
+  // legge il rispettivo cookie e se è presente renderizza la notifica e rimuove il cookie
   useEffect(() => {
-    const insertGameCookie = Cookies.get("insertGame");
-    const deleteGameCookie = Cookies.get("deleteGame");
-    const insertPlatformCookie = Cookies.get("insertPlatform");
-    const deletePlatformCookie = Cookies.get("deletePlatform");
+    const cookiesToCheck = [
+      { key: "insertGame", toastId: "insert-game" },
+      { key: "deleteGame", toastId: "delete-game" },
+      { key: "insertPlatform", toastId: "insert-platform" },
+      { key: "deletePlatform", toastId: "delete-platform" },
+    ];
 
-    if (insertGameCookie) {
-      toast.success(insertGameCookie, { id: "insert-game" });
-      Cookies.remove("insertGame");
-    }
-    if (deleteGameCookie) {
-      toast.success(deleteGameCookie, { id: "delete-game" });
-      Cookies.remove("deleteGame");
-    }
-    if (insertPlatformCookie) {
-      toast.success(insertPlatformCookie, { id: "insert-platform" });
-      Cookies.remove("insertPlatform");
-    }
-    if (deletePlatformCookie) {
-      toast.success(deletePlatformCookie, { id: "delete-platform" });
-      Cookies.remove("deletePlatform");
-    }
+    cookiesToCheck.forEach(({ key, toastId }) => {
+      const cookieValue = Cookies.get(key);
+      if (cookieValue) {
+        toast.success(cookieValue, { id: toastId });
+        Cookies.remove(key);
+      }
+    });
   }, []);
 
   // rimuove lo scroll quando è aperto il componente CreateSelector

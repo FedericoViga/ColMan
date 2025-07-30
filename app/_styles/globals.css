@@ -197,3 +197,16 @@ body {
     transform: translateX(100%);
   }
 }
+
+/* classe per animazione ping come Tailwind ma singola (per icona copia su clipboard) */
+.ping-once {
+  animation: ping-once 0.5s cubic-bezier(0, 0, 0.2, 1);
+}
+
+@keyframes ping-once {
+  75%,
+  100% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}

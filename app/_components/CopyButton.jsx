@@ -4,24 +4,32 @@ import {
   ClipboardDocumentCheckIcon,
   ClipboardDocumentListIcon,
 } from "@heroicons/react/24/outline";
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 function CopyButton({ elemRef }) {
+  const checkIconRef = useRef(null);
   const [isClicked, setIsClicked] = useState(false);
 
   async function handleCopy() {
+    if (!elemRef.current) return;
+
     try {
-      setIsClicked(true);
-      const listNode = elemRef.current.childNodes;
-      const listNodeToArr = Array.from(listNode).map(
-        (elem) => elem.textContent,
-      );
-      listNodeToArr.shift();
-      const textToCopy = listNodeToArr.join(",").replaceAll(",", ", ");
+      const listItems = elemRef.current.querySelectorAll("li");
+      const textToCopy = Array.from(listItems)
+        .map((li) => li.textContent.trim())
+        .join("\n");
       await navigator.clipboard.writeText(textToCopy);
+      setIsClicked(true);
     } catch (error) {
       console.log(error);
     }
+  }
+
+  function handlePingAnimationAdd() {
+    checkIconRef.current.classList.add("ping-once");
+  }
+  function handlePingAnimationRemove() {
+    checkIconRef.current.classList.remove("ping-once");
   }
 
   return (
@@ -30,7 +38,12 @@ function CopyButton({ elemRef }) {
       onClick={handleCopy}
     >
       {isClicked ? (
-        <ClipboardDocumentCheckIcon className="text-foreground h-5 w-5" />
+        <ClipboardDocumentCheckIcon
+          ref={checkIconRef}
+          className="text-foreground ping-once h-5 w-5"
+          onClick={handlePingAnimationAdd}
+          onAnimationEnd={handlePingAnimationRemove}
+        />
       ) : (
         <ClipboardDocumentListIcon className="h-5 w-5" />
       )}

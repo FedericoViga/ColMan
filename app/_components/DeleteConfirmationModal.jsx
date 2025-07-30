@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { deleteGame, deletePlatform } from "../_lib/actions";
 import { ExclamationCircleIcon } from "@heroicons/react/24/outline";
+import { TrashIcon } from "@heroicons/react/24/solid";
 
 function DeleteConfirmationModal({
   deletionTarget,
@@ -33,8 +34,8 @@ function DeleteConfirmationModal({
     <>
       <div className="bg-background/90 fixed top-0 right-0 bottom-0 left-0 container flex items-center justify-center backdrop-blur-sm">
         <div className="bg-background flex flex-col items-center justify-center gap-7 rounded-lg border-2 border-red-500 px-4 py-6 text-center">
-          <div className="flex flex-col gap-4 text-left">
-            <div className="flex items-baseline gap-2">
+          <div className="flex flex-col gap-4">
+            <div className="flex items-baseline justify-center gap-2">
               <ExclamationCircleIcon className="h-9 w-9 self-center text-red-500" />
               <span className="text-2xl">Conferma eliminazione</span>
             </div>
@@ -51,9 +52,10 @@ function DeleteConfirmationModal({
 
           <div className="flex gap-9">
             <button
-              className="rounded-lg border-2 border-red-500 px-2.5 py-1"
+              className="flex items-center gap-1 rounded-lg border-2 border-red-500 px-2.5 py-1"
               onClick={confirmedDelete}
             >
+              <TrashIcon className="h-4 w-4" />
               Elimina
             </button>
             <button
