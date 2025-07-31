@@ -36,7 +36,7 @@ Questo progetto è interamente fatto a mano da zero e non sono stati usati tools
 - Inserimento automatico di un testo di defualt se viene selezionata la checkbox per gioco sigillato;
 - Visualizzazione dinamica in tempo reale della lunghezza del testo inserito negli input e della lunghezza massima consentita dal relativo input.
 
-### Pagina gioco
+## Pagina gioco
 
 - Generazione automatica della lista dei contenuti del gioco basata sul testo scritto dall'utente;
 - Buttons per visualizzazione lista contenuti del gioco o testo originale contenuti del gioco;

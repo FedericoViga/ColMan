@@ -1,5 +1,5 @@
 function PlatformSelector({ platformDetails, id, curActive, onActive }) {
-  // state per togliere il testo se viene selezionata una nuova piattaforma
+  // toglie il testo se viene selezionata una nuova piattaforma
   const isSelectedActive = id === curActive;
 
   return (

@@ -29,8 +29,7 @@ function InsertGameForm({ platforms, platformsIdAndName }) {
 
   // gestione del testo automatico per gioco sigillato
   useEffect(() => {
-    if (descriptionValue.length > 0) return;
-    if (descriptionValue === SEALED_TEXT) return;
+    if (descriptionValue.length > 0 || descriptionValue === SEALED_TEXT) return;
 
     if (isSealedChecked) {
       setDescriptionValue(SEALED_TEXT);
