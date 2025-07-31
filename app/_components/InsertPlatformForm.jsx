@@ -16,7 +16,9 @@ function InsertPlatformForm() {
 
           <div className="flex flex-col gap-1">
             <div className="flex items-baseline justify-between">
-              <label className="text-primary" htmlFor="platformName">Nome</label>
+              <label className="text-primary" htmlFor="platformName">
+                Nome
+              </label>
               <span className="text-primary text-sm">{nameLength}/25</span>
             </div>
             <input
@@ -34,7 +36,9 @@ function InsertPlatformForm() {
 
           <div className="flex flex-col gap-1">
             <div className="flex items-baseline justify-between">
-              <label className="text-primary" htmlFor="platformOwner">Produttore</label>
+              <label className="text-primary" htmlFor="platformOwner">
+                Produttore
+              </label>
               <span className="text-primary text-sm">{ownerLength}/25</span>
             </div>
             <input
@@ -67,7 +71,9 @@ function Button() {
       className={`text-foreground mt-5 flex w-full items-center justify-center gap-1 self-start ${pending ? "text-primary" : "rounded border-2 border-blue-500"} px-5 py-1`}
     >
       <button disabled={pending}>
-        {pending ? "Creando nuova piattaforma..." : "Crea piattaforma"}
+        <span className={`${pending ? "dots-loader animate-pulse" : ""}`}>
+          {pending ? "Creazione piattaforma" : "Crea piattaforma"}
+        </span>
       </button>
     </div>
   );

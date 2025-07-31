@@ -86,7 +86,9 @@ function Button() {
       className={`flex w-full items-center justify-center gap-1 ${pending ? "text-primary" : "rounded border-2 border-blue-500"} p-1`}
     >
       <ArrowPathIcon className={`h-4 w-4 ${pending ? "animate-spin" : ""}`} />
-      {pending ? "Aggiornando piattaforma..." : "Modifica piattaforma"}
+      <span className={`${pending ? "dots-loader animate-pulse" : ""}`}>
+        {pending ? "Aggiornamento piattaforma" : "Modifica piattaforma"}
+      </span>
     </button>
   );
 }

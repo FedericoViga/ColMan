@@ -222,9 +222,11 @@ function Button({ onListView }) {
     <button
       onClick={() => onListView(false)}
       disabled={pending}
-      className={`text-foreground mt-5 flex w-full items-center justify-center gap-1 ${pending ? "text-primary" : "rounded border-2 border-blue-500"} px-5 py-1`}
+      className={`text-foreground mt-5 flex w-full items-center justify-center gap-1 ${pending ? "text-primary animate-pulse" : "rounded border-2 border-blue-500"} px-5 py-1`}
     >
-      {pending ? "Creando nuovo gioco..." : "Crea gioco"}
+      <span className={`${pending ? "dots-loader animate-pulse" : ""}`}>
+        {pending ? "Creazione gioco" : "Crea gioco"}
+      </span>
     </button>
   );
 }
