@@ -49,7 +49,7 @@ function InsertGameForm({ platforms, platformsIdAndName }) {
             >
               <label
                 className={`z-50 flex h-10 w-10 cursor-pointer items-center justify-center text-2xl ${selectedImage === null || selectedImage === placeholderImage ? "h-full w-full rounded border-0" : "absolute right-2 bottom-2 z-50 rounded bg-blue-500"}`}
-                htmlFor="img"
+                htmlFor="gameImages"
               >
                 {selectedImage === null ||
                 selectedImage === placeholderImage ? (
@@ -75,7 +75,7 @@ function InsertGameForm({ platforms, platformsIdAndName }) {
               )}
               <input
                 required
-                id="img"
+                id="gameImages"
                 type="file"
                 name="gameImages"
                 accept="image/*"
@@ -93,12 +93,15 @@ function InsertGameForm({ platforms, platformsIdAndName }) {
           {/* TITOLO */}
           <div className="flex flex-col gap-1">
             <div className="flex items-baseline justify-between">
-              <label className="text-primary">Titolo</label>
+              <label className="text-primary" htmlFor="gameName">
+                Titolo
+              </label>
               <span className="text-primary text-sm">{titleLength}/100</span>
             </div>
             <input
               autoCapitalize="sentences"
               name="gameName"
+              id="gameName"
               type="text"
               className="border-primary rounded border p-1.5 text-base"
               autoComplete="off"
@@ -110,10 +113,13 @@ function InsertGameForm({ platforms, platformsIdAndName }) {
 
           {/* REGIONE */}
           <div className="flex flex-col gap-1">
-            <label className="text-primary">Regione</label>
+            <label className="text-primary" htmlFor="gameRegion">
+              Regione
+            </label>
             <select
               required
               name="gameRegion"
+              id="gameRegion"
               className="bg-background border-primary rounded border p-1 text-base"
             >
               <option hidden></option>
@@ -127,9 +133,9 @@ function InsertGameForm({ platforms, platformsIdAndName }) {
 
           {/* SIGILLATO */}
           <div className="mt-2.5 flex flex-row-reverse justify-end gap-2">
-            <label htmlFor="sealed">Sigillato</label>
+            <label htmlFor="isSealed">Sigillato</label>
             <input
-              id="sealed"
+              id="isSealed"
               name="isSealed"
               type="checkbox"
               className="mt-1 h-4 w-4 accent-blue-500"
@@ -141,11 +147,11 @@ function InsertGameForm({ platforms, platformsIdAndName }) {
 
           {/* EDIZIONE SPECIALE */}
           <div className="mt-2.5 flex flex-row-reverse justify-end gap-2">
-            <label htmlFor="special">
+            <label htmlFor="isSpecial">
               Edizione speciale (Steelbook, Deluxe ecc.)
             </label>
             <input
-              id="special"
+              id="isSpecial"
               name="isSpecial"
               type="checkbox"
               className="mt-1 h-4 w-4 accent-blue-500"
@@ -154,9 +160,9 @@ function InsertGameForm({ platforms, platformsIdAndName }) {
 
           {/* COLLECTOR'S EDITION */}
           <div className="mt-2.5 flex flex-row-reverse justify-end gap-2">
-            <label htmlFor="collector">Collector's Edition</label>
+            <label htmlFor="isCollector">Collector's Edition</label>
             <input
-              id="collector"
+              id="isCollector"
               name="isCollector"
               type="checkbox"
               className="mt-1 h-4 w-4 accent-blue-500"

@@ -53,12 +53,12 @@ function UpdateGameForm({ gameDetails }) {
             />
             <label
               className="absolute right-1 bottom-1 flex h-8 w-8 items-center justify-center rounded bg-blue-600 text-2xl"
-              htmlFor="img"
+              htmlFor="gameImages"
             >
               <PencilIcon className="h-5 w-5" />
             </label>
             <input
-              id="img"
+              id="gameImages"
               type="file"
               name="gameImages"
               accept="image/*"
@@ -75,11 +75,14 @@ function UpdateGameForm({ gameDetails }) {
         <div className="my-5 flex flex-col justify-items-start gap-4 py-5 text-lg">
           <div className="flex flex-col gap-1">
             <div className="flex items-baseline justify-between">
-              <label className="text-primary">Titolo</label>
+              <label className="text-primary" htmlFor="gameName">
+                Titolo
+              </label>
               <span className="text-primary text-sm">{nameLength}/100</span>
             </div>
             <input
               name="gameName"
+              id="gameName"
               type="text"
               className="border-primary rounded border p-1.5 text-base"
               defaultValue={gameName}
@@ -92,9 +95,12 @@ function UpdateGameForm({ gameDetails }) {
 
           {/* REGIONE */}
           <div className="flex flex-col gap-1">
-            <label className="text-primary">Regione</label>
+            <label className="text-primary" htmlFor="gameRegion">
+              Regione
+            </label>
             <select
               name="gameRegion"
+              id="gameRegion"
               className="bg-background border-primary rounded border p-1 text-base"
               defaultValue={gameRegion}
               key={gameRegion}
@@ -109,9 +115,10 @@ function UpdateGameForm({ gameDetails }) {
 
           {/* SIGILLATO */}
           <div className="mt-2.5 flex flex-row-reverse justify-end gap-2">
-            <label>Sigillato</label>
+            <label htmlFor="isSealed">Sigillato</label>
             <input
               name="isSealed"
+              id="isSealed"
               type="checkbox"
               className="mt-1 h-4 w-4 accent-blue-500"
               defaultChecked={isSealed ? true : false}
@@ -120,9 +127,12 @@ function UpdateGameForm({ gameDetails }) {
 
           {/* EDIZIONE SPECIALE */}
           <div className="mt-2.5 flex flex-row-reverse justify-end gap-2">
-            <label>Edizione speciale (Steelbook, Deluxe ecc.)</label>
+            <label htmlFor="isSpecial">
+              Edizione speciale (Steelbook, Deluxe ecc.)
+            </label>
             <input
               name="isSpecial"
+              id="isSpecial"
               type="checkbox"
               className="mt-1 h-4 w-4 accent-blue-500"
               defaultChecked={isSpecial ? true : false}
@@ -131,9 +141,10 @@ function UpdateGameForm({ gameDetails }) {
 
           {/* COLLECTOR'S EDITION */}
           <div className="mt-2.5 flex flex-row-reverse justify-end gap-2">
-            <label>Collector's Edition</label>
+            <label htmlFor="isCollector">Collector's Edition</label>
             <input
               name="isCollector"
+              id="isCollector"
               type="checkbox"
               className="mt-1 h-4 w-4 accent-blue-500"
               defaultChecked={isCollector ? true : false}
@@ -143,7 +154,9 @@ function UpdateGameForm({ gameDetails }) {
           {/* CONTENUTO */}
           <div className="flex flex-col gap-1">
             <div className="flex items-baseline justify-between">
-              <label className="text-primary mt-2">Contenuto</label>
+              <label className="text-primary mt-2" htmlFor="contentDescription">
+                Contenuto
+              </label>
               <span className="text-primary text-sm">
                 {descriptionLength}/500
               </span>
@@ -151,6 +164,7 @@ function UpdateGameForm({ gameDetails }) {
 
             <textarea
               name="contentDescription"
+              id="contentDescription"
               rows="6"
               className="border-primary rounded border p-1.5 text-base"
               defaultValue={contentDescription}

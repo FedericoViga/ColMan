@@ -33,7 +33,7 @@ function ContentDescriptionInsert({
     <div className="mt-1.5">
       <div>
         <div className="flex justify-between">
-          <span className="text-primary text-lg">Contenuto</span>
+          <label className="text-primary text-lg" htmlFor="contentDescription">Contenuto</label>
           <div className="flex justify-center gap-2">
             <button
               onClick={(e) => handleList(e)}
@@ -104,6 +104,7 @@ function ContentDescriptionInsert({
             autoCapitalize="sentences"
             required
             name="contentDescription"
+            id="contentDescription"
             rows="6"
             className="border-primary rounded border p-1.5 text-base"
             maxLength="500"

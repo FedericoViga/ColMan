@@ -16,13 +16,14 @@ function InsertPlatformForm() {
 
           <div className="flex flex-col gap-1">
             <div className="flex items-baseline justify-between">
-              <label className="text-primary">Nome</label>
+              <label className="text-primary" htmlFor="platformName">Nome</label>
               <span className="text-primary text-sm">{nameLength}/25</span>
             </div>
             <input
               autoCapitalize="sentences"
               required
               name="platformName"
+              id="platformName"
               type="text"
               className="border-primary rounded border p-1.5 text-base"
               autoComplete="off"
@@ -33,13 +34,14 @@ function InsertPlatformForm() {
 
           <div className="flex flex-col gap-1">
             <div className="flex items-baseline justify-between">
-              <label className="text-primary">Produttore</label>
+              <label className="text-primary" htmlFor="platformOwner">Produttore</label>
               <span className="text-primary text-sm">{ownerLength}/25</span>
             </div>
             <input
               autoCapitalize="sentences"
               required
               name="platformOwner"
+              id="platformOwner"
               type="text"
               className="border-primary rounded border p-1.5 text-base"
               autoComplete="off"
