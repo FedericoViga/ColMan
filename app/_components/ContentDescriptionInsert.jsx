@@ -68,7 +68,7 @@ function ContentDescriptionInsert({
                 separato da una virgola
               </span>{" "}
               (es. manuale, flyer, punti vip). Qui verrà generata l'anteprima
-              sotto forma di lista che verrà visualizzata nella scheda del
+              sotto forma di lista che verrà visualizzata nella pagina del
               gioco.
             </p>
           )}

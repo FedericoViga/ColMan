@@ -11,6 +11,100 @@ export async function signInAction() {
   await signIn("google", { redirectTo: "/" });
 }
 
+//INSERT
+
+// inserisci gioco
+export async function insertGame(platformsIdAndName, formData) {
+  const gameName = formData.get("gameName").slice(0, 100).trim();
+  const gameRegion = formData.get("gameRegion");
+
+  const isSealed = formData?.get("isSealed") || null;
+  const isCollector = formData?.get("isCollector") || null;
+  const isSpecial = formData?.get("isSpecial") || null;
+
+  const contentDescription = formData
+    .get("contentDescription")
+    .slice(0, 500)
+    .trim();
+
+  // rimuove i valori "" degli altri select, perchè si può avere solo una piattaforma per gioco
+  const platform = formData
+    .getAll("platform")
+    .filter((platform) => platform !== "")[0];
+
+  // assegna il platformId (foreign key da platforms) in base alla piattaforma scelta nel select del form
+  const platformId = platformsIdAndName.filter(
+    (plat) => plat.platformName === platform,
+  )[0].id;
+
+  const image = formData.get("gameImages");
+
+  // rinomina il nome del file come gameName-platform (es. metroid-prime-gamecube)
+  Object.defineProperty(image, "name", {
+    writable: true,
+    value: `${gameName.toLowerCase().replaceAll(" ", "-")}-${platform.toLowerCase().replaceAll(" ", "-")}`,
+  });
+
+  const imageName = `${uuidv4()}-${image.name}`.replaceAll("/", "");
+  const imagePath = `https://igyqtugipdfweornkjrg.supabase.co/storage/v1/object/public/games-images//${imageName}`;
+
+  const newGame = {
+    gameName,
+    gameRegion,
+    isSealed,
+    isSpecial,
+    isCollector,
+    contentDescription,
+    platform,
+    platformId,
+    gameImages: imagePath,
+  };
+
+  const { error } = await supabase.from("games").insert([newGame]);
+
+  if (error) {
+    throw new Error("Il gioco non può essere inserito");
+  } else {
+    const cookieStore = await cookies();
+    cookieStore.set("insertGame", `Gioco aggiunto!`, {
+      httpOnly: false,
+    });
+  }
+
+  // upload immagine nel database
+  const { error: storageError } = await supabase.storage
+    .from("games-images")
+    .upload(imageName, image);
+
+  if (storageError) throw new Error("L'immagine non può essere caricata");
+
+  redirect("/");
+}
+
+// inserisci piattaforma
+export async function insertPlatform(formData) {
+  const platformName = formData.get("platformName").slice(0, 25).trim();
+  const platformOwner = formData.get("platformOwner").slice(0, 25).trim();
+
+  const newPlatform = {
+    platformName,
+    platformOwner,
+  };
+
+  const { error } = await supabase.from("platforms").insert([newPlatform]);
+
+  if (error) {
+    throw new Error("La piattaforma non può essere inserita");
+  } else {
+    const cookieStore = await cookies();
+    cookieStore.set("insertPlatform", `Piattaforma ${platformName} aggiunta!`, {
+      httpOnly: false,
+    });
+  }
+
+  redirect("/");
+}
+
 // UPDATE
 
 // aggiorna gioco
@@ -22,17 +116,15 @@ export async function updateGame(oldImage, formData) {
   const platform = formData.get("platform");
   const gameName = formData.get("gameName").slice(0, 100).trim();
   const gameRegion = formData.get("gameRegion");
+
+  const isSealed = formData?.get("isSealed") || null;
+  const isCollector = formData?.get("isCollector") || null;
+  const isSpecial = formData?.get("isSpecial") || null;
+
   const contentDescription = formData
     .get("contentDescription")
     .slice(0, 500)
     .trim();
-
-  let isSealed = formData.get("isSealed");
-  let isCollector = formData.get("isCollector");
-  let isSpecial = formData.get("isSpecial");
-  isSealed ? isSealed : null;
-  isSpecial ? isSpecial : null;
-  isCollector ? isCollector : null;
 
   const newImage = formData.get("gameImages");
 
@@ -198,103 +290,6 @@ export async function deletePlatform(id) {
     cookieStore.set("deletePlatform", `Piattaforma eliminata!`, {
       httpOnly: false,
       path: "/",
-    });
-  }
-
-  redirect("/");
-}
-
-//INSERT
-
-// inserisci gioco
-export async function insertGame(platformsIdAndName, formData) {
-  const gameName = formData.get("gameName").slice(0, 100).trim();
-  const gameRegion = formData.get("gameRegion");
-
-  let isSealed = formData?.get("isSealed");
-  let isCollector = formData?.get("isCollector");
-  let isSpecial = formData?.get("isSpecial");
-  isSealed ? isSealed : null;
-  isSpecial ? isSpecial : null;
-  isCollector ? isCollector : null;
-
-  const contentDescription = formData
-    .get("contentDescription")
-    .slice(0, 500)
-    .trim();
-
-  // rimuove i valori "" degli altri select, perchè si può avere solo una piattaforma per gioco
-  const platform = formData
-    .getAll("platform")
-    .filter((platform) => platform !== "")[0];
-
-  // assegna il platformId (foreign key da platforms) in base alla piattaforma scelta nel select del form
-  const platformId = platformsIdAndName.filter(
-    (plat) => plat.platformName === platform,
-  )[0].id;
-
-  const image = formData.get("gameImages");
-
-  // rinomina il nome del file come gameName-platform (es. metroid-prime-gamecube)
-  Object.defineProperty(image, "name", {
-    writable: true,
-    value: `${gameName.toLowerCase().replaceAll(" ", "-")}-${platform.toLowerCase().replaceAll(" ", "-")}`,
-  });
-
-  const imageName = `${uuidv4()}-${image.name}`.replaceAll("/", "");
-  const imagePath = `https://igyqtugipdfweornkjrg.supabase.co/storage/v1/object/public/games-images//${imageName}`;
-
-  const newGame = {
-    gameName,
-    gameRegion,
-    isSealed,
-    isSpecial,
-    isCollector,
-    contentDescription,
-    platform,
-    platformId,
-    gameImages: imagePath,
-  };
-
-  const { error } = await supabase.from("games").insert([newGame]);
-
-  if (error) {
-    throw new Error("Il gioco non può essere inserito");
-  } else {
-    const cookieStore = await cookies();
-    cookieStore.set("insertGame", `Gioco aggiunto!`, {
-      httpOnly: false,
-    });
-  }
-
-  // upload immagine nel database
-  const { error: storageError } = await supabase.storage
-    .from("games-images")
-    .upload(imageName, image);
-
-  if (storageError) throw new Error("L'immagine non può essere caricata");
-
-  redirect("/");
-}
-
-// inserisci piattaforma
-export async function insertPlatform(formData) {
-  const platformName = formData.get("platformName").slice(0, 25).trim();
-  const platformOwner = formData.get("platformOwner").slice(0, 25).trim();
-
-  const newPlatform = {
-    platformName,
-    platformOwner,
-  };
-
-  const { error } = await supabase.from("platforms").insert([newPlatform]);
-
-  if (error) {
-    throw new Error("La piattaforma non può essere inserita");
-  } else {
-    const cookieStore = await cookies();
-    cookieStore.set("insertPlatform", `Piattaforma ${platformName} aggiunta!`, {
-      httpOnly: false,
     });
   }
 

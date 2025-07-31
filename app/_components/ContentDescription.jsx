@@ -29,7 +29,7 @@ function ContentDescription({ description }) {
   }
 
   return (
-    <div className="mt-1.5">
+    <div className="mt-2.5">
       <div>
         <div className="flex justify-between">
           <span className="text-primary text-lg">Contenuto</span>
