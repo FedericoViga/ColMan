@@ -90,7 +90,7 @@ function GameFullCard({ gameDetails }) {
           </span>
 
           <a
-            href={`https://www.ebay.it/sch/i.html?_nkw=${gameName.replaceAll(" ", "+")}+${platform.replaceAll(" ", "+")}&_sacat=139973&_from=R40&_trksid=p2334524.m570.l1313&rt=nc&_odkw=metroid+prime&_osacat=139973&LH_PrefLoc=1`}
+            href={`https://www.ebay.it/sch/i.html?_nkw=${gameName.replaceAll(" ", "+")}+${platform.replaceAll(" ", "+")}&_sacat=0&_from=R40&rt=nc&LH_PrefLoc=1`}
             className="flex items-center gap-1"
             target="_blank"
           >
