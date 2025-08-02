@@ -27,11 +27,27 @@ export const getAllPlatforms = async function () {
 export const countGames = async function () {
   const { data, error } = await supabase
     .from("games")
-    .select("gameName", { count: "exact" });
+    .select("id", { count: "exact" });
 
   if (error) {
     console.log(error);
     throw new Error("Il numero di giochi non può essere calcolato");
+  }
+
+  return data.length;
+};
+
+export const countGamesByPlatform = async function (platformName) {
+  const { data, error } = await supabase
+    .from("games")
+    .select("id", { count: "exact" })
+    .eq("platform", platformName);
+
+  if (error) {
+    console.log(error);
+    throw new Error(
+      "Il numero di giochi per questa piattaforma non può essere calcolato",
+    );
   }
 
   return data.length;
