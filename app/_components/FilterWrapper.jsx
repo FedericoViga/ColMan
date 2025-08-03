@@ -11,8 +11,6 @@ function FilterWrapper({ platforms }) {
   const [filterName, setFilterName] = useState("Tutte"); // valore del filtro mostrato nel button di selezione piattaforma
 
   const platformsByOwner = groupByPlatformOwner(platforms, "platformOwner");
-  // converte in array per essere più semplice da manipolare
-  const platformsToArray = Object.entries(platformsByOwner);
 
   return (
     <>
@@ -31,7 +29,7 @@ function FilterWrapper({ platforms }) {
         >
           {platforms.length !== 0 ? (
             <>
-              {platformsToArray.map((platform, i) => (
+              {platformsByOwner.map((platform, i) => (
                 <PlatformFilterSelectorPagination
                   platformDetails={platform}
                   key={platform[0]}

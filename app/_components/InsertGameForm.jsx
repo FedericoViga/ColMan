@@ -21,8 +21,6 @@ function InsertGameForm({ platforms, platformsIdAndName }) {
   const [listView, setListView] = useState(false);
 
   const platformsByOwner = groupByPlatformOwner(platforms, "platformOwner");
-  // converte in array per essere più semplice da manipolare
-  const platformsToArray = Object.entries(platformsByOwner);
 
   // server action
   const insertGameWithData = insertGame.bind(null, platformsIdAndName);
@@ -181,7 +179,7 @@ function InsertGameForm({ platforms, platformsIdAndName }) {
           {platforms.length !== 0 ? (
             <div>
               <p className="text-primary mt-3">Piattaforma</p>
-              {platformsToArray.map((platform, i) => (
+              {platformsByOwner.map((platform, i) => (
                 <PlatformSelector
                   platformDetails={platform}
                   key={platform[0]}

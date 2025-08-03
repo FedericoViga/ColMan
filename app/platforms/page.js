@@ -1,17 +1,21 @@
-import { getAllPlatforms } from "../_lib/data-service";
+import { getAllPlatforms, getAllPlatformsByGame } from "../_lib/data-service";
 import PlatformsWrapper from "../_components/PlatformsWrapper";
-import { groupByPlatformOwner } from "../_lib/utils";
+import { countGamesByPlatform, groupByPlatformOwner } from "../_lib/utils";
 
 async function Page() {
   const platforms = await getAllPlatforms();
+  const platformsByGame = await getAllPlatformsByGame();
 
   const platformsByOwner = groupByPlatformOwner(platforms, "platformOwner");
-  // converte in array per essere più semplice da manipolare
-  const platformsToArray = Object.entries(platformsByOwner);
+
+  const platformsWithGameCount = countGamesByPlatform(
+    platformsByGame,
+    platformsByOwner,
+  );
 
   return (
     <div className="container">
-      <PlatformsWrapper platformsByOwners={platformsToArray} />
+      <PlatformsWrapper platformsByOwners={platformsWithGameCount} />
     </div>
   );
 }

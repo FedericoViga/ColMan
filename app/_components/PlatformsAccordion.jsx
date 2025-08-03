@@ -31,7 +31,8 @@ function PlatformsAccordion({ platformDetails, id, curOpen, onOpen }) {
               className="inline-block w-full"
               href={`/platforms/${elem.id.toString().startsWith("-") ? elem.id.slice(1) : elem.id}-${elem.platformName.toLowerCase().replaceAll(" ", "-")}`}
             >
-              {elem.platformName}
+              {elem.platformName}{" "}
+              <span className="text-primary">({elem.numByGame})</span>
             </Link>
           </li>
         ))}

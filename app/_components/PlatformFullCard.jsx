@@ -6,9 +6,9 @@ import EbayLogoIcon from "./EbayLogoIcon";
 import { countGamesByPlatform } from "../_lib/data-service";
 import Link from "next/link";
 
-function PlatformFullCard({ platformDetails }) {
+async function PlatformFullCard({ platformDetails }) {
   const { id, platformName, platformOwner } = platformDetails;
-  const numGamesByPlatform = countGamesByPlatform(platformName);
+  const numGamesByPlatform = await countGamesByPlatform(platformName);
 
   const normalizedId = id.toString().startsWith("-") ? id.slice(1) : id;
   const normalizedPlatform = platformName.toLowerCase().replaceAll(" ", "-");
@@ -24,7 +24,10 @@ function PlatformFullCard({ platformDetails }) {
           href={`/games?platform=${platformName}&page=1`}
           className="underline decoration-blue-500 decoration-1 underline-offset-3"
         >
-          <span className="text-foreground">{numGamesByPlatform} giochi</span>
+          <span className="text-foreground">
+            {numGamesByPlatform}
+            {numGamesByPlatform === 1 ? " gioco" : " giochi"}
+          </span>
         </Link>
         &nbsp;per {platformName}
       </p>

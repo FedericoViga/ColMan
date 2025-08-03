@@ -19,8 +19,6 @@ function SearchWrapper({ platforms }) {
   }, []);
 
   const platformsByOwner = groupByPlatformOwner(platforms, "platformOwner");
-  // converte in array per essere più semplice da manipolare
-  const platformsToArray = Object.entries(platformsByOwner);
 
   return (
     <div className="container flex flex-col items-center justify-center gap-6 py-3">
@@ -43,7 +41,7 @@ function SearchWrapper({ platforms }) {
         >
           {platforms.length !== 0 ? (
             <>
-              {platformsToArray.map((platform, i) => (
+              {platformsByOwner.map((platform, i) => (
                 <PlatformFilterSelectorHome
                   platformDetails={platform}
                   key={platform[0]}

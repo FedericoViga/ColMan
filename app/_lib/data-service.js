@@ -10,6 +10,20 @@ export async function getUser(email) {
   return data;
 }
 
+export const getAllPlatformsByGame = async function () {
+  const { data, error } = await supabase
+    .from("games")
+    .select("platform")
+    .order("platform", { ascending: true });
+
+  if (error) {
+    console.log(error);
+    throw new Error("Le piattaforme non possono essere caricate");
+  }
+
+  return data;
+};
+
 export const getAllPlatforms = async function () {
   const { data, error } = await supabase
     .from("platforms")
