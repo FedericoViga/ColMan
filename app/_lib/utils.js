@@ -11,15 +11,15 @@ export const textDebounce = (func, delay) => {
   };
 };
 
-// Genera un oggetto che contiene X oggetti e ognuno di essi è una coppia key-value dove:
-// la key è una stringa col nome del platformOwner
-// il value è un array di oggetti dove ogni oggetto è una specifica piattaforma di quel platformOwner
-export function groupByPlatformOwner(platforms, property) {
+// Genera un oggetto che contiene X array con due elementi, dove:
+// [0] è una stringa col nome del platformOwner
+// [1] è un array di oggetti dove ogni oggetto è una specifica piattaforma di quel platformOwner
+export function groupByPlatformOwner(platforms, key) {
   const platformsbyOwner = platforms.reduce((acc, curr) => {
-    if (!acc[curr[property]]) {
-      acc[curr[property]] = [];
+    if (!acc[curr[key]]) {
+      acc[curr[key]] = [];
     }
-    acc[curr[property]].push(curr);
+    acc[curr[key]].push(curr);
     return acc;
   }, {});
 
@@ -28,24 +28,21 @@ export function groupByPlatformOwner(platforms, property) {
   return platformsToArray;
 }
 
-// Aggiunge il numero di giochi che appartengono ad ogni piattaforma
-export function countGamesByPlatform(platformsByGame, platformsByOwner) {
-  // oggetto con numero di occorrenze di ogni piattaforma
-  const numPlatforms = {};
+// Aggiunge il numero di giochi corrispondente ad ogni piattaforma
+export function addGameCount(platformsByOwner, gamesByPlatform) {
+  const combined = platformsByOwner.map(([owner, platforms]) => {
+    const updatedPlatforms = platforms.map((platform) => {
+      // Trova il dato games corrispondente
+      const gamesData = gamesByPlatform.find(
+        (obj) => obj.platform === platform.platformName,
+      );
+      return {
+        ...platform,
+        games: gamesData ? gamesData.games : 0, // 0 se non trovato
+      };
+    });
+    return [owner, updatedPlatforms];
+  });
 
-  // riempie l'oggetto numPlatforms
-  // esempio: {GameCube: 15, PlayStation 2: 22, 3DS: 7}
-  for (const { platform } of platformsByGame) {
-    numPlatforms[platform] = (numPlatforms[platform] || 0) + 1;
-  }
-
-  // viene iterata ogni piattaforma dell'array platformsByOwner e viene aggiunto "numByGame" alla piataforma corrispondente col numero di giochi per quella piattaforma
-  for (const [, platforms] of platformsByOwner) {
-    for (const platformObj of platforms) {
-      const name = platformObj.platformName;
-      platformObj.numByGame = numPlatforms[name] || 0;
-    }
-  }
-
-  return platformsByOwner;
+  return combined;
 }

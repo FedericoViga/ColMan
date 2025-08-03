@@ -10,17 +10,15 @@ export async function getUser(email) {
   return data;
 }
 
-export const getAllPlatformsByGame = async function () {
-  const { data, error } = await supabase
-    .from("games")
-    .select("platform")
-    .order("platform", { ascending: true });
+export const numGamesByPlatform = async function () {
+  const { data, error } = await supabase.rpc("count_games_by_platform");
 
   if (error) {
     console.log(error);
-    throw new Error("Le piattaforme non possono essere caricate");
+    throw new Error(
+      "Il numero di giochi per piattaforma non può essere calcolato",
+    );
   }
-
   return data;
 };
 
@@ -88,7 +86,9 @@ export const countCollectors = async function () {
 
   if (error) {
     console.log(error);
-    throw new Error("Il numero di collector non può essere calcolato");
+    throw new Error(
+      "Il numero di collector's editions non può essere calcolato",
+    );
   }
 
   return data.length;

@@ -1,16 +1,16 @@
-import { getAllPlatforms, getAllPlatformsByGame } from "../_lib/data-service";
+import { getAllPlatforms, numGamesByPlatform } from "../_lib/data-service";
 import PlatformsWrapper from "../_components/PlatformsWrapper";
-import { countGamesByPlatform, groupByPlatformOwner } from "../_lib/utils";
+import { addGameCount, groupByPlatformOwner } from "../_lib/utils";
 
 async function Page() {
   const platforms = await getAllPlatforms();
-  const platformsByGame = await getAllPlatformsByGame();
+  const gamesByPlatform = await numGamesByPlatform();
 
   const platformsByOwner = groupByPlatformOwner(platforms, "platformOwner");
 
-  const platformsWithGameCount = countGamesByPlatform(
-    platformsByGame,
+  const platformsWithGameCount = addGameCount(
     platformsByOwner,
+    gamesByPlatform,
   );
 
   return (
