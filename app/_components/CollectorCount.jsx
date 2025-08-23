@@ -10,10 +10,10 @@ function CollectorCount({ numCollectors }) {
   useEffect(() => {
     // Controlla se l'animazione è già stata mostrata in questa scheda
     const hasAnimated = sessionStorage.getItem("countupShown") === "true";
-    if (hasAnimated) {
-      return;
-    } else {
+    if (!hasAnimated) {
       initCountUp();
+    } else {
+      return;
     }
   }, []);
 
@@ -23,7 +23,7 @@ function CollectorCount({ numCollectors }) {
       useGrouping: false,
     });
     if (!countUpAnim.error) {
-      countUp.start(() => {
+      countUpAnim.start(() => {
         sessionStorage.setItem("countupShown", "true");
       });
     } else {
@@ -37,7 +37,7 @@ function CollectorCount({ numCollectors }) {
         <>
           <div className="flex items-center justify-center gap-1">
             <span className="text-5xl font-bold text-blue-500" ref={countupRef}>
-              {countUpAnim ? countUpAnim : "0"}
+              {countUpAnim ? countUpAnim : numCollectors}
             </span>
             <p className="text-primary text-3xl font-bold underline decoration-2 underline-offset-3">
               COLLECTOR'S EDITIONS
@@ -53,7 +53,7 @@ function CollectorCount({ numCollectors }) {
               className="min-w-14 text-5xl font-bold text-blue-500"
               ref={countupRef}
             >
-              {countUpAnim ? countUpAnim : "00"}
+              {countUpAnim ? countUpAnim : numCollectors}
             </span>
             <p className="text-primary text-2xl font-bold underline decoration-2 underline-offset-3">
               COLLECTOR'S EDITIONS
@@ -69,7 +69,7 @@ function CollectorCount({ numCollectors }) {
               className="min-w-[82] text-5xl font-bold text-blue-500"
               ref={countupRef}
             >
-              {countUpAnim ? countUpAnim : "000"}
+              {countUpAnim ? countUpAnim : numCollectors}
             </span>
             <p className="text-primary text-2xl font-bold underline decoration-2 underline-offset-3">
               COLLECTOR'S EDITIONS
