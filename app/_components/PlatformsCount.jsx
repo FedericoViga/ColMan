@@ -8,7 +8,13 @@ function PlatformsCount({ numPlatforms }) {
   let countUpAnim;
 
   useEffect(() => {
-    initCountUp();
+    // Controlla se l'animazione è già stata mostrata in questa scheda
+    const hasAnimated = sessionStorage.getItem("countupShown") === "true";
+    if (hasAnimated) {
+      return;
+    } else {
+      initCountUp();
+    }
   }, []);
 
   async function initCountUp() {
@@ -17,7 +23,9 @@ function PlatformsCount({ numPlatforms }) {
       useGrouping: false,
     });
     if (!countUpAnim.error) {
-      countUpAnim.start();
+      countUp.start(() => {
+        sessionStorage.setItem("countupShown", "true");
+      });
     } else {
       console.error(countUpAnim.error);
     }
