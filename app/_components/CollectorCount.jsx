@@ -8,13 +8,7 @@ function CollectorCount({ numCollectors }) {
   let countUpAnim;
 
   useEffect(() => {
-    // Controlla se l'animazione è già stata mostrata in questa scheda
-    const hasAnimated = sessionStorage.getItem("countupShown") === "true";
-    if (!hasAnimated) {
-      initCountUp();
-    } else {
-      return;
-    }
+    initCountUp();
   }, []);
 
   async function initCountUp() {
@@ -23,9 +17,7 @@ function CollectorCount({ numCollectors }) {
       useGrouping: false,
     });
     if (!countUpAnim.error) {
-      countUpAnim.start(() => {
-        sessionStorage.setItem("countupShown", "true");
-      });
+      countUpAnim.start();
     } else {
       console.error(countUpAnim.error);
     }
@@ -37,7 +29,7 @@ function CollectorCount({ numCollectors }) {
         <>
           <div className="flex items-center justify-center gap-1">
             <span className="text-5xl font-bold text-blue-500" ref={countupRef}>
-              {countUpAnim ? countUpAnim : numCollectors}
+              0
             </span>
             <p className="text-primary text-3xl font-bold underline decoration-2 underline-offset-3">
               COLLECTOR'S EDITIONS
@@ -53,7 +45,7 @@ function CollectorCount({ numCollectors }) {
               className="min-w-14 text-5xl font-bold text-blue-500"
               ref={countupRef}
             >
-              {countUpAnim ? countUpAnim : numCollectors}
+              00
             </span>
             <p className="text-primary text-2xl font-bold underline decoration-2 underline-offset-3">
               COLLECTOR'S EDITIONS
@@ -69,7 +61,7 @@ function CollectorCount({ numCollectors }) {
               className="min-w-[82] text-5xl font-bold text-blue-500"
               ref={countupRef}
             >
-              {countUpAnim ? countUpAnim : numCollectors}
+              000
             </span>
             <p className="text-primary text-2xl font-bold underline decoration-2 underline-offset-3">
               COLLECTOR'S EDITIONS

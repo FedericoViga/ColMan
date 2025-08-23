@@ -8,13 +8,7 @@ function PlatformsCount({ numPlatforms }) {
   let countUpAnim;
 
   useEffect(() => {
-    // Controlla se l'animazione è già stata mostrata in questa scheda
-    const hasAnimated = sessionStorage.getItem("countupShown") === "true";
-    if (!hasAnimated) {
-      initCountUp();
-    } else {
-      return;
-    }
+    initCountUp();
   }, []);
 
   async function initCountUp() {
@@ -23,9 +17,7 @@ function PlatformsCount({ numPlatforms }) {
       useGrouping: false,
     });
     if (!countUpAnim.error) {
-      countUpAnim.start(() => {
-        sessionStorage.setItem("countupShown", "true");
-      });
+      countUpAnim.start();
     } else {
       console.error(countUpAnim.error);
     }
@@ -37,7 +29,7 @@ function PlatformsCount({ numPlatforms }) {
         <>
           <div className="flex items-center justify-center gap-1">
             <span className="text-5xl font-bold text-blue-500" ref={countupRef}>
-              {countUpAnim ? countUpAnim : numPlatforms}
+              0
             </span>
             <p className="text-primary text-3xl font-bold underline decoration-2 underline-offset-3">
               PIATTAFORME
@@ -53,7 +45,7 @@ function PlatformsCount({ numPlatforms }) {
               className="min-w-14 text-5xl font-bold text-blue-500"
               ref={countupRef}
             >
-              {countUpAnim ? countUpAnim : numPlatforms}
+              00
             </span>
             <p className="text-primary text-3xl font-bold underline decoration-2 underline-offset-3">
               PIATTAFORME

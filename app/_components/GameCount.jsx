@@ -8,12 +8,7 @@ function GameCount({ numGames }) {
   let countUpAnim;
 
   useEffect(() => {
-    const hasAnimated = sessionStorage.getItem("countupShown") === "true";
-    if (!hasAnimated) {
-      initCountUp();
-    } else {
-      return;
-    }
+    initCountUp();
   }, []);
 
   async function initCountUp() {
@@ -22,9 +17,7 @@ function GameCount({ numGames }) {
       useGrouping: false,
     });
     if (!countUpAnim.error) {
-      countUpAnim.start(() => {
-        sessionStorage.setItem("countupShown", "true");
-      });
+      countUpAnim.start();
     } else {
       console.error(countUpAnim.error);
     }
@@ -36,7 +29,7 @@ function GameCount({ numGames }) {
         <>
           <div className="flex items-center justify-center gap-1">
             <span className="text-5xl font-bold text-blue-500" ref={countupRef}>
-              {countUpAnim ? countUpAnim : numGames}
+              0
             </span>
             <p className="text-primary text-3xl font-bold underline decoration-2 underline-offset-3">
               GIOCHI
@@ -44,7 +37,6 @@ function GameCount({ numGames }) {
           </div>
         </>
       )}
-
       {numGames >= 10 && numGames <= 99 && (
         <>
           <div className="flex items-center justify-center gap-1">
@@ -52,7 +44,7 @@ function GameCount({ numGames }) {
               className="min-w-14 text-5xl font-bold text-blue-500"
               ref={countupRef}
             >
-              {countUpAnim ? countUpAnim : numGames}
+              00
             </span>
             <p className="text-primary text-3xl font-bold underline decoration-2 underline-offset-3">
               GIOCHI
@@ -68,7 +60,7 @@ function GameCount({ numGames }) {
               className="min-w-[82] text-5xl font-bold text-blue-500"
               ref={countupRef}
             >
-              {countUpAnim ? countUpAnim : numGames}
+              000
             </span>
             <p className="text-primary text-3xl font-bold underline decoration-2 underline-offset-3">
               GIOCHI
@@ -84,7 +76,7 @@ function GameCount({ numGames }) {
               className="min-w-28 text-5xl font-bold text-blue-500"
               ref={countupRef}
             >
-              {countUpAnim ? countUpAnim : numGames}
+              0000
             </span>
             <p className="text-primary text-3xl font-bold underline decoration-2 underline-offset-3">
               GIOCHI
