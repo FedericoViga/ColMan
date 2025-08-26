@@ -10,6 +10,7 @@ export async function getUser(email) {
   return data;
 }
 
+// Raggruppa e conta i giochi per ogni piattaforma con una funzione SQL
 export const numGamesByPlatform = async function () {
   const { data, error } = await supabase.rpc("count_games_by_platform");
 

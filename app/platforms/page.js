@@ -4,10 +4,11 @@ import { addGameCount, groupByPlatformOwner } from "../_lib/utils";
 
 async function Page() {
   const platforms = await getAllPlatforms();
-  const gamesByPlatform = await numGamesByPlatform();
+  const gamesByPlatform = await numGamesByPlatform(); // Raggruppa e conta i giochi per ogni piattaforma
 
-  const platformsByOwner = groupByPlatformOwner(platforms, "platformOwner");
+  const platformsByOwner = groupByPlatformOwner(platforms, "platformOwner"); // Assegna le piattaforme al rispettivo platform owner
 
+  // Aggiunge il numero di giochi corrispondente ad ogni piattaforma
   const platformsWithGameCount = addGameCount(
     platformsByOwner,
     gamesByPlatform,

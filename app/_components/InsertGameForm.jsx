@@ -11,6 +11,8 @@ import Link from "next/link";
 import { groupByPlatformOwner } from "../_lib/utils";
 import { SEALED_TEXT } from "../_lib/constants";
 import ContentDescriptionInsert from "./ContentDescriptionInsert";
+import { QuestionMarkCircleIcon } from "@heroicons/react/24/outline";
+import InfoRegion from "./InfoRegion";
 
 function InsertGameForm({ platforms, platformsIdAndName }) {
   const [curActive, setCurActive] = useState();
@@ -19,6 +21,7 @@ function InsertGameForm({ platforms, platformsIdAndName }) {
   const [isSealedChecked, setSealedChecked] = useState(false);
   const [descriptionValue, setDescriptionValue] = useState("");
   const [listView, setListView] = useState(false);
+  const [isOpenInfo, setIsOpenInfo] = useState(false);
 
   const platformsByOwner = groupByPlatformOwner(platforms, "platformOwner");
 
@@ -34,6 +37,11 @@ function InsertGameForm({ platforms, platformsIdAndName }) {
     }
   }, [isSealedChecked, descriptionValue]);
 
+  function handleRegionInfo(e) {
+    e.preventDefault();
+    setIsOpenInfo(true);
+  }
+
   return (
     <div className="container">
       <form action={insertGameWithData}>
@@ -46,7 +54,7 @@ function InsertGameForm({ platforms, platformsIdAndName }) {
               className={`relative m-auto flex aspect-square max-w-60 flex-col items-center justify-center gap-2 ${selectedImage === null || selectedImage === placeholderImage ? "border-primary rounded border border-dashed" : ""}`}
             >
               <label
-                className={`z-50 flex h-10 w-10 cursor-pointer items-center justify-center text-2xl ${selectedImage === null || selectedImage === placeholderImage ? "h-full w-full rounded border-0" : "absolute right-2 bottom-2 z-50 rounded bg-blue-500"}`}
+                className={`flex h-10 w-10 cursor-pointer items-center justify-center text-2xl ${selectedImage === null || selectedImage === placeholderImage ? "h-full w-full rounded border-0" : "absolute right-2 bottom-2 z-50 rounded bg-blue-500"}`}
                 htmlFor="gameImages"
               >
                 {selectedImage === null ||
@@ -111,9 +119,21 @@ function InsertGameForm({ platforms, platformsIdAndName }) {
 
           {/* REGIONE */}
           <div className="flex flex-col gap-1">
-            <label className="text-primary" htmlFor="gameRegion">
-              Regione
-            </label>
+            <div className="flex items-center justify-between">
+              <label className="text-primary" htmlFor="gameRegion">
+                Regione
+              </label>
+
+              <button
+                aria-label="Informazioni sulle regioni"
+                onClick={(e) => handleRegionInfo(e)}
+              >
+                <QuestionMarkCircleIcon className="text-primary h-4 w-4" />
+              </button>
+
+              {isOpenInfo && <InfoRegion onOpenClose={setIsOpenInfo} />}
+            </div>
+
             <select
               required
               name="gameRegion"

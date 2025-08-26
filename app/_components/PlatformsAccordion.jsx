@@ -3,6 +3,7 @@ import Link from "next/link";
 function PlatformsAccordion({ platformDetails, id, curOpen, onOpen }) {
   // state per chiudere il dropdown dei filtri se viene selezionato un nuovo dropdown
   const isSelectorOpen = id === curOpen;
+
   return (
     <div className={`my-8`}>
       <button

@@ -6,9 +6,12 @@ import { updateGame } from "../_lib/actions";
 import Image from "next/image";
 import { useState } from "react";
 import toast from "react-hot-toast";
+import { QuestionMarkCircleIcon } from "@heroicons/react/24/outline";
+import InfoRegion from "./InfoRegion";
 
 function UpdateGameForm({ gameDetails }) {
   const [selectedImage, setSelectedImage] = useState(null);
+  const [isOpenInfo, setIsOpenInfo] = useState(false);
   const {
     gameName,
     gameRegion,
@@ -32,6 +35,11 @@ function UpdateGameForm({ gameDetails }) {
     } else {
       toast.success("Gioco aggiornato!");
     }
+  }
+
+  function handleRegionInfo(e) {
+    e.preventDefault();
+    setIsOpenInfo(true);
   }
 
   return (
@@ -95,9 +103,21 @@ function UpdateGameForm({ gameDetails }) {
 
           {/* REGIONE */}
           <div className="flex flex-col gap-1">
-            <label className="text-primary" htmlFor="gameRegion">
-              Regione
-            </label>
+            <div className="flex items-center justify-between">
+              <label className="text-primary" htmlFor="gameRegion">
+                Regione
+              </label>
+
+              <button
+                aria-label="Informazioni sulle regioni"
+                onClick={(e) => handleRegionInfo(e)}
+              >
+                <QuestionMarkCircleIcon className="text-primary h-4 w-4" />
+              </button>
+
+              {isOpenInfo && <InfoRegion onOpenClose={setIsOpenInfo} />}
+            </div>
+
             <select
               name="gameRegion"
               id="gameRegion"

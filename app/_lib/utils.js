@@ -11,9 +11,9 @@ export const textDebounce = (func, delay) => {
   };
 };
 
-// Genera un oggetto che contiene X array con due elementi, dove:
-// [0] è una stringa col nome del platformOwner
-// [1] è un array di oggetti dove ogni oggetto è una specifica piattaforma di quel platformOwner
+// Genera un oggetto che contiene X array con due elementi, dove ogni array:
+// a index [0] è una stringa col nome del platformOwner
+// a index [1] è un array di oggetti dove ogni oggetto è una specifica piattaforma di quel platformOwner
 export function groupByPlatformOwner(platforms, key) {
   const platformsbyOwner = platforms.reduce((acc, curr) => {
     if (!acc[curr[key]]) {
