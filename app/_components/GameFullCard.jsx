@@ -82,6 +82,7 @@ function GameFullCard({ gameDetails }) {
       <ExternalSearchLinks
         googleUrl={`https://www.google.com/search?q=site%3A+it.m.wikipedia.org ${gameName}`}
         ebayUrl={`https://www.ebay.it/sch/i.html?_nkw=${gameName.replaceAll(" ", "+")}+${platform.replaceAll(" ", "+")}&_sacat=0&_from=R40&rt=nc&LH_PrefLoc=1`}
+        doesItPlayUrl={`https://www.doesitplay.org/list?search=${gameName.replaceAll(" ", "+")}&order=Alphabetically`}
       />
 
       <div className="flex gap-4">

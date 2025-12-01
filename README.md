@@ -3,7 +3,7 @@
   <h1>ColMan</h1>
 
 </div>
-<p>Colman sta per "Collection Manager" ed è una Single Page Application full-stack specifica per smartphone per gestire la mia collezione di videogiochi in modo rapido.<br>
+<p>Colman sta per "Collection Manager" ed è una Single Page Application full-stack (React, Next.Js e Supabase) specifica per smartphone per gestire la mia collezione di videogiochi in modo rapido.<br>
 
 Con questa applicazione si possono inserire/modificare/eliminare nuovi giochi e piattaforme direttamente nel database di Supabase (PostgreSQL) scattando la foto sul momento o prendendola dalla galleria del telefono e compilando una vera e propria "scheda prodotto" con le informazioni sul gioco o sulla piattaforma.<br>
 
@@ -42,6 +42,7 @@ Questo progetto è interamente fatto a mano da zero e non sono stati usati tools
 - Buttons per visualizzazione lista contenuti del gioco o testo originale contenuti del gioco;
 - Button animato di copia della lista preformattata dei contenuti del gioco;
 - Link dinamici basati su titolo gioco e piattaforma per cercare informazioni sul gioco su Google o eBay in una nuova scheda;
+- Link dinamici basati su titolo gioco per verificare che il gioco sia completo su supporto fisico si DoesItPlay;
 - Badge di stile diverso per giochi sigillati, edizioni speciali e collector's editions;
 - Button modifica e button elimina con modal custom di conferma eliminazione;
 - Render di un overlay animato "Eliminazione..." durante la server action di eliminazione del gioco;
@@ -55,5 +56,7 @@ Questo progetto è interamente fatto a mano da zero e non sono stati usati tools
 - **Supabase**
 - **React Hot Toast**
 - **Js-cookie**
+
+Sviluppata con ❤️ da un essere umano.
 
 > ⚠️ Quest'app è per uso personale, perciò è accessibile solo tramite uno specifico account.
