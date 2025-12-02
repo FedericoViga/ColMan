@@ -1,13 +1,13 @@
 import { ArrowTopRightOnSquareIcon } from "@heroicons/react/24/outline";
 import EbayLogoIcon from "./EbayLogoIcon";
 import GoogleLogoIcon from "./GoogleLogoIcon";
+import DoesItPlayLogoIcon from "./DoesItPlayLogoIcon";
 
 function ExternalSearchLinks({ googleUrl, ebayUrl, doesItPlayUrl }) {
   return (
     <>
-      <div className="mt-4 flex items-center gap-3">
-        <span className="text-primary">Cerca su</span>
-
+      <span className="text-primary mt-4">Cerca su:</span>
+      <div className="flex items-center gap-3">
         <div className="flex items-center gap-3">
           {/* Google */}
           <a
@@ -28,21 +28,21 @@ function ExternalSearchLinks({ googleUrl, ebayUrl, doesItPlayUrl }) {
             <EbayLogoIcon />
             <ArrowTopRightOnSquareIcon className="text-primary h-3 w-3" />
           </a>
-        </div>
-      </div>
 
-      {/* DoesItPlay */}
-      <div className="mt-3 flex-col items-center gap-1">
-        <p className="text-primary">È completo su supporto fisico?</p>
-        <div className="mt-1 flex items-center gap-1">
+          <span className="text-primary w-0.5" aria-hidden="true">
+            |
+          </span>
+
+          {/* DoesItPlay */}
           <a
             href={doesItPlayUrl}
             target="_blank"
-            className="text-foreground font-semibold"
+            className="text-foreground flex items-center gap-1 text-lg font-semibold"
           >
-            DoesItPlay?
+            <DoesItPlayLogoIcon />
+            <span>DoesItPlay?</span>
+            <ArrowTopRightOnSquareIcon className="text-primary h-3 w-3" />
           </a>
-          <ArrowTopRightOnSquareIcon className="text-primary h-3 w-3" />
         </div>
       </div>
     </>
