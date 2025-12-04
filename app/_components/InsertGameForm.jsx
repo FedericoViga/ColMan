@@ -1,16 +1,17 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useFormStatus } from "react-dom";
+import Image from "next/image";
+import Link from "next/link";
+
 import PlatformSelector from "./PlatformSelector";
 import { insertGame } from "../_lib/actions";
-import { useFormStatus } from "react-dom";
-import { PencilIcon, PlusIcon } from "@heroicons/react/24/solid";
-import Image from "next/image";
 import placeholderImage from "@/public/placeholder-font-80-1000x1000.jpg";
-import Link from "next/link";
 import { groupByPlatformOwner } from "../_lib/utils";
 import { SEALED_TEXT } from "../_lib/constants";
 import ContentDescriptionInsert from "./ContentDescriptionInsert";
+import { PencilIcon, PlusIcon } from "@heroicons/react/24/solid";
 import { QuestionMarkCircleIcon } from "@heroicons/react/24/outline";
 import InfoRegion from "./InfoRegion";
 

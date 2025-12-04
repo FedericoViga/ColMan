@@ -1,12 +1,16 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
+
 import DeleteGameButton from "./DeleteGameButton";
 import UpdateLink from "./UpdateLink";
 import ContentDescription from "./ContentDescription";
 import ExternalSearchLinks from "./ExternalSearchLinks";
 import placeholderImageSmall from "@/public/placeholder-400x400.png";
+import InfoRegion from "./InfoRegion";
 import { FLAGS } from "../_lib/constants";
+import { QuestionMarkCircleIcon } from "@heroicons/react/24/outline";
 
 function GameFullCard({ gameDetails }) {
   const {
@@ -20,6 +24,13 @@ function GameFullCard({ gameDetails }) {
     contentDescription,
     gameImages,
   } = gameDetails;
+
+  const [isOpenInfo, setIsOpenInfo] = useState(false);
+
+  function handleRegionInfo(e) {
+    e.preventDefault();
+    setIsOpenInfo(true);
+  }
 
   // elimina "-" al'inizio della stringa nel caso che Supabase metta l'id signed negativo
   const normalizedId = id.toString().startsWith("-") ? id.slice(1) : id;
@@ -44,13 +55,24 @@ function GameFullCard({ gameDetails }) {
       <h1 className="font text-3xl font-bold">{gameName}</h1>
 
       {/* Piattaforma e Regione */}
-      <p className="text-xl">
-        {platform}{" "}
-        <span className="text-primary ms-1.5 text-lg">
-          {" "}
-          {`${gameRegion} ${flag}`}
-        </span>
-      </p>
+      <div className="flex items-baseline gap-1.5">
+        <p className="text-xl">
+          {platform}{" "}
+          <span className="text-primary ms-1.5 text-lg">
+            {" "}
+            {`${gameRegion} ${flag}`}
+          </span>
+        </p>
+
+        <button
+          aria-label="Informazioni sulle regioni"
+          onClick={(e) => handleRegionInfo(e)}
+        >
+          <QuestionMarkCircleIcon className="text-primary h-4 w-4" />
+        </button>
+
+        {isOpenInfo && <InfoRegion onOpenClose={setIsOpenInfo} />}
+      </div>
 
       {/* Collector's edition */}
       <div className="flex flex-wrap gap-3">

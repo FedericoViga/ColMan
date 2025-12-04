@@ -13,8 +13,7 @@ function PlatformsWrapper({ platformsByOwners }) {
           Lista piattaforme
         </p>
         <p className="text-primary text-center text-lg">
-          Seleziona una piattaforma per visualizzare i dettagli. Tra parentesi
-          il numero di ogni gioco per piattaforma.
+          Seleziona una piattaforma per visualizzare i dettagli.
         </p>
         {platformsByOwners.map((platform, i) => (
           <PlatformsAccordion

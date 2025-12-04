@@ -52,7 +52,7 @@ function ContentDescription({ description }) {
       {listView ? (
         <>
           <ul
-            className="relative mt-2 rounded border border-slate-800 bg-slate-800 p-3"
+            className="relative z-0 mt-2 rounded border border-slate-800 bg-slate-800 p-3"
             ref={descrRef}
           >
             <CopyButton elemRef={descrRef} />
