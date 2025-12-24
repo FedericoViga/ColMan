@@ -3,7 +3,12 @@ import EbayLogoIcon from "./EbayLogoIcon";
 import GoogleLogoIcon from "./GoogleLogoIcon";
 import DoesItPlayLogoIcon from "./DoesItPlayLogoIcon";
 
-function ExternalSearchLinks({ googleUrl, ebayUrl, doesItPlayUrl }) {
+function ExternalSearchLinks({
+  googleUrl,
+  ebayUrl,
+  doesItPlayUrl,
+  isGameCard = true,
+}) {
   return (
     <>
       <span className="text-primary mt-4">Cerca su:</span>
@@ -29,20 +34,24 @@ function ExternalSearchLinks({ googleUrl, ebayUrl, doesItPlayUrl }) {
             <ArrowTopRightOnSquareIcon className="text-primary h-3 w-3" />
           </a>
 
-          <span className="text-primary w-0.5" aria-hidden="true">
-            |
-          </span>
-
           {/* DoesItPlay */}
-          <a
-            href={doesItPlayUrl}
-            target="_blank"
-            className="text-foreground flex items-center gap-1 text-lg font-semibold"
-          >
-            <DoesItPlayLogoIcon />
-            <span>DoesItPlay?</span>
-            <ArrowTopRightOnSquareIcon className="text-primary h-3 w-3" />
-          </a>
+          {isGameCard && (
+            <>
+              <span className="text-primary w-0.5" aria-hidden="true">
+                |
+              </span>
+
+              <a
+                href={doesItPlayUrl}
+                target="_blank"
+                className="text-foreground flex items-center gap-1 text-lg font-semibold"
+              >
+                <DoesItPlayLogoIcon />
+                <span>DoesItPlay?</span>
+                <ArrowTopRightOnSquareIcon className="text-primary h-3 w-3" />
+              </a>
+            </>
+          )}
         </div>
       </div>
     </>

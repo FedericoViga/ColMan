@@ -47,6 +47,7 @@ async function PlatformFullCard({ platformDetails }) {
       <ExternalSearchLinks
         googleUrl={`https://www.google.com/search?q=site%3A+it.m.wikipedia.org ${platformOwner} ${platformName}`}
         ebayUrl={`https://www.ebay.it/sch/i.html?_nkw=${platformOwner.replaceAll(" ", "+")}+${platformName.replaceAll(" ", "+")}&_sacat=0&_from=R40&rt=nc&LH_PrefLoc=1`}
+        isGameCard={false}
       />
 
       <div className="flex gap-4">
