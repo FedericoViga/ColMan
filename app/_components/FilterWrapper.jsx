@@ -28,7 +28,7 @@ function FilterWrapper({ platforms, numGamesByPlatform }) {
             <span className="text-primary">
               {" "}
               {numGamesByPlatform}{" "}
-              {`${numGamesByPlatform.length === 1 ? "Gioco" : "Giochi"}`}
+              {`${numGamesByPlatform === 1 ? "Gioco" : "Giochi"}`}
             </span>
           )}
 
