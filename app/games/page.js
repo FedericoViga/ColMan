@@ -5,18 +5,21 @@ import ToCreateButton from "../_components/ToCreateButton";
 import {
   countCollectors,
   countGames,
+  countGamesByPlatform,
   fetchGamesWithPagination,
   getAllPlatforms,
 } from "../_lib/data-service";
 
 async function Page({ searchParams }) {
   const pageParams = await searchParams;
-  const [numGames, numCollectors, platforms, fetchedGames] = await Promise.all([
-    countGames(),
-    countCollectors(),
-    getAllPlatforms(),
-    fetchGamesWithPagination(pageParams.page, pageParams.platform),
-  ]);
+  const [numGames, numCollectors, platforms, numGamesByPlatform, fetchedGames] =
+    await Promise.all([
+      countGames(),
+      countCollectors(),
+      getAllPlatforms(),
+      countGamesByPlatform(pageParams.platform),
+      fetchGamesWithPagination(pageParams.page, pageParams.platform),
+    ]);
 
   const { data: games, count } = fetchedGames;
 
@@ -27,11 +30,14 @@ async function Page({ searchParams }) {
       <h1 className="mb-4 text-center text-2xl">Tutti i giochi</h1>
 
       <p className="text-primary mb-5 text-center text-lg">
-        Hai {numGames} giochi di cui {numCollectors} sono collector&apos;s
-        editions
+        Hai {numGames} giochi totali di cui {numCollectors} sono
+        collector&apos;s editions
       </p>
 
-      <FilterWrapper platforms={platforms} />
+      <FilterWrapper
+        platforms={platforms}
+        numGamesByPlatform={numGamesByPlatform}
+      />
 
       {count === 0 ? (
         <p className="text-primary my-10 text-center text-lg font-bold tracking-wide">

@@ -51,6 +51,8 @@ export const countGames = async function () {
 };
 
 export const countGamesByPlatform = async function (platformName) {
+  if (!platformName || platformName === "all") return;
+
   const { data, error } = await supabase
     .from("games")
     .select("id", { count: "exact" })

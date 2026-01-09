@@ -5,7 +5,7 @@ import PlatformFilterSelectorPagination from "./PlatformFilterSelectorPagination
 import { groupByPlatformOwner } from "../_lib/utils";
 import PlatformSelectorButton from "./PlatformSelectorButton";
 
-function FilterWrapper({ platforms }) {
+function FilterWrapper({ platforms, numGamesByPlatform }) {
   const [curActive, setCurActive] = useState();
   const [isExpanded, setOpenFilters] = useState(false);
   const [filterName, setFilterName] = useState("Tutte"); // valore del filtro mostrato nel button di selezione piattaforma
@@ -23,7 +23,20 @@ function FilterWrapper({ platforms }) {
             isExpanded={isExpanded}
             filterName={filterName}
           />
+
+          {numGamesByPlatform > 0 && filterName !== "all" && (
+            <span className="text-primary">
+              {" "}
+              {numGamesByPlatform}{" "}
+              {`${numGamesByPlatform.length === 1 ? "Gioco" : "Giochi"}`}
+            </span>
+          )}
+
+          {numGamesByPlatform === 0 && filterName !== "all" && (
+            <span className="text-primary">{numGamesByPlatform} Giochi</span>
+          )}
         </div>
+
         <div
           className={`w-full transition-all transition-discrete duration-300 ${isExpanded ? "max-h-96 opacity-100" : "max-h-0 overflow-hidden opacity-0"}`}
         >
