@@ -9,7 +9,6 @@ function FilterWrapper({ platforms, numGamesByPlatform }) {
   const [curActive, setCurActive] = useState();
   const [isExpanded, setOpenFilters] = useState(false);
   const [filterName, setFilterName] = useState("Tutte"); // valore del filtro mostrato nel button di selezione piattaforma
-  console.log(filterName);
 
   const platformsByOwner = groupByPlatformOwner(platforms, "platformOwner");
 
@@ -27,7 +26,7 @@ function FilterWrapper({ platforms, numGamesByPlatform }) {
 
           {filterName !== "---" && filterName !== "Tutte" && (
             <span className="text-primary">
-              {numGamesByPlatform >= 0
+              {numGamesByPlatform === 0 || numGamesByPlatform > 1
                 ? `${numGamesByPlatform} Giochi`
                 : `${numGamesByPlatform} Gioco`}
             </span>
