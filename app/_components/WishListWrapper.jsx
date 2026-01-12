@@ -6,14 +6,11 @@ import AddToWishlistButton from "./AddToWishlistButton";
 import WishlistAccordion from "./WishlistAccordion";
 import InsertWishlistGameForm from "./InsertWishlistGameForm";
 import DownloadWishlistButton from "./DownloadWishlistButton";
-import { useRouter, useSearchParams } from "next/navigation";
 
 function WishListWrapper({ wishlistByPlatforms, platforms }) {
   const [isOpenInsertGame, setIsOpenInsertGame] = useState(false);
   const [curOpen, setCurOpen] = useState(null);
   const [expandAll, setExpandAll] = useState(false);
-  const searchParams = useSearchParams();
-  const router = useRouter();
 
   const [optimisticPlatforms, optimisticDelete] = useOptimistic(
     wishlistByPlatforms,
@@ -26,12 +23,6 @@ function WishListWrapper({ wishlistByPlatforms, platforms }) {
         .filter((platform) => platform.games.length > 0); // toglie anche la piattaforma se ha 0 giochi
     },
   );
-
-  useEffect(() => {
-    const params = new URLSearchParams(searchParams);
-    params.delete("query");
-    router.replace(`?${params.toString()}`, { scroll: false });
-  }, []);
 
   async function handleDelete(gameId) {
     optimisticDelete(gameId);
