@@ -15,7 +15,7 @@ function WishlistAccordion({
   const isSelectorOpen = accordionId === curOpen;
 
   return (
-    <div className="my-6">
+    <div className="mb-8">
       <button
         disabled={expandAll}
         onClick={() => {
@@ -23,7 +23,7 @@ function WishlistAccordion({
             onOpen(null);
           } else onOpen(accordionId);
         }}
-        className={`${expandAll || isSelectorOpen ? "rounded border-2 border-blue-500" : "border-primary border-b"} flex w-full justify-between px-2 py-1 text-lg`}
+        className={`${expandAll || isSelectorOpen ? "rounded border-1 border-blue-500" : "border-primary border-b"} flex w-full justify-between px-2 py-1 text-lg`}
       >
         <div className="flex items-center gap-1.5">
           <HeartIcon

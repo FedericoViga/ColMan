@@ -1,16 +1,19 @@
 "use client";
 
-import { useOptimistic, useState } from "react";
+import { useEffect, useOptimistic, useState } from "react";
 import { deleteGameFromWishlist } from "../_lib/actions";
 import AddToWishlistButton from "./AddToWishlistButton";
 import WishlistAccordion from "./WishlistAccordion";
 import InsertWishlistGameForm from "./InsertWishlistGameForm";
 import DownloadWishlistButton from "./DownloadWishlistButton";
+import { useRouter, useSearchParams } from "next/navigation";
 
 function WishListWrapper({ wishlistByPlatforms, platforms }) {
   const [isOpenInsertGame, setIsOpenInsertGame] = useState(false);
   const [curOpen, setCurOpen] = useState(null);
   const [expandAll, setExpandAll] = useState(false);
+  const searchParams = useSearchParams();
+  const router = useRouter();
 
   const [optimisticPlatforms, optimisticDelete] = useOptimistic(
     wishlistByPlatforms,
@@ -24,6 +27,12 @@ function WishListWrapper({ wishlistByPlatforms, platforms }) {
     },
   );
 
+  useEffect(() => {
+    const params = new URLSearchParams(searchParams);
+    params.delete("query");
+    router.replace(`?${params.toString()}`, { scroll: false });
+  }, []);
+
   async function handleDelete(gameId) {
     optimisticDelete(gameId);
     await deleteGameFromWishlist(gameId);
@@ -31,7 +40,7 @@ function WishListWrapper({ wishlistByPlatforms, platforms }) {
 
   return (
     <>
-      <div className="mt-5">
+      <div className="mt-5 mb-40">
         <h1 className="text-foreground my-6 text-center text-2xl">
           La mia wishlist
         </h1>

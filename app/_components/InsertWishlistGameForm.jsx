@@ -7,9 +7,12 @@ import { insertGameInWishlist } from "../_lib/actions";
 import { HeartIcon } from "@heroicons/react/24/outline";
 import { XMarkIcon } from "@heroicons/react/24/solid";
 import PlatformFilterSelectorWishlist from "./PlatformFilterSelectorWishlist";
+import { useRouter, useSearchParams } from "next/navigation";
 
 function InsertWishlistGameForm({ platforms, onOpenClose }) {
-  const [curActive, setCurActive] = useState();
+  const searchParams = useSearchParams();
+  const router = useRouter();
+  const [curActive, setCurActive] = useState(undefined);
   const [titleText, setTitleText] = useState("");
   const [state, formAction] = useActionState(insertGameInWishlist, {
     submitId: null,
@@ -26,6 +29,12 @@ function InsertWishlistGameForm({ platforms, onOpenClose }) {
     onOpenClose(false);
   }
 
+  function handleParamReset() {
+    const params = new URLSearchParams(searchParams);
+    params.delete("query");
+    router.replace(`?${params.toString()}`, { scroll: false });
+  }
+
   return (
     <div className="bg-background/50 fixed top-0 right-0 bottom-0 left-0 container flex items-center justify-center backdrop-blur-sm">
       <div
@@ -38,7 +47,10 @@ function InsertWishlistGameForm({ platforms, onOpenClose }) {
         <button
           type="button"
           aria-label="Chiudi finestra Aggiungi a wishlist"
-          onClick={(e) => handleCloseModal(e)}
+          onClick={(e) => {
+            handleParamReset();
+            handleCloseModal(e);
+          }}
           className="absolute top-2 right-2"
         >
           <XMarkIcon className="text-primary h-6 w-6" />
@@ -126,10 +138,20 @@ function InsertWishlistGameForm({ platforms, onOpenClose }) {
 
 function Button() {
   const { pending } = useFormStatus();
+  const searchParams = useSearchParams();
+  const router = useRouter();
+  const isPlatformselected = searchParams?.get("query") ?? "---";
+
+  function handleParamReset() {
+    const params = new URLSearchParams(searchParams);
+    params.delete("query");
+    router.replace(`?${params.toString()}`, { scroll: false });
+  }
   return (
     <button
-      disabled={pending}
-      className={`text-foreground mt-5 flex w-full items-center justify-center gap-1 ${pending ? "text-primary animate-pulse" : "rounded border-2 border-blue-500"} px-5 py-1`}
+      onClick={handleParamReset}
+      disabled={isPlatformselected === "---" || pending}
+      className={`disabled:border-primary disabled:text-primary text-foreground mt-5 flex w-full items-center justify-center gap-1 rounded border-2 border-blue-500 px-5 py-1 disabled:pointer-events-none`}
     >
       <span className={`${pending ? "dots-loader animate-pulse" : ""}`}>
         {pending ? "Aggiunta gioco" : "Aggiungi"}
