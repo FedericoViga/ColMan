@@ -1,6 +1,10 @@
 import UpdateGameForm from "@/app/_components/UpdateGameForm";
 import { getFullGame } from "@/app/_lib/data-service";
 
+export const metadata = {
+  title: "Modifica Gioco",
+};
+
 async function Page({ params }) {
   const gameParams = await params;
   const { gameId: paramString } = gameParams;

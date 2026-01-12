@@ -1,6 +1,10 @@
 import GameFullCard from "@/app/_components/GameFullCard";
 import { getFullGame } from "@/app/_lib/data-service";
 
+export const metadata = {
+  title: "Gioco",
+};
+
 async function Page({ params }) {
   const gameParams = await params;
 

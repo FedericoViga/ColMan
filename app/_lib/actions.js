@@ -11,7 +11,7 @@ export async function signInAction() {
   await signIn("google", { redirectTo: "/" });
 }
 
-//INSERT
+/* INSERT */
 
 // inserisci gioco
 export async function insertGame(platformsIdAndName, formData) {
@@ -105,7 +105,54 @@ export async function insertPlatform(formData) {
   redirect("/");
 }
 
-// UPDATE
+export async function insertGameInWishlist(_prevState, formData) {
+  const session = await auth();
+
+  if (!session?.user?.email) {
+    throw new Error("Non autorizzato");
+  }
+
+  const gameNameRaw = formData.get("gameName");
+  const platformNames = formData.getAll("platformName");
+
+  if (!gameNameRaw || platformNames.length === 0) {
+    throw new Error("Dati mancanti");
+  }
+
+  const gameName = gameNameRaw.slice(0, 100).trim();
+  const platformName = platformNames.find((p) => p !== "---");
+
+  if (!platformName) {
+    throw new Error("Piattaforma non valida");
+  }
+
+  const { data: platform, error: platformError } = await supabase
+    .from("platforms")
+    .select("id")
+    .eq("platformName", platformName)
+    .single();
+
+  if (platformError || !platform) {
+    throw new Error("Piattaforma non trovata");
+  }
+
+  const { error: insertError } = await supabase.from("wishlist").insert({
+    gameName,
+    platformName,
+    platformId: platform.id,
+    userEmail: session.user.email,
+  });
+
+  if (insertError) {
+    throw new Error("Errore durante l'aggiunta alla wishlist");
+  }
+
+  revalidatePath("/user/my-wishlist", "page");
+
+  return { submitId: crypto.randomUUID() };
+}
+
+/* UPDATE */
 
 // aggiorna gioco
 export async function updateGame(oldImage, formData) {
@@ -240,7 +287,7 @@ export async function updatePlatform(formData) {
   revalidatePath("/platforms/[platformId]/update-platform", "page");
 }
 
-// DELETE
+/* DELETE */
 
 // cancella gioco
 export async function deleteGame(id, images) {
@@ -294,4 +341,20 @@ export async function deletePlatform(id) {
   }
 
   redirect("/");
+}
+
+export async function deleteGameFromWishlist(gameId) {
+  const session = await auth();
+  if (!session) throw new Error("Devi essere loggato");
+
+  const { data, error } = await supabase
+    .from("wishlist")
+    .delete()
+    .eq("id", gameId);
+
+  if (error) {
+    throw new Error("Errore nell'eliminazione del gioco");
+  }
+
+  revalidatePath("/user/my-wishlist", "page");
 }

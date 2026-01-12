@@ -2,7 +2,6 @@ import { Titillium_Web } from "next/font/google";
 
 import Header from "@/app/_components/Header";
 import { Toaster } from "react-hot-toast";
-
 import "./_styles/globals.css";
 
 const TitilliumWeb = Titillium_Web({

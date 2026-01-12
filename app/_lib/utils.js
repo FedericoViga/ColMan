@@ -1,4 +1,4 @@
-// debounce testo ricerca gioco
+// Debounce testo ricerca gioco
 export const textDebounce = (func, delay) => {
   let timeout = null;
 
@@ -11,9 +11,9 @@ export const textDebounce = (func, delay) => {
   };
 };
 
-// Genera un oggetto che contiene X array con due elementi, dove ogni array:
-// a index [0] è una stringa col nome del platformOwner
-// a index [1] è un array di oggetti dove ogni oggetto è una specifica piattaforma di quel platformOwner
+// Genera un oggetto che contiene X array, ognuno due elementi:
+// a index [0] una stringa col nome del platformOwner
+// a index [1] un array di oggetti dove ogni oggetto è una specifica piattaforma di quel platformOwner
 export function groupByPlatformOwner(platforms, key) {
   const platformsbyOwner = platforms.reduce((acc, curr) => {
     if (!acc[curr[key]]) {
@@ -45,4 +45,25 @@ export function addGameCount(platformsByOwner, gamesByPlatform) {
   });
 
   return combined;
+}
+
+// Ordina per piattaforma i giochi in wishlist
+// Ritorna un array di oggetti dove ogni oggetto ha due proprietà:
+// platformName: stringa nome piattaforma
+// games: array di oggetti con i giochi in wishlit per quella piattaforma
+export function wishlistByPlatforms(wishlist) {
+  const groupedArray = Object.values(
+    wishlist.reduce((acc, game) => {
+      const { platformName } = game;
+
+      if (!acc[platformName]) {
+        acc[platformName] = { platformName, games: [] };
+      }
+
+      acc[platformName].games.push(game);
+      return acc;
+    }, {}),
+  );
+
+  return groupedArray;
 }

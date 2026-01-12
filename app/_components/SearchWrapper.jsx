@@ -1,11 +1,11 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import SearchBar from "./SearchBar";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
-import PlatformFilterSelectorHome from "./PlatformFilterSelectorHome";
 import { groupByPlatformOwner } from "../_lib/utils";
+import Link from "next/link";
+import SearchBar from "./SearchBar";
+import PlatformFilterSelectorHome from "./PlatformFilterSelectorHome";
 import PlatformSelectorButton from "./PlatformSelectorButton";
 
 function SearchWrapper({ platforms }) {

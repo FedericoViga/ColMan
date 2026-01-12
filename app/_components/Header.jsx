@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { auth } from "../_lib/auth";
 
 async function Header() {
@@ -12,15 +13,19 @@ async function Header() {
               <h1 className="text-primary">ColMan</h1>
             </a>
           </div>
-          <div className="text-primary flex items-center gap-2">
-            <img
-              src={session?.user?.image}
-              alt={session?.user?.name}
-              className="h-7 rounded-full"
-              referrerPolicy="no-referrer"
-            />
-            <span>{session?.user?.name.split(" ")[0]}</span>
-          </div>
+          <Link href="/user">
+            <div className="text-primary flex items-center gap-2">
+              <img
+                src={session?.user?.image}
+                alt={session?.user?.name}
+                className="h-7 rounded-full"
+                referrerPolicy="no-referrer"
+              />
+              <span className="underline underline-offset-2">
+                {session?.user?.name.split(" ")[0]}
+              </span>
+            </div>
+          </Link>
         </header>
       )}
     </>

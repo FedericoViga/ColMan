@@ -1,6 +1,10 @@
 import PlatformFullCard from "@/app/_components/PlatformFullCard";
 import { getFullPlatform } from "@/app/_lib/data-service";
 
+export const metadata = {
+  title: "Piattaforma",
+};
+
 async function Page({ params }) {
   const platformParams = await params;
 

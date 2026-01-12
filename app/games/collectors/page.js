@@ -6,6 +6,10 @@ import {
 import Pagination from "@/app/_components/Pagination";
 import FilterWrapper from "@/app/_components/FilterWrapper";
 
+export const metadata = {
+  title: "Collector's Editions",
+};
+
 async function Page({ searchParams }) {
   const pageParams = await searchParams;
   const fetchedGames = await fetchCollectorsWithPagination(

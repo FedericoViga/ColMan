@@ -11,9 +11,11 @@ export const metadata = {
     template: "%s | Colman",
     default: "Home | Colman",
   },
-  description: "",
+  description:
+    "Collection Manager per gestire la tua collezione di videogiochi fisici.",
 };
 
+// Homepage
 export default async function Page({ searchParams }) {
   const platforms = await getAllPlatforms();
   const filters = await searchParams;

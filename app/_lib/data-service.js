@@ -282,3 +282,34 @@ export async function fetchCollectorsWithPagination(page, platformFilter) {
     return { data, count };
   }
 }
+
+/* WISHLIST */
+
+export async function getMyWishlist(userEmail) {
+  const { data, error } = await supabase
+    .from("wishlist")
+    .select("id, gameName, platformName, platformId")
+    .eq("userEmail", userEmail)
+    .order("platformName", { ascending: true })
+    .order("gameName", { ascending: true });
+
+  if (error) {
+    console.log(error);
+    throw new Error("Non è stato possibile caricare la tua wishlist");
+  }
+
+  return data;
+}
+
+export async function countWishlistGames() {
+  const { data, error } = await supabase
+    .from("wishlist")
+    .select("id", { count: "exact" });
+
+  if (error) {
+    console.log(error);
+    throw new Error("Il numero di giochi in wishlist non può essere calcolato");
+  }
+
+  return data.length;
+}

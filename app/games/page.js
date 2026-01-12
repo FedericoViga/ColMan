@@ -10,6 +10,10 @@ import {
   getAllPlatforms,
 } from "../_lib/data-service";
 
+export const metadata = {
+  title: "Giochi",
+};
+
 async function Page({ searchParams }) {
   const pageParams = await searchParams;
   const [numGames, numCollectors, platforms, numGamesByPlatform, fetchedGames] =
@@ -29,9 +33,9 @@ async function Page({ searchParams }) {
     >
       <h1 className="mb-4 text-center text-2xl">Tutti i giochi</h1>
 
-      <p className="text-primary mb-5 text-center text-lg">
-        Hai {numGames} giochi totali di cui {numCollectors} sono
-        collector&apos;s editions
+      <p className="text-primary mb-5 flex flex-col text-center text-lg">
+        <span>Hai {numGames} giochi totali</span>
+        <span>{numCollectors} sono collector&apos;s editions</span>
       </p>
 
       <FilterWrapper

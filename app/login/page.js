@@ -1,8 +1,12 @@
 import SigninButton from "../_components/SigninButton";
 
+export const metadata = {
+  title: "Login",
+};
+
 function Page() {
   return (
-    <div className="section flex min-h-dvh flex-col items-center justify-center gap-10 text-center">
+    <div className="flex min-h-dvh flex-col items-center justify-center gap-10 text-center">
       <h1 className="text-primary text-5xl font-bold">ColMan</h1>
       <div className="flex flex-col gap-2 px-5">
         <p>
