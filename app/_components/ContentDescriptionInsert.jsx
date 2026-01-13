@@ -6,9 +6,11 @@ function ContentDescriptionInsert({
   listView,
   onListView,
 }) {
-
   // se l'utente mette una virgola come ultimo carattere la rimuove
-  const removeLastComma = descriptionValue[descriptionValue.length - 1] === "," ? descriptionValue.slice(0, -1) : descriptionValue
+  const removeLastComma =
+    descriptionValue[descriptionValue.length - 1] === ","
+      ? descriptionValue.slice(0, -1)
+      : descriptionValue;
 
   // converte in arrray il testo del contenuto e fa il trim
   // la regex trova il carattere "," e il carattere "e" preceduto e seguito da uno spazio come separatori dell'array
@@ -33,18 +35,20 @@ function ContentDescriptionInsert({
     <div className="mt-1.5">
       <div>
         <div className="flex justify-between">
-          <label className="text-primary text-lg" htmlFor="contentDescription">Contenuto</label>
-          <div className="flex justify-center gap-2">
+          <label className="text-primary text-lg" htmlFor="contentDescription">
+            Contenuto
+          </label>
+          <div className="flex justify-center">
             <button
               onClick={(e) => handleList(e)}
-              className={`rounded px-2 text-sm ${listView ? "text-foreground border-1 border-blue-500 ring-1 ring-blue-500" : "text-primary border"}`}
+              className={`rounded-tl rounded-bl px-2 text-sm ${listView ? "text-foreground border-1 border-blue-500 ring-1 ring-blue-500" : "text-primary border-t border-b border-l"}`}
             >
               Lista
             </button>
 
             <button
               onClick={(e) => handleOriginal(e)}
-              className={`rounded px-2 text-sm ${!listView ? "text-foreground border-1 border-blue-500 ring-1 ring-blue-500" : "text-primary border"}`}
+              className={`rounded-tr rounded-br px-2 text-sm ${!listView ? "text-foreground border-1 border-blue-500 ring-1 ring-blue-500" : "text-primary border-t border-r border-b"}`}
             >
               Testo
             </button>
@@ -82,19 +86,19 @@ function ContentDescriptionInsert({
 
           {/* se ci sono più elementi */}
           {textToList.length > 1 && (
-                <ul className="mt-2 rounded border border-slate-800 bg-slate-800 p-3 select-none">
-                  {/* se sono più elementi: */}
-                  {/* se la stringa non termina con "." aggiunge ";" alla fine */}
-                  {/* converte la prima lettera di ogni stringa in maiuscola */}
-                  {/* all'ultimo elemento toglie ";" finale e mette "." */}
-                  {textToList.map((elem, i) => (
-                    <li className="my-1 list-inside list-disc" key={i}>
-                      {elem.charAt(0).toUpperCase() +
-                        elem.slice(1).replaceAll(/[.,;]/g, "")}
-                    </li>
-                  ))}
-                </ul>,
-              )}
+            <ul className="mt-2 rounded border border-slate-800 bg-slate-800 p-3 select-none">
+              {/* se sono più elementi: */}
+              {/* se la stringa non termina con "." aggiunge ";" alla fine */}
+              {/* converte la prima lettera di ogni stringa in maiuscola */}
+              {/* all'ultimo elemento toglie ";" finale e mette "." */}
+              {textToList.map((elem, i) => (
+                <li className="my-1 list-inside list-disc" key={i}>
+                  {elem.charAt(0).toUpperCase() +
+                    elem.slice(1).replaceAll(/[.,;]/g, "")}
+                </li>
+              ))}
+            </ul>
+          )}
         </>
       ) : (
         <div className="mt-1.5 flex flex-col gap-1">

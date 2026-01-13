@@ -16,11 +16,11 @@ async function Header() {
           </div>
           <div className="text-primary flex items-center gap-3">
             <Link href="/user">
-              <span className="underline underline-offset-4">
+              <span className="underline underline-offset-2">
                 {session?.user?.name.split(" ")[0]}
               </span>
             </Link>
-            <Link href="/user/my-wishlist" className="flex items-center">
+            <Link href="/user/my-wishlist">
               <HeartIcon className="h-6 w-6 text-blue-500" />
             </Link>
           </div>

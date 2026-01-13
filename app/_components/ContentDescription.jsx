@@ -33,16 +33,16 @@ function ContentDescription({ description }) {
       <div>
         <div className="flex justify-between">
           <span className="text-primary text-lg">Contenuto</span>
-          <div className="flex justify-center gap-1">
+          <div className="flex justify-center">
             <button
               onClick={handleList}
-              className={`rounded px-2 text-sm ${listView ? "text-foreground border-1 border-blue-500 ring-1 ring-blue-500" : "text-primary border"}`}
+              className={`rounded-tl rounded-bl px-2 text-sm ${listView ? "text-foreground border-1 border-blue-500 ring-1 ring-blue-500" : "text-primary border-t border-b border-l"}`}
             >
               Lista
             </button>
             <button
               onClick={handleOriginal}
-              className={`rounded px-2 text-sm ${!listView ? "text-foreground border-1 border-blue-500 ring-1 ring-blue-500" : "text-primary border"}`}
+              className={`rounded-tr rounded-br px-2 text-sm ${!listView ? "text-foreground border-1 border-blue-500 ring-1 ring-blue-500" : "text-primary border-t border-r border-b"}`}
             >
               Originale
             </button>
