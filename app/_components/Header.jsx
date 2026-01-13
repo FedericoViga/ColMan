@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { auth } from "../_lib/auth";
+import { HeartIcon } from "@heroicons/react/24/outline";
 
 async function Header() {
   const session = await auth();
@@ -13,19 +14,16 @@ async function Header() {
               <h1 className="text-primary">ColMan</h1>
             </a>
           </div>
-          <Link href="/user">
-            <div className="text-primary flex items-center gap-2">
-              <img
-                src={session?.user?.image}
-                alt={session?.user?.name}
-                className="h-7 rounded-full"
-                referrerPolicy="no-referrer"
-              />
-              <span className="underline underline-offset-2">
+          <div className="text-primary flex items-center gap-3">
+            <Link href="/user">
+              <span className="underline underline-offset-4">
                 {session?.user?.name.split(" ")[0]}
               </span>
-            </div>
-          </Link>
+            </Link>
+            <Link href="/user/my-wishlist" className="flex items-center">
+              <HeartIcon className="h-6 w-6 text-blue-500" />
+            </Link>
+          </div>
         </header>
       )}
     </>

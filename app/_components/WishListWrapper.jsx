@@ -6,6 +6,7 @@ import AddToWishlistButton from "./AddToWishlistButton";
 import WishlistAccordion from "./WishlistAccordion";
 import InsertWishlistGameForm from "./InsertWishlistGameForm";
 import DownloadWishlistButton from "./DownloadWishlistButton";
+import ToTopButton from "./ToTopButton";
 
 function WishListWrapper({ wishlistByPlatforms, platforms }) {
   const [isOpenInsertGame, setIsOpenInsertGame] = useState(false);
@@ -39,11 +40,10 @@ function WishListWrapper({ wishlistByPlatforms, platforms }) {
         {wishlistByPlatforms.length !== 0 ? (
           <>
             <p className="text-primary text-center text-lg">
-              Seleziona una piattaforma per visualizzare i relativi giochi in
-              wishlist.
+              Seleziona una piattaforma per visualizzare i relativi giochi.
             </p>
 
-            <div className="border-primary my-7 flex items-baseline justify-between border-b p-3">
+            <div className="border-primary mt-7 mb-10 flex items-baseline justify-between border-b p-3">
               {/* Toggle espandi tutto */}
               <div className="flex items-center gap-2">
                 <div className="relative h-5 w-11">
@@ -99,6 +99,8 @@ function WishListWrapper({ wishlistByPlatforms, platforms }) {
           onOpenClose={setIsOpenInsertGame}
         />
       )}
+
+      <ToTopButton isOpenInsertGame={isOpenInsertGame} />
     </>
   );
 }

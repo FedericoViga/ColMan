@@ -10,6 +10,7 @@ const supabase = createClient(
 
 export async function GET() {
   const session = await auth();
+  if (!session) throw new Error("Non autorizzato");
 
   const { data, error } = await supabase
     .from("wishlist")

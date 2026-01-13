@@ -18,6 +18,15 @@ function InsertWishlistGameForm({ platforms, onOpenClose }) {
 
   const platformsByOwner = groupByPlatformOwner(platforms, "platformOwner");
 
+  // rimuove lo scroll quando è aperto il componente
+  useEffect(() => {
+    if (onOpenClose) document.body.style.overflow = "hidden";
+
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [onOpenClose]);
+
   useEffect(() => {
     if (state.submitId) setTitleText("");
   }, [state.submitId]);

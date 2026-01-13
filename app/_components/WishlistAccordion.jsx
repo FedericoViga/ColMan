@@ -49,7 +49,7 @@ function WishlistAccordion({
             key={elem.id}
             className={`flex w-full items-center justify-between ${
               expandAll || isSelectorOpen
-                ? "border-primary border-b px-2 py-2 last-of-type:border-0"
+                ? "border-primary border-b px-2 py-3 last-of-type:border-0"
                 : "h-0"
             }`}
           >
