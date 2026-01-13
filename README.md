@@ -3,9 +3,10 @@
   <h1>ColMan</h1>
 
 </div>
-<p>Colman sta per "Collection Manager" ed è una Single Page Application full-stack (React, Next.Js e Supabase) specifica per smartphone che uso regolarmente per gestire la mia collezione di videogiochi in modo rapido.<br>
+<p>Colman sta per "Collection Manager", è una Single Page Application full-stack (React/Next.Js e Supabase) per smartphone che uso regolarmente per gestire la mia collezione di videogiochi in modo rapido.<br>
 
-Si possono inserire/modificare/eliminare nuovi giochi e piattaforme direttamente nel database di Supabase (PostgreSQL), scattando la foto sul momento o selezionandola dalla galleria del telefono e compilando una vera e propria "scheda prodotto" con le informazioni sul gioco o sulla piattaforma.<br>
+Si possono inserire/modificare/eliminare giochi e piattaforme direttamente nel database di Supabase (PostgreSQL), scattando la foto sul momento oppure selezionandola dalla galleria del telefono e compilando una vera e propria "scheda prodotto" con le informazioni del gioco o della piattaforma.<br>
+
 E molto altro...(vedi features sotto)
 
 In questa prima versione ho mantenuto un design semplice con priorità alla funzionalità e con transizioni/animazioni css per dare più fluidità, ma anche optmistic updates, spinner di caricamento, skeleton loader e overlay durante i fetch e le server actions grazie a Next.Js, Suspense e useTransition di React.<br>
@@ -29,7 +30,7 @@ Questo progetto è interamente fatto a mano da zero e non sono stati usati tools
 - Wishlist con componenti accordion generati dinamicamente per ogni piattaforma e relativi giochi
 - Interruttore per espandere tutti gli accordion delle piattaforme che contengono la lista giochi
 - Button di eliminazione istantanea con optimistic update per ogni gioco nella lista
-- Button per scaricare un file .csv tutti i giochi in wishlist in ordine alfabetico in base alla piattaforma
+- Button per scaricare un file .csv con tutti i giochi in wishlist con ordinamento alfabetico in base alla piattaforma
 - Back to top floating button dinamico con smooth scroll per tornare in cima alla lista
 
 #### Esplorazione e gestione collezione
