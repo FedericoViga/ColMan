@@ -5,6 +5,9 @@ export const metadata = {
 };
 
 function Page() {
+  const date = new Date();
+  const currentYear = date.getFullYear();
+
   return (
     <div className="flex min-h-dvh flex-col items-center justify-center gap-10 text-center">
       <h1 className="text-primary text-5xl font-bold">ColMan</h1>
@@ -40,7 +43,9 @@ function Page() {
         <SigninButton />
       </div>
 
-      <span className="text-primary fixed bottom-2">2025 Federico Viganò</span>
+      <span className="text-primary fixed bottom-2">
+        {currentYear} Federico Viganò
+      </span>
     </div>
   );
 }
