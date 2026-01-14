@@ -32,7 +32,7 @@ function WishListWrapper({ wishlistByPlatforms, platforms }) {
 
   return (
     <>
-      <div className="mt-5 mb-40">
+      <div className="mt-5 mb-30">
         <h1 className="text-foreground my-6 text-center text-2xl">
           La mia wishlist
         </h1>
