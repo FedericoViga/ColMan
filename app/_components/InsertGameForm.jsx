@@ -151,13 +151,18 @@ function InsertGameForm({ platforms, platformsIdAndName }) {
           </div>
 
           {/* SIGILLATO */}
-          <div className="mt-2.5 flex flex-row-reverse justify-end gap-2">
-            <label htmlFor="isSealed">Sigillato</label>
+          <div className="group text-primary mt-2.5 flex flex-row-reverse justify-end gap-2">
+            <label
+              htmlFor="isSealed"
+              className="group-has-[input:checked]:text-foreground"
+            >
+              Sigillato
+            </label>
             <input
               id="isSealed"
               name="isSealed"
               type="checkbox"
-              className="mt-1 h-4 w-4 accent-blue-500"
+              className="group/checkbox mt-1 h-4 w-4 accent-blue-500"
               onChange={() => {
                 setSealedChecked((isChecked) => !isChecked);
               }}
@@ -165,26 +170,34 @@ function InsertGameForm({ platforms, platformsIdAndName }) {
           </div>
 
           {/* EDIZIONE SPECIALE */}
-          <div className="mt-2.5 flex flex-row-reverse justify-end gap-2">
-            <label htmlFor="isSpecial">
+          <div className="group text-primary mt-2.5 flex flex-row-reverse justify-end gap-2">
+            <label
+              htmlFor="isSpecial"
+              className="group-has-[input:checked]:text-foreground"
+            >
               Edizione speciale (Steelbook, Deluxe ecc.)
             </label>
             <input
               id="isSpecial"
               name="isSpecial"
               type="checkbox"
-              className="mt-1 h-4 w-4 accent-blue-500"
+              className="group/checkbox mt-1 h-4 w-4 accent-blue-500"
             />
           </div>
 
           {/* COLLECTOR'S EDITION */}
-          <div className="mt-2.5 flex flex-row-reverse justify-end gap-2">
-            <label htmlFor="isCollector">Collector's Edition</label>
+          <div className="group text-primary mt-2.5 flex flex-row-reverse justify-end gap-2">
+            <label
+              htmlFor="isCollector"
+              className="group-has-[input:checked]:text-foreground"
+            >
+              Collector's Edition
+            </label>
             <input
               id="isCollector"
               name="isCollector"
               type="checkbox"
-              className="mt-1 h-4 w-4 accent-blue-500"
+              className="group/checkbox mt-1 h-4 w-4 accent-blue-500"
             />
           </div>
 

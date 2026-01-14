@@ -120,7 +120,7 @@ export async function insertGameInWishlist(_prevState, formData) {
   }
 
   const gameName = gameNameRaw.slice(0, 100).trim();
-  const platformName = platformNames.find((p) => p !== "---");
+  const platformName = platformNames.find((p) => p !== "");
 
   if (!platformName) {
     throw new Error("Piattaforma non valida");

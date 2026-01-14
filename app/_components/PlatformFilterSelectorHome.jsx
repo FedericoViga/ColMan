@@ -34,7 +34,7 @@ function PlatformFilterSelectorHome({
       <select
         required={isSelectedActive}
         name="platform"
-        className="bg-background border-primary mt-1 cursor-pointer rounded border p-1 focus:border-blue-500 focus:ring-blue-500"
+        className="bg-background border-primary mt-1 cursor-pointer rounded border p-1 focus:border-blue-500 focus:ring-blue-500 focus-visible:outline-0"
         value={!isSelectedActive ? isSelectedActive : undefined}
         onChange={(e) => {
           onActive(id);

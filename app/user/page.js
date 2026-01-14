@@ -14,19 +14,18 @@ async function Page() {
 
   return (
     <div className="container my-5 flex flex-col items-center gap-1">
-      <div className="flex items-center justify-center gap-3">
+      <div className="mb-7 flex items-center justify-center gap-3">
         <img
           src={session?.user?.image}
           alt={session?.user?.name}
-          className="h-9 rounded-full"
-          referrerPolicy="no-referrer"
+          className="mt-1.5 h-12 rounded-full"
         />
-        <h1 className="text-center text-2xl">{session?.user?.name}</h1>
-      </div>
 
-      <h2 className="text-primary mb-10 text-center text-sm">
-        {session?.user?.email}
-      </h2>
+        <div className="text-left">
+          <h1 className="text-2xl">{session?.user?.name}</h1>
+          <h2 className="text-primary text-sm">{session?.user?.email}</h2>
+        </div>
+      </div>
 
       <Link
         href="/user/my-wishlist"

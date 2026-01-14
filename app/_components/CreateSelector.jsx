@@ -44,12 +44,14 @@ function CreateSelector() {
       ></div>
 
       <div
-        className={`bg-background fixed bottom-0 transition-all transition-discrete duration-400 ${isOpen ? "flex h-64 border-t-2 border-t-blue-500" : "h-0 border-t-2 border-t-blue-500 opacity-0"} w-full flex-col items-center justify-center`}
+        className={`bg-background fixed bottom-0 w-full border-t-2 border-t-blue-500 transition-transform duration-300 ease-out will-change-transform ${
+          isOpen ? "translate-y-0 opacity-100" : "translate-y-full opacity-0"
+        } `}
       >
         <div
-          className={`bg-background relative w-full flex-col items-center justify-center transition-all transition-discrete duration-240 ${isOpen ? "flex h-56 opacity-100" : "hidden h-0 opacity-0"}`}
+          className={`bg-background relative flex w-full flex-col items-center justify-center py-13 transition-opacity delay-75 duration-200 ${isOpen ? "opacity-100" : "pointer-events-none opacity-0"} `}
         >
-          <span className="absolute top-1 right-3">
+          <span className="absolute top-3 right-3">
             <XMarkIcon
               className="h-6 w-6 cursor-pointer"
               onClick={() => setisOpen((isOpen) => !isOpen)}

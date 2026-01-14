@@ -134,39 +134,52 @@ function UpdateGameForm({ gameDetails }) {
           </div>
 
           {/* SIGILLATO */}
-          <div className="mt-2.5 flex flex-row-reverse justify-end gap-2">
-            <label htmlFor="isSealed">Sigillato</label>
+          <div className="text-primary group mt-2.5 flex flex-row-reverse justify-end gap-2">
+            <label
+              htmlFor="isSealed"
+              className="group-has-[input:checked]:text-foreground"
+            >
+              Sigillato
+            </label>
             <input
               name="isSealed"
               id="isSealed"
               type="checkbox"
-              className="mt-1 h-4 w-4 accent-blue-500"
+              className="group/checkbox mt-1 h-4 w-4 accent-blue-500"
               defaultChecked={isSealed ? true : false}
             />
           </div>
 
           {/* EDIZIONE SPECIALE */}
-          <div className="mt-2.5 flex flex-row-reverse justify-end gap-2">
-            <label htmlFor="isSpecial">
+          <div className="group text-primary mt-2.5 flex flex-row-reverse justify-end gap-2">
+            <label
+              htmlFor="isSpecial"
+              className="group-has-[input:checked]:text-foreground"
+            >
               Edizione speciale (Steelbook, Deluxe ecc.)
             </label>
             <input
               name="isSpecial"
               id="isSpecial"
               type="checkbox"
-              className="mt-1 h-4 w-4 accent-blue-500"
+              className="group/checkbox mt-1 h-4 w-4 accent-blue-500"
               defaultChecked={isSpecial ? true : false}
             />
           </div>
 
           {/* COLLECTOR'S EDITION */}
-          <div className="mt-2.5 flex flex-row-reverse justify-end gap-2">
-            <label htmlFor="isCollector">Collector's Edition</label>
+          <div className="text-primary group mt-2.5 flex flex-row-reverse justify-end gap-2">
+            <label
+              htmlFor="isCollector"
+              className="group-has-[input:checked]:text-foreground"
+            >
+              Collector's Edition
+            </label>
             <input
               name="isCollector"
               id="isCollector"
               type="checkbox"
-              className="mt-1 h-4 w-4 accent-blue-500"
+              className="group/checkbox mt-1 h-4 w-4 accent-blue-500"
               defaultChecked={isCollector ? true : false}
             />
           </div>

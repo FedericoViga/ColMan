@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useOptimistic, useState } from "react";
+import { useOptimistic, useState } from "react";
 import { deleteGameFromWishlist } from "../_lib/actions";
 import AddToWishlistButton from "./AddToWishlistButton";
 import WishlistAccordion from "./WishlistAccordion";

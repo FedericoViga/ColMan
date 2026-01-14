@@ -6,12 +6,12 @@ import { groupByPlatformOwner } from "../_lib/utils";
 import { insertGameInWishlist } from "../_lib/actions";
 import { HeartIcon } from "@heroicons/react/24/outline";
 import { XMarkIcon } from "@heroicons/react/24/solid";
-import PlatformFilterSelectorWishlist from "./PlatformFilterSelectorWishlist";
+import PlatformSelectorWishlist from "./PlatformSelectorWishlist";
 
 function InsertWishlistGameForm({ platforms, onOpenClose }) {
   const [curActive, setCurActive] = useState(undefined);
   const [titleText, setTitleText] = useState("");
-  const [selectedPlatform, setSelectedPlatform] = useState("---");
+  const [selectedPlatform, setSelectedPlatform] = useState(null);
   const [state, formAction] = useActionState(insertGameInWishlist, {
     submitId: null,
   });
@@ -37,7 +37,7 @@ function InsertWishlistGameForm({ platforms, onOpenClose }) {
   }
 
   return (
-    <div className="bg-background/50 fixed top-0 right-0 bottom-0 left-0 container flex items-center justify-center backdrop-blur-sm">
+    <div className="bg-background/40 fixed top-0 right-0 bottom-0 left-0 container flex items-center justify-center backdrop-blur-sm">
       <div
         className="bg-background border-primary relative min-w-11/12 rounded border px-3 py-9"
         role="dialog"
@@ -105,7 +105,7 @@ function InsertWishlistGameForm({ platforms, onOpenClose }) {
 
               <div className="max-h-60 overflow-y-scroll">
                 {platformsByOwner.map((platform, i) => (
-                  <PlatformFilterSelectorWishlist
+                  <PlatformSelectorWishlist
                     onSelectedPlatform={setSelectedPlatform}
                     platformDetails={platform}
                     key={platform[0]}
@@ -142,8 +142,8 @@ function Button({ titleText, selectedPlatform }) {
 
   return (
     <button
-      disabled={selectedPlatform === "---" || titleText.length === 0}
-      className={`disabled:border-primary disabled:text-primary text-foreground mt-5 flex w-full items-center justify-center gap-1 rounded border-2 border-blue-500 px-5 py-1 disabled:pointer-events-none`}
+      disabled={!selectedPlatform || titleText.length === 0}
+      className={`disabled:border-primary disabled:text-primary text-foreground mt-9 flex w-full items-center justify-center gap-1 rounded border-2 border-blue-500 px-5 py-1 disabled:pointer-events-none`}
     >
       <span className={`${pending ? "dots-loader animate-pulse" : ""}`}>
         {pending ? "Aggiunta gioco" : "Aggiungi"}

@@ -1,6 +1,6 @@
 "use client";
 
-function PlatformFilterSelectorWishlist({
+function PlatformSelectorWishlist({
   platformDetails,
   id,
   curActive,
@@ -23,7 +23,7 @@ function PlatformFilterSelectorWishlist({
           onActive(id);
         }}
       >
-        <option>---</option>
+        <option hidden></option>
         {platformDetails[1].map((elem) => (
           <option key={elem.id} value={elem.platformName}>
             {elem.platformName}
@@ -34,4 +34,4 @@ function PlatformFilterSelectorWishlist({
   );
 }
 
-export default PlatformFilterSelectorWishlist;
+export default PlatformSelectorWishlist;
