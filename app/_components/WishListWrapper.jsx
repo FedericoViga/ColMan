@@ -139,7 +139,7 @@ function WishListWrapper({ wishlistByPlatforms, platforms }) {
                   }}
                   className="flex items-center"
                 >
-                  <XMarkIcon className="h-6 w-6 pt-1" />
+                  <XMarkIcon className="h-5 w-5" />
                 </button>
 
                 <p className="text-primary min-w-0 flex-1 break-words">
