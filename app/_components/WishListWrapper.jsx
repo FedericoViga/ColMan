@@ -8,6 +8,7 @@ import InsertWishlistGameForm from "./InsertWishlistGameForm";
 import DownloadWishlistButton from "./DownloadWishlistButton";
 import ToTopButton from "./ToTopButton";
 import WishlistSearchBar from "./WishlistSearchBar";
+import { XMarkIcon } from "@heroicons/react/24/solid";
 
 function WishListWrapper({ wishlistByPlatforms, platforms }) {
   const [isOpenInsertGame, setIsOpenInsertGame] = useState(false);
@@ -98,7 +99,7 @@ function WishListWrapper({ wishlistByPlatforms, platforms }) {
               handleSearchGame={handleSearchGame}
             />
 
-            <div className="border-primary mt-3 mb-9 flex items-baseline justify-between border-b p-3">
+            <div className="border-primary mt-3 mb-8 flex items-baseline justify-between border-b p-3">
               {/* Toggle espandi tutto */}
               <div className="flex items-center gap-2">
                 <div className="relative h-5 w-11">
@@ -127,18 +128,21 @@ function WishListWrapper({ wishlistByPlatforms, platforms }) {
 
             {/* Chiudi ricerca */}
             {searchedGameDisplay !== "" && searchedWishlist.length > 0 && (
-              <div className="flex items-baseline justify-start gap-2">
+              <div className="mb-6 flex items-center gap-0.5 px-1.5 text-sm">
                 <button
-                  className="start-0 mb-7 flex flex-none items-center rounded-lg border-2 border-blue-500 px-1.5 py-1 text-sm"
+                  type="button"
+                  aria-label="Cancella ricerca"
                   onClick={() => {
                     setCurOpen(null);
                     setSearchedWishlist([]);
                     setGameNotFound(false);
                   }}
+                  className="flex items-center"
                 >
-                  Chiudi ricerca
+                  <XMarkIcon className="h-6 w-6 pt-1" />
                 </button>
-                <p className="text-primary min-w-0 flex-1 text-sm break-words">
+
+                <p className="text-primary min-w-0 flex-1 break-words">
                   {searchedGameDisplay}
                 </p>
               </div>
