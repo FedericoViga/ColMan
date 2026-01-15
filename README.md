@@ -26,6 +26,7 @@ Questo progetto è interamente fatto a mano da zero e non sono stati usati tools
 #### [New 2026] Wishlist giochi
 
 - Pagina della wishlist raggiungibile con link in homepage o dall'account utente
+- Funzione di ricerca
 - Floating button che apre una modal con form per aggiungere alla wishlist un nuovo gioco
 - Wishlist con componenti accordion generati dinamicamente per ogni piattaforma e relativi giochi
 - Interruttore per espandere tutti gli accordion delle piattaforme che contengono la lista giochi

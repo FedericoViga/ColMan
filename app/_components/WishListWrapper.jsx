@@ -7,14 +7,22 @@ import WishlistAccordion from "./WishlistAccordion";
 import InsertWishlistGameForm from "./InsertWishlistGameForm";
 import DownloadWishlistButton from "./DownloadWishlistButton";
 import ToTopButton from "./ToTopButton";
+import WishlistSearchBar from "./WishlistSearchBar";
 
 function WishListWrapper({ wishlistByPlatforms, platforms }) {
   const [isOpenInsertGame, setIsOpenInsertGame] = useState(false);
   const [curOpen, setCurOpen] = useState(null);
   const [expandAll, setExpandAll] = useState(false);
+  const [searchGame, setSearchGame] = useState(""); // testo ricerca gioco
+  const [searchedWishlist, setSearchedWishlist] = useState([]); // array dei risultati di ricerca
+  const [searchedGameDisplay, setSearchedGameDisplay] = useState(""); // testo ricerca gioco mostrato dopo aver premuto il button per cercare
 
+  const [gameNotFound, setGameNotFound] = useState(false);
+  // lo useOptimistic cambia l'array usato se ci sono o no risultati di ricerca
+  // se ci sono risultati usa l'array searchedWishlist
+  // altrimenti usa l'array orignale wishlistByPlatforms da Supabase
   const [optimisticPlatforms, optimisticDelete] = useOptimistic(
-    wishlistByPlatforms,
+    searchedWishlist.length > 0 ? searchedWishlist : wishlistByPlatforms,
     (curWishlistPlatforms, gameId) => {
       return curWishlistPlatforms
         .map((platform) => ({
@@ -26,10 +34,49 @@ function WishListWrapper({ wishlistByPlatforms, platforms }) {
   );
 
   async function handleDelete(gameId) {
+    setGameNotFound(false);
     optimisticDelete(gameId);
+
+    // aggiorna SOLO nel client la lista momentanea dei risultati di ricerca post cancellazione
+    const clientListUpdated = searchedWishlist
+      .map((platform) => {
+        const filteredGames = platform.games.filter(
+          (game) => game.id !== gameId,
+        );
+        // ritorno la piattaforma solo con i giochi filtrati
+        return {
+          ...platform,
+          games: filteredGames,
+        };
+      })
+      .filter((platform) => platform.games.length > 0);
+
+    setSearchedWishlist(clientListUpdated);
     await deleteGameFromWishlist(gameId);
   }
 
+  function handleSearchGame() {
+    setGameNotFound(true);
+    setCurOpen(null);
+    setSearchedGameDisplay(searchGame);
+
+    // filtra i giochi in base al testo di ricerca
+    const filteredWishlistBySearch = wishlistByPlatforms
+      .map((platform) => {
+        const filteredGames = platform.games.filter((game) =>
+          game.gameName.toLowerCase().includes(searchGame.toLowerCase()),
+        );
+        // ritorna la piattaforma solo con i giochi filtrati
+        return {
+          ...platform,
+          games: filteredGames,
+        };
+      })
+      .filter((platform) => platform.games.length > 0); // toglie anche la piattaforma se ha 0 giochi
+
+    setSearchedWishlist(filteredWishlistBySearch);
+    setSearchGame("");
+  }
   return (
     <>
       <div className="mt-5 mb-30">
@@ -43,7 +90,15 @@ function WishListWrapper({ wishlistByPlatforms, platforms }) {
               Seleziona una piattaforma per visualizzare i relativi giochi.
             </p>
 
-            <div className="border-primary mt-7 mb-10 flex items-baseline justify-between border-b p-3">
+            <WishlistSearchBar
+              searchGame={searchGame}
+              searchedWishlist={searchedWishlist}
+              gameNotFound={gameNotFound}
+              onSearchGame={setSearchGame}
+              handleSearchGame={handleSearchGame}
+            />
+
+            <div className="border-primary mt-3 mb-9 flex items-baseline justify-between border-b p-3">
               {/* Toggle espandi tutto */}
               <div className="flex items-center gap-2">
                 <div className="relative h-5 w-11">
@@ -70,7 +125,25 @@ function WishListWrapper({ wishlistByPlatforms, platforms }) {
               <DownloadWishlistButton />
             </div>
 
-            {/* Lista giochi per piattaforma */}
+            {/* Chiudi ricerca */}
+            {searchedGameDisplay !== "" && searchedWishlist.length > 0 && (
+              <div className="flex items-baseline justify-start gap-2">
+                <button
+                  className="start-0 mb-7 flex flex-none items-center rounded-lg border-2 border-blue-500 px-1.5 py-1 text-sm"
+                  onClick={() => {
+                    setCurOpen(null);
+                    setSearchedWishlist([]);
+                    setGameNotFound(false);
+                  }}
+                >
+                  Chiudi ricerca
+                </button>
+                <p className="text-primary min-w-0 flex-1 text-sm break-words">
+                  {searchedGameDisplay}
+                </p>
+              </div>
+            )}
+
             {optimisticPlatforms.map((platform, i) => (
               <WishlistAccordion
                 platform={platform}
