@@ -31,12 +31,12 @@ function PlatformsAccordion({ platformDetails, id, curOpen, onOpen }) {
             ? `${listRef.current?.scrollHeight}px`
             : "0px",
         }}
-        className="border-primary overflow-hidden rounded border border-y-0 transition-[max-height] duration-300 ease-in-out"
+        className={`${isSelectorOpen ? "" : "border-b-0"} border-primary overflow-hidden rounded border border-t-0 transition-[max-height] duration-300 ease-in-out`}
       >
         {platformDetails[1].map((elem) => (
           <li
             key={elem.id}
-            className="last:border-primary border-b-0 px-2 py-3 last:border-b-1 hover:bg-blue-500"
+            className="border-b-0 px-2 py-3 last:border-b-0 hover:bg-blue-500"
           >
             <Link
               className="inline-block w-full"
