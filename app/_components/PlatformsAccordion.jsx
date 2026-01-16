@@ -1,8 +1,10 @@
 import Link from "next/link";
+import { useRef } from "react";
 
 function PlatformsAccordion({ platformDetails, id, curOpen, onOpen }) {
   // state per chiudere il dropdown dei filtri se viene selezionato un nuovo dropdown
   const isSelectorOpen = id === curOpen;
+  const listRef = useRef(null);
 
   return (
     <div className={`my-8`}>
@@ -23,12 +25,18 @@ function PlatformsAccordion({ platformDetails, id, curOpen, onOpen }) {
       </button>
 
       <ul
-        className={`grid max-h-fit ${isSelectorOpen ? "border-primary grid-rows-[1fr] rounded border border-t-0" : "grid-rows-[0fr] overflow-hidden"}`}
+        ref={listRef}
+        style={{
+          maxHeight: isSelectorOpen
+            ? `${listRef.current?.scrollHeight}px`
+            : "0px",
+        }}
+        className="border-primary overflow-hidden rounded border border-y-0 transition-[max-height] duration-300 ease-in-out"
       >
         {platformDetails[1].map((elem) => (
           <li
             key={elem.id}
-            className={`hover:bg-blue-500 ${isSelectorOpen ? "h-auto px-2 py-3" : "h-0"}`}
+            className="last:border-primary border-b-0 px-2 py-3 last:border-b-1 hover:bg-blue-500"
           >
             <Link
               className="inline-block w-full"

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { groupByPlatformOwner } from "../_lib/utils";
 import Link from "next/link";
@@ -13,6 +13,7 @@ function SearchWrapper({ platforms }) {
   const [isExpanded, setOpenFilters] = useState(false);
   const [filterName, setFilterName] = useState("Tutte"); // valore del filtro mostrato nel button di selezione piattaforma
   const router = useRouter();
+  const filterRef = useRef(null);
 
   useEffect(() => {
     router.replace(`/`, { scroll: false });
@@ -37,7 +38,13 @@ function SearchWrapper({ platforms }) {
         </div>
 
         <div
-          className={`w-full transition-all transition-discrete duration-300 ${isExpanded ? "max-h-96 opacity-100" : "max-h-0 overflow-hidden opacity-0"}`}
+          ref={filterRef}
+          style={{
+            maxHeight: isExpanded
+              ? `${filterRef.current?.scrollHeight}px`
+              : "0px",
+          }}
+          className="w-full overflow-hidden transition-[max-height,opacity] duration-300 ease-in-out"
         >
           {platforms.length !== 0 ? (
             <>

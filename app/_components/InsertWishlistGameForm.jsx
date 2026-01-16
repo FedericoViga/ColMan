@@ -37,7 +37,7 @@ function InsertWishlistGameForm({ platforms, onOpenClose }) {
   }
 
   return (
-    <div className="bg-background/40 fixed top-0 right-0 bottom-0 left-0 container flex items-center justify-center backdrop-blur-sm">
+    <div className="bg-foreground/10 fixed top-0 right-0 bottom-0 left-0 container flex items-center justify-center backdrop-blur-md">
       <div
         className={`${selectedPlatform && titleText.length !== 0 ? "border-blue-500" : "border-primary"} bg-background relative min-w-11/12 rounded border px-3 py-9`}
         role="dialog"

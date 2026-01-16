@@ -148,6 +148,7 @@ function WishListWrapper({ wishlistByPlatforms, platforms }) {
               </div>
             )}
 
+            {/* Wishlist */}
             {optimisticPlatforms.map((platform, i) => (
               <WishlistAccordion
                 platform={platform}
