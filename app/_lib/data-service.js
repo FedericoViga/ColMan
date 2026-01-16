@@ -152,11 +152,9 @@ export async function getFullPlatform(id) {
   const { data, error } = await supabase
     .from("platforms")
     .select("*")
-    .eq("id", id)
-    .single();
+    .eq("id", id);
 
   if (error) {
-    console.log(error);
     throw new Error(
       "Non è stato possibile caricare i dettagli della piattaforma",
     );

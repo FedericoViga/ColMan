@@ -11,7 +11,7 @@ async function Page({ params }) {
 
   const id = paramString.split("-")[0];
 
-  const platformDetails = await getFullPlatform(id);
+  const [platformDetails] = await getFullPlatform(id);
 
   return (
     <div>

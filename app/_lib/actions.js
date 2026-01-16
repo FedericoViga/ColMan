@@ -322,25 +322,41 @@ export async function deleteGame(id, images) {
 
 // cancella piattaforma
 export async function deletePlatform(id) {
-  const session = await auth();
-  if (!session) throw new Error("Devi essere loggato");
+  try {
+    const session = await auth();
+    if (!session) throw new Error("Devi essere loggato");
 
-  const { data, error } = await supabase
-    .from("platforms")
-    .delete()
-    .eq("id", id);
+    const { count, error: countError } = await supabase
+      .from("games")
+      .select("*", { count: "exact" })
+      .eq("platformId", id);
 
-  if (error) {
-    throw new Error("La piattaforma non può essere cancellata");
-  } else {
+    if (countError) throw new Error("Errore nel conteggio dei giochi");
+
+    if (count > 0)
+      throw new Error(
+        `Non puoi eliminare la piattaforma perché ha ${count > 1 ? `${count} giochi associati!` : `${count} gioco associato!`}`,
+      );
+
+    const { error: deleteError } = await supabase
+      .from("platforms")
+      .delete()
+      .eq("id", id);
+
+    if (deleteError) throw new Error("La piattaforma non può essere eliminata");
+
     const cookieStore = await cookies();
     cookieStore.set("deletePlatform", `Piattaforma eliminata!`, {
       httpOnly: false,
       path: "/",
     });
+  } catch (error) {
+    console.error("Errore in deletePlatform:", error.message || error);
+    throw new Error(
+      error.message ||
+        "Errore sconosciuto durante l'eliminazione della piattaforma",
+    );
   }
-
-  redirect("/");
 }
 
 export async function deleteGameFromWishlist(gameId) {
