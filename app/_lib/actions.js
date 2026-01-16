@@ -333,10 +333,12 @@ export async function deletePlatform(id) {
 
     if (countError) throw new Error("Errore nel conteggio dei giochi");
 
-    if (count > 0)
-      throw new Error(
-        `Non puoi eliminare la piattaforma perché ha ${count > 1 ? `${count} giochi associati!` : `${count} gioco associato!`}`,
-      );
+    if (count > 0) {
+      return {
+        ok: false,
+        error: `Non puoi eliminare la piattaforma perchè ha ${count > 1 ? `${count} giochi associati!` : `${count} gioco associato!`}`,
+      };
+    }
 
     const { error: deleteError } = await supabase
       .from("platforms")
@@ -353,8 +355,7 @@ export async function deletePlatform(id) {
   } catch (error) {
     console.error("Errore in deletePlatform:", error.message || error);
     throw new Error(
-      error.message ||
-        "Errore sconosciuto durante l'eliminazione della piattaforma",
+      "Errore sconosciuto durante l'eliminazione della piattaforma",
     );
   }
 }

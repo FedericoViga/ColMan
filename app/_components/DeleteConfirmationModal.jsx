@@ -29,12 +29,10 @@ function DeleteConfirmationModal({
     }
     if (deletionTarget === "platform") {
       onTransition(async () => {
-        try {
-          await deletePlatform(targetInfo?.platformId);
-          router.replace("/");
-        } catch (err) {
-          toast.error(err.message);
-          onClose();
+        const res = await deletePlatform(targetInfo?.platformId);
+        router.replace("/");
+        if (!res.ok) {
+          toast.error(res.error);
         }
       });
     }
