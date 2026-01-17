@@ -69,7 +69,6 @@ function InsertPlatformForm() {
               id="platformOwner"
               type="text"
               className="border-primary rounded border p-1.5 text-base"
-              autoComplete="off"
               maxLength="25"
               onChange={(e) => setOwnerLength(e.target.value.length)}
             />
