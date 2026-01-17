@@ -109,7 +109,7 @@ function ContentDescriptionInsert({
             name="contentDescription"
             id="contentDescription"
             rows="6"
-            className="border-primary placeholder:text-primary/50 rounded border p-1.5 text-base"
+            className="border-primary placeholder:text-primary/50 rounded border p-1.5 text-base focus-within:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none"
             maxLength="500"
             onChange={(e) => {
               onDescriptionValue(e.target.value);

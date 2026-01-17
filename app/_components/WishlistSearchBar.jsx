@@ -12,7 +12,7 @@ function WishlistSearchBar({
       <input
         value={searchGame}
         type="search"
-        className="border-primary placeholder-primaryfocus-within:border-blue-500 block w-full rounded-lg border px-2 py-1.5 focus:ring-1 focus:ring-blue-500 focus:outline-none"
+        className="border-primary placeholder-primary block w-full rounded-lg border px-2 py-1.5 focus-within:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none"
         placeholder={
           searchedWishlist.length === 0 && gameNotFound
             ? "Nessun gioco trovato"

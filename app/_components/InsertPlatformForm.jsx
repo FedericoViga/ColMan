@@ -48,7 +48,7 @@ function InsertPlatformForm() {
               name="platformName"
               id="platformName"
               type="text"
-              className="border-primary rounded border p-1.5 text-base"
+              className="border-primary rounded border p-1.5 text-base focus-within:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none"
               autoComplete="off"
               maxLength="25"
               onChange={(e) => setNameLength(e.target.value.length)}
@@ -68,7 +68,7 @@ function InsertPlatformForm() {
               name="platformOwner"
               id="platformOwner"
               type="text"
-              className="border-primary rounded border p-1.5 text-base"
+              className="border-primary rounded border p-1.5 text-base focus-within:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none"
               maxLength="25"
               onChange={(e) => setOwnerLength(e.target.value.length)}
             />
@@ -87,15 +87,14 @@ function Button() {
   const { pending } = useFormStatus();
 
   return (
-    <div
-      className={`text-foreground mt-5 flex w-full items-center justify-center gap-1 self-start ${pending ? "text-primary" : "rounded border-2 border-blue-500"} px-5 py-1`}
+    <button
+      disabled={pending}
+      className={`mt-5 flex w-full items-center justify-center gap-1 ${pending ? "text-primary" : "rounded border-2 border-blue-500"} p-1`}
     >
-      <button disabled={pending}>
-        <span className={`${pending ? "dots-loader animate-pulse" : ""}`}>
-          {pending ? "Creazione piattaforma" : "Crea piattaforma"}
-        </span>
-      </button>
-    </div>
+      <span className={`${pending ? "dots-loader animate-pulse" : ""}`}>
+        {pending ? "Creazione piattaforma" : "Crea piattaforma"}
+      </span>
+    </button>
   );
 }
 

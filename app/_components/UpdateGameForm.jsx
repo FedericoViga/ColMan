@@ -92,7 +92,7 @@ function UpdateGameForm({ gameDetails }) {
               name="gameName"
               id="gameName"
               type="text"
-              className="border-primary rounded border p-1.5 text-base"
+              className="border-primary rounded border p-1.5 text-base focus-within:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none"
               defaultValue={gameName}
               autoComplete="off"
               maxLength="100"
@@ -121,7 +121,7 @@ function UpdateGameForm({ gameDetails }) {
             <select
               name="gameRegion"
               id="gameRegion"
-              className="bg-background border-primary rounded border p-1 text-base"
+              className="bg-background border-primary rounded border p-1 text-base focus:border-blue-500 focus:ring-blue-500 focus-visible:outline-0"
               defaultValue={gameRegion}
               key={gameRegion}
             >
@@ -199,7 +199,7 @@ function UpdateGameForm({ gameDetails }) {
               name="contentDescription"
               id="contentDescription"
               rows="6"
-              className="border-primary rounded border p-1.5 text-base"
+              className="border-primary rounded border p-1.5 text-base focus-within:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none"
               defaultValue={contentDescription}
               maxLength="500"
               required

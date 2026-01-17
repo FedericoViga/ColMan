@@ -44,7 +44,7 @@ function SearchBar({ onOpenFilters }) {
           type="search"
           name="search-games"
           id="search-games"
-          className="border-primary block w-full rounded-lg border p-2.5 ps-10 text-white placeholder-gray-400 focus-within:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none"
+          className="border-primary text-foreground block w-full rounded-lg border p-2.5 ps-10 placeholder-gray-400 focus-within:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none"
           placeholder="Cerca gioco"
           onChange={(e) => loadDataDebounced(e.target.value)}
           defaultValue=""
