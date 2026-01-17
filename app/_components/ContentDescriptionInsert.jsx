@@ -12,7 +12,7 @@ function ContentDescriptionInsert({
       ? descriptionValue.slice(0, -1)
       : descriptionValue;
 
-  // converte in arrray il testo del contenuto e fa il trim
+  // converte in array il testo del contenuto e fa il trim
   // la regex trova il carattere "," e il carattere "e" preceduto e seguito da uno spazio come separatori dell'array
   // in questo modo divide ogni elemento della lista separato dalle virgole e opzionalmente l'elemento finale separato dalla "e"
   const textToList = removeLastComma
@@ -71,9 +71,8 @@ function ContentDescriptionInsert({
               <span className="text-foreground font-semibold">
                 separato da una virgola
               </span>{" "}
-              (es. manuale, flyer, punti vip). Qui verrà generata l'anteprima
-              sotto forma di lista che verrà visualizzata nella pagina del
-              gioco.
+              (manuale, flyer, punti vip). Qui verrà generata l'anteprima sotto
+              forma di lista che verrà visualizzata nella pagina del gioco.
             </p>
           )}
 
@@ -110,7 +109,7 @@ function ContentDescriptionInsert({
             name="contentDescription"
             id="contentDescription"
             rows="6"
-            className="border-primary rounded border p-1.5 text-base"
+            className="border-primary placeholder:text-primary/50 rounded border p-1.5 text-base"
             maxLength="500"
             onChange={(e) => {
               onDescriptionValue(e.target.value);

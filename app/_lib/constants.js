@@ -15,4 +15,4 @@ export const SEALED_TEXT = "Gioco completo sigillato.";
 
 // Testo informativo per crezione liste in form di crezione gioco
 export const DESCRIPTION_PLACEHOLDER =
-  "Scrivi ogni contenuto del gioco seguito da una virgola (es. manuale, flyer, punti vip) e seleziona Lista per generare un'anteprima come lista che verrà visualizzata nella pagina del gioco.";
+  "Scrivi ogni contenuto del gioco seguito da una virgola (manuale, flyer, punti vip) per generare un'anteprima che verrà visualizzata nella pagina del gioco. Puoi vedere la lista generata in tempo reale selezionando Lista.";
