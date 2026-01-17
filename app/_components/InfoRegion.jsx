@@ -17,8 +17,8 @@ function InfoRegion({ onOpenClose }) {
   }
 
   return (
-    <div className="bg-foreground/10 fixed top-0 right-0 bottom-0 left-0 z-10 container flex items-center justify-center backdrop-blur-md">
-      <div className="border-primary relative flex min-w-full flex-col justify-center gap-4 rounded-lg border bg-slate-800 px-4 py-6">
+    <div className="fixed top-0 right-0 bottom-0 left-0 z-10 container flex items-center justify-center bg-slate-700/25 backdrop-blur-md">
+      <div className="relative flex min-w-full flex-col justify-center gap-4 rounded-lg border-2 border-blue-500 bg-slate-800 px-4 py-6">
         <button
           onClick={(e) => closeRegionInfo(e)}
           className="absolute top-2 right-2"
