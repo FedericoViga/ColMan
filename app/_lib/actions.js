@@ -86,6 +86,25 @@ export async function insertPlatform(formData) {
   const platformName = formData.get("platformName").slice(0, 25).trim();
   const platformOwner = formData.get("platformOwner").slice(0, 25).trim();
 
+  // check case insensitive per pattern platformName già esistente
+  const { data, error: duplicatePlatformError } = await supabase
+    .from("platforms")
+    .select("*")
+    .ilike("platformName", platformName);
+
+  if (data.length > 0) {
+    const cookieStore = await cookies();
+    cookieStore.set("duplicatedPlatformError", `Piattaforma già esistente!`, {
+      httpOnly: false,
+    });
+    return;
+  }
+
+  if (duplicatePlatformError) {
+    throw new Error("Tentativo di inserimento di piattaforma già esistente");
+  }
+
+  // se il check passa, aggiunge nuova piattaforma
   const newPlatform = {
     platformName,
     platformOwner,

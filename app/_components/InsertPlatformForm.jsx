@@ -2,11 +2,32 @@
 
 import { useFormStatus } from "react-dom";
 import { insertPlatform } from "../_lib/actions";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import Cookies from "js-cookie";
+import toast from "react-hot-toast";
 
 function InsertPlatformForm() {
   const [nameLength, setNameLength] = useState(0);
   const [ownerLength, setOwnerLength] = useState(0);
+
+  // notifica toast in caso di errore per inserimento piattaforma già esistente
+  // legge il rispettivo cookie e se è presente renderizza la notifica e rimuove il cookie
+  useEffect(() => {
+    const cookiesToCheck = [
+      {
+        key: "duplicatedPlatformError",
+        toastId: "insert-duplicated-platform-error",
+      },
+    ];
+
+    cookiesToCheck.forEach(({ key, toastId }) => {
+      const cookieValue = Cookies.get(key);
+      if (cookieValue) {
+        toast.error(cookieValue, { id: toastId });
+        Cookies.remove(key);
+      }
+    });
+  });
 
   return (
     <div className="container">
