@@ -54,10 +54,8 @@ function CollectorCount({ numCollectors }) {
         >
           {displayProps.initialText}
         </span>
-        <p
-          className={`text-primary ${displayProps.fontSize} font-bold underline decoration-2 underline-offset-3`}
-        >
-          COLLECTOR'S EDITIONS
+        <p className={`text-primary ${displayProps.fontSize} font-bold`}>
+          {numCollectors === 1 ? "COLLECTOR'S EDITION" : "COLLECTOR'S EDITIONS"}
         </p>
       </div>
     </Link>

@@ -151,7 +151,7 @@ function InsertGameForm({ platforms, platformsIdAndName }) {
           </div>
 
           {/* SIGILLATO */}
-          <div className="group text-primary mt-2.5 flex flex-row-reverse justify-end gap-2">
+          <div className="group text-primary mt-2.5 flex flex-row-reverse items-center justify-end gap-2">
             <label
               htmlFor="isSealed"
               className="group-has-[input:checked]:text-foreground"
@@ -162,7 +162,7 @@ function InsertGameForm({ platforms, platformsIdAndName }) {
               id="isSealed"
               name="isSealed"
               type="checkbox"
-              className="group/checkbox mt-1 h-4 w-4 accent-blue-500"
+              className="group/checkbox h-4 w-4 accent-blue-500"
               onChange={() => {
                 setSealedChecked((isChecked) => !isChecked);
               }}
@@ -170,7 +170,7 @@ function InsertGameForm({ platforms, platformsIdAndName }) {
           </div>
 
           {/* EDIZIONE SPECIALE */}
-          <div className="group text-primary mt-2.5 flex flex-row-reverse justify-end gap-2">
+          <div className="group text-primary mt-2.5 flex flex-row-reverse items-center justify-end gap-2">
             <label
               htmlFor="isSpecial"
               className="group-has-[input:checked]:text-foreground"
@@ -181,12 +181,12 @@ function InsertGameForm({ platforms, platformsIdAndName }) {
               id="isSpecial"
               name="isSpecial"
               type="checkbox"
-              className="group/checkbox mt-1 h-4 w-4 accent-blue-500"
+              className="group/checkbox h-4 w-4 accent-blue-500"
             />
           </div>
 
           {/* COLLECTOR'S EDITION */}
-          <div className="group text-primary mt-2.5 flex flex-row-reverse justify-end gap-2">
+          <div className="group text-primary mt-2.5 flex flex-row-reverse items-center justify-end gap-2">
             <label
               htmlFor="isCollector"
               className="group-has-[input:checked]:text-foreground"
@@ -197,7 +197,7 @@ function InsertGameForm({ platforms, platformsIdAndName }) {
               id="isCollector"
               name="isCollector"
               type="checkbox"
-              className="group/checkbox mt-1 h-4 w-4 accent-blue-500"
+              className="group/checkbox h-4 w-4 accent-blue-500"
             />
           </div>
 

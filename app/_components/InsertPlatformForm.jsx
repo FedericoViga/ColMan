@@ -75,7 +75,9 @@ function InsertPlatformForm() {
           </div>
 
           <div className="mt-3 flex items-center justify-center gap-1">
-            <Button>Crea piattaforma</Button>
+            <Button nameLength={nameLength} ownerLength={ownerLength}>
+              Crea piattaforma
+            </Button>
           </div>
         </div>
       </form>
@@ -83,18 +85,31 @@ function InsertPlatformForm() {
   );
 }
 
-function Button() {
+function Button({ nameLength, ownerLength }) {
   const { pending } = useFormStatus();
 
+  const isDisabled = nameLength === 0 || ownerLength === 0;
+
   return (
-    <button
-      disabled={pending}
-      className={`mt-5 flex w-full items-center justify-center gap-1 ${pending ? "text-primary" : "rounded border-2 border-blue-500"} p-1`}
-    >
-      <span className={`${pending ? "dots-loader animate-pulse" : ""}`}>
-        {pending ? "Creazione piattaforma" : "Crea piattaforma"}
-      </span>
-    </button>
+    <>
+      {isDisabled ? (
+        <div
+          aria-hidden="true"
+          className="text-primary border-primary pointer-events-none mt-5 flex w-full items-center justify-center rounded border-2 p-1"
+        >
+          <span>Crea piattaforma</span>
+        </div>
+      ) : (
+        <button
+          disabled={pending}
+          className={`mt-5 flex w-full items-center justify-center ${pending ? "text-primary pointer-events-none" : "rounded border-2 border-blue-500"} p-1`}
+        >
+          <span className={`${pending ? "dots-loader animate-pulse" : ""}`}>
+            {pending ? "Creazione piattaforma" : "Crea piattaforma"}
+          </span>
+        </button>
+      )}
+    </>
   );
 }
 

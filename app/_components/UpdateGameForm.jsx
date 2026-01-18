@@ -134,7 +134,7 @@ function UpdateGameForm({ gameDetails }) {
           </div>
 
           {/* SIGILLATO */}
-          <div className="text-primary group mt-2.5 flex flex-row-reverse justify-end gap-2">
+          <div className="text-primary group mt-2.5 flex flex-row-reverse items-center justify-end gap-2">
             <label
               htmlFor="isSealed"
               className="group-has-[input:checked]:text-foreground"
@@ -145,13 +145,13 @@ function UpdateGameForm({ gameDetails }) {
               name="isSealed"
               id="isSealed"
               type="checkbox"
-              className="group/checkbox mt-1 h-4 w-4 accent-blue-500"
+              className="group/checkbox h-4 w-4 accent-blue-500"
               defaultChecked={isSealed ? true : false}
             />
           </div>
 
           {/* EDIZIONE SPECIALE */}
-          <div className="group text-primary mt-2.5 flex flex-row-reverse justify-end gap-2">
+          <div className="group text-primary mt-2.5 flex flex-row-reverse items-center justify-end gap-2">
             <label
               htmlFor="isSpecial"
               className="group-has-[input:checked]:text-foreground"
@@ -162,13 +162,13 @@ function UpdateGameForm({ gameDetails }) {
               name="isSpecial"
               id="isSpecial"
               type="checkbox"
-              className="group/checkbox mt-1 h-4 w-4 accent-blue-500"
+              className="group/checkbox h-4 w-4 accent-blue-500"
               defaultChecked={isSpecial ? true : false}
             />
           </div>
 
           {/* COLLECTOR'S EDITION */}
-          <div className="text-primary group mt-2.5 flex flex-row-reverse justify-end gap-2">
+          <div className="text-primary group mt-2.5 flex flex-row-reverse items-center justify-end gap-2">
             <label
               htmlFor="isCollector"
               className="group-has-[input:checked]:text-foreground"
@@ -179,7 +179,7 @@ function UpdateGameForm({ gameDetails }) {
               name="isCollector"
               id="isCollector"
               type="checkbox"
-              className="group/checkbox mt-1 h-4 w-4 accent-blue-500"
+              className="group/checkbox h-4 w-4 accent-blue-500"
               defaultChecked={isCollector ? true : false}
             />
           </div>

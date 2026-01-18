@@ -140,15 +140,30 @@ function InsertWishlistGameForm({ platforms, onOpenClose }) {
 function Button({ titleText, selectedPlatform }) {
   const { pending } = useFormStatus();
 
+  const isDisabled = !selectedPlatform || titleText.length === 0;
+
   return (
-    <button
-      disabled={!selectedPlatform || titleText.length === 0}
-      className={`disabled:border-primary disabled:text-primary text-foreground mt-9 flex w-full items-center justify-center gap-1 rounded border-2 border-blue-500 px-5 py-1 disabled:pointer-events-none`}
-    >
-      <span className={`${pending ? "dots-loader animate-pulse" : ""}`}>
-        {pending ? "Aggiunta gioco" : "Aggiungi"}
-      </span>
-    </button>
+    <>
+      {isDisabled ? (
+        <div
+          aria-hidden="true"
+          className="text-primary border-primary pointer-events-none mt-9 flex w-full justify-center rounded border-2 px-5 py-1"
+        >
+          Aggiungi
+        </div>
+      ) : (
+        <button
+          disabled={pending}
+          className={`${pending ? "border-primary pointer-events-none" : "border-blue-500"} mt-9 flex w-full justify-center gap-1 rounded border-2 px-5 py-1`}
+        >
+          <span
+            className={`${pending ? "dots-loader text-primary animate-pulse" : ""}`}
+          >
+            {pending ? "Aggiunta gioco" : "Aggiungi"}
+          </span>
+        </button>
+      )}
+    </>
   );
 }
 

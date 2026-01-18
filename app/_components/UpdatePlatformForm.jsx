@@ -69,7 +69,7 @@ function UpdatePlatformForm({ platformDetails }) {
           </div>
 
           <div className="mt-5 flex items-center justify-center gap-1">
-            <Button />
+            <Button nameLength={nameLength} ownerLength={ownerLength} />
           </div>
         </div>
       </form>
@@ -77,19 +77,34 @@ function UpdatePlatformForm({ platformDetails }) {
   );
 }
 
-function Button() {
+function Button({ nameLength, ownerLength }) {
   const { pending } = useFormStatus();
 
+  const isDisabled = nameLength === 0 || ownerLength === 0;
+
   return (
-    <button
-      disabled={pending}
-      className={`mt-5 flex w-full items-center justify-center gap-1 ${pending ? "text-primary" : "rounded border-2 border-blue-500"} p-1`}
-    >
-      <ArrowPathIcon className={`h-4 w-4 ${pending ? "animate-spin" : ""}`} />
-      <span className={`${pending ? "dots-loader animate-pulse" : ""}`}>
-        {pending ? "Aggiornamento piattaforma" : "Modifica piattaforma"}
-      </span>
-    </button>
+    <>
+      {isDisabled ? (
+        <div
+          aria-hidden="true"
+          className="text-primary border-primary pointer-events-none mt-5 flex w-full items-center justify-center rounded border-2 p-1"
+        >
+          <span>Modifica piattaforma</span>
+        </div>
+      ) : (
+        <button
+          disabled={pending}
+          className={`mt-5 flex w-full items-center justify-center gap-1 ${pending ? "text-primary pointer-events-none" : "rounded border-2 border-blue-500"} p-1`}
+        >
+          <ArrowPathIcon
+            className={`h-4 w-4 ${pending ? "animate-spin" : ""}`}
+          />
+          <span className={`${pending ? "dots-loader animate-pulse" : ""}`}>
+            {pending ? "Aggiornamento piattaforma" : "Modifica piattaforma"}
+          </span>
+        </button>
+      )}
+    </>
   );
 }
 
