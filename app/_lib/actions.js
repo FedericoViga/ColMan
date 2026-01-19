@@ -132,33 +132,26 @@ export async function insertGameInWishlist(_prevState, formData) {
   }
 
   const gameNameRaw = formData.get("gameName");
-  const platformNames = formData.getAll("platformName");
+  const platformIds = formData.getAll("platformId");
 
-  if (!gameNameRaw || platformNames.length === 0) {
-    throw new Error("Dati mancanti");
+  if (
+    !gameNameRaw ||
+    platformIds.length === 0 ||
+    platformIds.every((id) => id === "")
+  ) {
+    throw new Error("Nome gioco o piattaforma mancanti");
   }
 
   const gameName = gameNameRaw.slice(0, 100).trim();
-  const platformName = platformNames.find((p) => p !== "");
+  const platformId = platformIds.find((id) => id !== "");
 
-  if (!platformName) {
+  if (!platformId) {
     throw new Error("Piattaforma non valida");
-  }
-
-  const { data: platform, error: platformError } = await supabase
-    .from("platforms")
-    .select("id")
-    .eq("platformName", platformName)
-    .single();
-
-  if (platformError || !platform) {
-    throw new Error("Piattaforma non trovata");
   }
 
   const { error: insertError } = await supabase.from("wishlist").insert({
     gameName,
-    platformName,
-    platformId: platform.id,
+    platformId,
     userEmail: session.user.email,
   });
 

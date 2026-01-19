@@ -54,7 +54,7 @@ export function addGameCount(platformsByOwner, gamesByPlatform) {
 export function wishlistByPlatforms(wishlist) {
   const groupedArray = Object.values(
     wishlist.reduce((acc, game) => {
-      const { platformName } = game;
+      const platformName = game.platforms.platformName;
 
       if (!acc[platformName]) {
         acc[platformName] = { platformName, games: [] };

@@ -15,7 +15,7 @@ function PlatformSelectorWishlist({
       <label>{platformDetails[0]}</label>
       <select
         required={isSelectedActive}
-        name="platformName"
+        name="platformId"
         className="bg-background border-primary mt-1 cursor-pointer rounded border px-1 py-0.5 focus:border-blue-500 focus:ring-blue-500 focus-visible:outline-0"
         value={!isSelectedActive ? isSelectedActive : undefined}
         onChange={(e) => {
@@ -25,7 +25,7 @@ function PlatformSelectorWishlist({
       >
         <option hidden></option>
         {platformDetails[1].map((elem) => (
-          <option key={elem.id} value={elem.platformName}>
+          <option key={elem.id} value={`${elem?.id}`}>
             {elem.platformName}
           </option>
         ))}

@@ -7,6 +7,12 @@ function WishlistSearchBar({
   onSearchGame,
   handleSearchGame,
 }) {
+  function handleChangeSearch(e) {
+    // Rimuove tutti gli spazi all'inizio anche se il testo viene incollato
+    const cleanedValue = e.target.value.replace(/^ +/, "");
+    onSearchGame(cleanedValue);
+  }
+
   return (
     <div className="mt-7 flex gap-1">
       <input
@@ -18,7 +24,7 @@ function WishlistSearchBar({
             ? "Nessun gioco trovato"
             : ""
         }
-        onChange={(e) => onSearchGame(e.target.value)}
+        onChange={(e) => handleChangeSearch(e)}
         autoComplete="off"
       />
 

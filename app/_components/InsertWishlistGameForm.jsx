@@ -36,6 +36,12 @@ function InsertWishlistGameForm({ platforms, onOpenClose }) {
     onOpenClose(false);
   }
 
+  function handleChangeTitle(e) {
+    // Rimuove tutti gli spazi all'inizio anche se il testo viene incollato
+    const cleanedValue = e.target.value.replace(/^ +/, "");
+    setTitleText(cleanedValue);
+  }
+
   return (
     <div className="bg-foreground/10 fixed top-0 right-0 bottom-0 left-0 container flex items-center justify-center backdrop-blur-md">
       <div
@@ -81,7 +87,7 @@ function InsertWishlistGameForm({ platforms, onOpenClose }) {
               autoComplete="off"
               maxLength="100"
               required
-              onChange={(e) => setTitleText(e.target.value)}
+              onChange={(e) => handleChangeTitle(e)}
             />
           </div>
 

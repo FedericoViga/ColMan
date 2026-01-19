@@ -286,9 +286,9 @@ export async function fetchCollectorsWithPagination(page, platformFilter) {
 export async function getMyWishlist(userEmail) {
   const { data, error } = await supabase
     .from("wishlist")
-    .select("id, gameName, platformName, platformId")
+    .select("id, gameName, platformId, platforms(platformName)")
     .eq("userEmail", userEmail)
-    .order("platformName", { ascending: true })
+    .order("platforms(platformName)", { ascending: true })
     .order("gameName", { ascending: true });
 
   if (error) {

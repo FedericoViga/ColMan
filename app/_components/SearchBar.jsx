@@ -27,9 +27,10 @@ function SearchBar({ onOpenFilters }) {
   const loadDataDebounced = textDebounce(handleSearch, 600);
 
   function handleSearch(searchQuery) {
+    const cleanedValue = searchQuery.replace(/^ +/, ""); // impedisce la ricerca di stringhe con solo spazi
     const params = new URLSearchParams(searchParams);
-    if (searchQuery) {
-      params.set("query", searchQuery);
+    if (cleanedValue) {
+      params.set("query", cleanedValue);
     } else {
       params.delete("query");
     }
