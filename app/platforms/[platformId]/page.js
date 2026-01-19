@@ -23,7 +23,7 @@ async function Page({ params }) {
         <div className="mt-12 flex flex-col items-center justify-center gap-5">
           <p className="text-primary text-xl">Piattaforma non trovata</p>
           <Link
-            className="underline decoration-blue-500 underline-offset-4"
+            className="decoration-accent underline underline-offset-4"
             href="/"
           >
             Homepage

@@ -1,16 +1,17 @@
 @import "tailwindcss";
 
 :root {
-  --background: rgb(0, 0, 0);
-  --foreground: #ffff;
-  --primary: #94a3b8;
+  --background: oklch(0.1143 0.0551 262.53);
+  --foreground: #ffffff;
+  --primary: oklch(0.7562 0.0036 247.87);
+  --accent: oklch(0.796 0.134248 202.7134);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-primary: var(--primary);
-  --color-foreground: var(--foreground);
+  --color-accent: var(--accent);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
@@ -34,7 +35,6 @@ body {
   margin-right: auto;
   padding-left: 0.5rem;
   padding-right: 0.5rem;
-  /* border: 1px solid purple; */
 }
 
 /* xs */
@@ -98,7 +98,7 @@ body {
 .spinner-inset {
   width: 48px;
   height: 48px;
-  border: 3px solid #94a3b8;
+  border: 3px solid var(--primary);
   border-radius: 50%;
   display: inline-block;
   position: relative;
@@ -117,7 +117,7 @@ body {
   height: 40px;
   border-radius: 50%;
   border: 3px solid;
-  border-color: #2b7fff transparent;
+  border-color: var(--accent) transparent;
 }
 
 @keyframes rotation {

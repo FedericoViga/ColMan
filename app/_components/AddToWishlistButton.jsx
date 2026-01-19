@@ -17,7 +17,7 @@ function AddToWishlistButton({ onOpenClose }) {
       onClick={(e) => handleOpenModal(e)}
       className="fixed right-0 bottom-8 flex cursor-pointer items-center justify-center bg-transparent pr-4 text-5xl"
     >
-      <HeartPlusIcon className="h-12 w-12 text-blue-500" />
+      <HeartPlusIcon className="text-accent h-12 w-12" />
     </button>
   );
 }

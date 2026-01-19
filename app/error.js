@@ -15,14 +15,14 @@ export default function Error({ error, reset }) {
 
       <div className="flex items-center justify-center gap-8">
         <button
-          className="rounded border border-blue-500 px-2 py-0.5 text-lg"
+          className="border-accent rounded border px-2 py-0.5 text-lg"
           onClick={reset}
         >
           Riprova
         </button>
 
         <Link
-          className="underline decoration-blue-500 underline-offset-4"
+          className="decoration-accent underline underline-offset-4"
           href="/"
         >
           Homepage

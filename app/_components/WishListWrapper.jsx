@@ -18,6 +18,7 @@ function WishListWrapper({ wishlistByPlatforms, platforms }) {
   const [searchedWishlist, setSearchedWishlist] = useState([]); // array dei risultati di ricerca
   const [searchedGameDisplay, setSearchedGameDisplay] = useState(""); // testo ricerca gioco mostrato dopo aver premuto il button per cercare
   const [gameNotFound, setGameNotFound] = useState(false);
+
   // lo useOptimistic cambia l'array usato se ci sono o no risultati di ricerca
   // se ci sono risultati usa l'array searchedWishlist
   // altrimenti usa l'array orignale wishlistByPlatforms da Supabase
@@ -128,16 +129,16 @@ function WishListWrapper({ wishlistByPlatforms, platforms }) {
                       setExpandAll((isChecked) => !isChecked);
                       setCurOpen(null);
                     }}
-                    id="switch-component-blue"
+                    id="switch-component"
                     type="checkbox"
-                    className="peer bg-primary h-5 w-11 cursor-pointer appearance-none rounded-full transition-colors duration-300 checked:bg-blue-500"
+                    className="peer bg-primary checked:bg-accent h-5 w-11 cursor-pointer appearance-none rounded-full transition-colors duration-300"
                   />
                   <label
-                    htmlFor="switch-component-blue"
-                    className="absolute top-0 left-0 h-5 w-5 cursor-pointer rounded-full border border-slate-300 bg-white shadow-sm transition-transform duration-300 peer-checked:translate-x-6 peer-checked:border-blue-500"
+                    htmlFor="switch-component"
+                    className="peer-checked:border-accent absolute top-0 left-0 h-5 w-5 cursor-pointer rounded-full border border-slate-300 bg-white shadow-sm transition-transform duration-300 peer-checked:translate-x-6"
                   ></label>
                 </div>
-                <label htmlFor="switch-component-blue" className="text-primary">
+                <label htmlFor="switch-component" className="text-primary">
                   Espandi tutto
                 </label>
               </div>

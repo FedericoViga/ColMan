@@ -14,11 +14,11 @@ function PlatformsAccordion({ platformDetails, id, curOpen, onOpen }) {
             onOpen(null);
           } else onOpen(id);
         }}
-        className={`${isSelectorOpen ? "border-2 border-blue-500" : "border-primary border"} flex w-full justify-between rounded px-2 py-2 text-lg`}
+        className={`${isSelectorOpen ? "border-accent border-2" : "border-primary border"} flex w-full justify-between rounded px-2 py-1.5 text-lg`}
       >
         <span>{platformDetails[0]}</span>
         {isSelectorOpen ? (
-          <span className="text-xl">+</span>
+          <span className="text-accent text-xl">+</span>
         ) : (
           <span className="text-xl">-</span>
         )}
@@ -36,7 +36,7 @@ function PlatformsAccordion({ platformDetails, id, curOpen, onOpen }) {
         {platformDetails[1].map((elem) => (
           <li
             key={elem.id}
-            className={`${isSelectorOpen ? "" : "last:border-b"} px-2 py-3 hover:bg-blue-500`}
+            className={`${isSelectorOpen ? "" : "last:border-b"} px-2 py-3`}
           >
             <Link
               className="inline-block w-full"

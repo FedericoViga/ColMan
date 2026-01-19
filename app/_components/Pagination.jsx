@@ -50,7 +50,7 @@ function Pagination({ count }) {
             className="disabled:text-primary flex items-center justify-center"
           >
             <ChevronLeftIcon
-              className={`${currentPage === 1 && "text-primary"} h-4 w-4 text-blue-500`}
+              className={`${currentPage === 1 && "text-primary"} text-accent h-4 w-4`}
             />
             <span>Indietro</span>
           </button>
@@ -62,7 +62,7 @@ function Pagination({ count }) {
           >
             <span>Avanti</span>
             <ChevronRightIcon
-              className={`${currentPage === pageCount && "text-primary"} h-4 w-4 text-blue-500`}
+              className={`${currentPage === pageCount && "text-primary"} text-accent h-4 w-4`}
             />
           </button>
         </div>

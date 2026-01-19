@@ -20,7 +20,7 @@ async function PlatformFullCard({ platformDetails }) {
         Hai{" "}
         <Link
           href={`/games?platform=${platformName}&page=1`}
-          className="underline decoration-blue-500 decoration-1 underline-offset-3"
+          className="decoration-accent underline decoration-1 underline-offset-3"
         >
           <span className="text-foreground">
             {numGamesByPlatform}

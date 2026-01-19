@@ -52,7 +52,7 @@ function GameCard({ game }) {
             )}
 
             {isSpecial !== null && (
-              <span className="max-w-fit rounded bg-green-900 px-1 py-0.5 text-xs text-green-300">
+              <span className="max-w-fit rounded bg-[#092224] px-1 py-0.5 text-xs text-[#01fc8d]">
                 Edizione Speciale
               </span>
             )}

@@ -45,9 +45,9 @@ function ToTopButton({ isOpenInsertGame }) {
           className="fixed bottom-8 left-6"
           onClick={toTopFunction}
         >
-          {/* <ArrowUpCircleIcon className="h-11 w-11 text-blue-500" /> */}
+          {/* <ArrowUpCircleIcon className="h-11 w-11 text-accent" /> */}
           <ArrowUpCircleIconCustom
-            color="oklch(0.623 0.214 259.815)"
+            color="var(--accent)"
             arrowColor="var(--color-background)"
             className="h-11 w-11"
           />

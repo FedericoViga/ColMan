@@ -60,7 +60,7 @@ function UpdateGameForm({ gameDetails }) {
               className="object-cover"
             />
             <label
-              className="absolute right-1 bottom-1 flex h-8 w-8 items-center justify-center rounded bg-blue-600 text-2xl"
+              className="bg-accent absolute right-1 bottom-1 flex h-8 w-8 items-center justify-center rounded text-2xl"
               htmlFor="gameImages"
             >
               <PencilIcon className="h-5 w-5" />
@@ -92,7 +92,7 @@ function UpdateGameForm({ gameDetails }) {
               name="gameName"
               id="gameName"
               type="text"
-              className="border-primary rounded border p-1.5 text-base focus-within:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none"
+              className="border-primary focus-within:border-accent focus:ring-accent rounded border p-1.5 text-base focus:ring-1 focus:outline-none"
               defaultValue={gameName}
               autoComplete="off"
               maxLength="100"
@@ -121,7 +121,7 @@ function UpdateGameForm({ gameDetails }) {
             <select
               name="gameRegion"
               id="gameRegion"
-              className="bg-background border-primary rounded border p-1 text-base focus:border-blue-500 focus:ring-blue-500 focus-visible:outline-0"
+              className="bg-background border-primary focus:border-accent focus:ring-accent rounded border p-1 text-base focus-visible:outline-0"
               defaultValue={gameRegion}
               key={gameRegion}
             >
@@ -145,7 +145,7 @@ function UpdateGameForm({ gameDetails }) {
               name="isSealed"
               id="isSealed"
               type="checkbox"
-              className="group/checkbox h-4 w-4 accent-blue-500"
+              className="group/checkbox accent-accent h-4 w-4"
               defaultChecked={isSealed ? true : false}
             />
           </div>
@@ -162,7 +162,7 @@ function UpdateGameForm({ gameDetails }) {
               name="isSpecial"
               id="isSpecial"
               type="checkbox"
-              className="group/checkbox h-4 w-4 accent-blue-500"
+              className="group/checkbox accent-accent h-4 w-4"
               defaultChecked={isSpecial ? true : false}
             />
           </div>
@@ -179,7 +179,7 @@ function UpdateGameForm({ gameDetails }) {
               name="isCollector"
               id="isCollector"
               type="checkbox"
-              className="group/checkbox h-4 w-4 accent-blue-500"
+              className="group/checkbox accent-accent h-4 w-4"
               defaultChecked={isCollector ? true : false}
             />
           </div>
@@ -199,7 +199,7 @@ function UpdateGameForm({ gameDetails }) {
               name="contentDescription"
               id="contentDescription"
               rows="6"
-              className="border-primary rounded border p-1.5 text-base focus-within:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none"
+              className="border-primary focus-within:border-accent focus:ring-accent rounded border p-1.5 text-base focus:ring-1 focus:outline-none"
               defaultValue={contentDescription}
               maxLength="500"
               required
@@ -222,7 +222,7 @@ function Button() {
   return (
     <button
       disabled={pending}
-      className={`flex w-full items-center justify-center gap-1 ${pending ? "text-primary" : "rounded border-2 border-blue-500"} p-1`}
+      className={`flex w-full items-center justify-center gap-1 ${pending ? "text-primary" : "border-accent rounded border-2"} p-1`}
     >
       <ArrowPathIcon className={`h-4 w-4 ${pending ? "animate-spin" : ""}`} />
       <span className={`${pending ? "dots-loader animate-pulse" : ""}`}>

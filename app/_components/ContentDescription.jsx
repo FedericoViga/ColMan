@@ -36,13 +36,13 @@ function ContentDescription({ description }) {
           <div className="flex justify-center">
             <button
               onClick={handleList}
-              className={`rounded-tl rounded-bl px-2 text-sm ${listView ? "text-foreground border-1 border-blue-500 ring-1 ring-blue-500" : "text-primary border-t border-b border-l"}`}
+              className={`rounded-tl rounded-bl px-2 text-sm ${listView ? "text-foreground border-accent ring-accent border-1 ring-1" : "text-primary border-t border-b border-l"}`}
             >
               Lista
             </button>
             <button
               onClick={handleOriginal}
-              className={`rounded-tr rounded-br px-2 text-sm ${!listView ? "text-foreground border-1 border-blue-500 ring-1 ring-blue-500" : "text-primary border-t border-r border-b"}`}
+              className={`rounded-tr rounded-br px-2 text-sm ${!listView ? "text-foreground border-accent ring-accent border-1 ring-1" : "text-primary border-t border-r border-b"}`}
             >
               Originale
             </button>
@@ -52,7 +52,7 @@ function ContentDescription({ description }) {
       {listView ? (
         <>
           <ul
-            className="relative z-0 mt-2 rounded border border-slate-800 bg-slate-800 p-3"
+            className="relative z-0 mt-2 rounded border border-slate-800 bg-slate-900 p-3"
             ref={descrRef}
           >
             <CopyButton elemRef={descrRef} />
@@ -74,7 +74,7 @@ function ContentDescription({ description }) {
           </ul>
         </>
       ) : (
-        <p className="mt-2 rounded border border-slate-800 bg-slate-800 p-3">
+        <p className="mt-2 rounded border border-slate-800 bg-slate-900 p-3">
           {description}
         </p>
       )}

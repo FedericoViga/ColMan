@@ -72,7 +72,7 @@ function FilterWrapper({ platforms, numGamesByPlatform }) {
         </div>
       </div>
       <hr
-        className={`${isExpanded ? "border-blue-500" : "border-primary"} mb-4 w-full`}
+        className={`${isExpanded ? "border-accent" : "border-primary"} mb-4 w-full`}
       />
     </>
   );

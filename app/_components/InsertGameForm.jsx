@@ -55,7 +55,7 @@ function InsertGameForm({ platforms, platformsIdAndName }) {
               className={`relative m-auto flex aspect-square max-w-60 flex-col items-center justify-center gap-2 ${selectedImage === null || selectedImage === placeholderImage ? "border-primary rounded border border-dashed" : ""}`}
             >
               <label
-                className={`flex h-10 w-10 cursor-pointer items-center justify-center text-2xl ${selectedImage === null || selectedImage === placeholderImage ? "h-full w-full rounded border-0" : "absolute right-2 bottom-2 z-50 rounded bg-blue-500"}`}
+                className={`flex h-10 w-10 cursor-pointer items-center justify-center text-2xl ${selectedImage === null || selectedImage === placeholderImage ? "h-full w-full rounded border-0" : "bg-accent absolute right-2 bottom-2 z-50 rounded"}`}
                 htmlFor="gameImages"
               >
                 {selectedImage === null ||
@@ -110,7 +110,7 @@ function InsertGameForm({ platforms, platformsIdAndName }) {
               name="gameName"
               id="gameName"
               type="text"
-              className="border-primary rounded border p-1.5 text-base focus-within:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none"
+              className="border-primary focus-within:border-accent focus:ring-accent rounded border p-1.5 text-base focus:ring-1 focus:outline-none"
               autoComplete="off"
               maxLength="100"
               required
@@ -139,7 +139,7 @@ function InsertGameForm({ platforms, platformsIdAndName }) {
               required
               name="gameRegion"
               id="gameRegion"
-              className="bg-background border-primary rounded border p-1 text-base focus:border-blue-500 focus:ring-blue-500 focus-visible:outline-0"
+              className="bg-background border-primary focus:border-accent focus:ring-accent rounded border p-1 text-base focus-visible:outline-0"
             >
               <option hidden></option>
               <option value="ITA">ITA</option>
@@ -162,7 +162,7 @@ function InsertGameForm({ platforms, platformsIdAndName }) {
               id="isSealed"
               name="isSealed"
               type="checkbox"
-              className="group/checkbox h-4 w-4 accent-blue-500"
+              className="group/checkbox accent-accent h-4 w-4"
               onChange={() => {
                 setSealedChecked((isChecked) => !isChecked);
               }}
@@ -181,7 +181,7 @@ function InsertGameForm({ platforms, platformsIdAndName }) {
               id="isSpecial"
               name="isSpecial"
               type="checkbox"
-              className="group/checkbox h-4 w-4 accent-blue-500"
+              className="group/checkbox accent-accent h-4 w-4"
             />
           </div>
 
@@ -197,7 +197,7 @@ function InsertGameForm({ platforms, platformsIdAndName }) {
               id="isCollector"
               name="isCollector"
               type="checkbox"
-              className="group/checkbox h-4 w-4 accent-blue-500"
+              className="group/checkbox accent-accent h-4 w-4"
             />
           </div>
 
@@ -254,7 +254,7 @@ function Button({ onListView }) {
     <button
       onClick={() => onListView(false)}
       disabled={pending}
-      className={`text-foreground mt-5 flex w-full items-center justify-center gap-1 ${pending ? "text-primary animate-pulse" : "rounded border-2 border-blue-500"} px-5 py-1`}
+      className={`text-foreground mt-5 flex w-full items-center justify-center gap-1 ${pending ? "text-primary animate-pulse" : "border-accent rounded border-2"} px-5 py-1`}
     >
       <span className={`${pending ? "dots-loader animate-pulse" : ""}`}>
         {pending ? "Creazione gioco" : "Crea gioco"}

@@ -18,12 +18,12 @@ function InfoRegion({ onOpenClose }) {
 
   return (
     <div className="fixed top-0 right-0 bottom-0 left-0 z-10 container flex items-center justify-center bg-slate-700/25 backdrop-blur-md">
-      <div className="relative flex min-w-full flex-col justify-center gap-4 rounded-lg border-2 border-blue-500 bg-slate-800 px-4 py-6">
+      <div className="border-accent relative flex min-w-full flex-col justify-center gap-4 rounded-lg border-2 bg-slate-900 px-4 py-6">
         <button
           onClick={(e) => closeRegionInfo(e)}
           className="absolute top-2 right-2"
         >
-          <XMarkIcon className="text-primary h-6 w-6" />
+          <XMarkIcon className="text-foreground h-6 w-6" />
         </button>
 
         <ul className="*:flex *:flex-col *:py-2">

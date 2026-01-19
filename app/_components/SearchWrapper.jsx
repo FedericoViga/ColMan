@@ -74,7 +74,7 @@ function SearchWrapper({ platforms }) {
         </div>
       </div>
       <hr
-        className={`${isExpanded ? "border-blue-500" : "border-primary"} w-full`}
+        className={`${isExpanded ? "border-accent" : "border-primary"} w-full`}
       />
     </div>
   );

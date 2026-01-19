@@ -44,7 +44,7 @@ function CreateSelector() {
       ></div>
 
       <div
-        className={`bg-background fixed bottom-0 w-full border-t-2 border-t-blue-500 transition-transform duration-300 ease-out will-change-transform ${
+        className={`bg-background border-t-accent fixed bottom-0 w-full border-t-2 transition-transform duration-300 ease-out will-change-transform ${
           isOpen ? "translate-y-0 opacity-100" : "translate-y-full opacity-0"
         } `}
       >
@@ -60,7 +60,7 @@ function CreateSelector() {
           <div className="flex flex-col gap-4 text-center">
             <h1 className="text-xl">Crea un gioco o una piattaforma</h1>
             <h2 className="text-primary">Cosa vuoi creare?</h2>
-            <div className="flex flex-col items-center justify-center gap-4 decoration-blue-500">
+            <div className="decoration-accent flex flex-col items-center justify-center gap-4">
               <Link
                 href={"/games/insert-game"}
                 className="underline underline-offset-4"
@@ -69,7 +69,7 @@ function CreateSelector() {
               </Link>
               <Link
                 href={"/platforms/insert-platform"}
-                className="underline decoration-blue-500 underline-offset-4"
+                className="decoration-accent underline underline-offset-4"
               >
                 PIATTAFORMA
               </Link>
@@ -79,7 +79,7 @@ function CreateSelector() {
       </div>
 
       <div
-        className={`bg-background fixed right-6 bottom-7 flex ${!isOpen ? "size-14" : "hidden size-0"} cursor-pointer items-center justify-center rounded-lg border-2 border-blue-500 text-5xl`}
+        className={`bg-background fixed right-6 bottom-7 flex ${!isOpen ? "size-14" : "hidden size-0"} border-accent cursor-pointer items-center justify-center rounded-lg border-2 text-5xl`}
         onClick={() => setisOpen((isOpen) => !isOpen)}
       >
         <PlusIcon className="h-7 w-7" />

@@ -25,11 +25,11 @@ function WishlistAccordion({
             onOpen(null);
           } else onOpen(accordionId);
         }}
-        className={`${expandAll || isSelectorOpen ? "rounded border-1 border-blue-500" : "border-primary border-b"} flex w-full justify-between px-2 py-1 text-lg`}
+        className={`${expandAll || isSelectorOpen ? "border-accent rounded border-1" : "border-primary border-b"} flex w-full justify-between px-2 py-1 text-lg`}
       >
         <div className="flex items-center gap-1.5">
           <HeartIcon
-            className={`h-4 w-4 ${expandAll || isSelectorOpen ? "text-blue-500" : ""}`}
+            className={`h-4 w-4 ${expandAll || isSelectorOpen ? "text-accent" : ""}`}
           />
           <span>{platform.platformName}</span>
           <span className="text-primary text-sm">
@@ -37,7 +37,7 @@ function WishlistAccordion({
           </span>
         </div>
         {expandAll || isSelectorOpen ? (
-          <span className="text-xl">+</span>
+          <span className="text-accent text-xl">+</span>
         ) : (
           <span className="text-xl">-</span>
         )}

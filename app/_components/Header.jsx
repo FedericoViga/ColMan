@@ -16,7 +16,7 @@ async function Header() {
           </div>
           <div className="text-primary flex items-center gap-3">
             <Link href="/user/my-wishlist">
-              <HeartIcon className="h-7 w-7 text-blue-500" />
+              <HeartIcon className="text-accent h-7 w-7" />
             </Link>
             <Link href="/user">
               {session?.user?.image ? (

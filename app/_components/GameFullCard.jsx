@@ -51,6 +51,29 @@ function GameFullCard({ gameDetails }) {
         />
       </div>
 
+      {/* Collector's edition */}
+      <div className="flex flex-wrap gap-3">
+        {isCollector !== null && (
+          <p className="mt-1 max-w-fit rounded border border-yellow-300 bg-yellow-900 px-1 py-0.5 text-yellow-300">
+            Collector's Edition
+          </p>
+        )}
+
+        {/* Sigillato */}
+        {isSealed !== null && (
+          <p className="mt-1 max-w-fit rounded border border-blue-300 bg-blue-900 px-1 py-0.5 text-blue-300">
+            Sigillato
+          </p>
+        )}
+
+        {/* Edizione speciale */}
+        {isSpecial !== null && (
+          <p className="mt-1 max-w-fit rounded border border-[#01fc8d] bg-[#092224] px-1 py-0.5 text-[#01fc8d]">
+            Edizione speciale
+          </p>
+        )}
+      </div>
+
       {/* Titolo */}
       <h1 className="font text-3xl font-bold">{gameName}</h1>
 
@@ -72,29 +95,6 @@ function GameFullCard({ gameDetails }) {
         </button>
 
         {isOpenInfo && <InfoRegion onOpenClose={setIsOpenInfo} />}
-      </div>
-
-      {/* Collector's edition */}
-      <div className="flex flex-wrap gap-3">
-        {isCollector !== null && (
-          <p className="mt-1 max-w-fit rounded border border-yellow-300 bg-yellow-900 px-1 py-0.5 text-yellow-300">
-            Collector's Edition
-          </p>
-        )}
-
-        {/* Sigillato */}
-        {isSealed !== null && (
-          <p className="mt-1 max-w-fit rounded border border-blue-300 bg-blue-900 px-1 py-0.5 text-blue-300">
-            Sigillato
-          </p>
-        )}
-
-        {/* Edizione speciale */}
-        {isSpecial !== null && (
-          <p className="mt-1 max-w-fit rounded border border-green-300 bg-green-900 px-1 py-0.5 text-green-300">
-            Edizione speciale
-          </p>
-        )}
       </div>
 
       {/* Contenuto */}

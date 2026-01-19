@@ -16,7 +16,7 @@ function PlatformSelectorWishlist({
       <select
         required={isSelectedActive}
         name="platformId"
-        className="bg-background border-primary mt-1 cursor-pointer rounded border px-1 py-0.5 focus:border-blue-500 focus:ring-blue-500 focus-visible:outline-0"
+        className="bg-background border-primary focus:border-accent focus:ring-accent mt-1 cursor-pointer rounded border px-1 py-0.5 focus-visible:outline-0"
         value={!isSelectedActive ? isSelectedActive : undefined}
         onChange={(e) => {
           onSelectedPlatform(e.target.value);

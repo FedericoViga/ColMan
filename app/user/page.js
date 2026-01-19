@@ -31,7 +31,7 @@ async function Page() {
         href="/user/my-wishlist"
         className="flex items-center gap-1 text-xl"
       >
-        <HeartIcon className="h-6 w-6 text-blue-500" />
+        <HeartIcon className="text-accent h-6 w-6" />
         <span>La mia wishlist </span>
         <span className="text-primary text-sm">({myWishlistCount} giochi)</span>
       </Link>
