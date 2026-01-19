@@ -1,6 +1,6 @@
 "use client";
 
-import { useOptimistic, useState } from "react";
+import { useEffect, useOptimistic, useRef, useState } from "react";
 import { deleteGameFromWishlist } from "../_lib/actions";
 import AddToWishlistButton from "./AddToWishlistButton";
 import WishlistAccordion from "./WishlistAccordion";
@@ -17,7 +17,6 @@ function WishListWrapper({ wishlistByPlatforms, platforms }) {
   const [searchGame, setSearchGame] = useState(""); // testo ricerca gioco
   const [searchedWishlist, setSearchedWishlist] = useState([]); // array dei risultati di ricerca
   const [searchedGameDisplay, setSearchedGameDisplay] = useState(""); // testo ricerca gioco mostrato dopo aver premuto il button per cercare
-
   const [gameNotFound, setGameNotFound] = useState(false);
   // lo useOptimistic cambia l'array usato se ci sono o no risultati di ricerca
   // se ci sono risultati usa l'array searchedWishlist
@@ -33,6 +32,7 @@ function WishListWrapper({ wishlistByPlatforms, platforms }) {
         .filter((platform) => platform.games.length > 0); // toglie anche la piattaforma se ha 0 giochi
     },
   );
+  const searchRef = useRef(null);
 
   async function handleDelete(gameId) {
     setGameNotFound(false);
@@ -78,6 +78,25 @@ function WishListWrapper({ wishlistByPlatforms, platforms }) {
     setSearchedWishlist(filteredWishlistBySearch);
     setSearchGame("");
   }
+
+  // avvia ricerca premendo enter e nasconde la tastiera virtuale da mobile
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === "Enter") {
+        searchRef.current.blur();
+        handleSearchGame();
+      }
+    };
+
+    const input = searchRef.current;
+    input.addEventListener("keydown", handleKeyDown);
+
+    // Cleanup function
+    return () => {
+      input.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [handleSearchGame]);
+
   return (
     <>
       <div className="mt-5 mb-30">
@@ -92,6 +111,7 @@ function WishListWrapper({ wishlistByPlatforms, platforms }) {
             </p>
 
             <WishlistSearchBar
+              searchRef={searchRef}
               searchGame={searchGame}
               searchedWishlist={searchedWishlist}
               gameNotFound={gameNotFound}

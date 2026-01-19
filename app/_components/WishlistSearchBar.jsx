@@ -6,6 +6,7 @@ function WishlistSearchBar({
   gameNotFound,
   onSearchGame,
   handleSearchGame,
+  searchRef,
 }) {
   function handleChangeSearch(e) {
     // Rimuove tutti gli spazi all'inizio anche se il testo viene incollato
@@ -16,6 +17,7 @@ function WishlistSearchBar({
   return (
     <div className="mt-7 flex gap-1">
       <input
+        ref={searchRef}
         value={searchGame}
         type="search"
         className="border-primary placeholder-primary block w-full rounded-lg border px-2 py-1.5 focus-within:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none"
