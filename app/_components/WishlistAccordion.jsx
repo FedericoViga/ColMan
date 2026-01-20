@@ -31,7 +31,11 @@ function WishlistAccordion({
           <HeartIcon
             className={`h-4 w-4 ${expandAll || isSelectorOpen ? "text-accent" : ""}`}
           />
-          <span>{platform.platformName}</span>
+          <span
+            className={`${expandAll || isSelectorOpen ? "text-accent" : ""}`}
+          >
+            {platform.platformName}
+          </span>
           <span className="text-primary text-sm">
             ({platform.games.length})
           </span>

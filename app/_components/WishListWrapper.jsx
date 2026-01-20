@@ -131,7 +131,7 @@ function WishListWrapper({ wishlistByPlatforms, platforms }) {
                     }}
                     id="switch-component"
                     type="checkbox"
-                    className="peer bg-primary checked:bg-accent h-5 w-11 cursor-pointer appearance-none rounded-full transition-colors duration-300"
+                    className="peer checked:bg-accent h-5 w-11 cursor-pointer appearance-none rounded-full bg-slate-500 transition-colors duration-300"
                   />
                   <label
                     htmlFor="switch-component"

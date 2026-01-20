@@ -12,7 +12,7 @@ function DeleteWishlistGameButton({ gameId, onDelete }) {
       type="button"
       aria-label="Elimina gioco dalla wishlist"
     >
-      <TrashIcon className="text-primary h-3.5 w-3.5" />
+      <TrashIcon className="h-3.5 w-3.5 text-slate-500" />
     </button>
   );
 }
