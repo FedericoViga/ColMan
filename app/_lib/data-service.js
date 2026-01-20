@@ -38,7 +38,7 @@ export const getAllPlatforms = async function () {
 };
 
 export const countGames = async function () {
-  const { data, error } = await supabase
+  const { count, error } = await supabase
     .from("games")
     .select("id", { count: "exact" });
 
@@ -47,13 +47,14 @@ export const countGames = async function () {
     throw new Error("Il numero di giochi non può essere calcolato");
   }
 
-  return data.length;
+  return count;
 };
 
+// Conta i giochi per una specifica piattaforma
 export const countGamesByPlatform = async function (platformName) {
   if (!platformName || platformName === "all") return 0;
 
-  const { data, error } = await supabase
+  const { count, error } = await supabase
     .from("games")
     .select("id", { count: "exact" })
     .eq("platform", platformName);
@@ -65,11 +66,11 @@ export const countGamesByPlatform = async function (platformName) {
     );
   }
 
-  return data.length;
+  return count;
 };
 
 export const countPlatforms = async function () {
-  const { data, error } = await supabase
+  const { count, error } = await supabase
     .from("platforms")
     .select("platformName", { count: "exact" });
 
@@ -78,11 +79,11 @@ export const countPlatforms = async function () {
     throw new Error("Il numero di piattaforme non può essere calcolato");
   }
 
-  return data.length;
+  return count;
 };
 
 export const countCollectors = async function () {
-  const { data, error } = await supabase
+  const { count, error } = await supabase
     .from("games")
     .select("*", { count: "exact" })
     .eq("isCollector", "TRUE");
@@ -94,7 +95,7 @@ export const countCollectors = async function () {
     );
   }
 
-  return data.length;
+  return count;
 };
 
 export const fetchGames = async function (queryString, platformFilter) {
@@ -300,7 +301,7 @@ export async function getMyWishlist(userEmail) {
 }
 
 export async function countWishlistGames() {
-  const { data, error } = await supabase
+  const { count, error } = await supabase
     .from("wishlist")
     .select("id", { count: "exact" });
 
@@ -309,5 +310,5 @@ export async function countWishlistGames() {
     throw new Error("Il numero di giochi in wishlist non può essere calcolato");
   }
 
-  return data.length;
+  return count;
 }
