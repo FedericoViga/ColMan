@@ -14,9 +14,11 @@ function PlatformsAccordion({ platformDetails, id, curOpen, onOpen }) {
             onOpen(null);
           } else onOpen(id);
         }}
-        className={`${isSelectorOpen ? "border-accent border-2" : "border-primary border"} flex w-full justify-between rounded px-2 py-1.5 text-lg`}
+        className={`${isSelectorOpen ? "border-accent border-2" : "border border-slate-700"} flex w-full justify-between rounded bg-slate-900 px-2 py-1.5 text-lg`}
       >
-        <span>{platformDetails[0]}</span>
+        <span className={`${isSelectorOpen ? "text-accent" : ""}`}>
+          {platformDetails[0]}
+        </span>
         {isSelectorOpen ? (
           <span className="text-accent text-xl">+</span>
         ) : (
@@ -31,12 +33,12 @@ function PlatformsAccordion({ platformDetails, id, curOpen, onOpen }) {
             ? `${listRef.current?.scrollHeight}px`
             : "0px",
         }}
-        className={`${isSelectorOpen ? "" : "border-y-0"} border-primary overflow-hidden rounded border transition-[max-height] duration-300 ease-in-out`}
+        className={`${isSelectorOpen ? "" : "border-y-0"} overflow-hidden rounded border border-slate-700 bg-slate-900 transition-[max-height] duration-300 ease-in-out`}
       >
         {platformDetails[1].map((elem) => (
           <li
             key={elem.id}
-            className={`${isSelectorOpen ? "" : "last:border-b"} px-2 py-3`}
+            className={`${isSelectorOpen ? "" : "last:border-b"} hover:bg-background px-2 py-3`}
           >
             <Link
               className="inline-block w-full"
