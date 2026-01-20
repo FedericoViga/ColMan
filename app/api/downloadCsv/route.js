@@ -32,7 +32,10 @@ export async function GET() {
     return new Response("Nessun dato disponibile", { status: 404 });
 
   const csv = Papa.unparse(formattedData);
-  return new Response(csv, {
+  // per far riconoscere l'encoding UTF-8 a Google Sheets;
+  const csvWithBom = "\uFEFF" + csv;
+
+  return new Response(csvWithBom, {
     status: 200,
     headers: {
       "Content-Disposition": "attachment; filename=wishlist.csv",
