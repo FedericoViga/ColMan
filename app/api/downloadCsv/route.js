@@ -19,7 +19,7 @@ export async function GET() {
     .order("platforms(platformName)", { ascending: true })
     .order("gameName", { ascending: true });
 
-  const formatterdData = data.map((item) => ({
+  const formattedData = data.map((item) => ({
     platformName: item.platforms.platformName,
     gameName: item.gameName,
   }));
@@ -31,7 +31,7 @@ export async function GET() {
   if (!data || data.length === 0)
     return new Response("Nessun dato disponibile", { status: 404 });
 
-  const csv = Papa.unparse(formatterdData);
+  const csv = Papa.unparse(formattedData);
   return new Response(csv, {
     status: 200,
     headers: {
