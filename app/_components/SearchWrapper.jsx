@@ -27,7 +27,7 @@ function SearchWrapper({ platforms }) {
 
       {/* Filtro piattaforme */}
       <div className="w-full">
-        <div className="flex items-baseline gap-3">
+        <div className="flex items-center gap-3">
           <span className="text-primary">Piattaforma</span>
 
           <PlatformSelectorButton

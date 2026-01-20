@@ -20,11 +20,11 @@ function WishlistSearchBar({
         ref={searchRef}
         value={searchGame}
         type="search"
-        className="border-primary placeholder-primary focus-within:border-accent focus:ring-accent block w-full rounded-lg border px-2 py-1.5 focus:ring-1 focus:outline-none"
+        className="focus-within:border-accent focus-within:bg-background focus:bg-background focus:ring-accent block w-full rounded-lg border border-slate-700 bg-slate-900 px-2 py-1.5 focus:ring-1 focus:outline-none"
         placeholder={
           searchedWishlist.length === 0 && gameNotFound
             ? "Nessun gioco trovato"
-            : ""
+            : "Cerca gioco"
         }
         onChange={(e) => handleChangeSearch(e)}
         autoComplete="off"
@@ -33,7 +33,7 @@ function WishlistSearchBar({
       <button
         onClick={handleSearchGame}
         disabled={searchGame.length === 0}
-        className={`${searchGame.length === 0 ? "border-primary" : "border-accent"} inset-y-0 start-0 flex items-center rounded-lg border-2 px-2`}
+        className={`${searchGame.length === 0 ? "border-slate-500" : "border-accent"} inset-y-0 start-0 flex items-center rounded-lg border-2 px-2`}
       >
         <MagnifyingGlassIcon className="h-5 w-5" />
       </button>

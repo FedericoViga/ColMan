@@ -92,7 +92,7 @@ function UpdateGameForm({ gameDetails }) {
               name="gameName"
               id="gameName"
               type="text"
-              className="border-primary focus-within:border-accent focus:ring-accent rounded border p-1.5 text-base focus:ring-1 focus:outline-none"
+              className="focus-within:bg-background focus:bg-background focus-within:border-accent focus:ring-accent rounded border border-slate-700 bg-slate-900 p-1.5 text-base focus:ring-1 focus:outline-none"
               defaultValue={gameName}
               autoComplete="off"
               maxLength="100"
@@ -121,7 +121,7 @@ function UpdateGameForm({ gameDetails }) {
             <select
               name="gameRegion"
               id="gameRegion"
-              className="bg-background border-primary focus:border-accent focus:ring-accent rounded border p-1 text-base focus-visible:outline-0"
+              className="focus:border-accent focus:ring-accent rounded border border-slate-800 bg-slate-900 p-1 text-base focus-visible:outline-0"
               defaultValue={gameRegion}
               key={gameRegion}
             >
@@ -199,8 +199,9 @@ function UpdateGameForm({ gameDetails }) {
               name="contentDescription"
               id="contentDescription"
               rows="6"
-              className="border-primary focus-within:border-accent focus:ring-accent rounded border p-1.5 text-base focus:ring-1 focus:outline-none"
+              className="focus-within:bg-background focus:bg-background placeholder:text-primary/50 focus-within:border-accent focus:ring-accent max-h-80 min-h-40 resize-none rounded border border-slate-700 bg-slate-900 p-1.5 text-base focus:placeholder-transparent focus:ring-1 focus:outline-none"
               defaultValue={contentDescription}
+              minLength="2"
               maxLength="500"
               required
               onChange={(e) => setDescriptionLength(e.target.value.length)}

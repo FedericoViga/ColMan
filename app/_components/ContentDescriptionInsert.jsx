@@ -78,14 +78,14 @@ function ContentDescriptionInsert({
 
           {/* se è un solo elemento renderizza un paragrafo singolo */}
           {textToList.length === 1 && textToList[0] !== "" && (
-            <p className="text-primary mt-2 rounded border border-slate-800 bg-slate-800 p-3">
+            <p className="text-primary mt-2 rounded border border-slate-800 bg-slate-900 p-3">
               {textToList[0].charAt(0).toUpperCase() + textToList[0].slice(1)}
             </p>
           )}
 
           {/* se ci sono più elementi */}
           {textToList.length > 1 && (
-            <ul className="mt-2 rounded border border-slate-800 bg-slate-800 p-3 select-none">
+            <ul className="mt-2 rounded border border-slate-800 bg-slate-900 p-3 select-none">
               {/* se sono più elementi: */}
               {/* se la stringa non termina con "." aggiunge ";" alla fine */}
               {/* converte la prima lettera di ogni stringa in maiuscola */}
@@ -109,7 +109,8 @@ function ContentDescriptionInsert({
             name="contentDescription"
             id="contentDescription"
             rows="6"
-            className="border-primary placeholder:text-primary/50 focus-within:border-accent focus:ring-accent rounded border p-1.5 text-base focus:ring-1 focus:outline-none"
+            className="focus-within:bg-background focus:bg-background placeholder:text-primary/50 focus-within:border-accent focus:ring-accent max-h-80 min-h-40 rounded border border-slate-700 bg-slate-900 p-1.5 text-base focus:placeholder-transparent focus:ring-1 focus:outline-none"
+            minLength="2"
             maxLength="500"
             onChange={(e) => {
               onDescriptionValue(e.target.value);

@@ -25,7 +25,7 @@ function WishlistAccordion({
             onOpen(null);
           } else onOpen(accordionId);
         }}
-        className={`${expandAll || isSelectorOpen ? "border-accent rounded border-1" : "border-primary border-b"} flex w-full justify-between px-2 py-1 text-lg`}
+        className={`${expandAll || isSelectorOpen ? "border-accent rounded border-1" : "border-b border-slate-600"} flex w-full justify-between px-2 py-1 text-lg`}
       >
         <div className="flex items-center gap-1.5">
           <HeartIcon
@@ -51,12 +51,12 @@ function WishlistAccordion({
               ? `${ulAccordion.current?.scrollHeight}px`
               : "0px",
         }}
-        className="border-primary flex w-full flex-col overflow-hidden rounded border border-t-0 transition-[max-height] duration-300 ease-in-out"
+        className="flex w-full flex-col overflow-hidden rounded border border-t-0 border-slate-600 transition-[max-height] duration-300 ease-in-out"
       >
         {platform.games.map((elem) => (
           <li
             key={elem.id}
-            className="border-primary flex w-full items-center justify-between border-b px-2 py-3 last:border-0"
+            className="flex w-full items-center justify-between border-b border-slate-600 px-2 py-3 last:border-0"
           >
             <span className="min-w-0 flex-1 break-words">{elem.gameName}</span>
             <DeleteWishlistGameButton gameId={elem.id} onDelete={onDelete} />

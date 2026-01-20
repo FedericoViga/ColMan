@@ -110,7 +110,7 @@ function InsertGameForm({ platforms, platformsIdAndName }) {
               name="gameName"
               id="gameName"
               type="text"
-              className="border-primary focus-within:border-accent focus:ring-accent rounded border p-1.5 text-base focus:ring-1 focus:outline-none"
+              className="focus-within:bg-background focus:bg-background focus-within:border-accent focus:ring-accent rounded border border-slate-700 bg-slate-900 p-1.5 text-base focus:ring-1 focus:outline-none"
               autoComplete="off"
               maxLength="100"
               required
@@ -139,7 +139,7 @@ function InsertGameForm({ platforms, platformsIdAndName }) {
               required
               name="gameRegion"
               id="gameRegion"
-              className="bg-background border-primary focus:border-accent focus:ring-accent rounded border p-1 text-base focus-visible:outline-0"
+              className="focus:border-accent focus:ring-accent rounded border border-slate-800 bg-slate-900 p-1 text-base last:border focus-visible:outline-0"
             >
               <option hidden></option>
               <option value="ITA">ITA</option>

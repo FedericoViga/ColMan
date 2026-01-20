@@ -14,10 +14,15 @@ export async function GET() {
 
   const { data, error } = await supabase
     .from("wishlist")
-    .select("platformName, gameName")
+    .select("platforms(platformName), gameName")
     .eq("userEmail", session?.user?.email)
-    .order("platformName", { ascending: true })
+    .order("platforms(platformName)", { ascending: true })
     .order("gameName", { ascending: true });
+
+  const formatterdData = data.map((item) => ({
+    platformName: item.platforms.platformName,
+    gameName: item.gameName,
+  }));
 
   if (error)
     return new Response(JSON.stringify({ error: error.message }), {
@@ -26,7 +31,7 @@ export async function GET() {
   if (!data || data.length === 0)
     return new Response("Nessun dato disponibile", { status: 404 });
 
-  const csv = Papa.unparse(data);
+  const csv = Papa.unparse(formatterdData);
   return new Response(csv, {
     status: 200,
     headers: {

@@ -32,14 +32,14 @@ async function PlatformFullCard({ platformDetails }) {
 
       <div>
         <p className="text-primary text-lg">Piattaforma</p>
-        <p className="font border-primary rounded border p-1.5 text-xl">
+        <p className="font rounded border border-slate-800 bg-slate-900 p-1.5 text-lg">
           {platformName}
         </p>
       </div>
 
       <div>
         <p className="text-primary text-lg">Produttore</p>
-        <p className="border-primary rounded border p-1.5 text-xl">
+        <p className="rounded border border-slate-800 bg-slate-900 p-1.5 text-lg">
           {platformOwner}
         </p>
       </div>

@@ -48,7 +48,7 @@ function InsertPlatformForm() {
               name="platformName"
               id="platformName"
               type="text"
-              className="border-primary focus-within:border-accent focus:ring-accent rounded border p-1.5 text-base focus:ring-1 focus:outline-none"
+              className="focus-within:bg-background focus:bg-background focus-within:border-accent focus:ring-accent rounded border border-slate-700 bg-slate-900 p-1.5 text-base focus:ring-1 focus:outline-none"
               autoComplete="off"
               maxLength="25"
               onChange={(e) => setNameLength(e.target.value.length)}
@@ -68,7 +68,7 @@ function InsertPlatformForm() {
               name="platformOwner"
               id="platformOwner"
               type="text"
-              className="border-primary focus-within:border-accent focus:ring-accent rounded border p-1.5 text-base focus:ring-1 focus:outline-none"
+              className="focus-within:bg-background focus:bg-background focus-within:border-accent focus:ring-accent rounded border border-slate-700 bg-slate-900 p-1.5 text-base focus:ring-1 focus:outline-none"
               maxLength="25"
               onChange={(e) => setOwnerLength(e.target.value.length)}
             />

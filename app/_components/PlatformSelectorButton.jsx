@@ -10,7 +10,7 @@ function PlatformSelectorButton({ onOpenFilters, isExpanded, filterName }) {
   return (
     <button
       onClick={() => onOpenFilters((isExp) => !isExp)}
-      className={`text-primary border-primary cursor-pointer rounded-lg border-2 px-2 py-1 text-sm ${isExpanded || (filterName !== "Tutte" && filterName !== "---") ? "!text-foreground !border-accent border-2" : "border-primary border"}`}
+      className={`rounded-lg border px-2 py-1 text-sm ${isExpanded || (filterName !== "Tutte" && filterName !== "---") ? "text-accent outline-accent outline" : "text-primary border-slate-500"}`}
     >
       {filterName === "---" ? "Tutte" : filterName}
     </button>
