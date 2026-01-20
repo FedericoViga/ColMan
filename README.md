@@ -15,7 +15,7 @@ Le notifiche toast di avvenuta aggiunta/modifica/eliminazione sono gestite con l
 
 </p>
 
-![schermate-Colman](colman-new-showcase.png)
+![schermate-Colman](colman-new-showcase2026.png)
 
 Questo progetto è interamente fatto a mano da zero e non sono stati usati tools IA.
 
