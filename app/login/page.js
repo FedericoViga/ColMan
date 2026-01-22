@@ -1,23 +1,10 @@
 import SigninButton from "../_components/SigninButton";
-import { supabase } from "../_lib/supabaseClient";
 
 export const metadata = {
   title: "Login",
 };
 
 function Page() {
-  const signInWithGoogle = async () => {
-    const { error } = await supabase.auth.signInWithOAuth({
-      provider: "google",
-      options: {
-        redirectTo: `${window.location.origin}/auth/callback`,
-      },
-    });
-
-    if (error) {
-      console.error(error);
-    }
-  };
   const date = new Date();
   const currentYear = date.getFullYear();
 
@@ -53,7 +40,7 @@ function Page() {
           Accedi per visualizzare ColMan
         </h2>
         <p>Accesso autorizzato solo per uno specifico account Google</p>
-        <SigninButton onSignIn={signInWithGoogle} />
+        <SigninButton />
       </div>
 
       <span className="text-primary fixed bottom-2">

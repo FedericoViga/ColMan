@@ -6,6 +6,8 @@ export const metadata = {
   title: "Le mie piattaforme",
 };
 
+export const revalidate = 0;
+
 async function Page() {
   const [globalPlatforms, userPlatforms] = await Promise.all([
     getAllPlatforms(),

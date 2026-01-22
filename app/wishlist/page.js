@@ -9,6 +9,8 @@ export const metadata = {
   title: "Wishlist",
 };
 
+export const revalidate = 0;
+
 async function Page() {
   const myWishlist = await getMyWishlist();
   const myWishlistByPlatforms = wishlistByPlatforms(myWishlist);

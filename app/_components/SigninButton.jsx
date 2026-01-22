@@ -1,7 +1,23 @@
-function SigninButton({ onSignIn }) {
+"use client";
+
+import { supabase } from "../_lib/supabaseClient";
+
+function SigninButton() {
+  const signInWithGoogle = async () => {
+    const { error } = await supabase.auth.signInWithOAuth({
+      provider: "google",
+      options: {
+        redirectTo: `${window.location.origin}/auth/callback`,
+      },
+    });
+
+    if (error) {
+      console.error(error);
+    }
+  };
   return (
     <button
-      onClick={onSignIn}
+      onClick={signInWithGoogle}
       className="border-accent flex items-center gap-4 rounded border px-4 py-2 text-lg font-bold"
     >
       {/*       <img

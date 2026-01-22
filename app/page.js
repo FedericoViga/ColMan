@@ -15,6 +15,8 @@ export const metadata = {
     "Collection Manager per gestire la tua collezione di videogiochi fisici.",
 };
 
+export const revalidate = 0;
+
 // Homepage
 export default async function Page({ searchParams }) {
   const platforms = await getUserPlatformsComplete();

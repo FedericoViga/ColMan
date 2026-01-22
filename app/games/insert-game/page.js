@@ -5,6 +5,8 @@ export const metadata = {
   title: "Aggiungi Gioco",
 };
 
+export const revalidate = 0;
+
 async function Page() {
   const platforms = await getUserPlatformsComplete();
   const platformsIdAndName = platforms.map(({ platformId, platformName }) => ({
