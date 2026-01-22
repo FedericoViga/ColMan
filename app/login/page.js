@@ -1,4 +1,3 @@
-"use client";
 import SigninButton from "../_components/SigninButton";
 import { supabase } from "../_lib/supabaseClient";
 

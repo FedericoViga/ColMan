@@ -1,6 +1,6 @@
 import { PAGE_SIZE } from "./constants";
 import { supabase } from "./supabaseServer";
-import { createSupabaseServerClient } from "@/lib/supabaseServer";
+import { createSupabaseServerClient } from "@/app/_lib/supabaseServer";
 
 // Raggruppa e conta i giochi per ogni piattaforma con una funzione SQL
 /* export const numGamesByPlatform = async function () {

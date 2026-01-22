@@ -6,7 +6,7 @@ import { ArrowDownTrayIcon } from "@heroicons/react/24/solid";
 function downloadWishlistButton() {
   const [isLoading, setIsLoading] = useState(false);
 
-  async function handleDownload() {
+  /*   async function handleDownload() {
     setIsLoading(true);
 
     try {
@@ -37,11 +37,11 @@ function downloadWishlistButton() {
       setIsLoading(false);
     }
   }
-
+ */
   return (
     <button
       disabled={isLoading}
-      onClick={handleDownload}
+      /*  onClick={handleDownload} */
       type="button"
       aria-label="Scarica wishlist come csv"
       className="flex items-end gap-1"

@@ -1,12 +1,12 @@
 // app/api/downloadCsv/route.js
-import { auth } from "@/app/_lib/auth";
+/* import { auth } from "@/app/_lib/auth";
 import { createClient } from "@supabase/supabase-js";
 import Papa from "papaparse";
 
-/* const supabase = createClient(
+const supabase = createClient(
   process.env.SUPABASE_URL,
   process.env.SUPABASE_KEY,
-); */
+);
 
 export async function GET() {
   const session = await auth();
@@ -44,3 +44,4 @@ export async function GET() {
     },
   });
 }
+ */
