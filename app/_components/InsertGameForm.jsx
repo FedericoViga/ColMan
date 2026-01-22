@@ -227,12 +227,13 @@ function InsertGameForm({ platforms, platformsIdAndName }) {
             <>
               <p className="text-primary mt-3">Piattaforme</p>
               <p className="text-primary">
-                Non ci sono ancora piattaforme, prima di creare un gioco devi{" "}
+                Non ci sono ancora piattaforme, prima di aggiungere un gioco
+                devi{" "}
                 <Link
-                  className="text-foreground underline underline-offset-2"
-                  href="/platforms/insert-platform"
+                  className="text-accent decoration-accent underline underline-offset-2"
+                  href="/settings/my-platforms"
                 >
-                  creare la sua piattaforma!
+                  aggiungere una piattaforma
                 </Link>
               </p>
             </>

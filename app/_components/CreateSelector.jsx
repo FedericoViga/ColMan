@@ -14,8 +14,6 @@ function CreateSelector() {
     const cookiesToCheck = [
       { key: "insertGame", toastId: "insert-game" },
       { key: "deleteGame", toastId: "delete-game" },
-      { key: "insertPlatform", toastId: "insert-platform" },
-      { key: "deletePlatform", toastId: "delete-platform" },
     ];
 
     cookiesToCheck.forEach(({ key, toastId }) => {
@@ -58,8 +56,8 @@ function CreateSelector() {
             />
           </span>
           <div className="flex flex-col gap-4 text-center">
-            <h1 className="text-xl">Crea un gioco o una piattaforma</h1>
-            <h2 className="text-primary">Cosa vuoi creare?</h2>
+            <h1 className="text-xl">Aggiungi giochi o piattaforme</h1>
+            <h2 className="text-primary">Cosa vuoi aggiungere?</h2>
             <div className="decoration-accent flex flex-col items-center justify-center gap-4">
               <Link
                 href={"/games/insert-game"}
@@ -68,10 +66,10 @@ function CreateSelector() {
                 GIOCO
               </Link>
               <Link
-                href={"/platforms/insert-platform"}
+                href={"/settings/my-platforms"}
                 className="decoration-accent underline underline-offset-4"
               >
-                PIATTAFORMA
+                PIATTAFORME
               </Link>
             </div>
           </div>

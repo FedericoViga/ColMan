@@ -1,20 +1,20 @@
 "use server";
 
-import { auth, signIn } from "./auth";
-import { supabase } from "./supabase";
 import { revalidatePath } from "next/cache";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { v4 as uuidv4 } from "uuid";
-
-export async function signInAction() {
-  await signIn("google", { redirectTo: "/" });
-}
+import { createSupabaseServerClient } from "@/lib/supabaseServer";
 
 /* INSERT */
 
 // inserisci gioco
 export async function insertGame(platformsIdAndName, formData) {
+  const supabase = createSupabaseServerClient();
+  const userId = supabase.auth.getUser()?.id;
+
+  if (!userId) throw new Error("Non sei loggato");
+
   const gameName = formData.get("gameName").slice(0, 100).trim();
   const gameRegion = formData.get("gameRegion");
 
@@ -35,7 +35,7 @@ export async function insertGame(platformsIdAndName, formData) {
   // assegna il platformId (foreign key da platforms) in base alla piattaforma scelta nel select del form
   const platformId = platformsIdAndName.filter(
     (plat) => plat.platformName === platform,
-  )[0].id;
+  )[0].platformId;
 
   const image = formData.get("gameImages");
 
@@ -58,6 +58,7 @@ export async function insertGame(platformsIdAndName, formData) {
     platform,
     platformId,
     gameImages: imagePath,
+    userId: userId,
   };
 
   const { error } = await supabase.from("games").insert([newGame]);
@@ -81,55 +82,11 @@ export async function insertGame(platformsIdAndName, formData) {
   redirect("/");
 }
 
-// inserisci piattaforma
-export async function insertPlatform(formData) {
-  const platformName = formData.get("platformName").slice(0, 25).trim();
-  const platformOwner = formData.get("platformOwner").slice(0, 25).trim();
-
-  // check case insensitive per pattern platformName già esistente
-  const { data, error: duplicatePlatformError } = await supabase
-    .from("platforms")
-    .select("*")
-    .ilike("platformName", platformName);
-
-  if (data.length > 0) {
-    const cookieStore = await cookies();
-    cookieStore.set("duplicatedPlatformError", `Piattaforma già esistente!`, {
-      httpOnly: false,
-    });
-    return;
-  }
-
-  if (duplicatePlatformError) {
-    throw new Error("Tentativo di inserimento di piattaforma già esistente");
-  }
-
-  // se il check passa, aggiunge nuova piattaforma
-  const newPlatform = {
-    platformName,
-    platformOwner,
-  };
-
-  const { error } = await supabase.from("platforms").insert([newPlatform]);
-
-  if (error) {
-    throw new Error("La piattaforma non può essere inserita");
-  } else {
-    const cookieStore = await cookies();
-    cookieStore.set("insertPlatform", `Piattaforma ${platformName} aggiunta!`, {
-      httpOnly: false,
-    });
-  }
-
-  redirect("/");
-}
-
 export async function insertGameInWishlist(_prevState, formData) {
-  const session = await auth();
+  const supabase = createSupabaseServerClient();
+  const userId = supabase.auth.getUser()?.id;
 
-  if (!session?.user?.email) {
-    throw new Error("Non autorizzato");
-  }
+  if (!userId) throw new Error("Non sei loggato");
 
   const gameNameRaw = formData.get("gameName");
   const platformIds = formData.getAll("platformId");
@@ -152,14 +109,14 @@ export async function insertGameInWishlist(_prevState, formData) {
   const { error: insertError } = await supabase.from("wishlist").insert({
     gameName,
     platformId,
-    userEmail: session.user.email,
+    userId: userId,
   });
 
   if (insertError) {
     throw new Error("Errore durante l'aggiunta alla wishlist");
   }
 
-  revalidatePath("/user/my-wishlist", "page");
+  revalidatePath("/wishlist", "page");
 
   return { submitId: crypto.randomUUID() };
 }
@@ -168,8 +125,10 @@ export async function insertGameInWishlist(_prevState, formData) {
 
 // aggiorna gioco
 export async function updateGame(oldImage, formData) {
-  const session = await auth();
-  if (!session) throw new Error("Devi essere loggato");
+  const supabase = createSupabaseServerClient();
+  const userId = supabase.auth.getUser()?.id;
+
+  if (!userId) throw new Error("Non sei loggato");
 
   const id = Number(formData.get("gameId"));
   const platform = formData.get("platform");
@@ -199,6 +158,7 @@ export async function updateGame(oldImage, formData) {
       isSpecial,
       isCollector,
       contentDescription,
+      userId: userId,
     };
   }
 
@@ -224,6 +184,7 @@ export async function updateGame(oldImage, formData) {
       isCollector,
       contentDescription,
       gameImages: newImagePath,
+      userId: userId,
     };
   }
 
@@ -271,40 +232,14 @@ export async function updateGame(oldImage, formData) {
   revalidatePath("/games/[gameId]/update-game", "page");
 }
 
-// aggiorna piattaforma
-export async function updatePlatform(formData) {
-  const session = await auth();
-  if (!session) throw new Error("Devi essere loggato");
-
-  const id = Number(formData.get("platformId"));
-  const platformName = formData.get("platformName").slice(0, 25).trim();
-  const platformOwner = formData.get("platformOwner").slice(0, 25).trim();
-
-  const updateData = {
-    id,
-    platformName,
-    platformOwner,
-  };
-
-  try {
-    const toUpdatePlatformData = await supabase
-      .from("platforms")
-      .update(updateData)
-      .eq("id", id);
-  } catch (error) {
-    console.log(error);
-    return { error: "Errore aggiornamento piattaforma" };
-  }
-
-  revalidatePath("/platforms/[platformId]/update-platform", "page");
-}
-
 /* DELETE */
 
 // cancella gioco
 export async function deleteGame(id, images) {
-  const session = await auth();
-  if (!session) throw new Error("Devi essere loggato");
+  const supabase = createSupabaseServerClient();
+  const userId = supabase.auth.getUser()?.id;
+
+  if (!userId) throw new Error("Non sei loggato");
 
   //cancella gioco
   const { data, error } = await supabase.from("games").delete().eq("id", id);
@@ -332,49 +267,11 @@ export async function deleteGame(id, images) {
   redirect("/");
 }
 
-// cancella piattaforma
-export async function deletePlatform(id) {
-  try {
-    const session = await auth();
-    if (!session) throw new Error("Devi essere loggato");
-
-    const { count, error: countError } = await supabase
-      .from("games")
-      .select("*", { count: "exact" })
-      .eq("platformId", id);
-
-    if (countError) throw new Error("Errore nel conteggio dei giochi");
-
-    if (count > 0) {
-      return {
-        ok: false,
-        error: `Non puoi eliminare la piattaforma perchè ha ${count > 1 ? `${count} giochi associati!` : `${count} gioco associato!`}`,
-      };
-    }
-
-    const { error: deleteError } = await supabase
-      .from("platforms")
-      .delete()
-      .eq("id", id);
-
-    if (deleteError) throw new Error("La piattaforma non può essere eliminata");
-
-    const cookieStore = await cookies();
-    cookieStore.set("deletePlatform", `Piattaforma eliminata!`, {
-      httpOnly: false,
-      path: "/",
-    });
-  } catch (error) {
-    console.error("Errore in deletePlatform:", error.message || error);
-    throw new Error(
-      "Errore sconosciuto durante l'eliminazione della piattaforma",
-    );
-  }
-}
-
 export async function deleteGameFromWishlist(gameId) {
-  const session = await auth();
-  if (!session) throw new Error("Devi essere loggato");
+  const supabase = createSupabaseServerClient();
+  const userId = supabase.auth.getUser()?.id;
+
+  if (!userId) throw new Error("Non sei loggato");
 
   const { data, error } = await supabase
     .from("wishlist")
@@ -385,5 +282,54 @@ export async function deleteGameFromWishlist(gameId) {
     throw new Error("Errore nell'eliminazione del gioco");
   }
 
-  revalidatePath("/user/my-wishlist", "page");
+  revalidatePath("/wishlist", "page");
+}
+
+export async function updateUserPlatforms(formData) {
+  const supabase = createSupabaseServerClient();
+  const userId = supabase.auth.getUser()?.id;
+
+  if (!userId) throw new Error("Non sei loggato");
+
+  const { data: currentPlatforms, error } = await supabase
+    .from("userPlatforms")
+    .select("platformId")
+    .eq("userId", userId);
+
+  if (error) {
+    throw new Error("Errore nell'aggiornamento delle piattaforme");
+  }
+
+  // piattaforme selezionate nel form
+  const newPlatformIds = formData.getAll("platforms");
+
+  const currentUserPlatformIds = currentPlatforms.map((p) =>
+    p.platformId.toString(),
+  );
+
+  // aggiungi nuove piattaforme
+  const toInsertPlatforms = newPlatformIds.filter(
+    (id) => !currentUserPlatformIds.includes(id),
+  );
+
+  if (toInsertPlatforms.length > 0) {
+    await supabase
+      .from("userPlatforms")
+      .insert(toInsertPlatforms.map((id) => ({ userId: 1, platformId: id })));
+  }
+
+  // togli piattaforme
+  const toDeletePlatforms = currentUserPlatformIds.filter(
+    (id) => !newPlatformIds.includes(id),
+  );
+
+  if (toDeletePlatforms.length > 0) {
+    await supabase
+      .from("userPlatforms")
+      .delete()
+      .in("platformId", toDeletePlatforms)
+      .eq("userId", 1);
+  }
+
+  revalidatePath("/settings/my-platforms", "page");
 }

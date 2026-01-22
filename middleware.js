@@ -1,7 +1,32 @@
-import { auth } from "./app/_lib/auth";
+// middleware.js
+import { NextResponse } from "next/server";
+import { createSupabaseServerClient } from "@/lib/supabaseServer";
 
-export const middleware = auth;
+export async function middleware(req) {
+  const res = NextResponse.next();
+  const supabase = createSupabaseServerClient();
+
+  const {
+    data: { session },
+  } = await supabase.auth.getSession();
+
+  const url = req.nextUrl.clone();
+
+  // se sei su /login e sei loggato, vai a "/"
+  if (url.pathname === "/login" && session) {
+    url.pathname = "/";
+    return NextResponse.redirect(url);
+  }
+
+  // se non loggato e non sei su login vai a "/login"
+  if (url.pathname !== "/login" && !session) {
+    url.pathname = "/login";
+    return NextResponse.redirect(url);
+  }
+
+  return res;
+}
 
 export const config = {
-  matcher: ["/:path?", "/games/:path*", "/platforms/:path*, /user/:path*"],
+  matcher: ["/((?!_next/static|_next/image|favicon.ico).*)"],
 };

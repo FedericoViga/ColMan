@@ -1,4 +1,4 @@
-import { getAllPlatforms } from "./_lib/data-service";
+import { getUserPlatformsComplete } from "./_lib/data-service";
 import HeroRecap from "./_components/HeroRecap";
 import SearchWrapper from "./_components/SearchWrapper";
 import SearchResultsList from "./_components/SearchResultsList";
@@ -17,7 +17,7 @@ export const metadata = {
 
 // Homepage
 export default async function Page({ searchParams }) {
-  const platforms = await getAllPlatforms();
+  const platforms = await getUserPlatformsComplete();
   const filters = await searchParams;
   const queryString = filters?.query;
   const platformFilter = filters?.platform;

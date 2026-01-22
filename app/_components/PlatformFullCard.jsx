@@ -1,5 +1,3 @@
-import DeletePlatformButton from "./DeletePlatformButton";
-import UpdateLink from "./UpdateLink";
 import Link from "next/link";
 import ExternalSearchLinks from "./ExternalSearchLinks";
 import { countGamesByPlatform } from "../_lib/data-service";
@@ -7,11 +5,6 @@ import { countGamesByPlatform } from "../_lib/data-service";
 async function PlatformFullCard({ platformDetails }) {
   const { id, platformName, platformOwner } = platformDetails;
   const numGamesByPlatform = await countGamesByPlatform(platformName);
-
-  const normalizedId = id.toString().startsWith("-") ? id.slice(1) : id;
-  const normalizedPlatform = platformName.toLowerCase().replaceAll(" ", "-");
-  const normalizedPlatformOwner = platformOwner.toLowerCase();
-
   return (
     <div className="mt-3 mb-10 flex flex-col gap-4">
       <h1 className="text-center text-2xl">Dettagli piattaforma</h1>
@@ -49,17 +42,6 @@ async function PlatformFullCard({ platformDetails }) {
         ebayUrl={`https://www.ebay.it/sch/i.html?_nkw=${platformOwner.replaceAll(" ", "+")}+${platformName.replaceAll(" ", "+")}&_sacat=0&_from=R40&rt=nc&LH_PrefLoc=1`}
         isGameCard={false}
       />
-
-      <div className="flex gap-4">
-        <UpdateLink
-          linkHref={`/platforms/${normalizedId}-${normalizedPlatformOwner}-${normalizedPlatform}/update-platform`}
-        />
-
-        <DeletePlatformButton
-          platformId={normalizedId}
-          platformName={platformName}
-        />
-      </div>
     </div>
   );
 }

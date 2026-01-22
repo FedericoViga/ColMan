@@ -25,7 +25,7 @@ function PlatformSelectorWishlist({
       >
         <option hidden></option>
         {platformDetails[1].map((elem) => (
-          <option key={elem.id} value={`${elem?.id}`}>
+          <option key={elem.platformId} value={`${elem?.platformId}`}>
             {elem.platformName}
           </option>
         ))}

@@ -1,18 +1,17 @@
-import { signInAction } from "../_lib/actions";
-
-function SigninButton() {
+function SigninButton({ onSignIn }) {
   return (
-    <form action={signInAction}>
-      <button className="border-accent flex items-center gap-4 rounded border px-4 py-2 text-lg font-bold">
-        <img
-          src="https://authjs.dev/img/providers/google.svg"
-          alt="Logo Google"
-          height="24"
-          width="24"
-        />
-        <span>Continua con Google</span>
-      </button>
-    </form>
+    <button
+      onClick={onSignIn}
+      className="border-accent flex items-center gap-4 rounded border px-4 py-2 text-lg font-bold"
+    >
+      {/*       <img
+        src="https://authjs.dev/img/providers/google.svg"
+        alt="Logo Google"
+        height="24"
+        width="24"
+      /> */}
+      <span>Continua con Google</span>
+    </button>
   );
 }
 

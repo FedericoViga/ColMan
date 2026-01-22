@@ -58,7 +58,7 @@ function PlatformFilterSelectorPagination({
       >
         <option>---</option>
         {platformDetails[1].map((elem) => (
-          <option key={elem.id} value={elem.platformName}>
+          <option key={elem.platformId} value={elem.platformName}>
             {elem.platformName}
           </option>
         ))}

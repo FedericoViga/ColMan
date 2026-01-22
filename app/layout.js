@@ -26,7 +26,7 @@ export default async function RootLayout({ children }) {
         <Header />
         <main>
           <Toaster
-            position="bottom-center"
+            position="top-center"
             gutter={12}
             toastOptions={{
               success: {

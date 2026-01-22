@@ -1,14 +1,14 @@
 import InsertGameForm from "@/app/_components/InsertGameForm";
-import { getAllPlatforms } from "@/app/_lib/data-service";
+import { getUserPlatformsComplete } from "@/app/_lib/data-service";
 
 export const metadata = {
   title: "Aggiungi Gioco",
 };
 
 async function Page() {
-  const platforms = await getAllPlatforms();
-  const platformsIdAndName = platforms.map(({ id, platformName }) => ({
-    id,
+  const platforms = await getUserPlatformsComplete();
+  const platformsIdAndName = platforms.map(({ platformId, platformName }) => ({
+    platformId,
     platformName,
   }));
 

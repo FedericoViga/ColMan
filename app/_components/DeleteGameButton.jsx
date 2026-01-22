@@ -37,7 +37,6 @@ function DeleteGameButton({ gameId, gameName, gameImages }) {
               isPending={isPending}
               onTransition={startTransition}
               targetInfo={{ gameId, gameName, gameImages }}
-              deletionTarget={"game"}
             />
           )}
         </>

@@ -10,7 +10,7 @@ function PlatformsWrapper({ platformsByOwners }) {
     <>
       <div className="mt-5">
         <p className="text-foreground my-7 text-center text-2xl">
-          Lista piattaforme
+          Le tue piattaforme
         </p>
         <p className="text-primary text-center text-lg">
           Seleziona una piattaforma per visualizzare i dettagli.
@@ -25,7 +25,7 @@ function PlatformsWrapper({ platformsByOwners }) {
           />
         ))}
       </div>
-      <ToCreateButton url={"/platforms/insert-platform"} />
+      <ToCreateButton url={"/settings/my-platforms"} />
     </>
   );
 }

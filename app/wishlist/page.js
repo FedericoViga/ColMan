@@ -1,6 +1,8 @@
-import { auth } from "@/app/_lib/auth";
 import WishListWrapper from "@/app/_components/WishListWrapper";
-import { getAllPlatforms, getMyWishlist } from "@/app/_lib/data-service";
+import {
+  getMyWishlist,
+  getUserPlatformsComplete,
+} from "@/app/_lib/data-service";
 import { wishlistByPlatforms } from "@/app/_lib/utils";
 
 export const metadata = {
@@ -8,12 +10,9 @@ export const metadata = {
 };
 
 async function Page() {
-  const session = await auth();
-  const email = session?.user?.email;
-
-  const myWishlist = await getMyWishlist(email);
+  const myWishlist = await getMyWishlist();
   const myWishlistByPlatforms = wishlistByPlatforms(myWishlist);
-  const platforms = await getAllPlatforms();
+  const platforms = await getUserPlatformsComplete();
 
   return (
     <div className="container">

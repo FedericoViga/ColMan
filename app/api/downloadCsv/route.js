@@ -3,19 +3,20 @@ import { auth } from "@/app/_lib/auth";
 import { createClient } from "@supabase/supabase-js";
 import Papa from "papaparse";
 
-const supabase = createClient(
+/* const supabase = createClient(
   process.env.SUPABASE_URL,
   process.env.SUPABASE_KEY,
-);
+); */
 
 export async function GET() {
   const session = await auth();
   if (!session) throw new Error("Non autorizzato");
 
+  // ID HARDCODED PER SVILUPPO, finchè non ci sarà l'auth completa
   const { data, error } = await supabase
     .from("wishlist")
     .select("platforms(platformName), gameName")
-    .eq("userEmail", session?.user?.email)
+    .eq("userId", 1)
     .order("platforms(platformName)", { ascending: true })
     .order("gameName", { ascending: true });
 

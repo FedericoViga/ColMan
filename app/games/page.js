@@ -7,7 +7,7 @@ import {
   countGames,
   countGamesByPlatform,
   fetchGamesWithPagination,
-  getAllPlatforms,
+  getUserPlatformsComplete,
 } from "../_lib/data-service";
 
 export const metadata = {
@@ -20,7 +20,7 @@ async function Page({ searchParams }) {
     await Promise.all([
       countGames(),
       countCollectors(),
-      getAllPlatforms(),
+      getUserPlatformsComplete(),
       countGamesByPlatform(pageParams.platform),
       fetchGamesWithPagination(pageParams.page, pageParams.platform),
     ]);

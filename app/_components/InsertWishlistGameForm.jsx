@@ -97,14 +97,12 @@ function InsertWishlistGameForm({ platforms, onOpenClose }) {
               <div className="flex flex-col gap-1">
                 <span className="text-primary">Piattaforma</span>
                 <div className="flex gap-2 text-xs">
-                  <span className="text-primary">
-                    La piattaforma non esiste?
-                  </span>
+                  <span className="text-primary">Non vedi la piattaforma?</span>
                   <Link
                     className="underline underline-offset-2"
-                    href="/platforms/insert-platform"
+                    href="/settings/my-platforms"
                   >
-                    Creala
+                    Aggiungila
                   </Link>
                 </div>
               </div>
@@ -124,12 +122,12 @@ function InsertWishlistGameForm({ platforms, onOpenClose }) {
             </>
           ) : (
             <p className="text-primary mt-4">
-              Non ci sono ancora piattaforme, prima di creare un gioco devi{" "}
+              Non ci sono ancora piattaforme, prima di aggiungere un gioco devi{" "}
               <Link
-                className="text-foreground underline underline-offset-2"
+                className="text-accent decoration-accent underline underline-offset-2"
                 href="/platforms/insert-platform"
               >
-                creare la sua piattaforma!
+                aggiungere una piattaforma
               </Link>
             </p>
           )}

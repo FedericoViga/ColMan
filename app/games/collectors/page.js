@@ -1,7 +1,7 @@
 import GameCard from "@/app/_components/GameCard";
 import {
   fetchCollectorsWithPagination,
-  getAllPlatforms,
+  getUserPlatformsComplete,
 } from "@/app/_lib/data-service";
 import Pagination from "@/app/_components/Pagination";
 import FilterWrapper from "@/app/_components/FilterWrapper";
@@ -16,7 +16,7 @@ async function Page({ searchParams }) {
     pageParams.page,
     pageParams.platform,
   );
-  const platforms = await getAllPlatforms();
+  const platforms = await getUserPlatformsComplete();
 
   const { data: games, count } = fetchedGames;
 

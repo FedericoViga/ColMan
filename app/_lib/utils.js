@@ -67,3 +67,36 @@ export function wishlistByPlatforms(wishlist) {
 
   return groupedArray;
 }
+
+// Combina piattaforme globali (gia divise per produttore) e piattaforme selezionate dall'utente
+// aggiunge isActive: boolean se la piattaforma è presente o meno in quelle dell'utente
+// ordina in ordine alfabetico per produttore e piattaforme
+export function globalAndUserPlatformsCombined(globalPlatforms, userPlatforms) {
+  const updatedPlatforms = globalPlatforms.map(([owner, platforms]) => {
+    // nuovo array di piattaforme con isActive per il defaultChecked delle checkbox
+    const updatedPlatforms = platforms.map((platform) => {
+      // controlla se la piattaforma è presente in userPlatforms
+      const isActive = userPlatforms.some(
+        (uplatform) => uplatform.platformId === platform.id,
+      );
+      return {
+        ...platform,
+        isActive,
+      };
+    });
+
+    return [owner, updatedPlatforms];
+  });
+
+  // ordinamemnto alfabetico per produttore e piattaforme
+  const alphabeticalGlobalAndUserPlatforms = updatedPlatforms
+    .map(([groupName, platforms]) => [
+      groupName,
+      platforms
+        .slice()
+        .sort((a, b) => a.platformName.localeCompare(b.platformName)),
+    ])
+    .sort((a, b) => a[0].localeCompare(b[0]));
+
+  return alphabeticalGlobalAndUserPlatforms;
+}

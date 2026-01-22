@@ -1,15 +1,31 @@
-import Link from "next/link";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
-function PlatformsAccordion({ platformDetails, id, curOpen, onOpen }) {
+function PlatformsAccordionSettings({ platformDetails, id, curOpen, onOpen }) {
   // state per chiudere il dropdown dei filtri se viene selezionato un nuovo dropdown
   const isSelectorOpen = id === curOpen;
   const listRef = useRef(null);
 
+  const [formData, setFormData] = useState({ platforms: [] });
+
+  function handleCheckbox(e) {
+    const { checked, value } = e.target;
+
+    setFormData((prev) => {
+      let newPlatforms;
+      if (checked) {
+        newPlatforms = [...prev.platforms, value];
+      } else {
+        newPlatforms = prev.platforms.filter((p) => p !== value);
+      }
+      return { ...prev, platforms: newPlatforms };
+    });
+  }
+
   return (
     <div className={`my-8`}>
       <button
-        onClick={() => {
+        onClick={(e) => {
+          e.preventDefault();
           if (isSelectorOpen && id === curOpen) {
             onOpen(null);
           } else onOpen(id);
@@ -36,14 +52,22 @@ function PlatformsAccordion({ platformDetails, id, curOpen, onOpen }) {
         className={`${isSelectorOpen ? "" : "border-y-0"} overflow-hidden rounded border border-slate-700 bg-slate-900 transition-[max-height] duration-300 ease-in-out`}
       >
         {platformDetails[1].map((elem) => (
-          <li key={elem.platformId} className="hover:bg-background px-2 py-3">
-            <Link
-              className="inline-block w-full"
-              href={`/platforms/${elem.platformId.toString().startsWith("-") ? elem.platformId.slice(1) : elem.platformId}-${elem.platformName.toLowerCase().replaceAll(" ", "-")}`}
+          <li key={elem.id} className="flex items-center gap-1.5 px-2 py-3">
+            <input
+              type="checkbox"
+              className="peer"
+              name="platforms"
+              defaultChecked={elem.isActive}
+              id={elem.platformName}
+              value={elem.id}
+              onChange={(e) => handleCheckbox(e)}
+            />
+            <label
+              htmlFor={elem.platformName}
+              className="peer-checked:text-foreground text-slate-500"
             >
-              {elem.platformName}{" "}
-              {/*   <span className="text-primary">({elem.games})</span> */}
-            </Link>
+              {elem.platformName}
+            </label>
           </li>
         ))}
       </ul>
@@ -51,4 +75,4 @@ function PlatformsAccordion({ platformDetails, id, curOpen, onOpen }) {
   );
 }
 
-export default PlatformsAccordion;
+export default PlatformsAccordionSettings;

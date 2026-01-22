@@ -1,10 +1,7 @@
 import Link from "next/link";
-import { auth } from "../_lib/auth";
 import { HeartIcon, UserCircleIcon } from "@heroicons/react/24/outline";
 
 async function Header() {
-  const session = await auth();
-
   return (
     <>
       {!session ? null : (
@@ -15,10 +12,10 @@ async function Header() {
             </a>
           </div>
           <div className="text-primary flex items-center gap-3">
-            <Link href="/user/my-wishlist">
+            <Link href="/wishlist">
               <HeartIcon className="text-accent h-7 w-7" />
             </Link>
-            <Link href="/user">
+            {/*             <Link href="/account">
               {session?.user?.image ? (
                 <img
                   src={session?.user?.image}
@@ -29,7 +26,7 @@ async function Header() {
               ) : (
                 <UserCircleIcon className="h-7 w-7"></UserCircleIcon>
               )}
-            </Link>
+            </Link> */}
           </div>
         </header>
       )}

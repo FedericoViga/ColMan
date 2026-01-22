@@ -1,9 +1,7 @@
 import { useEffect } from "react";
-import { deleteGame, deletePlatform } from "../_lib/actions";
+import { deleteGame } from "../_lib/actions";
 import { ExclamationCircleIcon } from "@heroicons/react/24/outline";
 import { TrashIcon } from "@heroicons/react/24/solid";
-import { toast } from "react-hot-toast";
-import { useRouter } from "next/navigation";
 
 function DeleteConfirmationModal({
   deletionTarget,
@@ -12,7 +10,6 @@ function DeleteConfirmationModal({
   onClose,
   onTransition,
 }) {
-  const router = useRouter();
   // rimuove lo scroll quando è aperto il componente
   useEffect(() => {
     if (isOpenModal) document.body.style.overflow = "hidden";
@@ -23,19 +20,8 @@ function DeleteConfirmationModal({
   }, [isOpenModal]);
 
   function confirmedDelete() {
-    if (deletionTarget === "game") {
-      onTransition(deleteGame(targetInfo?.gameId, targetInfo?.gameImages));
-      onClose();
-    }
-    if (deletionTarget === "platform") {
-      onTransition(async () => {
-        const res = await deletePlatform(targetInfo?.platformId);
-        router.replace("/");
-        if (!res.ok) {
-          toast.error(res.error);
-        }
-      });
-    }
+    onTransition(deleteGame(targetInfo?.gameId, targetInfo?.gameImages));
+    onClose();
   }
 
   return (
