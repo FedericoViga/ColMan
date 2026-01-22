@@ -10,7 +10,7 @@ import { createSupabaseServerClient } from "./supabaseServer";
 
 // inserisci gioco
 export async function insertGame(platformsIdAndName, formData) {
-  const supabase = createSupabaseServerClient();
+  const supabase = await createSupabaseServerClient();
   const userId = supabase.auth.getUser()?.id;
 
   if (!userId) throw new Error("Non sei loggato");
@@ -83,7 +83,7 @@ export async function insertGame(platformsIdAndName, formData) {
 }
 
 export async function insertGameInWishlist(_prevState, formData) {
-  const supabase = createSupabaseServerClient();
+  const supabase = await createSupabaseServerClient();
   const userId = supabase.auth.getUser()?.id;
 
   if (!userId) throw new Error("Non sei loggato");
@@ -125,7 +125,7 @@ export async function insertGameInWishlist(_prevState, formData) {
 
 // aggiorna gioco
 export async function updateGame(oldImage, formData) {
-  const supabase = createSupabaseServerClient();
+  const supabase = await createSupabaseServerClient();
   const userId = supabase.auth.getUser()?.id;
 
   if (!userId) throw new Error("Non sei loggato");
@@ -236,7 +236,7 @@ export async function updateGame(oldImage, formData) {
 
 // cancella gioco
 export async function deleteGame(id, images) {
-  const supabase = createSupabaseServerClient();
+  const supabase = await createSupabaseServerClient();
   const userId = supabase.auth.getUser()?.id;
 
   if (!userId) throw new Error("Non sei loggato");
@@ -268,7 +268,7 @@ export async function deleteGame(id, images) {
 }
 
 export async function deleteGameFromWishlist(gameId) {
-  const supabase = createSupabaseServerClient();
+  const supabase = await createSupabaseServerClient();
   const userId = supabase.auth.getUser()?.id;
 
   if (!userId) throw new Error("Non sei loggato");
@@ -286,7 +286,7 @@ export async function deleteGameFromWishlist(gameId) {
 }
 
 export async function updateUserPlatforms(formData) {
-  const supabase = createSupabaseServerClient();
+  const supabase = await createSupabaseServerClient();
   const userId = supabase.auth.getUser()?.id;
 
   if (!userId) throw new Error("Non sei loggato");

@@ -15,7 +15,7 @@ import { createSupabaseServerClient } from "./supabaseServer";
 }; */
 
 export const getAllPlatforms = async function () {
-  const supabase = createSupabaseServerClient();
+  const supabase = await createSupabaseServerClient();
   const userId = supabase.auth.getUser()?.id;
 
   if (!userId) throw new Error("Non sei loggato");
@@ -34,6 +34,11 @@ export const getAllPlatforms = async function () {
 };
 
 export const countGames = async function () {
+  const supabase = await createSupabaseServerClient();
+  const userId = supabase.auth.getUser()?.id;
+
+  if (!userId) throw new Error("Non sei loggato");
+
   const { count, error } = await supabase
     .from("games")
     .select("id", { count: "exact" });
@@ -47,7 +52,7 @@ export const countGames = async function () {
 };
 
 export const getUserPlatforms = async function () {
-  const supabase = createSupabaseServerClient();
+  const supabase = await createSupabaseServerClient();
   const userId = supabase.auth.getUser()?.id;
 
   if (!userId) throw new Error("Non sei loggato");
@@ -66,7 +71,7 @@ export const getUserPlatforms = async function () {
 };
 
 export const getUserPlatformsComplete = async function () {
-  const supabase = createSupabaseServerClient();
+  const supabase = await createSupabaseServerClient();
   const userId = supabase.auth.getUser()?.id;
 
   if (!userId) throw new Error("Non sei loggato");
@@ -92,7 +97,7 @@ export const getUserPlatformsComplete = async function () {
 
 // Conta i giochi per una specifica piattaforma
 export const countGamesByPlatform = async function (platformName) {
-  const supabase = createSupabaseServerClient();
+  const supabase = await createSupabaseServerClient();
   const userId = supabase.auth.getUser()?.id;
 
   if (!userId) throw new Error("Non sei loggato");
@@ -115,7 +120,7 @@ export const countGamesByPlatform = async function (platformName) {
 };
 
 export const countPlatforms = async function () {
-  const supabase = createSupabaseServerClient();
+  const supabase = await createSupabaseServerClient();
   const userId = supabase.auth.getUser()?.id;
 
   if (!userId) throw new Error("Non sei loggato");
@@ -134,7 +139,7 @@ export const countPlatforms = async function () {
 };
 
 export const countCollectors = async function () {
-  const supabase = createSupabaseServerClient();
+  const supabase = await createSupabaseServerClient();
   const userId = supabase.auth.getUser()?.id;
 
   if (!userId) throw new Error("Non sei loggato");
@@ -155,7 +160,7 @@ export const countCollectors = async function () {
 };
 
 export const fetchGames = async function (queryString, platformFilter) {
-  const supabase = createSupabaseServerClient();
+  const supabase = await createSupabaseServerClient();
   const userId = supabase.auth.getUser()?.id;
 
   if (!userId) throw new Error("Non sei loggato");
@@ -194,7 +199,7 @@ export const fetchGames = async function (queryString, platformFilter) {
 };
 
 export async function getFullGame(id, platform) {
-  const supabase = createSupabaseServerClient();
+  const supabase = await createSupabaseServerClient();
   const userId = supabase.auth.getUser()?.id;
 
   if (!userId) throw new Error("Non sei loggato");
@@ -214,6 +219,11 @@ export async function getFullGame(id, platform) {
 }
 
 export async function getFullPlatform(id) {
+  const supabase = await createSupabaseServerClient();
+  const userId = supabase.auth.getUser()?.id;
+
+  if (!userId) throw new Error("Non sei loggato");
+
   const { data, error } = await supabase
     .from("platforms")
     .select("*")
@@ -229,7 +239,7 @@ export async function getFullPlatform(id) {
 }
 
 export async function fetchGamesWithPagination(page, platformFilter) {
-  const supabase = createSupabaseServerClient();
+  const supabase = await createSupabaseServerClient();
   const userId = supabase.auth.getUser()?.id;
 
   if (!userId) throw new Error("Non sei loggato");
@@ -291,7 +301,7 @@ export async function fetchGamesWithPagination(page, platformFilter) {
 }
 
 export async function fetchCollectorsWithPagination(page, platformFilter) {
-  const supabase = createSupabaseServerClient();
+  const supabase = await createSupabaseServerClient();
   const userId = supabase.auth.getUser()?.id;
 
   if (!userId) throw new Error("Non sei loggato");
@@ -359,7 +369,7 @@ export async function fetchCollectorsWithPagination(page, platformFilter) {
 /* WISHLIST */
 
 export async function getMyWishlist() {
-  const supabase = createSupabaseServerClient();
+  const supabase = await createSupabaseServerClient();
   const userId = supabase.auth.getUser()?.id;
 
   if (!userId) throw new Error("Non sei loggato");
@@ -380,7 +390,7 @@ export async function getMyWishlist() {
 }
 
 export async function countWishlistGames() {
-  const supabase = createSupabaseServerClient();
+  const supabase = await createSupabaseServerClient();
   const userId = supabase.auth.getUser()?.id;
 
   if (!userId) throw new Error("Non sei loggato");

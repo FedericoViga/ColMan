@@ -1,10 +1,20 @@
 // middleware.js
 import { NextResponse } from "next/server";
-import { createSupabaseServerClient } from "./app/_lib/supabaseServer";
+import { createServerClient } from "@supabase/ssr";
 
 export async function middleware(req) {
   const res = NextResponse.next();
-  const supabase = createSupabaseServerClient();
+
+  // ⚡ usa req.cookies nel middleware
+  const supabase = createServerClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
+    {
+      cookies: {
+        getAll: () => req.cookies.getAll(), // qui devi passare cookies da req
+      },
+    },
+  );
 
   const {
     data: { session },
@@ -12,13 +22,12 @@ export async function middleware(req) {
 
   const url = req.nextUrl.clone();
 
-  // se sei su /login e sei loggato, vai a "/"
+  // redirect logica
   if (url.pathname === "/login" && session) {
     url.pathname = "/";
     return NextResponse.redirect(url);
   }
 
-  // se non loggato e non sei su login vai a "/login"
   if (url.pathname !== "/login" && !session) {
     url.pathname = "/login";
     return NextResponse.redirect(url);
