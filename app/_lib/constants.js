@@ -12,6 +12,7 @@ export const FLAGS = [
 
 // Testo di default per gioco sigillato
 export const SEALED_TEXT = "Gioco completo sigillato.";
+export const SEALED_COLLECTOR_TEXT = "Collector's Edition completa sigillata.";
 
 // Testo informativo per generazione liste contenuti nel form di crezione gioco
 export const DESCRIPTION_PLACEHOLDER =

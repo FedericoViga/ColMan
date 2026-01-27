@@ -40,7 +40,7 @@ function PlatformsCount({ numPlatforms }) {
 
   return (
     <Link href="/platforms">
-      <div className="flex items-center justify-center gap-1">
+      <div className="flex items-center justify-center gap-1.5">
         <span
           className={`text-accent text-5xl font-bold ${displayProps.minWidth}`}
           ref={countupRef}
