@@ -4,7 +4,8 @@ import ExternalSearchLinks from "./ExternalSearchLinks";
 import { countGamesByPlatform } from "../_lib/data-service";
 
 async function PlatformFullCard({ platformDetails }) {
-  const { id, platformName, platformOwner } = platformDetails;
+  const { id, platformName, platformOwner, lifeCycle, unitsSold } =
+    platformDetails;
   const numGamesByPlatform = await countGamesByPlatform(platformName);
   return (
     <div className="mt-3 mb-10 flex flex-col gap-4">
@@ -35,6 +36,20 @@ async function PlatformFullCard({ platformDetails }) {
         <p className="text-primary">Produttore</p>
         <p className="rounded border border-slate-800 bg-slate-900 p-1.5 text-lg">
           {platformOwner}
+        </p>
+      </div>
+
+      <div>
+        <p className="text-primary">Ciclo di vita</p>
+        <p className="rounded border border-slate-800 bg-slate-900 p-1.5 text-lg">
+          {lifeCycle}
+        </p>
+      </div>
+
+      <div>
+        <p className="text-primary">Unità vendute</p>
+        <p className="rounded border border-slate-800 bg-slate-900 p-1.5 text-lg">
+          {unitsSold}
         </p>
       </div>
 
