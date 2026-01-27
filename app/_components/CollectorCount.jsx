@@ -26,7 +26,7 @@ function CollectorCount({ numCollectors }) {
   // Proprietà componente dinamiche in base al numero di collector's editions
   const formatProps = () => {
     if (numCollectors >= 0 && numCollectors <= 9) {
-      return { initialText: "0", minWidth: "", fontSize: "text-3xl" };
+      return { initialText: "0", minWidth: "", fontSize: "text-[28px]" };
     }
     if (numCollectors >= 10 && numCollectors <= 99) {
       return { initialText: "00", minWidth: "min-w-14", fontSize: "text-2xl" };
