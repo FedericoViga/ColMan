@@ -30,7 +30,7 @@ function GameCard({ game }) {
       href={`/games/${normalizedId}-${normalizedPlatform}`}
       className="w-full px-2"
     >
-      <div className="border-primary flex min-h-48 w-full items-start gap-3 overflow-auto border-t">
+      <div className="flex min-h-48 w-full items-start gap-3 overflow-auto border-t border-slate-600">
         {/* Immagine e nota */}
         <div className="flex flex-col gap-4">
           <div className="aspect relative min-h-32 min-w-32">

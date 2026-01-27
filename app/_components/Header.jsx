@@ -10,7 +10,7 @@ function Header() {
   return (
     <>
       {pathName !== "/login" && (
-        <header className="border-primary container flex items-center justify-between border-b px-4! py-4">
+        <header className="container flex items-center justify-between border-b border-slate-500 px-4! py-4">
           <div>
             <a href="/" className="text-4xl font-bold">
               <h1 className="text-primary">ColMan</h1>

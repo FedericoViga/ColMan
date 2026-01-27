@@ -1,4 +1,5 @@
 import {
+  countCollectors,
   fetchCollectorsWithPagination,
   getUserPlatformsComplete,
 } from "@/app/_lib/data-service";
@@ -17,16 +18,24 @@ async function Page({ searchParams }) {
     pageParams.platform,
   );
   const platforms = await getUserPlatformsComplete();
+  const numCollectors = await countCollectors();
 
   const { gamesWithSignedImages, count } = fetchedGames;
 
   return (
     <div
-      className={`container my-5 flex flex-col gap-1 ${fetchedGames && count !== 0 && "border-primary border-b"}`}
+      className={`container my-5 flex flex-col gap-1 ${fetchedGames && count !== 0 && "border-b border-slate-600"}`}
     >
-      <h1 className="mb-8 text-center text-2xl">
+      <h1 className="mb-7 text-center text-2xl">
         Tutte le Collector&apos;s Editions
       </h1>
+
+      <p className="text-primary mb-7 flex flex-col text-center text-lg">
+        <span>Hai {numCollectors} collector&apos;s editions</span>
+      </p>
+
+      <hr className="mb-4 w-full border-slate-600" />
+
       {count === 0 ? (
         <p className="text-primary my-10 text-center text-lg font-bold tracking-wide">
           Nessuna Collector&apos;s Edition trovata

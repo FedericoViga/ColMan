@@ -122,7 +122,7 @@ function WishListWrapper({ wishlistByPlatforms, platforms }) {
               handleSearchGame={handleSearchGame}
             />
 
-            <div className="border-primary mt-3 mb-8 flex items-baseline justify-between border-b p-3">
+            <div className="mt-3 mb-8 flex items-baseline justify-between border-b border-slate-600 p-3">
               {/* Toggle espandi tutto */}
               <div className="flex items-center gap-2">
                 <div className="relative h-5 w-11">
@@ -140,6 +140,7 @@ function WishListWrapper({ wishlistByPlatforms, platforms }) {
                     className="peer-checked:border-accent absolute top-0 left-0 h-5 w-5 cursor-pointer rounded-full border border-slate-300 bg-white shadow-sm transition-transform duration-300 peer-checked:translate-x-6"
                   ></label>
                 </div>
+
                 <label htmlFor="switch-component" className="text-primary">
                   Espandi tutto
                 </label>
@@ -185,7 +186,7 @@ function WishListWrapper({ wishlistByPlatforms, platforms }) {
             ))}
           </>
         ) : (
-          <p className="text-primary mt-12 text-center text-lg">
+          <p className="mt-12 text-center text-lg text-slate-500">
             Premi il button a forma di cuore in basso a destra per iniziare ad
             aggiungere giochi.
           </p>

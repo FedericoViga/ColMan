@@ -46,7 +46,7 @@ function InsertWishlistGameForm({ platforms, onOpenClose }) {
   return (
     <div className="bg-foreground/10 fixed top-0 right-0 bottom-0 left-0 container flex items-center justify-center backdrop-blur-md">
       <div
-        className={`${selectedPlatform && titleText.length !== 0 ? "border-accent" : "border-primary"} bg-background relative min-w-11/12 rounded border px-3 py-9`}
+        className={`${selectedPlatform && titleText.length !== 0 ? "border-accent" : "border-slate-500"} bg-background relative min-w-11/12 rounded border px-3 py-9`}
         role="dialog"
         aria-modal="true"
         aria-labelledby="wishlist-title"
@@ -98,9 +98,11 @@ function InsertWishlistGameForm({ platforms, onOpenClose }) {
               <div className="flex flex-col gap-1">
                 <span className="text-primary">Piattaforma</span>
                 <div className="flex gap-2 text-xs">
-                  <span className="text-primary">Non vedi la piattaforma?</span>
+                  <span className="text-slate-400">
+                    Non vedi la piattaforma?
+                  </span>
                   <Link
-                    className="underline underline-offset-2"
+                    className="text-slate-300 underline underline-offset-2"
                     href="/settings/my-platforms"
                   >
                     Aggiungila
@@ -152,7 +154,7 @@ function Button({ titleText, selectedPlatform }) {
       {isDisabled ? (
         <div
           aria-hidden="true"
-          className="text-primary border-primary pointer-events-none mt-9 flex w-full justify-center rounded border-2 px-5 py-1"
+          className="pointer-events-none mt-9 flex w-full justify-center rounded border-2 border-slate-400 px-5 py-1 text-slate-400"
         >
           Aggiungi
         </div>

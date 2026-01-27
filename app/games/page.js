@@ -34,30 +34,34 @@ async function Page({ searchParams }) {
 
   return (
     <div
-      className={`container my-5 flex flex-col gap-1 ${fetchedGames && count !== 0 && "border-primary border-b"}`}
+      className={`container my-5 flex flex-col gap-1 ${fetchedGames && count !== 0 && "border-b border-slate-600"}`}
     >
       <h1 className="mb-4 text-center text-2xl">Tutti i giochi</h1>
 
-      {count !== 0 && (
-        <>
-          <p className="text-primary mb-5 flex flex-col text-center text-lg">
-            <span>Hai {numGames} giochi totali</span>
-            <span>{numCollectors} sono collector&apos;s editions</span>
-          </p>
-          <FilterWrapper
-            platforms={platforms}
-            numGamesByPlatform={numGamesByPlatform}
-          />
-        </>
-      )}
+      <div>
+        <p className="text-primary mb-7 flex flex-col text-center text-lg">
+          <span>Hai {numGames} giochi totali</span>
+          <span>{numCollectors} sono collector&apos;s editions</span>
+        </p>
+
+        <FilterWrapper
+          platforms={platforms}
+          numGamesByPlatform={numGamesByPlatform}
+        />
+      </div>
 
       {count === 0 ? (
-        <Link
-          href="/games/insert-game"
-          className="text-accent decoration-accent my-10 text-center font-bold tracking-wide underline underline-offset-2"
-        >
-          Aggiungi un gioco
-        </Link>
+        <div className="flex flex-col gap-2">
+          <p className="text-primary mt-10 text-center text-lg font-bold tracking-wide">
+            Nessuna gioco trovato
+          </p>
+          <Link
+            href="/games/insert-game"
+            className="text-accent decoration-accent text-center font-bold tracking-wide underline underline-offset-2"
+          >
+            Aggiungi un gioco
+          </Link>
+        </div>
       ) : (
         <>
           {gamesWithSignedImages.map((game) => (

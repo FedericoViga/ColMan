@@ -76,7 +76,7 @@ function SearchWrapper({ platforms }) {
         </div>
       </div>
       <hr
-        className={`${isExpanded ? "border-accent" : "border-primary"} w-full`}
+        className={`${isExpanded ? "border-accent" : "border-slate-600"} w-full`}
       />
     </div>
   );

@@ -18,7 +18,7 @@ function FilterWrapper({ platforms, numGamesByPlatform }) {
   return (
     <>
       <div className="mb-3 w-full">
-        <div className="flex items-baseline gap-3">
+        <div className="flex items-baseline gap-3 rounded bg-[#0a0d21] px-2 py-3">
           <span className="text-primary">Piattaforma</span>
 
           <PlatformSelectorButton
@@ -74,7 +74,7 @@ function FilterWrapper({ platforms, numGamesByPlatform }) {
         </div>
       </div>
       <hr
-        className={`${isExpanded ? "border-accent" : "border-primary"} mb-4 w-full`}
+        className={`${isExpanded ? "border-accent" : "border-0"} mb-4 w-full`}
       />
     </>
   );
