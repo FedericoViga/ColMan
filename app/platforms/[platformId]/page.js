@@ -1,6 +1,7 @@
-import PlatformFullCard from "@/app/_components/PlatformFullCard";
-import { getFullPlatform } from "@/app/_lib/data-service";
 import Link from "next/link";
+
+import { getFullPlatform } from "@/app/_lib/data-service";
+import PlatformFullCard from "@/app/_components/PlatformFullCard";
 
 export const metadata = {
   title: "Piattaforma",

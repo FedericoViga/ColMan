@@ -1,12 +1,10 @@
-import PlatformsWrapperSettings from "@/app/_components/PlatformsWrapperSettings";
 import { getAllPlatforms, getUserPlatforms } from "@/app/_lib/data-service";
 import { groupByPlatformOwner } from "@/app/_lib/utils";
+import PlatformsWrapperSettings from "@/app/_components/PlatformsWrapperSettings";
 
 export const metadata = {
   title: "Le mie piattaforme",
 };
-
-export const revalidate = 0;
 
 async function Page() {
   const [globalPlatforms, userPlatforms] = await Promise.all([

@@ -1,10 +1,10 @@
 "use client";
 
+import { useRef, useState } from "react";
 import {
   ClipboardDocumentCheckIcon,
   ClipboardDocumentListIcon,
 } from "@heroicons/react/24/outline";
-import { useRef, useState } from "react";
 
 function CopyButton({ elemRef }) {
   const checkIconRef = useRef(null);

@@ -1,5 +1,5 @@
-import GameFullCard from "@/app/_components/GameFullCard";
 import { getFullGame } from "@/app/_lib/data-service";
+import GameFullCard from "@/app/_components/GameFullCard";
 
 export const metadata = {
   title: "Gioco",

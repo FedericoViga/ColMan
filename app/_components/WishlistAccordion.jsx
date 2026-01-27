@@ -1,8 +1,9 @@
 "use client";
 
 import { useRef } from "react";
-import DeleteWishlistGameButton from "./DeleteWishlistGameButton";
 import { HeartIcon } from "@heroicons/react/24/outline";
+
+import DeleteWishlistGameButton from "./DeleteWishlistGameButton";
 
 function WishlistAccordion({
   platform,
@@ -25,7 +26,7 @@ function WishlistAccordion({
             onOpen(null);
           } else onOpen(accordionId);
         }}
-        className={`${expandAll || isSelectorOpen ? "border-accent rounded border-1" : "border-b border-slate-600"} flex w-full justify-between px-2 py-1 text-lg`}
+        className={`${expandAll || isSelectorOpen ? "border-accent rounded border" : "border-b border-slate-600"} flex w-full justify-between px-2 py-1 text-lg`}
       >
         <div className="flex items-center gap-1.5">
           <HeartIcon
@@ -62,8 +63,15 @@ function WishlistAccordion({
             key={elem.id}
             className="flex w-full items-center justify-between border-b border-slate-600 px-2 py-3 last:border-0"
           >
-            <span className="min-w-0 flex-1 break-words">{elem.gameName}</span>
-            <DeleteWishlistGameButton gameId={elem.id} onDelete={onDelete} />
+            <span className="min-w-0 flex-1 wrap-break-word">
+              {elem.gameName}
+            </span>
+            <DeleteWishlistGameButton
+              gameId={elem.id}
+              onDelete={onDelete}
+              onOpen={onOpen}
+              curOpen={curOpen}
+            />
           </li>
         ))}
       </ul>

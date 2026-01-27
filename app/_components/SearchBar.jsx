@@ -1,8 +1,9 @@
 "use client";
 
+import { useEffect, useRef } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
-import { useEffect, useRef } from "react";
+
 import { textDebounce } from "../_lib/utils";
 
 function SearchBar({ onOpenFilters }) {

@@ -1,32 +1,23 @@
 "use client";
+import { Roboto } from "next/font/google";
 
-import { supabase } from "../_lib/supabaseClient";
+import { signInWithGoogleAction } from "../_lib/actions";
+import GoogleGLogoIcon from "./GoogleGLogoIcon";
+
+const roboto = Roboto({ subsets: ["latin"], weight: ["600"] });
 
 function SigninButton() {
-  const signInWithGoogle = async () => {
-    const { error } = await supabase.auth.signInWithOAuth({
-      provider: "google",
-      options: {
-        redirectTo: `${window.location.origin}/auth/callback`,
-      },
-    });
-
-    if (error) {
-      console.error(error);
-    }
+  const login = async () => {
+    await signInWithGoogleAction();
   };
+
   return (
     <button
-      onClick={signInWithGoogle}
-      className="border-accent flex items-center gap-4 rounded border px-4 py-2 text-lg font-bold"
+      onClick={login}
+      className={`${roboto.className} border-[rgb(211, 207, 201)] mt-4 flex items-center gap-2.5 rounded bg-[#F2F2F2] px-3.5 py-2 font-bold text-[#1F1F1F]`}
     >
-      {/*       <img
-        src="https://authjs.dev/img/providers/google.svg"
-        alt="Logo Google"
-        height="24"
-        width="24"
-      /> */}
-      <span>Continua con Google</span>
+      <GoogleGLogoIcon className="h-6 w-6" />
+      <span>Accedi con Google</span>
     </button>
   );
 }

@@ -1,12 +1,13 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { useRouter } from "next/navigation";
-import { groupByPlatformOwner } from "../_lib/utils";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+
+import { groupByPlatformOwner } from "../_lib/utils";
 import SearchBar from "./SearchBar";
-import PlatformFilterSelectorHome from "./PlatformFilterSelectorHome";
 import PlatformSelectorButton from "./PlatformSelectorButton";
+import PlatformFilterSelectorHome from "./PlatformFilterSelectorHome";
 
 function SearchWrapper({ platforms }) {
   const [curActive, setCurActive] = useState();
@@ -62,12 +63,13 @@ function SearchWrapper({ platforms }) {
             </>
           ) : (
             <p className="text-primary mt-4">
-              Non ci sono ancora piattaforme, prima di creare un gioco devi{" "}
+              Non ci sono ancora piattaforme,{" "}
               <Link
                 className="text-foreground underline underline-offset-2"
-                href="/platforms/insert-platform"
+                href="/settings/my-platforms"
               >
-                creare la sua piattaforma!
+                {" "}
+                aggiungine una.
               </Link>
             </p>
           )}

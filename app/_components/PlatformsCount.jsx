@@ -1,7 +1,7 @@
 "use client";
 
-import Link from "next/link";
 import { useEffect, useRef } from "react";
+import Link from "next/link";
 
 function PlatformsCount({ numPlatforms }) {
   const countupRef = useRef(null);

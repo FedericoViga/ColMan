@@ -1,5 +1,5 @@
-import UpdateGameForm from "@/app/_components/UpdateGameForm";
 import { getFullGame } from "@/app/_lib/data-service";
+import UpdateGameForm from "@/app/_components/UpdateGameForm";
 
 export const metadata = {
   title: "Modifica Gioco",

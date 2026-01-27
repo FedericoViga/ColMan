@@ -22,7 +22,7 @@ function PlatformsAccordionSettings({ platformDetails, id, curOpen, onOpen }) {
   }
 
   return (
-    <div className={`my-8`}>
+    <div className="mb-7">
       <button
         onClick={(e) => {
           e.preventDefault();

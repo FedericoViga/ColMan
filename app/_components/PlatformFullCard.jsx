@@ -1,4 +1,5 @@
 import Link from "next/link";
+
 import ExternalSearchLinks from "./ExternalSearchLinks";
 import { countGamesByPlatform } from "../_lib/data-service";
 
@@ -24,14 +25,14 @@ async function PlatformFullCard({ platformDetails }) {
       </p>
 
       <div>
-        <p className="text-primary text-lg">Piattaforma</p>
+        <p className="text-primary">Piattaforma</p>
         <p className="font rounded border border-slate-800 bg-slate-900 p-1.5 text-lg">
           {platformName}
         </p>
       </div>
 
       <div>
-        <p className="text-primary text-lg">Produttore</p>
+        <p className="text-primary">Produttore</p>
         <p className="rounded border border-slate-800 bg-slate-900 p-1.5 text-lg">
           {platformOwner}
         </p>

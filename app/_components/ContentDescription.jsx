@@ -1,4 +1,5 @@
 import { useRef, useState } from "react";
+
 import CopyButton from "./CopyButton";
 
 function ContentDescription({ description }) {
@@ -29,26 +30,27 @@ function ContentDescription({ description }) {
   }
 
   return (
-    <div className="mt-2.5">
+    <div className="my-3">
       <div>
         <div className="flex justify-between">
           <span className="text-primary text-lg">Contenuto</span>
           <div className="flex justify-center">
             <button
               onClick={handleList}
-              className={`rounded-tl rounded-bl px-2 text-sm ${listView ? "text-foreground border-accent ring-accent border-1 ring-1" : "text-primary border-t border-b border-l"}`}
+              className={`rounded-tl rounded-bl px-2 text-sm ${listView ? "text-foreground border-accent ring-accent border ring-1" : "text-primary border-t border-b border-l"}`}
             >
               Lista
             </button>
             <button
               onClick={handleOriginal}
-              className={`rounded-tr rounded-br px-2 text-sm ${!listView ? "text-foreground border-accent ring-accent border-1 ring-1" : "text-primary border-t border-r border-b"}`}
+              className={`rounded-tr rounded-br px-2 text-sm ${!listView ? "text-foreground border-accent ring-accent border ring-1" : "text-primary border-t border-r border-b"}`}
             >
               Originale
             </button>
           </div>
         </div>
       </div>
+
       {listView ? (
         <>
           <ul

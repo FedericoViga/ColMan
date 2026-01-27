@@ -1,12 +1,13 @@
 "use client";
 
-import { useFormStatus } from "react-dom";
-import { ArrowPathIcon, PencilIcon } from "@heroicons/react/24/solid";
-import { updateGame } from "../_lib/actions";
-import Image from "next/image";
 import { useState } from "react";
-import toast from "react-hot-toast";
+import { useFormStatus } from "react-dom";
+import Image from "next/image";
+import { ArrowPathIcon, PencilIcon } from "@heroicons/react/24/solid";
 import { QuestionMarkCircleIcon } from "@heroicons/react/24/outline";
+import toast from "react-hot-toast";
+
+import { updateGame } from "../_lib/actions";
 import InfoRegion from "./InfoRegion";
 
 function UpdateGameForm({ gameDetails }) {
@@ -22,11 +23,14 @@ function UpdateGameForm({ gameDetails }) {
     platform,
     id,
     gameImages,
+    gameNotes,
   } = gameDetails;
 
   const [nameLength, setNameLength] = useState(gameName.length);
-  //prettier-ignore
-  const [descriptionLength, setDescriptionLength] = useState(contentDescription.length);
+  const [descriptionLength, setDescriptionLength] = useState(
+    contentDescription.length,
+  );
+  const [notesLength, setNotesLength] = useState(gameNotes?.length ?? 0);
 
   async function handleUpdateGame(formData) {
     const res = await updateGame(gameImages, formData);
@@ -205,6 +209,28 @@ function UpdateGameForm({ gameDetails }) {
               maxLength="500"
               required
               onChange={(e) => setDescriptionLength(e.target.value.length)}
+            ></textarea>
+          </div>
+
+          {/* NOTE */}
+          <div className="mt-1.5 flex flex-col gap-1">
+            <div className="flex items-center justify-between">
+              <label className="text-primary text-lg" htmlFor="gameNotes">
+                Note
+              </label>
+
+              <span className="text-primary just text-sm">
+                {notesLength}/300
+              </span>
+            </div>
+            <textarea
+              autoCapitalize="sentences"
+              name="gameNotes"
+              id="gameNotes"
+              defaultValue={gameNotes}
+              className="focus-within:bg-background focus:bg-background placeholder:text-primary/50 focus-within:border-accent focus:ring-accent max-h-44 min-h-20 rounded border border-slate-700 bg-slate-900 p-1.5 text-base focus:placeholder-transparent focus:ring-1 focus:outline-none"
+              maxLength="300"
+              onChange={(e) => setNotesLength(e.target.value.length)}
             ></textarea>
           </div>
 

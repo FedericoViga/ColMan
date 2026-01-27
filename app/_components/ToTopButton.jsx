@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+
 import ArrowUpCircleIconCustom from "./ArrowUpCircleIconCustom";
 
 function ToTopButton({ isOpenInsertGame }) {

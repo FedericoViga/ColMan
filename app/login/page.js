@@ -11,13 +11,13 @@ function Page() {
   return (
     <div className="flex min-h-dvh flex-col items-center justify-center gap-10 text-center">
       <h1 className="text-primary text-5xl font-bold">ColMan</h1>
-      <div className="flex flex-col gap-2 px-5">
+      <div className="text-primary flex flex-col gap-2 px-5">
         <p>
-          ColMan sta per Collection Manager ed è una Single Page Application
-          sviluppata da{" "}
+          ColMan sta per Collection Manager:
+          <br />È una Single Page Application sviluppata da{" "}
           <a
             href="https://portfolio-federico-vigano.vercel.app/"
-            className="text-blue-400 underline underline-offset-3"
+            className="text-accent decoration-accent underline underline-offset-3"
           >
             Federico Viganò
           </a>
@@ -28,7 +28,7 @@ function Page() {
           Maggiori informazioni su{" "}
           <a
             href="https://github.com/FedericoViga/ColMan"
-            className="text-blue-400 underline underline-offset-3"
+            className="text-accent decoration-accent underline underline-offset-3"
           >
             GitHub
           </a>
@@ -39,12 +39,14 @@ function Page() {
         <h2 className="text-primary text-lg font-bold">
           Accedi per visualizzare ColMan
         </h2>
-        <p>Accesso autorizzato solo per uno specifico account Google</p>
+        <p className="text-primary">
+          Accesso autorizzato solo ad uno specifico account Google
+        </p>
         <SigninButton />
       </div>
 
       <span className="text-primary fixed bottom-2">
-        {currentYear} Federico Viganò
+        {currentYear} ColMan by Federico Viganò
       </span>
     </div>
   );

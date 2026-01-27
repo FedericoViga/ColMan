@@ -1,7 +1,7 @@
-// quantità di risultati per pagine con paginazione
+// Quantità di risultati per pagine con paginazione
 export const PAGE_SIZE = 10;
 
-// oggetto per assegnazione dinamica emoji bandiere in base alla regione del gioco
+// Oggetto per assegnazione dinamica emoji bandiere in base alla regione del gioco
 export const FLAGS = [
   { region: "ITA", flag: "🇮🇹" },
   { region: "PAL-ITA", flag: "🇪🇺🇮🇹" },
@@ -10,9 +10,9 @@ export const FLAGS = [
   { region: "NTSC-J", flag: "🇯🇵" },
 ];
 
-// testo di default per gioco sigillato
+// Testo di default per gioco sigillato
 export const SEALED_TEXT = "Gioco completo sigillato.";
 
-// Testo informativo per crezione liste in form di crezione gioco
+// Testo informativo per generazione liste contenuti nel form di crezione gioco
 export const DESCRIPTION_PLACEHOLDER =
   "Scrivi ogni contenuto del gioco seguito da una virgola (manuale, flyer, punti vip) per generare un'anteprima che verrà visualizzata nella pagina del gioco. Puoi vedere la lista generata in tempo reale selezionando Lista.";

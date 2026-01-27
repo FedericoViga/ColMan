@@ -5,7 +5,7 @@ const nextConfig = {
       {
         protocol: "https",
         hostname: "igyqtugipdfweornkjrg.supabase.co",
-        pathname: "/storage/v1/object/public/games-images//**",
+        pathname: "/storage/v1/object/sign/images/users/**",
         port: "",
       },
     ],

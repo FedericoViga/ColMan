@@ -2,10 +2,11 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useActionState } from "react";
 import { useFormStatus } from "react-dom";
-import { groupByPlatformOwner } from "../_lib/utils";
-import { insertGameInWishlist } from "../_lib/actions";
 import { HeartIcon } from "@heroicons/react/24/outline";
 import { XMarkIcon } from "@heroicons/react/24/solid";
+
+import { groupByPlatformOwner } from "../_lib/utils";
+import { insertGameInWishlist } from "../_lib/actions";
 import PlatformSelectorWishlist from "./PlatformSelectorWishlist";
 
 function InsertWishlistGameForm({ platforms, onOpenClose }) {
@@ -125,7 +126,7 @@ function InsertWishlistGameForm({ platforms, onOpenClose }) {
               Non ci sono ancora piattaforme, prima di aggiungere un gioco devi{" "}
               <Link
                 className="text-accent decoration-accent underline underline-offset-2"
-                href="/platforms/insert-platform"
+                href="/settings/my-platforms"
               >
                 aggiungere una piattaforma
               </Link>

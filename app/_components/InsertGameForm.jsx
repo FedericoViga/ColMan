@@ -5,15 +5,15 @@ import { useFormStatus } from "react-dom";
 import Image from "next/image";
 import Link from "next/link";
 
-import PlatformSelector from "./PlatformSelector";
 import { insertGame } from "../_lib/actions";
-import placeholderImage from "@/public/placeholder-font-80-1000x1000.jpg";
 import { groupByPlatformOwner } from "../_lib/utils";
 import { SEALED_TEXT } from "../_lib/constants";
+import InfoRegion from "./InfoRegion";
+import PlatformSelector from "./PlatformSelector";
+import placeholderImage from "@/public/placeholder-font-80-1000x1000.jpg";
 import ContentDescriptionInsert from "./ContentDescriptionInsert";
 import { PencilIcon, PlusIcon } from "@heroicons/react/24/solid";
 import { QuestionMarkCircleIcon } from "@heroicons/react/24/outline";
-import InfoRegion from "./InfoRegion";
 
 function InsertGameForm({ platforms, platformsIdAndName }) {
   const [curActive, setCurActive] = useState();
@@ -21,12 +21,13 @@ function InsertGameForm({ platforms, platformsIdAndName }) {
   const [titleLength, setTitleLength] = useState(0);
   const [isSealedChecked, setSealedChecked] = useState(false);
   const [descriptionValue, setDescriptionValue] = useState("");
+  const [notesValue, setNotesValue] = useState("");
   const [listView, setListView] = useState(false);
   const [isOpenInfo, setIsOpenInfo] = useState(false);
 
   const platformsByOwner = groupByPlatformOwner(platforms, "platformOwner");
 
-  // server action
+  // server action submit
   const insertGameWithData = insertGame.bind(null, platformsIdAndName);
 
   // gestione del testo automatico per gioco sigillato
@@ -209,6 +210,29 @@ function InsertGameForm({ platforms, platformsIdAndName }) {
             onListView={setListView}
           />
 
+          {/* NOTE */}
+          <div className="mt-1.5 flex flex-col gap-1">
+            <div className="flex items-center justify-between">
+              <label className="text-primary text-lg" htmlFor="gameNotes">
+                Note
+              </label>
+
+              <span className="text-primary just text-sm">
+                {notesValue.length}/300
+              </span>
+            </div>
+            <textarea
+              autoCapitalize="sentences"
+              name="gameNotes"
+              id="gameNotes"
+              className="focus-within:bg-background focus:bg-background placeholder:text-primary/50 focus-within:border-accent focus:ring-accent max-h-44 min-h-20 rounded border border-slate-700 bg-slate-900 p-1.5 text-base focus:placeholder-transparent focus:ring-1 focus:outline-none"
+              maxLength="300"
+              onChange={(e) => {
+                setNotesValue(e.target.value);
+              }}
+            ></textarea>
+          </div>
+
           {/* PIATTAFORMA */}
           {platforms.length !== 0 ? (
             <div>
@@ -239,9 +263,11 @@ function InsertGameForm({ platforms, platformsIdAndName }) {
             </>
           )}
 
-          <div className="mt-5 flex items-center justify-center gap-1">
-            <Button onListView={setListView}>Crea gioco</Button>
-          </div>
+          {platformsIdAndName.length > 0 && (
+            <div className="mt-5 flex items-center justify-center gap-1">
+              <Button onListView={setListView}>Crea gioco</Button>
+            </div>
+          )}
         </div>
       </form>
     </div>

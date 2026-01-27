@@ -1,5 +1,5 @@
-import { XMarkIcon } from "@heroicons/react/24/solid";
 import { useEffect } from "react";
+import { XMarkIcon } from "@heroicons/react/24/solid";
 
 function InfoRegion({ onOpenClose }) {
   // rimuove lo scroll quando è aperto il componente

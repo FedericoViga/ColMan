@@ -1,6 +1,7 @@
 import { ArrowTopRightOnSquareIcon } from "@heroicons/react/24/outline";
-import EbayLogoIcon from "./EbayLogoIcon";
+
 import GoogleLogoIcon from "./GoogleLogoIcon";
+import EbayLogoIcon from "./EbayLogoIcon";
 import DoesItPlayLogoIcon from "./DoesItPlayLogoIcon";
 
 function ExternalSearchLinks({

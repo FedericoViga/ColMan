@@ -42,7 +42,7 @@ function PlatformsAccordion({ platformDetails, id, curOpen, onOpen }) {
               href={`/platforms/${elem.platformId.toString().startsWith("-") ? elem.platformId.slice(1) : elem.platformId}-${elem.platformName.toLowerCase().replaceAll(" ", "-")}`}
             >
               {elem.platformName}{" "}
-              {/*   <span className="text-primary">({elem.games})</span> */}
+              <span className="text-slate-500">({elem.games})</span>
             </Link>
           </li>
         ))}

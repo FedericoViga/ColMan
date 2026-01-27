@@ -1,9 +1,11 @@
 "use client";
 
 import { useRef, useState } from "react";
+import Link from "next/link";
+
+import PlatformSelectorButton from "./PlatformSelectorButton";
 import PlatformFilterSelectorPagination from "./PlatformFilterSelectorPagination";
 import { groupByPlatformOwner } from "../_lib/utils";
-import PlatformSelectorButton from "./PlatformSelectorButton";
 
 function FilterWrapper({ platforms, numGamesByPlatform }) {
   const [curActive, setCurActive] = useState();

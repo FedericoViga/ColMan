@@ -1,8 +1,17 @@
 import { PAGE_SIZE } from "./constants";
-import { createSupabaseServerClient } from "./supabaseServer";
+import { createClient } from "./supabase/server";
 
 // Raggruppa e conta i giochi per ogni piattaforma con una funzione SQL
-/* export const numGamesByPlatform = async function () {
+export const numGamesByPlatform = async function () {
+  const supabase = await createClient();
+
+  const {
+    data: { user },
+    error: userError,
+  } = await supabase.auth.getUser();
+
+  if (userError || !user) throw new Error("Utente non autenticato");
+
   const { data, error } = await supabase.rpc("count_games_by_platform");
 
   if (error) {
@@ -12,13 +21,18 @@ import { createSupabaseServerClient } from "./supabaseServer";
     );
   }
   return data;
-}; */
+};
 
+// read tutte le piattaforme globali
 export const getAllPlatforms = async function () {
-  const supabase = await createSupabaseServerClient();
-  const userId = await supabase.auth.getUser()?.id;
+  const supabase = await createClient();
 
-  if (!userId) throw new Error("Non sei loggato");
+  const {
+    data: { user },
+    error: userError,
+  } = await supabase.auth.getUser();
+
+  if (userError || !user) throw new Error("Utente non autenticato");
 
   const { data, error } = await supabase
     .from("platforms")
@@ -33,11 +47,16 @@ export const getAllPlatforms = async function () {
   return data;
 };
 
+// count giochi utente
 export const countGames = async function () {
-  const supabase = await createSupabaseServerClient();
-  const userId = await supabase.auth.getUser()?.id;
+  const supabase = await createClient();
 
-  if (!userId) throw new Error("Non sei loggato");
+  const {
+    data: { user },
+    error: userError,
+  } = await supabase.auth.getUser();
+
+  if (userError || !user) throw new Error("Utente non autenticato");
 
   const { count, error } = await supabase
     .from("games")
@@ -51,16 +70,20 @@ export const countGames = async function () {
   return count;
 };
 
+// read tutte le piattaforme utente
 export const getUserPlatforms = async function () {
-  const supabase = await createSupabaseServerClient();
-  const userId = await supabase.auth.getUser()?.id;
+  const supabase = await createClient();
 
-  if (!userId) throw new Error("Non sei loggato");
+  const {
+    data: { user },
+    error: userError,
+  } = await supabase.auth.getUser();
+
+  if (userError || !user) throw new Error("Utente non autenticato");
 
   const { data, error } = await supabase
     .from("userPlatforms")
-    .select("userId, platformId")
-    .eq("userId", userId);
+    .select("userId, platformId");
 
   if (error) {
     console.log(error);
@@ -70,16 +93,20 @@ export const getUserPlatforms = async function () {
   return data;
 };
 
+// read tutte le piattaforme utente complete
 export const getUserPlatformsComplete = async function () {
-  const supabase = await createSupabaseServerClient();
-  const userId = await supabase.auth.getUser()?.id;
+  const supabase = await createClient(); // se sevrve lo userId bisogna passare i cookies
 
-  if (!userId) throw new Error("Non sei loggato");
+  const {
+    data: { user },
+    error: userError,
+  } = await supabase.auth.getUser();
+
+  if (userError || !user) throw new Error("Utente non autenticato");
 
   const { data, error } = await supabase
     .from("userPlatforms")
-    .select("platformId, platforms(platformName, platformOwner)")
-    .eq("userId", userId);
+    .select("platformId, platforms(platformName, platformOwner)");
 
   if (error) {
     console.log(error);
@@ -95,12 +122,16 @@ export const getUserPlatformsComplete = async function () {
   return formattedPlatforms;
 };
 
-// Conta i giochi per una specifica piattaforma
+// count giochi per una specifica piattaforma
 export const countGamesByPlatform = async function (platformName) {
-  const supabase = await createSupabaseServerClient();
-  const userId = await supabase.auth.getUser()?.id;
+  const supabase = await createClient();
 
-  if (!userId) throw new Error("Non sei loggato");
+  const {
+    data: { user },
+    error: userError,
+  } = await supabase.auth.getUser();
+
+  if (userError || !user) throw new Error("Utente non autenticato");
 
   if (!platformName || platformName === "all") return 0;
 
@@ -119,16 +150,20 @@ export const countGamesByPlatform = async function (platformName) {
   return count;
 };
 
+// count piattafrome utente
 export const countPlatforms = async function () {
-  const supabase = await createSupabaseServerClient();
-  const userId = await supabase.auth.getUser()?.id;
+  const supabase = await createClient();
 
-  if (!userId) throw new Error("Non sei loggato");
+  const {
+    data: { user },
+    error: userError,
+  } = await supabase.auth.getUser();
+
+  if (userError || !user) throw new Error("Utente non autenticato");
 
   const { count, error } = await supabase
     .from("userPlatforms")
-    .select("platformId", { count: "exact" })
-    .eq("userId", userId);
+    .select("platformId", { count: "exact" });
 
   if (error) {
     console.log(error);
@@ -138,11 +173,16 @@ export const countPlatforms = async function () {
   return count;
 };
 
+// count collectors utente
 export const countCollectors = async function () {
-  const supabase = await createSupabaseServerClient();
-  const userId = await supabase.auth.getUser()?.id;
+  const supabase = await createClient();
 
-  if (!userId) throw new Error("Non sei loggato");
+  const {
+    data: { user },
+    error: userError,
+  } = await supabase.auth.getUser();
+
+  if (userError || !user) throw new Error("Utente non autenticato");
 
   const { count, error } = await supabase
     .from("games")
@@ -159,12 +199,17 @@ export const countCollectors = async function () {
   return count;
 };
 
+// read giochi cercati
 export const fetchGames = async function (queryString, platformFilter) {
-  const supabase = await createSupabaseServerClient();
-  const userId = await supabase.auth.getUser()?.id;
-
-  if (!userId) throw new Error("Non sei loggato");
   if (!queryString) return;
+  const supabase = await createClient();
+
+  const {
+    data: { user },
+    error: userError,
+  } = await supabase.auth.getUser();
+
+  if (userError || !user) throw new Error("Utente non autenticato");
 
   if (platformFilter === "all" || platformFilter === undefined) {
     const { data, error } = await supabase
@@ -178,7 +223,31 @@ export const fetchGames = async function (queryString, platformFilter) {
       throw new Error("Non è stato possibile scaricare la lista dei giochi");
     }
 
-    return data;
+    // Signed Url immagini
+    const gamesWithSignedImages = await Promise.all(
+      data.map(async (game) => {
+        const { gameImages } = game;
+
+        const { data: signedGameImage, error: signedImageError } =
+          await supabase.storage
+            .from(`images/users/${user.id}`)
+            .createSignedUrl(gameImages, 180);
+
+        if (signedImageError) {
+          console.log(signedImageError);
+          throw new Error(
+            "Non è stato possibile scaricare l'immagine del gioco",
+          );
+        }
+
+        return {
+          ...game,
+          gameImages: signedGameImage.signedUrl,
+        };
+      }),
+    );
+
+    return gamesWithSignedImages;
   } else {
     const { data, error } = await supabase
       .from("games")
@@ -194,15 +263,44 @@ export const fetchGames = async function (queryString, platformFilter) {
       );
     }
 
-    return data;
+    const gamesWithSignedImages = await Promise.all(
+      data.map(async (game) => {
+        const { gameImages } = game;
+
+        const { data: signedGameImage, error: signedImageError } =
+          await supabase.storage
+            .from(`images/users/${user.id}`)
+            .createSignedUrl(gameImages, 180);
+
+        if (signedImageError) {
+          console.log(signedImageError);
+          throw new Error(
+            "Non è stato possibile scaricare l'immagine del gioco",
+          );
+        }
+
+        return {
+          ...game,
+          gameImages: signedGameImage.signedUrl,
+        };
+      }),
+    );
+
+    return gamesWithSignedImages;
   }
 };
 
+// read gioco completo
 export async function getFullGame(id, platform) {
-  const supabase = await createSupabaseServerClient();
-  const userId = await supabase.auth.getUser()?.id;
+  const supabase = await createClient();
 
-  if (!userId) throw new Error("Non sei loggato");
+  const {
+    data: { user },
+    error: userError,
+  } = await supabase.auth.getUser();
+
+  if (userError || !user) throw new Error("Utente non autenticato");
+
   const { data, error } = await supabase
     .from("games")
     .select("*")
@@ -215,14 +313,32 @@ export async function getFullGame(id, platform) {
     throw new Error("Non è stato possibile caricare i dettagli del gioco");
   }
 
-  return data;
+  // Signed Url immagini
+  const { gameImages } = data;
+
+  const { data: signedGameImage, error: signedImageError } =
+    await supabase.storage
+      .from(`images/users/${user.id}`)
+      .createSignedUrl(gameImages, 180);
+
+  if (signedImageError) {
+    console.log(signedImageError);
+    throw new Error("Non è stato possibile scaricare l'immagine del gioco");
+  }
+
+  return { ...data, gameImages: signedGameImage.signedUrl };
 }
 
+// read piattaforma globale completa
 export async function getFullPlatform(id) {
-  const supabase = await createSupabaseServerClient();
-  const userId = await supabase.auth.getUser()?.id;
+  const supabase = await createClient();
 
-  if (!userId) throw new Error("Non sei loggato");
+  const {
+    data: { user },
+    error: userError,
+  } = await supabase.auth.getUser();
+
+  if (userError || !user) throw new Error("Utente non autenticato");
 
   const { data, error } = await supabase
     .from("platforms")
@@ -238,11 +354,16 @@ export async function getFullPlatform(id) {
   return data;
 }
 
+// read giochi utente per paginazione
 export async function fetchGamesWithPagination(page, platformFilter) {
-  const supabase = await createSupabaseServerClient();
-  const userId = await supabase.auth.getUser()?.id;
+  const supabase = await createClient();
 
-  if (!userId) throw new Error("Non sei loggato");
+  const {
+    data: { user },
+    error: userError,
+  } = await supabase.auth.getUser();
+
+  if (userError || !user) throw new Error("Utente non autenticato");
 
   // se non c'è il param platfom o se è "all" li fetcha tutti
   if (platformFilter === undefined || platformFilter === "all") {
@@ -268,7 +389,31 @@ export async function fetchGamesWithPagination(page, platformFilter) {
       console.log(error);
     }
 
-    return { data, count };
+    // Signed Url immagini
+    const gamesWithSignedImages = await Promise.all(
+      data.map(async (game) => {
+        const { gameImages } = game;
+
+        const { data: signedGameImage, error: signedImageError } =
+          await supabase.storage
+            .from(`images/users/${user.id}`)
+            .createSignedUrl(gameImages, 180);
+
+        if (signedImageError) {
+          console.log(signedImageError);
+          throw new Error(
+            "Non è stato possibile scaricare l'immagine del gioco",
+          );
+        }
+
+        return {
+          ...game,
+          gameImages: signedGameImage.signedUrl,
+        };
+      }),
+    );
+
+    return { gamesWithSignedImages, count };
   } else {
     // se c'è il filtro piattaforma fetcha solo quelli del filtro
     let queryWithPlatform = supabase
@@ -296,15 +441,44 @@ export async function fetchGamesWithPagination(page, platformFilter) {
       console.log(error);
     }
 
-    return { data, count };
+    // Signed Url immagini
+    const gamesWithSignedImages = await Promise.all(
+      data.map(async (game) => {
+        const { gameImages } = game;
+
+        const { data: signedGameImage, error: signedImageError } =
+          await supabase.storage
+            .from(`images/users/${user.id}`)
+            .createSignedUrl(gameImages, 180);
+
+        if (signedImageError) {
+          console.log(signedImageError);
+          throw new Error(
+            "Non è stato possibile scaricare l'immagine del gioco",
+          );
+        }
+
+        return {
+          ...game,
+          gameImages: signedGameImage.signedUrl,
+        };
+      }),
+    );
+
+    return { gamesWithSignedImages, count };
   }
 }
 
+// read collectors per paginazione
 export async function fetchCollectorsWithPagination(page, platformFilter) {
-  const supabase = await createSupabaseServerClient();
-  const userId = await supabase.auth.getUser()?.id;
+  const supabase = await createClient();
 
-  if (!userId) throw new Error("Non sei loggato");
+  const {
+    data: { user },
+    error: userError,
+  } = await supabase.auth.getUser();
+
+  if (userError || !user) throw new Error("Utente non autenticato");
 
   // se non c'è il param platfom o se è "all" li fetcha tutti
   if (platformFilter === undefined || platformFilter === "all") {
@@ -333,7 +507,31 @@ export async function fetchCollectorsWithPagination(page, platformFilter) {
       console.log(error);
     }
 
-    return { data, count };
+    // Signed Url immagini
+    const gamesWithSignedImages = await Promise.all(
+      data.map(async (game) => {
+        const { gameImages } = game;
+
+        const { data: signedGameImage, error: signedImageError } =
+          await supabase.storage
+            .from(`images/users/${user.id}`)
+            .createSignedUrl(gameImages, 180);
+
+        if (signedImageError) {
+          console.log(signedImageError);
+          throw new Error(
+            "Non è stato possibile scaricare l'immagine del gioco",
+          );
+        }
+
+        return {
+          ...game,
+          gameImages: signedGameImage.signedUrl,
+        };
+      }),
+    );
+
+    return { gamesWithSignedImages, count };
   } else {
     // se c'è il filtro piattaforma fetcha solo quelli del filtro
     let queryWithPlatform = supabase
@@ -362,22 +560,50 @@ export async function fetchCollectorsWithPagination(page, platformFilter) {
       console.log(error);
     }
 
-    return { data, count };
+    // Signed Url immagini
+    const gamesWithSignedImages = await Promise.all(
+      data.map(async (game) => {
+        const { gameImages } = game;
+
+        const { data: signedGameImage, error: signedImageError } =
+          await supabase.storage
+            .from(`images/users/${user.id}`)
+            .createSignedUrl(gameImages, 180);
+
+        if (signedImageError) {
+          console.log(signedImageError);
+          throw new Error(
+            "Non è stato possibile scaricare l'immagine del gioco",
+          );
+        }
+
+        return {
+          ...game,
+          gameImages: signedGameImage.signedUrl,
+        };
+      }),
+    );
+
+    return { gamesWithSignedImages, count };
   }
 }
 
 /* WISHLIST */
 
+// read wishlist utente
 export async function getMyWishlist() {
-  const supabase = await createSupabaseServerClient();
-  const userId = await supabase.auth.getUser()?.id;
+  const supabase = await createClient();
 
-  if (!userId) throw new Error("Non sei loggato");
+  const {
+    data: { user },
+    error: userError,
+  } = await supabase.auth.getUser();
+
+  if (userError || !user) throw new Error("Utente non autenticato");
 
   const { data, error } = await supabase
     .from("wishlist")
     .select("id, gameName, platformId, platforms(platformName)")
-    .eq("userId", userId)
     .order("platforms(platformName)", { ascending: true })
     .order("gameName", { ascending: true });
 
@@ -389,16 +615,20 @@ export async function getMyWishlist() {
   return data;
 }
 
+// count giochi in wishlist utente
 export async function countWishlistGames() {
-  const supabase = await createSupabaseServerClient();
-  const userId = await supabase.auth.getUser()?.id;
+  const supabase = await createClient();
 
-  if (!userId) throw new Error("Non sei loggato");
+  const {
+    data: { user },
+    error: userError,
+  } = await supabase.auth.getUser();
+
+  if (userError || !user) throw new Error("Utente non autenticato");
 
   const { count, error } = await supabase
     .from("wishlist")
-    .select("id", { count: "exact" })
-    .eq("userId", userId);
+    .select("id", { count: "exact" });
 
   if (error) {
     console.log(error);

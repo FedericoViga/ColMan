@@ -1,22 +1,20 @@
 // app/api/downloadCsv/route.js
-/* import { auth } from "@/app/_lib/auth";
-import { createClient } from "@supabase/supabase-js";
+import { createClient } from "@/app/_lib/supabase/server";
 import Papa from "papaparse";
 
-const supabase = createClient(
-  process.env.SUPABASE_URL,
-  process.env.SUPABASE_KEY,
-);
-
 export async function GET() {
-  const session = await auth();
-  if (!session) throw new Error("Non autorizzato");
+  const supabase = await createClient();
 
-  // ID HARDCODED PER SVILUPPO, finchè non ci sarà l'auth completa
+  const {
+    data: { user },
+    error: userError,
+  } = await supabase.auth.getUser();
+
+  if (userError || !user) throw new Error("Utente non autenticato");
+
   const { data, error } = await supabase
     .from("wishlist")
     .select("platforms(platformName), gameName")
-    .eq("userId", 1)
     .order("platforms(platformName)", { ascending: true })
     .order("gameName", { ascending: true });
 
@@ -44,4 +42,3 @@ export async function GET() {
     },
   });
 }
- */

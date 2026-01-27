@@ -7,6 +7,7 @@ const PressStart2P = Press_Start_2P({
   weight: ["400"],
   subsets: ["latin"],
   adjustFontFallback: false,
+  preload: false,
 });
 
 function NotFound() {

@@ -1,14 +1,15 @@
 "use client";
 
 import { useEffect, useOptimistic, useRef, useState } from "react";
-import { deleteGameFromWishlist } from "../_lib/actions";
-import AddToWishlistButton from "./AddToWishlistButton";
-import WishlistAccordion from "./WishlistAccordion";
-import InsertWishlistGameForm from "./InsertWishlistGameForm";
-import DownloadWishlistButton from "./DownloadWishlistButton";
-import ToTopButton from "./ToTopButton";
-import WishlistSearchBar from "./WishlistSearchBar";
 import { XMarkIcon } from "@heroicons/react/24/solid";
+
+import { deleteGameFromWishlist } from "../_lib/actions";
+import WishlistSearchBar from "./WishlistSearchBar";
+import DownloadWishlistButton from "./DownloadWishlistButton";
+import WishlistAccordion from "./WishlistAccordion";
+import AddToWishlistButton from "./AddToWishlistButton";
+import InsertWishlistGameForm from "./InsertWishlistGameForm";
+import ToTopButton from "./ToTopButton";
 
 function WishListWrapper({ wishlistByPlatforms, platforms }) {
   const [isOpenInsertGame, setIsOpenInsertGame] = useState(false);
@@ -18,9 +19,10 @@ function WishListWrapper({ wishlistByPlatforms, platforms }) {
   const [searchedWishlist, setSearchedWishlist] = useState([]); // array dei risultati di ricerca
   const [searchedGameDisplay, setSearchedGameDisplay] = useState(""); // testo ricerca gioco mostrato dopo aver premuto il button per cercare
   const [gameNotFound, setGameNotFound] = useState(false);
+  const searchRef = useRef(null);
 
-  // lo useOptimistic cambia l'array usato se ci sono o no risultati di ricerca
-  // se ci sono risultati usa l'array searchedWishlist
+  // useOptimistic cambia l'array usato se ci sono o no risultati di ricerca:
+  // se ci sono risultati, usa l'array searchedWishlist
   // altrimenti usa l'array orignale wishlistByPlatforms da Supabase
   const [optimisticPlatforms, optimisticDelete] = useOptimistic(
     searchedWishlist.length > 0 ? searchedWishlist : wishlistByPlatforms,
@@ -33,7 +35,6 @@ function WishListWrapper({ wishlistByPlatforms, platforms }) {
         .filter((platform) => platform.games.length > 0); // toglie anche la piattaforma se ha 0 giochi
     },
   );
-  const searchRef = useRef(null);
 
   async function handleDelete(gameId) {
     setGameNotFound(false);
@@ -62,7 +63,7 @@ function WishListWrapper({ wishlistByPlatforms, platforms }) {
     setCurOpen(null);
     setSearchedGameDisplay(searchGame);
 
-    // filtra i giochi in base al testo di ricerca
+    // Filtra i giochi in base al testo di ricerca
     const filteredWishlistBySearch = wishlistByPlatforms
       .map((platform) => {
         const filteredGames = platform.games.filter((game) =>
@@ -80,22 +81,23 @@ function WishListWrapper({ wishlistByPlatforms, platforms }) {
     setSearchGame("");
   }
 
-  // avvia ricerca premendo enter e nasconde la tastiera virtuale da mobile
+  // Avvia ricerca premendo enter e nasconde la tastiera virtuale da mobile
   useEffect(() => {
-    const handleKeyDown = (e) => {
-      if (e.key === "Enter") {
-        searchRef.current.blur();
-        handleSearchGame();
-      }
-    };
+    if (searchRef.current) {
+      const handleKeyDown = (e) => {
+        if (e.key === "Enter") {
+          searchRef.current.blur();
+          handleSearchGame();
+        }
+      };
 
-    const input = searchRef.current;
-    input.addEventListener("keydown", handleKeyDown);
+      const input = searchRef.current;
+      input.addEventListener("keydown", handleKeyDown);
 
-    // Cleanup function
-    return () => {
-      input.removeEventListener("keydown", handleKeyDown);
-    };
+      return () => {
+        input.removeEventListener("keydown", handleKeyDown);
+      };
+    }
   }, [handleSearchGame]);
 
   return (
@@ -163,7 +165,7 @@ function WishListWrapper({ wishlistByPlatforms, platforms }) {
                   <XMarkIcon className="h-5 w-5" />
                 </button>
 
-                <p className="text-primary min-w-0 flex-1 break-words">
+                <p className="text-primary min-w-0 flex-1 wrap-break-word">
                   {searchedGameDisplay}
                 </p>
               </div>

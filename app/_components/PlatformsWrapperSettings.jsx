@@ -1,11 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import PlatformsAccordionSettings from "./PlatformsAccordionSettings";
-import { globalAndUserPlatformsCombined } from "../_lib/utils";
-import { updateUserPlatforms } from "../_lib/actions";
 import { useFormStatus } from "react-dom";
 import { ArrowPathIcon } from "@heroicons/react/24/outline";
+
+import { globalAndUserPlatformsCombined } from "../_lib/utils";
+import { updateUserPlatforms } from "../_lib/actions";
+import PlatformsAccordionSettings from "./PlatformsAccordionSettings";
 
 function PlatformsWrapperSettings({ globalPlatformsByOwner, userPlatforms }) {
   const globalAndUserPlatforms = globalAndUserPlatformsCombined(
@@ -21,13 +22,14 @@ function PlatformsWrapperSettings({ globalPlatformsByOwner, userPlatforms }) {
           Lista piattaforme
         </p>
         <p className="text-primary text-center">
-          Seleziona le tue piattaforme, così potrai aggiungere nuovi giochi per
-          quella piattaforma e giochi alla tua wishlist.
+          Aggiungi o rimuovi piattaforme, così potrai aggiungere nuovi giochi
+          per le relative piattaforme, filtri e giochi alla tua wishlist.
         </p>
-        <p className="text-center text-slate-500">
+        <p className="border-b pt-3 pb-5 text-center text-slate-500">
           Puoi cambiarle in qualsiasi momento
         </p>
         <form action={updateUserPlatforms}>
+          <p className="mt-7 mb-4 text-sm text-slate-500">Ordine alfabetico</p>
           {globalAndUserPlatforms.map((platform, i) => (
             <PlatformsAccordionSettings
               platformDetails={platform}

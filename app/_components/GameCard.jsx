@@ -1,5 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
+import { ChatBubbleLeftEllipsisIcon } from "@heroicons/react/24/outline";
+
 import placeholderImageSmall from "@/public/placeholder-400x400.png";
 import { FLAGS } from "../_lib/constants";
 
@@ -13,6 +15,7 @@ function GameCard({ game }) {
     platform,
     id,
     gameImages,
+    gameNotes,
   } = game;
 
   // elimina "-" al'inizio della stringa nel caso che Supabase metta l'id signed negativo
@@ -28,16 +31,26 @@ function GameCard({ game }) {
       className="w-full px-2"
     >
       <div className="border-primary flex min-h-48 w-full items-start gap-3 overflow-auto border-t">
-        <div className="aspect relative min-h-32 min-w-32">
-          <Image
-            src={gameImages ? gameImages : placeholderImageSmall}
-            className="mt-3.5 rounded object-cover"
-            alt={gameName}
-            fill
-          />
+        {/* Immagine e nota */}
+        <div className="flex flex-col gap-4">
+          <div className="aspect relative min-h-32 min-w-32">
+            <Image
+              src={gameImages ? gameImages : placeholderImageSmall}
+              className="mt-3.5 rounded object-cover"
+              alt={gameName}
+              fill
+            />
+          </div>
+          {gameNotes && (
+            <div className="text-primary flex items-center gap-1">
+              <span className="text-sm">Note</span>
+              <ChatBubbleLeftEllipsisIcon className="h-3 w-3" />
+            </div>
+          )}
         </div>
 
         <div className="mt-3.5 flex flex-1 flex-col leading-normal">
+          {/* Badges */}
           <div className="flex flex-wrap gap-1.5">
             {isCollector !== null && (
               <span className="max-w-fit rounded bg-yellow-900 px-1 py-0.5 text-xs text-yellow-300">
@@ -58,14 +71,15 @@ function GameCard({ game }) {
             )}
           </div>
 
-          <div>
-            <h5 className="my-1.5 text-lg font-bold">{gameName}</h5>
-          </div>
+          {/* Titolo */}
+          <h5 className="my-1.5 text-lg font-bold">{gameName}</h5>
 
+          {/* Regione */}
           <p className="text-primary my-1.5 font-normal dark:text-gray-400">
             {`${gameRegion} ${flag}`}
           </p>
 
+          {/* Piattaforma */}
           <span className="mb-3">{platform}</span>
         </div>
       </div>

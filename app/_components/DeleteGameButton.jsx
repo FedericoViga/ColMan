@@ -1,11 +1,12 @@
 "use client";
 
-import { TrashIcon } from "@heroicons/react/24/solid";
 import { useEffect, useState, useTransition } from "react";
-import DeleteLoader from "./DeleteLoader";
-import DeleteConfirmationModal from "./DeleteConfirmationModal";
+import { TrashIcon } from "@heroicons/react/24/solid";
 
-function DeleteGameButton({ gameId, gameName, gameImages }) {
+import DeleteConfirmationModal from "./DeleteConfirmationModal";
+import DeleteLoader from "./DeleteLoader";
+
+function DeleteGameButton({ gameId, gameName }) {
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [isPending, startTransition] = useTransition();
 
@@ -36,7 +37,7 @@ function DeleteGameButton({ gameId, gameName, gameImages }) {
               isOpenModal={isOpenModal}
               isPending={isPending}
               onTransition={startTransition}
-              targetInfo={{ gameId, gameName, gameImages }}
+              targetInfo={{ gameId, gameName }}
             />
           )}
         </>

@@ -41,14 +41,14 @@ function ContentDescriptionInsert({
           <div className="flex justify-center">
             <button
               onClick={(e) => handleList(e)}
-              className={`rounded-tl rounded-bl px-2 text-sm ${listView ? "text-foreground border-accent ring-accent border-1 ring-1" : "text-primary border-t border-b border-l"}`}
+              className={`rounded-tl rounded-bl px-2 text-sm ${listView ? "text-foreground border-accent ring-accent border ring-1" : "text-primary border-t border-b border-l"}`}
             >
               Lista
             </button>
 
             <button
               onClick={(e) => handleOriginal(e)}
-              className={`rounded-tr rounded-br px-2 text-sm ${!listView ? "text-foreground border-accent ring-accent border-1 ring-1" : "text-primary border-t border-r border-b"}`}
+              className={`rounded-tr rounded-br px-2 text-sm ${!listView ? "text-foreground border-accent ring-accent border ring-1" : "text-primary border-t border-r border-b"}`}
             >
               Testo
             </button>
@@ -66,7 +66,7 @@ function ContentDescriptionInsert({
         <>
           {/* se non c'è testo renderizza le informazioni */}
           {textToList.length === 1 && textToList[0] === "" && (
-            <p className="text-primary mt-1.5 h-[158px] rounded border border-slate-800 bg-slate-900 p-3 text-base">
+            <p className="text-primary mt-1.5 h-39.5 rounded border border-slate-800 bg-slate-900 p-3 text-base">
               Seleziona Testo e scrivi ogni contenuto del gioco{" "}
               <span className="text-foreground font-semibold">
                 separato da una virgola

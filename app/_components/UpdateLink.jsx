@@ -1,5 +1,5 @@
-import { PencilSquareIcon } from "@heroicons/react/24/solid";
 import Link from "next/link";
+import { PencilSquareIcon } from "@heroicons/react/24/solid";
 
 function UpdateLink({ text = "Modifica", linkHref }) {
   return (

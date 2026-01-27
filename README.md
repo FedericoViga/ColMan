@@ -3,13 +3,17 @@
   <h1>ColMan</h1>
 
 </div>
-<p>Colman sta per "Collection Manager", è una Single Page Application full-stack (React/Next.Js e Supabase) per smartphone che uso regolarmente per gestire la mia collezione di videogiochi in modo rapido.<br>
+<p>Colman sta per "Collection Manager": è una Single Page Web Application full-stack per smartphone che uso regolarmente per gestire la mia collezione di videogiochi in modo rapido.<br>
 
-Si possono inserire/modificare/eliminare giochi e piattaforme direttamente nel database di Supabase (PostgreSQL), scattando la foto sul momento oppure selezionandola dalla galleria del telefono e compilando una vera e propria "scheda prodotto" con le informazioni del gioco o della piattaforma.<br>
+Si possono inserire/modificare/eliminare giochi e piattaforme direttamente nel database di Supabase (PostgreSQL), scattando la foto sul momento o selezionandola dalla galleria del telefono e compilando una vera e propria "scheda gioco" con le informazioni del gioco.<br>
+
+C'è anche una **Wishlist** completa con funzioni di aggiunta/eliminazione istantanea dei giochi e funzione di ricerca.<br>
+
+**Privacy e sicurezza**: l'intera app è accessibile solo ad utenti autorizzati e autenticati con Google OAuth (in futuro aggiungerò anche login via email/password), tutte le immagini degli utenti autenticati hanno url firmati e tutte le operazioni CRUD sono vincolate dalle rls policies di Supabase solo per gli utenti autenticati.<br>
 
 E molto altro...(vedi features sotto)
 
-In questa prima versione ho mantenuto un design semplice con priorità alla funzionalità e con transizioni/animazioni css per dare più fluidità, ma anche optmistic updates, spinner di caricamento, skeleton loader e overlay durante i fetch e le server actions grazie a Next.Js, Suspense e useTransition di React.<br>
+Nell'ultima versione ho impostato il database e tutta l'app per un ambiente multiutente e ho mantenuto un design semplice con priorità alla funzionalità e con transizioni/animazioni css per dare più fluidità, ma anche optmistic updates, spinner di caricamento, skeleton loader e overlay durante i fetch e le server actions grazie a **Next.Js**, Suspense, useTransitions e useOptimistic di **React**.<br>
 
 Le notifiche toast di avvenuta aggiunta/modifica/eliminazione sono gestite con la fantastica libreria React Hot Toast.<br>
 
@@ -17,7 +21,7 @@ Le notifiche toast di avvenuta aggiunta/modifica/eliminazione sono gestite con l
 
 ![schermate-Colman](colman-new-showcase2026.png)
 
-Questo progetto è interamente fatto a mano da zero e non sono stati usati tools IA.
+**Questo progetto è interamente fatto a mano da zero e non sono stati usati componenti prefatti o codice scritto da IA.**
 
 ---
 
@@ -25,20 +29,20 @@ Questo progetto è interamente fatto a mano da zero e non sono stati usati tools
 
 #### [New 2026] Wishlist giochi
 
-- Pagina della wishlist raggiungibile con link in homepage o dall'account utente
-- Funzione di ricerca
-- Floating button che apre una modal con form per aggiungere alla wishlist un nuovo gioco
-- Wishlist con componenti accordion generati dinamicamente per ogni piattaforma e relativi giochi
+- Pagina della wishlist raggiungibile con link in homepage
+- Funzione di ricerca giochi in wishlist
+- Floating button che apre una modal con form per aggiungere giochi alla wishlist
+- Wishlist per utente autenticato con componenti accordion generati dinamicamente per ogni piattaforma e relativi giochi
 - Interruttore per espandere tutti gli accordion delle piattaforme che contengono la lista giochi
 - Button di eliminazione istantanea con optimistic update per ogni gioco nella lista
-- Button per scaricare un file .csv con tutti i giochi in wishlist con ordinamento alfabetico in base alla piattaforma
+- Button per scaricare un file .csv con tutti i giochi in wishlist preordinati alfabeticamente in base alla piattaforma
 - Back to top floating button dinamico con smooth scroll per tornare in cima alla lista
 
 #### Esplorazione e gestione collezione
 
 - Ricerca avanzata con filtro per piattaforma e aggiornamento in tempo reale dei risultati
-- Liste paginate di giochi, collector’s editions e piattaforme
-- Hero section con statistiche dinamiche sull’intera collezione
+- Liste paginate di giochi e collector’s editions per utente autenticato
+- Hero section con statistiche dinamiche sulla collezione
 
 #### Gestione contenuti e metadati
 
@@ -46,12 +50,13 @@ Questo progetto è interamente fatto a mano da zero e non sono stati usati tools
 - Supporto nativo a giochi sigillati, edizioni speciali e collector’s editions
 - Generazione automatica della lista dei contenuti a partire dal testo inserito
 - Inserimento intelligente di testi di default e validazione in tempo reale degli input
+- Immagini giochi di utenti autenticati in bucket privato con url firmati
 
 #### Pagina gioco avanzata
 
 - Vista dedicata con badge visivi per tipologia di edizione
-- Toggle tra contenuti originali e lista formattata automaticamente
-- Copia rapida della lista contenuti con feedback animato
+- Toggle tra contenuti originali e lista generata automaticamente
+- Button di copia rapida della lista contenuti con feedback animato
 - Visualizzazione dinamica della regione tramite icone
 
 #### Integrazioni esterne
@@ -62,8 +67,8 @@ Questo progetto è interamente fatto a mano da zero e non sono stati usati tools
 #### Esperienza utente e feedback
 
 - Skeleton loader, spinner e overlay animati durante fetch e server actions
-- Notifiche toast per tutte le operazioni principali
-- Modal di conferma personalizzate per le azioni critiche
+- Notifiche toast per le operazioni principali
+- Modal di conferma personalizzata per eliminazione gioco
 
 ---
 
@@ -75,9 +80,9 @@ Questo progetto è interamente fatto a mano da zero e non sono stati usati tools
 
 ### Backend
 
-- **Next.Js (App Router)** per routing, server side rendering e server actions
+- **Next.Js 16 (App Router)** per routing, login, server side rendering e server actions
 - **Supabase (PostgreSQL)** per la gestione backend e database
-- **Auth.js** per login e autenticazione
+- **Supabase Auth e Google OAuth** per login e autenticazione
 
 </td>
 <td valign="top">
@@ -95,4 +100,4 @@ Questo progetto è interamente fatto a mano da zero e non sono stati usati tools
 
 Sviluppata con ❤️ da un essere umano.
 
-> ⚠️ Quest'app è per uso personale, perciò è accessibile solo tramite uno specifico account.
+> ⚠️ Quest'app è per uso personale, perciò è accessibile con uno specifico account.

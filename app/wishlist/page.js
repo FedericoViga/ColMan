@@ -1,15 +1,13 @@
-import WishListWrapper from "@/app/_components/WishListWrapper";
 import {
   getMyWishlist,
   getUserPlatformsComplete,
 } from "@/app/_lib/data-service";
 import { wishlistByPlatforms } from "@/app/_lib/utils";
+import WishListWrapper from "@/app/_components/WishListWrapper";
 
 export const metadata = {
   title: "Wishlist",
 };
-
-export const revalidate = 0;
 
 async function Page() {
   const myWishlist = await getMyWishlist();

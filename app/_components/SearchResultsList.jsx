@@ -6,7 +6,7 @@ async function SearchResultsList({ queryString, platformFilter }) {
 
   return (
     <div
-      className={`border-primary container mt-3 mb-10 flex w-full flex-col items-center justify-center ${fetchedGames && fetchedGames.length !== 0 && "border-b"} !px-0`}
+      className={`border-primary container mt-3 mb-10 flex w-full flex-col items-center justify-center ${fetchedGames && fetchedGames.length !== 0 && "border-b"} px-0!`}
     >
       {!queryString && (
         <p className="text-primary mt-5 text-xl">Cerca un gioco...</p>
@@ -14,7 +14,7 @@ async function SearchResultsList({ queryString, platformFilter }) {
 
       {fetchedGames && (
         <>
-          <p className="text-primary mb-4 flex gap-1.5 self-start pr-3 pl-[9px] text-lg font-bold tracking-wide">
+          <p className="text-primary mb-4 flex gap-1.5 self-start pr-3 pl-2.25 text-lg font-bold tracking-wide">
             <span className="text-foreground text-xl">
               {fetchedGames.length}
             </span>{" "}

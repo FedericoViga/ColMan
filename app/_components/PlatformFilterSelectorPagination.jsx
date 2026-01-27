@@ -1,5 +1,5 @@
-import { useSearchParams, useRouter } from "next/navigation";
 import { useEffect } from "react";
+import { useSearchParams, useRouter } from "next/navigation";
 
 function PlatformFilterSelectorPagination({
   platformDetails,

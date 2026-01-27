@@ -1,20 +1,60 @@
 "use server";
 
+import { headers } from "next/headers";
 import { revalidatePath } from "next/cache";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
+import { createClient } from "./supabase/server";
 import { v4 as uuidv4 } from "uuid";
-import { createSupabaseServerClient } from "./supabaseServer";
+
+// Google OAuth action
+export async function signInWithGoogleAction() {
+  const supabase = await createClient();
+  const requestHeaders = await headers();
+  // es. 'http://localhost:3000' o 'https://nome-sito.com'
+  const origin = requestHeaders.get("origin");
+
+  if (!origin) {
+    console.error("Missing origin header");
+    return redirect("/login");
+  }
+
+  const { data, error } = await supabase.auth.signInWithOAuth({
+    provider: "google",
+    options: {
+      redirectTo: `${origin}/auth/callback`, // redirect a auth/callback/route.js
+    },
+  });
+
+  if (error) {
+    console.error("Error signing in with Google:", error);
+    return redirect(
+      `/login?error=OAuthSigninFailed&message=${encodeURIComponent(error.message)}`,
+    );
+  }
+
+  if (data.url) {
+    // Redirect del browser alla pagin di Google OAuth
+    return redirect(data.url);
+  } else {
+    console.error("signInWithOAuth did not return a URL");
+    return redirect("/login?error=OAuthConfigurationError");
+  }
+}
 
 /* INSERT */
 
 // inserisci gioco
 export async function insertGame(platformsIdAndName, formData) {
-  const supabase = await createSupabaseServerClient();
-  const userId = await supabase.auth.getUser()?.id;
+  const supabase = await createClient();
 
-  if (!userId) throw new Error("Non sei loggato");
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
 
+  if (!user) throw new Error("Non sei loggato");
+
+  const userId = user.id;
   const gameName = formData.get("gameName").slice(0, 100).trim();
   const gameRegion = formData.get("gameRegion");
 
@@ -26,6 +66,8 @@ export async function insertGame(platformsIdAndName, formData) {
     .get("contentDescription")
     .slice(0, 500)
     .trim();
+
+  const gameNotes = formData.get("gameNotes")?.slice(0, 300)?.trim() || null;
 
   // rimuove i valori "" degli altri select, perchè si può avere solo una piattaforma per gioco
   const platform = formData
@@ -46,7 +88,7 @@ export async function insertGame(platformsIdAndName, formData) {
   });
 
   const imageName = `${uuidv4()}-${image.name}`.replaceAll("/", "");
-  const imagePath = `https://igyqtugipdfweornkjrg.supabase.co/storage/v1/object/public/games-images//${imageName}`;
+  const imagePath = `${imageName}`;
 
   const newGame = {
     gameName,
@@ -58,7 +100,8 @@ export async function insertGame(platformsIdAndName, formData) {
     platform,
     platformId,
     gameImages: imagePath,
-    userId: userId,
+    userId,
+    gameNotes,
   };
 
   const { error } = await supabase.from("games").insert([newGame]);
@@ -74,7 +117,7 @@ export async function insertGame(platformsIdAndName, formData) {
 
   // upload immagine nel database
   const { error: storageError } = await supabase.storage
-    .from("games-images")
+    .from(`images/users/${userId}`)
     .upload(imageName, image);
 
   if (storageError) throw new Error("L'immagine non può essere caricata");
@@ -83,10 +126,16 @@ export async function insertGame(platformsIdAndName, formData) {
 }
 
 export async function insertGameInWishlist(_prevState, formData) {
-  const supabase = await createSupabaseServerClient();
-  const userId = await supabase.auth.getUser()?.id;
+  const supabase = await createClient();
 
-  if (!userId) throw new Error("Non sei loggato");
+  const {
+    data: { user },
+    error: userError,
+  } = await supabase.auth.getUser();
+
+  const userId = user.id;
+
+  if (userError || !user) throw new Error("Utente non autenticato");
 
   const gameNameRaw = formData.get("gameName");
   const platformIds = formData.getAll("platformId");
@@ -109,7 +158,7 @@ export async function insertGameInWishlist(_prevState, formData) {
   const { error: insertError } = await supabase.from("wishlist").insert({
     gameName,
     platformId,
-    userId: userId,
+    userId,
   });
 
   if (insertError) {
@@ -125,10 +174,14 @@ export async function insertGameInWishlist(_prevState, formData) {
 
 // aggiorna gioco
 export async function updateGame(oldImage, formData) {
-  const supabase = await createSupabaseServerClient();
-  const userId = await supabase.auth.getUser()?.id;
+  const supabase = await createClient();
 
-  if (!userId) throw new Error("Non sei loggato");
+  const {
+    data: { user },
+    error: userError,
+  } = await supabase.auth.getUser();
+
+  if (userError || !user) throw new Error("Utente non autenticato");
 
   const id = Number(formData.get("gameId"));
   const platform = formData.get("platform");
@@ -139,12 +192,26 @@ export async function updateGame(oldImage, formData) {
   const isCollector = formData?.get("isCollector") || null;
   const isSpecial = formData?.get("isSpecial") || null;
 
+  const userId = user.id;
+
   const contentDescription = formData
     .get("contentDescription")
     .slice(0, 500)
     .trim();
 
+  const gameNotes = formData.get("gameNotes")?.slice(0, 300)?.trim() || null;
+
   const newImage = formData.get("gameImages");
+
+  // prende vecchio url in caso di eliminazione vecchia immagine
+  const { data: oldImageUrl, error: getImageError } = await supabase
+    .from("games")
+    .select("gameImages")
+    .eq("id", id)
+    .single();
+
+  if (getImageError)
+    throw new Error("Impossibile prendere l'url della vecchia immagine");
 
   let updateData;
 
@@ -158,11 +225,12 @@ export async function updateGame(oldImage, formData) {
       isSpecial,
       isCollector,
       contentDescription,
-      userId: userId,
+      userId,
+      gameNotes,
     };
   }
 
-  // rinomina il nome del file come gameName-platform (es. metroid-prime-gamecube)
+  // rinomina il nome del file immagine come gameName-platform (es. metroid-prime-gamecube)
   Object.defineProperty(newImage, "name", {
     writable: true,
     value: `${gameName.toLowerCase().replaceAll(" ", "-")}-${platform.toLowerCase().replaceAll(" ", "-")}`,
@@ -171,9 +239,9 @@ export async function updateGame(oldImage, formData) {
   // al mome dell'immagine viene aggiunto un discriminator all'inizio della stringa con uuidv4 e vengono sostiuiti tutti gli spazi con "-"
   const imageName =
     `${uuidv4()}-${newImage.name.replaceAll(" ", "-")}`.replaceAll("/", "");
-  const newImagePath = `https://igyqtugipdfweornkjrg.supabase.co/storage/v1/object/public/games-images//${imageName}`;
+  const newImagePath = `${imageName}`;
 
-  // se c'è una nuova immagine aggiorna tutto compresa l'immagine
+  // se c'è una nuova immagine, aggiorna tutto compresa l'immagine
   if (newImage.size !== 0) {
     updateData = {
       id,
@@ -184,7 +252,8 @@ export async function updateGame(oldImage, formData) {
       isCollector,
       contentDescription,
       gameImages: newImagePath,
-      userId: userId,
+      userId,
+      gameNotes,
     };
   }
 
@@ -205,28 +274,28 @@ export async function updateGame(oldImage, formData) {
       revalidatePath("/games/[gameId]/update-game", "page");
       return;
     } else {
-      const imageToDelete = oldImage.split("//").at(-1);
+      const { gameImages } = oldImageUrl;
       const toDeleteOldImage = await supabase.storage
-        .from("games-images")
-        .remove([imageToDelete]);
+        .from("images")
+        .remove([`users/${user.id}/${gameImages}`]);
     }
   } catch (error) {
     console.log(error);
     return { error: "Non è stato possibile cancellare la vecchia immagine" };
   }
 
-  // carica nuova imamgine nel bucket
+  // carica nuova immagine nel bucket
   try {
     if (newImage.size === 0) {
       return;
     } else {
       const toUploadNewImage = await supabase.storage
-        .from("games-images")
+        .from(`images/users/${userId}`)
         .upload(imageName, newImage);
     }
   } catch (error) {
     console.log(error);
-    return { error: "Non è stato possibile caricare la nuova foto" };
+    return { error: "Non è stato possibile caricare la nuova immagine" };
   }
 
   revalidatePath("/games/[gameId]/update-game", "page");
@@ -234,12 +303,25 @@ export async function updateGame(oldImage, formData) {
 
 /* DELETE */
 
-// cancella gioco
-export async function deleteGame(id, images) {
-  const supabase = await createSupabaseServerClient();
-  const userId = await supabase.auth.getUser()?.id;
+export async function deleteGame(id) {
+  const supabase = await createClient();
 
-  if (!userId) throw new Error("Non sei loggato");
+  const {
+    data: { user },
+    error: userError,
+  } = await supabase.auth.getUser();
+
+  if (userError || !user) throw new Error("Utente non autenticato");
+
+  // prende vecchio url in caso di eliminazione vecchia immagine
+  const { data: oldImageUrl, error: getImageError } = await supabase
+    .from("games")
+    .select("gameImages")
+    .eq("id", id)
+    .single();
+
+  if (getImageError)
+    throw new Error("Impossibile prendere l'url della vecchia immagine");
 
   //cancella gioco
   const { data, error } = await supabase.from("games").delete().eq("id", id);
@@ -254,11 +336,11 @@ export async function deleteGame(id, images) {
   }
 
   // cancella immagine nel bucket
-  const imageToDelete = images.split("//").at(-1);
+  const { gameImages } = oldImageUrl;
 
   const { error: fileRemoveError } = await supabase.storage
-    .from("games-images")
-    .remove([imageToDelete]);
+    .from("images")
+    .remove([`users/${user.id}/${gameImages}`]);
 
   if (fileRemoveError) {
     throw new Error("Non è stato possibile cancellare l'immagine dal database");
@@ -268,10 +350,14 @@ export async function deleteGame(id, images) {
 }
 
 export async function deleteGameFromWishlist(gameId) {
-  const supabase = await createSupabaseServerClient();
-  const userId = await supabase.auth.getUser()?.id;
+  const supabase = await createClient();
 
-  if (!userId) throw new Error("Non sei loggato");
+  const {
+    data: { user },
+    error: userError,
+  } = await supabase.auth.getUser();
+
+  if (userError || !user) throw new Error("Utente non autenticato");
 
   const { data, error } = await supabase
     .from("wishlist")
@@ -286,10 +372,16 @@ export async function deleteGameFromWishlist(gameId) {
 }
 
 export async function updateUserPlatforms(formData) {
-  const supabase = await createSupabaseServerClient();
-  const userId = await supabase.auth.getUser()?.id;
+  const supabase = await createClient();
 
-  if (!userId) throw new Error("Non sei loggato");
+  const {
+    data: { user },
+    error: userError,
+  } = await supabase.auth.getUser();
+
+  if (userError || !user) throw new Error("Utente non autenticato");
+
+  const userId = user.id;
 
   const { data: currentPlatforms, error } = await supabase
     .from("userPlatforms")
@@ -315,7 +407,9 @@ export async function updateUserPlatforms(formData) {
   if (toInsertPlatforms.length > 0) {
     await supabase
       .from("userPlatforms")
-      .insert(toInsertPlatforms.map((id) => ({ userId: 1, platformId: id })));
+      .insert(
+        toInsertPlatforms.map((id) => ({ userId: userId, platformId: id })),
+      );
   }
 
   // togli piattaforme
@@ -327,8 +421,7 @@ export async function updateUserPlatforms(formData) {
     await supabase
       .from("userPlatforms")
       .delete()
-      .in("platformId", toDeletePlatforms)
-      .eq("userId", 1);
+      .in("platformId", toDeletePlatforms);
   }
 
   revalidatePath("/settings/my-platforms", "page");

@@ -1,9 +1,10 @@
 "use client";
-import { PlusIcon, XMarkIcon } from "@heroicons/react/24/solid";
-import Cookies from "js-cookie";
-import Link from "next/link";
+
 import { useEffect, useState } from "react";
+import Link from "next/link";
+import Cookies from "js-cookie";
 import toast from "react-hot-toast";
+import { PlusIcon, XMarkIcon } from "@heroicons/react/24/solid";
 
 function CreateSelector() {
   const [isOpen, setisOpen] = useState(false);

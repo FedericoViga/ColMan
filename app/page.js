@@ -1,10 +1,11 @@
 import { getUserPlatformsComplete } from "./_lib/data-service";
+import { Suspense } from "react";
+
+import RecapLoader from "./_components/RecapLoader";
 import HeroRecap from "./_components/HeroRecap";
 import SearchWrapper from "./_components/SearchWrapper";
 import SearchResultsList from "./_components/SearchResultsList";
 import CreateSelector from "./_components/CreateSelector";
-import { Suspense } from "react";
-import RecapLoader from "./_components/RecapLoader";
 
 export const metadata = {
   title: {
@@ -14,8 +15,6 @@ export const metadata = {
   description:
     "Collection Manager per gestire la tua collezione di videogiochi fisici.",
 };
-
-export const revalidate = 0;
 
 // Homepage
 export default async function Page({ searchParams }) {

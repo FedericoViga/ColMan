@@ -9,7 +9,7 @@ export default function Error({ error, reset }) {
   return (
     <main className="container mt-10 flex min-w-0 flex-col items-center justify-center gap-6">
       <h1 className="text-3xl font-semibold">Qualcosa è andato storto!</h1>
-      <p className="text-primary container max-h-60 min-w-0 overflow-y-scroll break-words">
+      <p className="text-primary container max-h-60 min-w-0 overflow-y-scroll wrap-break-word">
         {error.message}
       </p>
 
