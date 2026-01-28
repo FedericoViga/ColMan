@@ -4,6 +4,7 @@ import { Toaster } from "react-hot-toast";
 import { AuthServerWrapper } from "./_components/AuthServerWrapper";
 import Header from "@/app/_components/Header";
 import "./_styles/globals.css";
+import ServiceWorkerRegister from "./_components/ServiceWorkerRegister";
 
 const titilliumWeb = Titillium_Web({
   display: "swap",
@@ -49,6 +50,7 @@ export default async function RootLayout({ children }) {
                 },
               }}
             />
+            <ServiceWorkerRegister />
             {children}
           </main>
         </AuthServerWrapper>
