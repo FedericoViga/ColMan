@@ -27,15 +27,14 @@ function FilterWrapper({ platforms, numGamesByPlatform }) {
             filterName={filterName}
           />
 
-          {filterName !== "---" && filterName !== "Tutte" && (
-            <span className="text-primary">
-              {numGamesByPlatform === 0 || numGamesByPlatform > 1
-                ? `${numGamesByPlatform} Giochi`
-                : `${numGamesByPlatform} Gioco`}
-            </span>
-          )}
+          {filterName !== "---" &&
+            filterName !== "Tutte" &&
+            numGamesByPlatform !== 0 && (
+              <span className="text-primary">
+                {`${numGamesByPlatform} ${numGamesByPlatform === 1 ? "Gioco" : "Giochi"}`}
+              </span>
+            )}
         </div>
-
         <div
           ref={filterRef}
           style={{
@@ -62,12 +61,12 @@ function FilterWrapper({ platforms, numGamesByPlatform }) {
             </>
           ) : (
             <p className="text-primary mt-4">
-              Non ci sono ancora piattaforme, prima di creare un gioco devi{" "}
+              Non ci sono ancora piattaforme,{" "}
               <Link
                 className="text-foreground underline underline-offset-2"
-                href="/platforms/insert-platform"
+                href="/settings/my-platforms"
               >
-                creare la sua piattaforma!
+                aggiungine una.
               </Link>
             </p>
           )}

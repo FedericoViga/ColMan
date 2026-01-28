@@ -150,6 +150,35 @@ export const countGamesByPlatform = async function (platformName) {
   return count;
 };
 
+// count collectors per una specifica piattaforma
+export const countCollectorsByPlatform = async function (platformName) {
+  const supabase = await createClient();
+
+  const {
+    data: { user },
+    error: userError,
+  } = await supabase.auth.getUser();
+
+  if (userError || !user) throw new Error("Utente non autenticato");
+
+  if (!platformName || platformName === "all") return 0;
+
+  const { count, error } = await supabase
+    .from("games")
+    .select("id", { count: "exact" })
+    .eq("platform", platformName)
+    .eq("isCollector", true);
+
+  if (error) {
+    console.log(error);
+    throw new Error(
+      "Il numero di collector's editions per questa piattaforma non può essere calcolato",
+    );
+  }
+
+  return count;
+};
+
 // count piattafrome utente
 export const countPlatforms = async function () {
   const supabase = await createClient();

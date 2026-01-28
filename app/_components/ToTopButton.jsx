@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 
-import ArrowUpCircleIconCustom from "./ArrowUpCircleIconCustom";
+import ArrowUpCircleIconCustom from "./icons/ArrowUpCircleIconCustom";
 
 function ToTopButton({ isOpenInsertGame }) {
   const [toTop, setToTop] = useState(false);

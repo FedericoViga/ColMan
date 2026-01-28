@@ -1,6 +1,6 @@
 "use client";
 
-import HeartPlusIcon from "./HeartPlusIcon";
+import HeartPlusIcon from "./icons/HeartPlusIcon";
 
 function AddToWishlistButton({ onOpenClose }) {
   function handleOpenModal(e) {

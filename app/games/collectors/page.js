@@ -1,11 +1,13 @@
 import {
   countCollectors,
+  countCollectorsByPlatform,
   fetchCollectorsWithPagination,
   getUserPlatformsComplete,
 } from "@/app/_lib/data-service";
 import FilterWrapper from "@/app/_components/FilterWrapper";
 import GameCard from "@/app/_components/GameCard";
 import Pagination from "@/app/_components/Pagination";
+import CollectorEditionIcon from "@/app/_components/icons/CollectorEditionIcon";
 
 export const metadata = {
   title: "Collector's Editions",
@@ -19,6 +21,9 @@ async function Page({ searchParams }) {
   );
   const platforms = await getUserPlatformsComplete();
   const numCollectors = await countCollectors();
+  const numCollectorsByPlatform = await countCollectorsByPlatform(
+    pageParams.platform,
+  );
 
   const { gamesWithSignedImages, count } = fetchedGames;
 
@@ -34,16 +39,21 @@ async function Page({ searchParams }) {
         <span>Hai {numCollectors} collector&apos;s editions</span>
       </p>
 
-      <hr className="mb-4 w-full border-slate-600" />
+      <FilterWrapper
+        platforms={platforms}
+        numGamesByPlatform={numCollectorsByPlatform}
+      />
 
       {count === 0 ? (
-        <p className="text-primary my-10 text-center text-lg font-bold tracking-wide">
-          Nessuna Collector&apos;s Edition trovata
-        </p>
+        <div className="flex flex-col items-center justify-center gap-4">
+          <p className="text-primary mt-10 mb-5 flex min-h-14 flex-col text-center text-lg font-bold tracking-wide">
+            <span>{`Nessuna Collector's Edition trovata`}</span>
+            <span>{` ${pageParams.platform && pageParams.platform !== "all" ? `per ${pageParams.platform}` : ``}`}</span>
+          </p>
+          <CollectorEditionIcon />
+        </div>
       ) : (
         <>
-          <FilterWrapper platforms={platforms} />
-
           {gamesWithSignedImages.map((game) => (
             <GameCard game={game} key={game.id} />
           ))}

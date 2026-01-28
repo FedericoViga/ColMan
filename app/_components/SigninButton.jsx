@@ -2,7 +2,7 @@
 import { Roboto } from "next/font/google";
 
 import { signInWithGoogleAction } from "../_lib/actions";
-import GoogleGLogoIcon from "./GoogleGLogoIcon";
+import GoogleGLogoIcon from "./icons/GoogleGLogoIcon";
 
 const roboto = Roboto({ subsets: ["latin"], weight: ["600"] });
 

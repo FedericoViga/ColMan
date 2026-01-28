@@ -1,5 +1,3 @@
-import Link from "next/link";
-
 import {
   countCollectors,
   countGames,
@@ -11,6 +9,7 @@ import FilterWrapper from "../_components/FilterWrapper";
 import GameCard from "../_components/GameCard";
 import Pagination from "../_components/Pagination";
 import ToCreateButton from "../_components/ToCreateButton";
+import ControllerIcon from "../_components/icons/ControllerIcon";
 
 export const metadata = {
   title: "Giochi",
@@ -40,8 +39,8 @@ async function Page({ searchParams }) {
 
       <div>
         <p className="text-primary mb-7 flex flex-col text-center text-lg">
-          <span>Hai {numGames} giochi totali</span>
-          <span>{numCollectors} sono collector&apos;s editions</span>
+          <span>{`La tua collezione è composta da ${numGames} ${numGames === 1 ? "gioco." : "giochi."}`}</span>
+          <span>{`${numCollectors} ${numCollectors === 1 ? "è collector's edition." : "sono collector's editions."}`}</span>
         </p>
 
         <FilterWrapper
@@ -51,16 +50,12 @@ async function Page({ searchParams }) {
       </div>
 
       {count === 0 ? (
-        <div className="flex flex-col gap-2">
-          <p className="text-primary mt-10 text-center text-lg font-bold tracking-wide">
-            Nessuna gioco trovato
+        <div className="flex flex-col items-center justify-center gap-4">
+          <p className="text-primary mt-10 mb-5 flex min-h-14 flex-col text-center text-lg font-bold tracking-wide">
+            <span>Nessuna gioco trovato</span>
+            <span>{` ${pageParams.platform && pageParams.platform !== "all" ? `per ${pageParams.platform}` : ``}`}</span>
           </p>
-          <Link
-            href="/games/insert-game"
-            className="text-accent decoration-accent text-center font-bold tracking-wide underline underline-offset-2"
-          >
-            Aggiungi un gioco
-          </Link>
+          <ControllerIcon className="h-20 w-20 text-slate-700" />
         </div>
       ) : (
         <>

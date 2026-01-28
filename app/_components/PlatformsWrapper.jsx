@@ -5,6 +5,7 @@ import Link from "next/link";
 
 import PlatformsAccordion from "./PlatformsAccordion";
 import ToCreateButton from "./ToCreateButton";
+import PlatformIcon from "./icons/PlatformIcon";
 
 function PlatformsWrapper({ platformsByOwners }) {
   const [curOpen, setCurOpen] = useState(null);
@@ -30,13 +31,19 @@ function PlatformsWrapper({ platformsByOwners }) {
             ))}
           </>
         ) : (
-          <div className="flex justify-center">
-            <Link
-              href="/settings/my-platforms"
-              className="text-accent decoration-accent my-10 font-bold underline underline-offset-2"
-            >
-              Aggiungi piattaforme
-            </Link>
+          <div className="my-10 flex flex-col items-center justify-center gap-12">
+            <div className="flex flex-col items-center justify-center gap-3">
+              <span className="text-primary text-lg font-bold tracking-wide">
+                Non hai piattaforme
+              </span>
+              <Link
+                href="/settings/my-platforms"
+                className="text-accent decoration-accent font-bold underline underline-offset-2"
+              >
+                Aggiungi piattaforme
+              </Link>
+            </div>
+            <PlatformIcon />
           </div>
         )}
       </div>
