@@ -10,12 +10,12 @@ export default function manifest() {
     theme_color: "#000000",
     icons: [
       {
-        src: "colman-icon-small-192x192.png",
+        src: "/colman-icon-small-192x192.png",
         sizes: "192x192",
         type: "image/png",
       },
       {
-        src: "colman-icon-large-512x512.png",
+        src: "/colman-icon-large-512x512.png",
         sizes: "512x512",
         type: "image/png",
       },
