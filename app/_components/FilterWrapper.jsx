@@ -18,7 +18,7 @@ function FilterWrapper({ platforms, numGamesByPlatform }) {
   return (
     <>
       <div className="mb-3 w-full">
-        <div className="flex items-baseline gap-3 rounded bg-[#0a0d21] px-2 py-3">
+        <div className="flex items-baseline gap-3 rounded border border-slate-900 bg-[#0d1027] px-2 py-3">
           <span className="text-primary">Piattaforma</span>
 
           <PlatformSelectorButton
