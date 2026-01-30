@@ -242,7 +242,7 @@ function InsertGameForm({ platforms, platformsIdAndName }) {
               className={`relative m-auto flex aspect-square max-w-60 flex-col items-center justify-center gap-2 ${selectedImage === null || selectedImage === placeholderImage ? "border-primary rounded border border-dashed" : ""}`}
             >
               <label
-                className={`flex h-10 w-10 cursor-pointer items-center justify-center text-2xl ${selectedImage === null || selectedImage === placeholderImage ? "h-full w-full rounded border-0" : "bg-accent absolute right-2 bottom-2 z-50 rounded"}`}
+                className={`${isOpenInfo ? "pointer-events-none hidden" : ""} flex h-10 w-10 cursor-pointer items-center justify-center text-2xl ${selectedImage === null || selectedImage === placeholderImage ? "h-full w-full rounded border-0" : "bg-accent absolute right-2 bottom-2 z-50 rounded"}`}
                 htmlFor="imageInput"
               >
                 {selectedImage === null ||
@@ -343,7 +343,7 @@ function InsertGameForm({ platforms, platformsIdAndName }) {
 
           {/* REGIONE */}
           <div className="flex flex-col gap-1">
-            <div className="flex items-center justify-between">
+            <div className="flex items-center gap-1.5">
               <label className="text-primary" htmlFor="gameRegion">
                 Regione
               </label>
@@ -352,7 +352,7 @@ function InsertGameForm({ platforms, platformsIdAndName }) {
                 aria-label="Informazioni sulle regioni"
                 onClick={(e) => handleRegionInfo(e)}
               >
-                <QuestionMarkCircleIcon className="text-primary h-4 w-4" />
+                <QuestionMarkCircleIcon className="text-primary mt-0.5 h-4 w-4" />
               </button>
 
               {isOpenInfo && <InfoRegion onOpenClose={setIsOpenInfo} />}
