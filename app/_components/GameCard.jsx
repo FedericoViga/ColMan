@@ -1,9 +1,12 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { ChatBubbleLeftEllipsisIcon } from "@heroicons/react/24/outline";
 
 import placeholderImageSmall from "@/public/placeholder-400x400.png";
 import { FLAGS } from "../_lib/constants";
+import { useState } from "react";
 
 function GameCard({ game }) {
   const {
@@ -17,6 +20,8 @@ function GameCard({ game }) {
     gameImages,
     gameNotes,
   } = game;
+
+  const [isLoading, setIsLoading] = useState(false);
 
   // elimina "-" al'inizio della stringa nel caso che Supabase metta l'id signed negativo
   const normalizedId = id.toString().startsWith("-") ? id.slice(1) : id;
@@ -39,7 +44,13 @@ function GameCard({ game }) {
               className="mt-3.5 rounded object-cover"
               alt={gameName}
               fill
+              onLoad={() => setIsLoading(true)}
             />
+
+            {/* LOADER */}
+            {!isLoading && (
+              <div className="absolute inset-0 top-5 left-2.5 bg-gray-500 blur-sm" />
+            )}
           </div>
           {gameNotes && (
             <div className="text-primary flex items-center gap-1">

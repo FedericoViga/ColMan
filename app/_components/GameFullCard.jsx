@@ -27,6 +27,7 @@ function GameFullCard({ gameDetails }) {
   } = gameDetails;
 
   const [isOpenInfo, setIsOpenInfo] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   function handleRegionInfo(e) {
     e.preventDefault();
@@ -49,7 +50,11 @@ function GameFullCard({ gameDetails }) {
           className="block object-cover"
           fill
           alt={gameName}
+          onLoad={() => setIsLoading(true)}
         />
+
+        {/* LOADER */}
+        {!isLoading && <div className="absolute inset-0 bg-gray-500 blur-sm" />}
       </div>
 
       {/* Collector's edition */}

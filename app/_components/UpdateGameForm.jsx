@@ -38,6 +38,7 @@ function UpdateGameForm({ gameDetails }) {
   );
   const [notesLength, setNotesLength] = useState(gameNotes?.length ?? 0);
   const hiddenInputRef = useRef(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   // placeholder image se gameImages è null
   gameImages = gameImages || placeholderImage;
@@ -232,13 +233,22 @@ function UpdateGameForm({ gameDetails }) {
                 {`${imageSize?.rawSize > MAXIMUM_IMAGE_SIZE ? `File troppo grande (${imageSize.formattedSize})` : `Scegli Immagine (max 500KB)`}`}
               </p>
             ) : (
-              <Image
-                priority
-                alt="Titolo gioco"
-                src={selectedImage !== null ? selectedImage : placeholderImage}
-                fill
-                className="object-cover"
-              />
+              <>
+                <Image
+                  priority
+                  alt="Titolo gioco"
+                  src={
+                    selectedImage !== null ? selectedImage : placeholderImage
+                  }
+                  fill
+                  className="object-cover"
+                  onLoad={() => setIsLoading(true)}
+                />
+                {/* LOADER */}
+                {!isLoading && (
+                  <div className="absolute inset-0 bg-gray-500 blur-sm" />
+                )}
+              </>
             )}
             <input
               id="imageInput"
