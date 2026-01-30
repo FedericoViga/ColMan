@@ -49,7 +49,7 @@ function GameCard({ game }) {
 
             {/* LOADER */}
             {!isLoading && (
-              <div className="absolute inset-0 top-5 right-1.5 -bottom-2 left-2.5 bg-gray-500 blur-sm" />
+              <div className="absolute inset-0 top-5 right-1.5 -bottom-2 left-2.5 bg-slate-500 blur-sm" />
             )}
           </div>
           {gameNotes && (

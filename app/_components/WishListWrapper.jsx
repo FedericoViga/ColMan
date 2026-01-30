@@ -10,6 +10,7 @@ import WishlistAccordion from "./WishlistAccordion";
 import AddToWishlistButton from "./AddToWishlistButton";
 import InsertWishlistGameForm from "./InsertWishlistGameForm";
 import ToTopButton from "./ToTopButton";
+import WishlistIcon from "./icons/WishlistIcon";
 
 function WishListWrapper({ wishlistByPlatforms, platforms }) {
   const [isOpenInsertGame, setIsOpenInsertGame] = useState(false);
@@ -186,10 +187,13 @@ function WishListWrapper({ wishlistByPlatforms, platforms }) {
             ))}
           </>
         ) : (
-          <p className="mt-12 text-center text-lg text-slate-500">
-            Premi il button a forma di cuore in basso a destra per iniziare ad
-            aggiungere giochi.
-          </p>
+          <div className="mt-12 flex flex-col items-center justify-center gap-12">
+            <p className="text-center text-lg text-slate-500">
+              Premi il button a forma di cuore in basso a destra per iniziare ad
+              aggiungere giochi.
+            </p>
+            <WishlistIcon className="h-28 w-28 text-slate-700" />
+          </div>
         )}
       </div>
 

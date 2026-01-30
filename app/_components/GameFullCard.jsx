@@ -54,7 +54,9 @@ function GameFullCard({ gameDetails }) {
         />
 
         {/* LOADER */}
-        {!isLoading && <div className="absolute inset-0 bg-gray-500 blur-sm" />}
+        {!isLoading && (
+          <div className="absolute inset-0 bg-slate-500 blur-sm" />
+        )}
       </div>
 
       {/* Collector's edition */}
