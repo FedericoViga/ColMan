@@ -116,7 +116,7 @@ function InsertGameForm({ platforms, platformsIdAndName }) {
 
       // Se l'immagine è già webp e non supera la dimensione massima consentita,
       // la mette subito nell'input hidden per mandarla alla server action
-      if (file.type === "image/webp" && file.size <= MAXIMUM_IMAGE_SIZE) {
+      if (file.size <= MAXIMUM_IMAGE_SIZE) {
         setImageSize({
           formattedSize: formattedFileSize,
           rawSize: fileSizeInBytes,
@@ -140,6 +140,16 @@ function InsertGameForm({ platforms, platformsIdAndName }) {
       // Se supera la grandezza consentita prova a convertirla in webp
       if (fileSizeInBytes > MAXIMUM_IMAGE_SIZE) {
         setIsConverting(true);
+        // se è già webp non fa niente
+        if (file.type === "images/webp") {
+          setSelectedImage(null);
+          setImageSize({
+            formattedSize: formattedFileSize,
+            rawSize: fileSizeInBytes,
+          });
+          return;
+        }
+
         // Crea un'immagine dal file
         const img = new window.Image();
         img.src = URL.createObjectURL(file);
