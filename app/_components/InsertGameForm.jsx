@@ -289,28 +289,30 @@ function InsertGameForm({ platforms, platformsIdAndName }) {
 
           {/* Cerca immagine */}
           {titleLength > 0 && (
-            <div className="flex flex-col gap-0.5">
-              <div className="flex items-center justify-center gap-1 text-sm text-slate-400">
-                <span>Cerca immagine su</span>
-                <a
-                  className="decoration underline decoration-slate-500 underline-offset-2"
-                  href={launchboxDbUrl}
-                  target="_blank"
-                >
-                  LaunchBox
-                </a>
-                <ArrowTopRightOnSquareIcon className="h-2.5 w-2.5" />
-              </div>
-              <div className="flex items-center justify-center gap-1 text-sm text-slate-400">
-                <span>Cerca immagine su</span>
-                <a
-                  className="decoration underline decoration-slate-500 underline-offset-2"
-                  href={googleImagesUrl}
-                  target="_blank"
-                >
-                  Google
-                </a>
-                <ArrowTopRightOnSquareIcon className="h-2.5 w-2.5" />
+            <div className="flex flex-col items-center justify-center gap-0.5">
+              <span className="text-sm text-slate-400">Cerca immagine</span>
+              <div className="flex gap-3">
+                <div className="flex items-center justify-center gap-1 text-sm text-slate-400">
+                  <a
+                    className="decoration underline decoration-slate-500 underline-offset-2"
+                    href={googleImagesUrl}
+                    target="_blank"
+                  >
+                    Google
+                  </a>
+                  <ArrowTopRightOnSquareIcon className="h-2.5 w-2.5" />
+                </div>
+
+                <div className="flex items-center justify-center gap-1 text-sm text-slate-400">
+                  <a
+                    className="decoration underline decoration-slate-500 underline-offset-2"
+                    href={launchboxDbUrl}
+                    target="_blank"
+                  >
+                    LaunchBox
+                  </a>
+                  <ArrowTopRightOnSquareIcon className="h-2.5 w-2.5" />
+                </div>
               </div>
             </div>
           )}

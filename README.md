@@ -3,7 +3,7 @@
   <h1>ColMan</h1>
 
 </div>
-<p>Colman sta per "Collection Manager": è una Single Page Web Application full-stack per smartphone che uso regolarmente per gestire la mia collezione di videogiochi in modo rapido.<br>
+<p>Colman sta per "Collection Manager": è una PWA (Progressive Web App) per smartphone che uso regolarmente per gestire la mia collezione di videogiochi.<br>
 
 Si possono inserire/modificare/eliminare giochi e piattaforme direttamente nel database di Supabase (PostgreSQL), scattando la foto sul momento o selezionandola dalla galleria del telefono e compilando una vera e propria "scheda gioco" con le informazioni del gioco.<br>
 
@@ -26,6 +26,10 @@ Le notifiche toast di avvenuta aggiunta/modifica/eliminazione sono gestite con l
 ---
 
 ## Features
+
+#### [New 2026] PWA
+
+L'applicazione è diventata una PWA!
 
 #### [New 2026] Wishlist giochi
 
@@ -67,7 +71,7 @@ Le notifiche toast di avvenuta aggiunta/modifica/eliminazione sono gestite con l
 #### Esperienza utente e feedback
 
 - Skeleton loader, spinner e overlay animati durante fetch e server actions
-- Notifiche toast per le operazioni principali
+- Notifiche toast per le operazioni principali e per gli errori
 - Modal di conferma personalizzata per eliminazione gioco
 
 ---
