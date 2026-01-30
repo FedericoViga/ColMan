@@ -47,7 +47,7 @@ function PlatformsCount({ numPlatforms }) {
         >
           {displayProps.initialText}
         </span>
-        <p className="text-primary text-3xl font-bold">
+        <p className="text-primary text-3xl font-bold underline decoration-slate-500 decoration-2 underline-offset-4">
           {numPlatforms === 1 ? "PIATTAFORMA" : "PIATTAFORME"}
         </p>
       </div>

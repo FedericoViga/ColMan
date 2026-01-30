@@ -33,8 +33,6 @@ function GameFullCard({ gameDetails }) {
     setIsOpenInfo(true);
   }
 
-  console.log(gameImages);
-
   // elimina "-" al'inizio della stringa nel caso che Supabase metta l'id signed negativo
   const normalizedId = id.toString().startsWith("-") ? id.slice(1) : id;
   const normalizedPlatform = platform.toLowerCase().replaceAll(" ", "-");

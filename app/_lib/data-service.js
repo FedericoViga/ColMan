@@ -263,10 +263,14 @@ export const fetchGames = async function (queryString, platformFilter) {
             .createSignedUrl(gameImages, 180);
 
         if (signedImageError) {
-          console.log(signedImageError);
-          throw new Error(
-            "Non è stato possibile scaricare l'immagine del gioco",
+          console.warn(
+            `Id gioco: ${game.id}`,
+            "Errore generazione signedUrl, il file immagine potrebbe essere mancante.",
           );
+          return {
+            ...game,
+            gameImages: null,
+          };
         }
 
         return {
@@ -302,10 +306,14 @@ export const fetchGames = async function (queryString, platformFilter) {
             .createSignedUrl(gameImages, 180);
 
         if (signedImageError) {
-          console.log(signedImageError);
-          throw new Error(
-            "Non è stato possibile scaricare l'immagine del gioco",
+          console.warn(
+            `Id gioco: ${game.id}`,
+            "Errore generazione signedUrl, il file immagine potrebbe essere mancante.",
           );
+          return {
+            ...game,
+            gameImages: null,
+          };
         }
 
         return {
@@ -351,8 +359,14 @@ export async function getFullGame(id, platform) {
       .createSignedUrl(gameImages, 180);
 
   if (signedImageError) {
-    console.log(signedImageError);
-    throw new Error("Non è stato possibile scaricare l'immagine del gioco");
+    console.warn(
+      `Id gioco: ${id}`,
+      "Errore generazione signedUrl, il file immagine potrebbe essere mancante.",
+    );
+    return {
+      ...data,
+      gameImages: null,
+    };
   }
 
   return { ...data, gameImages: signedGameImage.signedUrl };
@@ -429,10 +443,14 @@ export async function fetchGamesWithPagination(page, platformFilter) {
             .createSignedUrl(gameImages, 180);
 
         if (signedImageError) {
-          console.log(signedImageError);
-          throw new Error(
-            "Non è stato possibile scaricare l'immagine del gioco",
+          console.warn(
+            `Id gioco: ${game.id}`,
+            "Errore generazione signedUrl, il file immagine potrebbe essere mancante.",
           );
+          return {
+            ...game,
+            gameImages: null,
+          };
         }
 
         return {
@@ -481,10 +499,14 @@ export async function fetchGamesWithPagination(page, platformFilter) {
             .createSignedUrl(gameImages, 180);
 
         if (signedImageError) {
-          console.log(signedImageError);
-          throw new Error(
-            "Non è stato possibile scaricare l'immagine del gioco",
+          console.warn(
+            `Id gioco: ${game.id}`,
+            "Errore generazione signedUrl, il file immagine potrebbe essere mancante.",
           );
+          return {
+            ...game,
+            gameImages: null,
+          };
         }
 
         return {
@@ -547,10 +569,14 @@ export async function fetchCollectorsWithPagination(page, platformFilter) {
             .createSignedUrl(gameImages, 180);
 
         if (signedImageError) {
-          console.log(signedImageError);
-          throw new Error(
-            "Non è stato possibile scaricare l'immagine del gioco",
+          console.warn(
+            `Id gioco: ${game.id}`,
+            "Errore generazione signedUrl, il file immagine potrebbe essere mancante.",
           );
+          return {
+            ...game,
+            gameImages: null,
+          };
         }
 
         return {
@@ -600,10 +626,14 @@ export async function fetchCollectorsWithPagination(page, platformFilter) {
             .createSignedUrl(gameImages, 180);
 
         if (signedImageError) {
-          console.log(signedImageError);
-          throw new Error(
-            "Non è stato possibile scaricare l'immagine del gioco",
+          console.warn(
+            `Id gioco: ${game.id}`,
+            "Errore generazione signedUrl, il file immagine potrebbe essere mancante.",
           );
+          return {
+            ...game,
+            gameImages: null,
+          };
         }
 
         return {

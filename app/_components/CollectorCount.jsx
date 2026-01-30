@@ -26,16 +26,16 @@ function CollectorCount({ numCollectors }) {
   // Proprietà componente dinamiche in base al numero di collector's editions
   const formatProps = () => {
     if (numCollectors >= 0 && numCollectors <= 9) {
-      return { initialText: "0", minWidth: "", fontSize: "text-[28px]" };
+      return { initialText: "0", minWidth: "", fontSize: "text-3xl" };
     }
     if (numCollectors >= 10 && numCollectors <= 99) {
-      return { initialText: "00", minWidth: "min-w-14", fontSize: "text-2xl" };
+      return { initialText: "00", minWidth: "min-w-14", fontSize: "text-3xl" };
     }
     if (numCollectors >= 100 && numCollectors <= 999) {
       return {
         initialText: "000",
         minWidth: "min-w-[82px]",
-        fontSize: "text-2xl",
+        fontSize: "text-3xl",
       };
     }
     return null; // Fuori range
@@ -47,15 +47,17 @@ function CollectorCount({ numCollectors }) {
 
   return (
     <Link href="/games/collectors">
-      <div className="flex items-center justify-center gap-1">
+      <div className="flex items-center justify-center gap-1.5">
         <span
           className={`text-accent text-5xl font-bold ${displayProps.minWidth}`}
           ref={countupRef}
         >
           {displayProps.initialText}
         </span>
-        <p className={`text-primary ${displayProps.fontSize} font-bold`}>
-          {numCollectors === 1 ? "COLLECTOR'S EDITION" : "COLLECTOR'S EDITIONS"}
+        <p
+          className={`text-primary ${displayProps.fontSize} font-bold underline decoration-slate-500 decoration-2 underline-offset-4`}
+        >
+          COLLECTOR'S ED.
         </p>
       </div>
     </Link>

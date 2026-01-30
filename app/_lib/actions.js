@@ -45,7 +45,7 @@ export async function signInWithGoogleAction() {
 /* INSERT */
 
 // inserisci gioco
-export async function insertGame(platformsIdAndName, formData) {
+export async function insertGame(platformsIdAndName, _prevState, formData) {
   const supabase = await createClient();
 
   const {
@@ -81,6 +81,23 @@ export async function insertGame(platformsIdAndName, formData) {
 
   const image = formData.get("gameImages");
 
+  if (image.size === 0) {
+    console.error("Dimensione immagine non valida");
+    return { error: true, message: "Errore: Dimensione immagine non valida" };
+  }
+
+  const allowedFileTypes = [
+    "image/png",
+    "image/jpeg",
+    "image/webp",
+    "image/heic",
+    "image/heif",
+  ];
+
+  if (!allowedFileTypes.includes(image.type)) {
+    return { error: true, message: "Formato immagine non supportato!" };
+  }
+
   // rinomina il nome del file come gameName-platform (es. metroid-prime-gamecube)
   Object.defineProperty(image, "name", {
     writable: true,
@@ -88,7 +105,6 @@ export async function insertGame(platformsIdAndName, formData) {
   });
 
   const imageName = `${uuidv4()}-${image.name}`.replaceAll("/", "");
-  const imagePath = `${imageName}`;
 
   const newGame = {
     gameName,
@@ -99,7 +115,7 @@ export async function insertGame(platformsIdAndName, formData) {
     contentDescription,
     platform,
     platformId,
-    gameImages: imagePath,
+    gameImages: imageName,
     userId,
     gameNotes,
   };
@@ -107,12 +123,8 @@ export async function insertGame(platformsIdAndName, formData) {
   const { error } = await supabase.from("games").insert([newGame]);
 
   if (error) {
-    throw new Error("Il gioco non può essere inserito");
-  } else {
-    const cookieStore = await cookies();
-    cookieStore.set("insertGame", `Gioco aggiunto!`, {
-      httpOnly: false,
-    });
+    console.error("Il gioco non può essere inserito");
+    return { error: true, message: "Errore: Il gioco non può essere inserito" };
   }
 
   // upload immagine nel database
@@ -120,9 +132,35 @@ export async function insertGame(platformsIdAndName, formData) {
     .from(`images/users/${userId}`)
     .upload(imageName, image);
 
-  if (storageError) throw new Error("L'immagine non può essere caricata");
+  // se c'è un errore all'upload immagine, cancella il gioco
+  if (storageError) {
+    const { data, error: deleteGameError } = await supabase
+      .from("games")
+      .delete()
+      .eq("gameImages", imageName);
 
-  redirect("/");
+    if (deleteGameError) {
+      console.error(
+        "Erroe eliminazione gioco a seguito del tentativo fallito di caricare un'immagine",
+      );
+      return {
+        error: true,
+        message: "Errore inserimento gioco",
+      };
+    }
+    return {
+      error: true,
+      message: "Errore inserimento gioco",
+    };
+  }
+
+  // se tutto va a buon fine
+  const cookieStore = await cookies();
+  cookieStore.set("insertGame", `Gioco aggiunto!`, {
+    httpOnly: false,
+  });
+
+  return { success: true, redirectTo: "/" };
 }
 
 export async function insertGameInWishlist(_prevState, formData) {
@@ -243,6 +281,18 @@ export async function updateGame(oldImage, formData) {
 
   // se c'è una nuova immagine, aggiorna tutto compresa l'immagine
   if (newImage.size !== 0) {
+    const allowedFileTypes = [
+      "image/png",
+      "image/jpeg",
+      "image/webp",
+      "image/heic",
+      "image/heif",
+    ];
+
+    if (!allowedFileTypes.includes(newImage.type)) {
+      throw new Error("Formato immagine non supportato!");
+    }
+
     updateData = {
       id,
       gameName,
@@ -323,7 +373,7 @@ export async function deleteGame(id) {
   if (getImageError)
     throw new Error("Impossibile prendere l'url della vecchia immagine");
 
-  //cancella gioco
+  // cancella gioco
   const { data, error } = await supabase.from("games").delete().eq("id", id);
   if (error) {
     throw new Error("Il gioco non può essere cancellato");

@@ -4,8 +4,8 @@
   "description": "Collection Manager per gestire la tua collezione di videogiochi fisici.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "hsl(227.27 93% 7.000000000000001%)",
-  "theme_color": "hsl(227.27 93% 7.000000000000001%)",
+  "background_color": "#010820",
+  "theme_color": "#010820",
   "icons": [
     {
       "src": "/colman-icon-small-192x192.png",
