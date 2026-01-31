@@ -6,6 +6,7 @@ import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { createClient } from "./supabase/server";
 import { v4 as uuidv4 } from "uuid";
+import { MAXIMUM_IMAGE_SIZE } from "./constants";
 
 // Google OAuth action
 export async function signInWithGoogleAction() {
@@ -96,6 +97,10 @@ export async function insertGame(platformsIdAndName, _prevState, formData) {
 
   if (!allowedFileTypes.includes(image.type)) {
     return { error: true, message: "Formato immagine non supportato!" };
+  }
+
+  if (image.size > MAXIMUM_IMAGE_SIZE) {
+    return { error: true, message: "Immagine troppo grande" };
   }
 
   // rinomina il nome del file come gameName-platform (es. metroid-prime-gamecube)
@@ -241,15 +246,17 @@ export async function updateGame(oldImage, formData) {
 
   const newImage = formData.get("gameImages");
 
-  // prende vecchio url in caso di eliminazione vecchia immagine
-  const { data: oldImageUrl, error: getImageError } = await supabase
+  // prende vecchio path immagine in caso di eliminazione vecchia immagine
+  const { data: oldImagePath, error: getImageError } = await supabase
     .from("games")
     .select("gameImages")
     .eq("id", id)
     .single();
 
-  if (getImageError)
-    throw new Error("Impossibile prendere l'url della vecchia immagine");
+  if (getImageError) {
+    console.error("Impossibile prendere il path della vecchia immagine");
+    return { error: "Errore aggiornamento dati" };
+  }
 
   let updateData;
 
@@ -274,10 +281,10 @@ export async function updateGame(oldImage, formData) {
     value: `${gameName.toLowerCase().replaceAll(" ", "-")}-${platform.toLowerCase().replaceAll(" ", "-")}`,
   });
 
-  // al mome dell'immagine viene aggiunto un discriminator all'inizio della stringa con uuidv4 e vengono sostiuiti tutti gli spazi con "-"
+  // al nome dell'immagine viene aggiunto un discriminator all'inizio della stringa con uuidv4 e vengono sostiuiti tutti gli spazi con "-"
   const imageName =
     `${uuidv4()}-${newImage.name.replaceAll(" ", "-")}`.replaceAll("/", "");
-  const newImagePath = `${imageName}`;
+  const newImagePath = imageName;
 
   // se c'è una nuova immagine, aggiorna tutto compresa l'immagine
   if (newImage.size !== 0) {
@@ -290,7 +297,11 @@ export async function updateGame(oldImage, formData) {
     ];
 
     if (!allowedFileTypes.includes(newImage.type)) {
-      throw new Error("Formato immagine non supportato!");
+      return { error: "Formato immagine non supportato!" };
+    }
+
+    if (newImage.size > MAXIMUM_IMAGE_SIZE) {
+      return { error: "Immagine troppo grande" };
     }
 
     updateData = {
@@ -324,13 +335,16 @@ export async function updateGame(oldImage, formData) {
       revalidatePath("/games/[gameId]/update-game", "page");
       return;
     } else {
-      const { gameImages } = oldImageUrl;
+      const { gameImages } = oldImagePath;
       const toDeleteOldImage = await supabase.storage
         .from("images")
         .remove([`users/${user.id}/${gameImages}`]);
     }
   } catch (error) {
-    console.log(error);
+    console.error(
+      `Non è stato possibile cancellare la vecchia immagine durante l'update del gioco. Utente: ${userId}, Immagine non cancellata: ${oldImagePath}`,
+      error,
+    );
     return { error: "Non è stato possibile cancellare la vecchia immagine" };
   }
 
@@ -344,7 +358,10 @@ export async function updateGame(oldImage, formData) {
         .upload(imageName, newImage);
     }
   } catch (error) {
-    console.log(error);
+    console.error(
+      `Non è stato possibile caricare la nuova immagine durante l'update del gioco. Utente: ${userId}, Immagine non caricata: ${imageName}`,
+      error,
+    );
     return { error: "Non è stato possibile caricare la nuova immagine" };
   }
 
@@ -363,37 +380,41 @@ export async function deleteGame(id) {
 
   if (userError || !user) throw new Error("Utente non autenticato");
 
-  // prende vecchio url in caso di eliminazione vecchia immagine
-  const { data: oldImageUrl, error: getImageError } = await supabase
+  // prende vecchio path in caso di eliminazione vecchia immagine
+  const { data: oldImagePath, error: getImageError } = await supabase
     .from("games")
     .select("gameImages")
     .eq("id", id)
     .single();
 
-  if (getImageError)
-    throw new Error("Impossibile prendere l'url della vecchia immagine");
-
-  // cancella gioco
-  const { data, error } = await supabase.from("games").delete().eq("id", id);
-  if (error) {
-    throw new Error("Il gioco non può essere cancellato");
-  } else {
-    const cookieStore = await cookies();
-    cookieStore.set("deleteGame", `Gioco eliminato!`, {
-      httpOnly: false,
-      path: "/",
-    });
+  if (getImageError) {
+    console.error("Impossibile prendere il path della vecchia immagine");
+    return { error: "Non è stato possibile eliminare il gioco" };
   }
 
   // cancella immagine nel bucket
-  const { gameImages } = oldImageUrl;
+  const { gameImages } = oldImagePath;
 
   const { error: fileRemoveError } = await supabase.storage
     .from("images")
     .remove([`users/${user.id}/${gameImages}`]);
 
   if (fileRemoveError) {
-    throw new Error("Non è stato possibile cancellare l'immagine dal database");
+    console.log(fileRemoveError);
+    return { error: "Non è stato possibile eliminare il gioco" };
+  }
+
+  // se l'immagine viene cancellata con successo, cancella il gioco dal db
+  const { data, error } = await supabase.from("games").delete().eq("id", id);
+  if (error) {
+    console.log(error);
+    return { error: "Non è stato possibile eliminare il gioco" };
+  } else {
+    const cookieStore = await cookies();
+    cookieStore.set("deleteGame", `Gioco eliminato!`, {
+      httpOnly: false,
+      path: "/",
+    });
   }
 
   redirect("/");

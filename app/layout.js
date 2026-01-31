@@ -24,7 +24,7 @@ export const metadata = {
 
 export default async function RootLayout({ children }) {
   return (
-    <html lang="it" className="scroll-smooth">
+    <html lang="it" className="no-scrollbar scroll-smooth">
       <body className={`${titilliumWeb.className} tracking-wide antialiased`}>
         <AuthServerWrapper>
           <Header />

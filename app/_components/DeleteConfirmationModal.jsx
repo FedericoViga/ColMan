@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { ExclamationCircleIcon } from "@heroicons/react/24/outline";
 import { TrashIcon } from "@heroicons/react/24/solid";
+import toast from "react-hot-toast";
 
 import { deleteGame } from "../_lib/actions";
 
@@ -19,16 +20,21 @@ function DeleteConfirmationModal({
     };
   }, [isOpenModal]);
 
-  function confirmedDelete() {
-    onTransition(deleteGame(targetInfo?.gameId));
-    onClose();
+  async function confirmedDelete() {
+    onTransition(async () => {
+      const res = await deleteGame(targetInfo?.gameId);
+      onClose();
+      if (res?.error) {
+        toast.error(res.error);
+      }
+    });
   }
 
   return (
     <>
       <div className="bg-background/80 fixed top-0 right-0 bottom-0 left-0 container flex items-center justify-center backdrop-blur-sm">
         <div className="bg-background flex min-w-full flex-col items-center justify-center gap-10 rounded-lg border-2 border-red-500 px-4 py-6 text-center">
-          <div className="flex flex-col gap-5 rounded py-4">
+          <div className="flex flex-col gap-5 rounded">
             <div className="flex flex-col items-center justify-center gap-2">
               <div className="flex gap-2">
                 <ExclamationCircleIcon className="h-8 w-8 self-center text-red-500" />

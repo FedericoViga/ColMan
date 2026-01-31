@@ -49,9 +49,15 @@ function GameCard({ game }) {
 
             {/* LOADER */}
             {!isLoading && (
-              <div className="absolute inset-0 top-5 right-1.5 -bottom-2 left-2.5 bg-slate-500 blur-sm" />
+              <div className="absolute inset-x-0 top-0 -bottom-3.5 mt-3.5 overflow-hidden rounded-md">
+                <div className="shimmer-image" />
+              </div>
             )}
           </div>
+
+          {/*  <div className="pointer-events-none absolute overflow-hidden rounded-md">
+              <div className="shimmer-image" />
+            </div> */}
           {gameNotes && (
             <div className="text-primary flex items-center gap-1">
               <span className="text-sm">Note</span>

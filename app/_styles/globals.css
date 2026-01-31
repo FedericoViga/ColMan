@@ -16,6 +16,10 @@
   --font-mono: var(--font-geist-mono);
 }
 
+@utility no-scrollbar {
+  @apply [scrollbar-width:none] [&::-webkit-scrollbar]:hidden;
+}
+
 /* @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
@@ -203,18 +207,15 @@ body {
 }
 
 /* classi effetto shimmer per skeleton loader */
-.skeleton {
+.skeleton-hero {
   position: relative;
   overflow: hidden;
 }
 
-.skeleton::after {
+.skeleton-hero::after {
   content: "";
   position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
+  inset: 0;
   transform: translateX(-100%);
   background-image: linear-gradient(
     90deg,
@@ -223,9 +224,10 @@ body {
     rgba(255, 255, 255, 0.4) 60%,
     rgba(255, 255, 255, 0)
   );
-  animation: shimmer 1s infinite;
+  animation: shimmer-hero 1s infinite;
 }
-@keyframes shimmer {
+
+@keyframes shimmer-hero {
   100% {
     transform: translateX(100%);
   }
@@ -241,5 +243,23 @@ body {
   100% {
     transform: scale(1.5);
     opacity: 0;
+  }
+}
+
+.shimmer-image {
+  opacity: 0.75;
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(90deg, #818896 25%, #d1d9e2 37%, #818896 63%);
+  background-size: 200% 100%;
+  animation: shimmer 1.6s linear infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
   }
 }

@@ -27,7 +27,7 @@ function GameFullCard({ gameDetails }) {
   } = gameDetails;
 
   const [isOpenInfo, setIsOpenInfo] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   function handleRegionInfo(e) {
     e.preventDefault();
@@ -50,12 +50,14 @@ function GameFullCard({ gameDetails }) {
           className="block object-cover"
           fill
           alt={gameName}
-          onLoad={() => setIsLoading(true)}
+          onLoad={() => setIsLoading(false)}
         />
 
         {/* LOADER */}
-        {!isLoading && (
-          <div className="absolute inset-0 bg-slate-500 blur-sm" />
+        {isLoading && (
+          <div className="pointer-events-none absolute inset-0 overflow-hidden rounded-md">
+            <div className="shimmer-image" />
+          </div>
         )}
       </div>
 
