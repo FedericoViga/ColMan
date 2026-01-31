@@ -41,7 +41,7 @@ function PlatformsAccordionSettings({ platformDetails, id, curOpen, onOpen }) {
             {`${platformDetails[0]} `}
           </span>
           {countSelectedPlatforms > 0 && (
-            <span className="text-subtle">{`(${countSelectedPlatforms})`}</span>
+            <span className="text-subtle-surface">{`(${countSelectedPlatforms})`}</span>
           )}
         </p>
         {isSelectorOpen ? (

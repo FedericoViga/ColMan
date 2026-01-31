@@ -2,19 +2,21 @@
 
 :root {
   /* Sfondo principale */
-  --background: oklch(10.416% 0.05419 261.681);
-  /* Sfondo secondario */
-  --surface: oklch(20.8% 0.042 265.755);
-  /* Testo alto contrasto */
-  --foreground: #ffffff;
+  --background: oklch(8.5% 0.035 270);
+  /* Sfondo secondario (input, textarea, select, ecc.) */
+  --surface: oklch(20% 0.045 270);
+  /* Testo principale alto contrasto */
+  --foreground: oklch(95% 0.01 270);
   /* Testo secondario */
-  --secondary: oklch(0.7562 0.0036 247.87);
-  /* Dettagli, hint, diabled, ecc. */
-  --subtle: oklch(55.4% 0.046 257.417);
+  --secondary: oklch(74% 0.015 270);
+  /* Dettagli, hint, disabled, ecc. su --background */
+  --subtle: oklch(52% 0.02 250);
+  /* Dettagli, hint, disabled, ecc. su --surface */
+  --subtle-surface: oklch(68% 0.02 250);
   /* Bordi e separatori */
-  --border: oklch(37.2% 0.044 257.287);
+  --border: oklch(38% 0.03 270);
   /* Accent color */
-  --accent: oklch(0.796 0.134248 202.7134);
+  --accent: oklch(75% 0.18 200);
 }
 
 @theme inline {
@@ -24,6 +26,7 @@
   --color-secondary: var(--secondary);
   --color-accent: var(--accent);
   --color-subtle: var(--subtle);
+  --color-subtle-surface: var(--subtle-surface);
   --color-line: var(--border);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);

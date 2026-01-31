@@ -29,27 +29,31 @@ function InfoRegion({ onOpenClose }) {
         <ul className="*:flex *:flex-col *:py-2">
           <li>
             <span>ITA 🇮🇹</span>
-            <span className="text-secondary">Copertina solo in italiano.</span>
+            <span className="text-subtle-surface">
+              Copertina solo in italiano.
+            </span>
           </li>
           <li>
             <span>PAL-ITA 🇪🇺🇮🇹</span>
-            <span className="text-secondary">
+            <span className="text-subtle-surface">
               Copertina con almeno una lingua europea e l'italiano.
             </span>
           </li>
           <li>
             <span>PAL 🇪🇺</span>
-            <span className="text-secondary">
+            <span className="text-subtle-surface">
               Copertina con una o più lingue europee, senza l'italiano.
             </span>
           </li>
           <li>
             <span>NTSC-U 🇺🇸</span>
-            <span className="text-secondary">Nord America e Sud America</span>
+            <span className="text-subtle-surface">
+              Nord America e Sud America
+            </span>
           </li>
           <li>
             <span>NTSC-J 🇯🇵</span>
-            <span className="text-secondary">
+            <span className="text-subtle-surface">
               Asia (Giappone, Cina, Corea del Sud ecc.)
             </span>
           </li>

@@ -239,7 +239,7 @@ function InsertGameForm({ platforms, platformsIdAndName }) {
           {/* IMMAGINE */}
           <div className="mt-4">
             <div
-              className={`relative m-auto flex aspect-square max-w-60 flex-col items-center justify-center gap-2 ${selectedImage === null || selectedImage === placeholderImage ? "border-line rounded border border-dashed" : ""}`}
+              className={`relative m-auto flex aspect-square max-w-60 flex-col items-center justify-center gap-2 ${selectedImage === null || selectedImage === placeholderImage ? "border-line rounded border-2 border-dashed" : ""}`}
             >
               <label
                 className={`${isOpenInfo ? "pointer-events-none hidden" : ""} flex h-10 w-10 cursor-pointer items-center justify-center text-2xl ${selectedImage === null || selectedImage === placeholderImage ? "h-full w-full rounded border-0" : "bg-accent absolute right-2 bottom-2 z-50 rounded"}`}

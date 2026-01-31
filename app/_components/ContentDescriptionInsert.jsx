@@ -45,7 +45,7 @@ function ContentDescriptionInsert({
           <div className="flex justify-center">
             <button
               onClick={(e) => handleList(e)}
-              className={`rounded-tl rounded-bl px-2 text-sm ${listView ? "text-foreground border-accent ring-accent border ring-1" : "border-line ext-secondary border-t border-b border-l"}`}
+              className={`rounded-tl rounded-bl px-2 text-sm ${listView ? "text-foreground border-accent ring-accent border ring-1" : "border-line text-secondary border-t border-b border-l"}`}
             >
               Lista
             </button>
@@ -70,7 +70,7 @@ function ContentDescriptionInsert({
         <>
           {/* se non c'è testo renderizza le informazioni */}
           {textToList.length === 1 && textToList[0] === "" && (
-            <p className="text-subtle bg-surface border-line mt-1.5 h-39.5 rounded border p-3 text-base">
+            <p className="text-subtle-surface bg-surface border-line mt-1.5 h-39.5 rounded border p-3 text-base">
               Seleziona Testo e scrivi ogni contenuto del gioco{" "}
               <span className="text-secondary font-semibold">
                 separato da una virgola
@@ -117,7 +117,7 @@ function ContentDescriptionInsert({
             name="contentDescription"
             id="contentDescription"
             rows="6"
-            className="focus-within:bg-background focus:bg-background placeholder:text-subtle/70 focus-within:border-accent focus:ring-accent bg-surface border-line max-h-80 min-h-40 rounded border p-1.5 text-base focus:placeholder-transparent focus:ring-1 focus:outline-none"
+            className="focus-within:bg-background focus:bg-background placeholder:text-subtle-surface/70 focus-within:border-accent focus:ring-accent bg-surface border-line max-h-80 min-h-40 rounded border p-1.5 text-base focus:placeholder-transparent focus:ring-1 focus:outline-none"
             minLength="2"
             maxLength="500"
           ></textarea>
