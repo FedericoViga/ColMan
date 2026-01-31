@@ -330,7 +330,7 @@ function InsertGameForm({ platforms, platformsIdAndName }) {
               name="gameName"
               id="gameName"
               type="text"
-              className="focus-within:bg-background focus:bg-background focus-within:border-accent focus:ring-accent bg-surface border-line rounded border p-1.5 text-base focus:ring-1 focus:outline-none"
+              className="focus-within:bg-background focus:bg-background focus-within:border-accent focus:ring-accent bg-surface rounded p-1.5 text-base focus:ring-1 focus:outline-none"
               autoComplete="off"
               maxLength="100"
               required
@@ -362,7 +362,7 @@ function InsertGameForm({ platforms, platformsIdAndName }) {
               required
               name="gameRegion"
               id="gameRegion"
-              className="focus:border-accent focus:ring-accent bg-surface border-line rounded border p-1 text-base last:border focus-visible:outline-0"
+              className="focus:border-accent focus:ring-accent bg-surface rounded p-1 text-base focus-visible:outline-0"
             >
               <option hidden></option>
               <option value="ITA">ITA</option>
@@ -451,7 +451,7 @@ function InsertGameForm({ platforms, platformsIdAndName }) {
               autoCapitalize="sentences"
               name="gameNotes"
               id="gameNotes"
-              className="focus-within:bg-background focus:bg-background placeholder:text-secondary/50 focus-within:border-accent focus:ring-accent bg-surface border-line max-h-44 min-h-20 rounded border p-1.5 text-base focus:placeholder-transparent focus:ring-1 focus:outline-none"
+              className="focus-within:bg-background focus:bg-background placeholder:text-secondary/50 focus-within:border-accent focus:ring-accent bg-surface max-h-44 min-h-20 rounded p-1.5 text-base focus:placeholder-transparent focus:ring-1 focus:outline-none"
               maxLength="300"
               onChange={(e) => {
                 setNotesValue(e.target.value);

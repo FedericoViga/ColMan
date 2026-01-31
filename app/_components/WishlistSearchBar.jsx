@@ -20,7 +20,7 @@ function WishlistSearchBar({
         ref={searchRef}
         value={searchGame}
         type="search"
-        className="focus-within:border-accent focus-within:bg-background focus:bg-background focus:ring-accent bg-surface border-line placeholder:text-subtle-surface block w-full rounded-tl-lg rounded-bl-lg border px-2 py-1.5 focus:ring-1 focus:outline-none"
+        className="focus-within:border-accent focus-within:bg-background focus:bg-background focus:ring-accent bg-surface placeholder:text-subtle-surface block w-full rounded-tl-lg rounded-bl-lg px-2 py-2 focus:ring-1 focus:outline-none"
         placeholder={
           searchedWishlist.length === 0 && gameNotFound
             ? "Nessun gioco trovato"

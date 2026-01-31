@@ -34,14 +34,14 @@ function PlatformsAccordionSettings({ platformDetails, id, curOpen, onOpen }) {
             onOpen(null);
           } else onOpen(id);
         }}
-        className={`${isSelectorOpen ? "border-accent border-2" : "border-line border"} bg-surface flex w-full justify-between rounded px-2 py-1.5 text-lg`}
+        className={`${isSelectorOpen ? "border-accent border-2" : ""} bg-surface flex w-full justify-between rounded px-2 py-1.5 text-lg`}
       >
         <p>
           <span className={`${isSelectorOpen ? "text-accent" : ""}`}>
             {`${platformDetails[0]} `}
           </span>
           {countSelectedPlatforms > 0 && (
-            <span className="text-subtle-surface">{`(${countSelectedPlatforms})`}</span>
+            <span className="text-subtle-surface text-base">{`(${countSelectedPlatforms})`}</span>
           )}
         </p>
         {isSelectorOpen ? (
@@ -58,7 +58,7 @@ function PlatformsAccordionSettings({ platformDetails, id, curOpen, onOpen }) {
             ? `${listRef.current?.scrollHeight}px`
             : "0px",
         }}
-        className={`${isSelectorOpen ? "" : "border-y-0"} bg-surface border-line overflow-hidden rounded border transition-[max-height] duration-300 ease-in-out`}
+        className={`${isSelectorOpen ? "" : "border-y-0"} bg-surface overflow-hidden rounded transition-[max-height] duration-300 ease-in-out`}
       >
         {platformDetails[1].map((elem) => (
           <li key={elem.id} className="flex items-center gap-1.5 px-2 py-3">

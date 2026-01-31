@@ -84,7 +84,7 @@ function InsertWishlistGameForm({ platforms, onOpenClose }) {
               id="gameName"
               type="text"
               value={titleText}
-              className="focus-within:border-accent focus:ring-accent focus-within:bg-background focus:bg-background bg-surface border-line rounded border p-1.5 text-base focus:ring-1 focus:outline-none"
+              className="focus-within:border-accent focus:ring-accent focus-within:bg-background focus:bg-background bg-surface rounded p-1.5 text-base focus:ring-1 focus:outline-none"
               autoComplete="off"
               maxLength="100"
               required

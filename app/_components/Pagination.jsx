@@ -35,7 +35,7 @@ function Pagination({ count }) {
   if (pageCount <= 1) return null;
 
   return (
-    <div className="border-secondary flex items-center justify-between border-t py-3 tracking-wider">
+    <div className="border-line flex items-center justify-between border-t py-3 tracking-wider">
       <p>
         <span className="font-bold">{(currentPage - 1) * PAGE_SIZE + 1}</span>-
         <span className="font-bold">
@@ -48,7 +48,7 @@ function Pagination({ count }) {
           <button
             disabled={currentPage === 1}
             onClick={prevPage}
-            className="disabled:text-secondary flex items-center justify-center"
+            className="disabled:text-subtle flex items-center justify-center"
           >
             <ChevronLeftIcon
               className={`${currentPage === 1 && "text-secondary"} text-accent h-4 w-4`}
@@ -59,7 +59,7 @@ function Pagination({ count }) {
           <button
             disabled={currentPage === pageCount}
             onClick={nextPage}
-            className="disabled:text-secondary flex items-center justify-center"
+            className="disabled:text-subtle flex items-center justify-center"
           >
             <span>Avanti</span>
             <ChevronRightIcon

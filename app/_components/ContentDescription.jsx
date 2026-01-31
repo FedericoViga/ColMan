@@ -54,7 +54,7 @@ function ContentDescription({ description }) {
       {listView ? (
         <>
           <ul
-            className="bg-surface border-line relative z-0 mt-2 rounded border p-3"
+            className="bg-surface relative z-0 mt-2 rounded p-3"
             ref={descrRef}
           >
             <CopyButton elemRef={descrRef} />
@@ -76,9 +76,7 @@ function ContentDescription({ description }) {
           </ul>
         </>
       ) : (
-        <p className="bg-surface border-line mt-2 rounded border p-3">
-          {description}
-        </p>
+        <p className="bg-surface mt-2 rounded p-3">{description}</p>
       )}
     </div>
   );

@@ -1,5 +1,5 @@
 // Quantità di risultati per pagine con paginazione
-export const PAGE_SIZE = 10;
+export const PAGE_SIZE = 2;
 
 // Oggetto per assegnazione dinamica emoji bandiere in base alla regione del gioco
 export const FLAGS = [

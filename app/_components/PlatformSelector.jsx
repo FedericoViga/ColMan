@@ -8,7 +8,7 @@ function PlatformSelector({ platformDetails, id, curActive, onActive }) {
       <select
         required={isSelectedActive}
         name="platform"
-        className="focus:border-accent focus:ring-accent bg-surface border-line mt-1 rounded border focus-visible:outline-0"
+        className="focus:border-accent focus:ring-accent bg-surface mt-1 rounded focus-visible:outline-0"
         value={!isSelectedActive ? isSelectedActive : undefined}
         onChange={() => onActive(id)}
       >
