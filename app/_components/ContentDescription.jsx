@@ -33,17 +33,17 @@ function ContentDescription({ description }) {
     <div className="my-3">
       <div>
         <div className="flex justify-between">
-          <span className="text-primary text-lg">Contenuto</span>
+          <span className="text-secondary text-lg">Contenuto</span>
           <div className="flex justify-center">
             <button
               onClick={handleList}
-              className={`rounded-tl rounded-bl px-2 text-sm ${listView ? "text-foreground border-accent ring-accent border ring-1" : "text-primary border-t border-b border-l"}`}
+              className={`rounded-tl rounded-bl px-2 text-sm ${listView ? "text-foreground border-accent ring-accent border ring-1" : "border-line text-secondary border-t border-b border-l"}`}
             >
               Lista
             </button>
             <button
               onClick={handleOriginal}
-              className={`rounded-tr rounded-br px-2 text-sm ${!listView ? "text-foreground border-accent ring-accent border ring-1" : "text-primary border-t border-r border-b"}`}
+              className={`rounded-tr rounded-br px-2 text-sm ${!listView ? "text-foreground border-accent ring-accent border ring-1" : "border-line text-secondary border-t border-r border-b"}`}
             >
               Originale
             </button>
@@ -54,7 +54,7 @@ function ContentDescription({ description }) {
       {listView ? (
         <>
           <ul
-            className="relative z-0 mt-2 rounded border border-slate-800 bg-slate-900 p-3"
+            className="bg-surface border-line relative z-0 mt-2 rounded border p-3"
             ref={descrRef}
           >
             <CopyButton elemRef={descrRef} />
@@ -76,7 +76,7 @@ function ContentDescription({ description }) {
           </ul>
         </>
       ) : (
-        <p className="mt-2 rounded border border-slate-800 bg-slate-900 p-3">
+        <p className="bg-surface border-line mt-2 rounded border p-3">
           {description}
         </p>
       )}

@@ -110,7 +110,7 @@ function WishListWrapper({ wishlistByPlatforms, platforms }) {
 
         {wishlistByPlatforms.length !== 0 ? (
           <>
-            <p className="text-primary text-center text-lg">
+            <p className="text-secondary text-center text-lg">
               Seleziona una piattaforma per visualizzare i relativi giochi.
             </p>
 
@@ -123,7 +123,7 @@ function WishListWrapper({ wishlistByPlatforms, platforms }) {
               handleSearchGame={handleSearchGame}
             />
 
-            <div className="mt-3 mb-8 flex items-baseline justify-between border-b border-slate-600 p-3">
+            <div className="border-line mt-3 mb-8 flex items-baseline justify-between border-b p-3">
               {/* Toggle espandi tutto */}
               <div className="flex items-center gap-2">
                 <div className="relative h-5 w-11">
@@ -134,7 +134,7 @@ function WishListWrapper({ wishlistByPlatforms, platforms }) {
                     }}
                     id="switch-component"
                     type="checkbox"
-                    className="peer checked:bg-accent h-5 w-11 cursor-pointer appearance-none rounded-full bg-slate-500 transition-colors duration-300"
+                    className="peer checked:bg-accent bg-subtle h-5 w-11 cursor-pointer appearance-none rounded-full transition-colors duration-300"
                   />
                   <label
                     htmlFor="switch-component"
@@ -142,7 +142,7 @@ function WishListWrapper({ wishlistByPlatforms, platforms }) {
                   ></label>
                 </div>
 
-                <label htmlFor="switch-component" className="text-primary">
+                <label htmlFor="switch-component" className="text-secondary">
                   Espandi tutto
                 </label>
               </div>
@@ -151,7 +151,7 @@ function WishListWrapper({ wishlistByPlatforms, platforms }) {
               <DownloadWishlistButton />
             </div>
 
-            {/* Chiudi ricerca */}
+            {/* Risultati ricerca */}
             {searchedGameDisplay !== "" && searchedWishlist.length > 0 && (
               <div className="mb-6 flex items-center gap-0.5 px-1.5 text-sm">
                 <button
@@ -164,10 +164,10 @@ function WishListWrapper({ wishlistByPlatforms, platforms }) {
                   }}
                   className="flex items-center"
                 >
-                  <XMarkIcon className="h-5 w-5" />
+                  <XMarkIcon className="text-secondary h-5 w-5" />
                 </button>
 
-                <p className="text-primary min-w-0 flex-1 wrap-break-word">
+                <p className="text-subtle min-w-0 flex-1 wrap-break-word">
                   {searchedGameDisplay}
                 </p>
               </div>
@@ -188,11 +188,11 @@ function WishListWrapper({ wishlistByPlatforms, platforms }) {
           </>
         ) : (
           <div className="mt-12 flex flex-col items-center justify-center gap-12">
-            <p className="text-center text-lg text-slate-500">
+            <p className="text-subtle text-center text-lg">
               Premi il button a forma di cuore in basso a destra per iniziare ad
               aggiungere giochi.
             </p>
-            <WishlistIcon className="h-28 w-28 text-slate-700" />
+            <WishlistIcon className="text-line h-28 w-28" />
           </div>
         )}
       </div>

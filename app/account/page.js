@@ -31,13 +31,13 @@ async function Page() {
         <h1 className="max-w-9/12 text-2xl wrap-break-word">
           {user?.user_metadata[displayName]}
         </h1>
-        <h2 className="text-primary text-sm">{user?.user_metadata?.email}</h2>
+        <h2 className="text-secondary text-sm">{user?.user_metadata?.email}</h2>
       </div>
 
       <Link href="/wishlist" className="flex items-center gap-1 text-xl">
         <HeartIcon className="text-accent h-6 w-6" />
         <span>La mia wishlist </span>
-        <span className="text-primary text-sm">({myWishlistCount} giochi)</span>
+        <span className="text-subtle text-sm">({myWishlistCount} giochi)</span>
       </Link>
     </div>
   );

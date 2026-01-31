@@ -33,12 +33,12 @@ async function Page({ searchParams }) {
 
   return (
     <div
-      className={`container my-5 flex flex-col gap-1 ${fetchedGames && count !== 0 && "border-b border-slate-600"}`}
+      className={`container my-5 flex flex-col gap-1 ${fetchedGames && count !== 0 && "border-line border-b"}`}
     >
       <h1 className="mb-4 text-center text-2xl">Tutti i giochi</h1>
 
       <div>
-        <p className="text-primary mb-7 flex flex-col text-center text-lg">
+        <p className="text-secondary mb-7 flex flex-col text-center text-lg">
           <span>{`La tua collezione è composta da ${numGames} ${numGames === 1 ? "gioco." : "giochi."}`}</span>
           <span>{`${numCollectors} ${numCollectors === 1 ? "è collector's edition." : "sono collector's editions."}`}</span>
         </p>
@@ -51,11 +51,11 @@ async function Page({ searchParams }) {
 
       {count === 0 ? (
         <div className="flex flex-col items-center justify-center gap-4">
-          <p className="text-primary mt-10 mb-5 flex min-h-14 flex-col text-center text-lg font-bold tracking-wide">
+          <p className="text-secondary mt-10 mb-5 flex min-h-14 flex-col text-center text-lg font-bold tracking-wide">
             <span>Nessuna gioco trovato</span>
             <span>{` ${pageParams.platform && pageParams.platform !== "all" ? `per ${pageParams.platform}` : ``}`}</span>
           </p>
-          <ControllerIcon className="h-20 w-20 text-slate-700" />
+          <ControllerIcon className="text-line h-20 w-20" />
         </div>
       ) : (
         <>

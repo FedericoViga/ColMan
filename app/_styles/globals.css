@@ -1,17 +1,30 @@
 @import "tailwindcss";
 
 :root {
+  /* Sfondo principale */
   --background: oklch(10.416% 0.05419 261.681);
+  /* Sfondo secondario */
+  --surface: oklch(20.8% 0.042 265.755);
+  /* Testo alto contrasto */
   --foreground: #ffffff;
-  --primary: oklch(0.7562 0.0036 247.87);
+  /* Testo secondario */
+  --secondary: oklch(0.7562 0.0036 247.87);
+  /* Dettagli, hint, diabled, ecc. */
+  --subtle: oklch(55.4% 0.046 257.417);
+  /* Bordi e separatori */
+  --border: oklch(37.2% 0.044 257.287);
+  /* Accent color */
   --accent: oklch(0.796 0.134248 202.7134);
 }
 
 @theme inline {
   --color-background: var(--background);
+  --color-surface: var(--surface);
   --color-foreground: var(--foreground);
-  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
   --color-accent: var(--accent);
+  --color-subtle: var(--subtle);
+  --color-line: var(--border);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
@@ -88,7 +101,7 @@ body {
   width: 30px;
   aspect-ratio: 1;
   border-radius: 50%;
-  border: 2px solid var(--primary);
+  border: 2px solid var(--secondary);
   border-right-color: transparent;
   animation: rotate 1s infinite linear;
 }
@@ -102,7 +115,7 @@ body {
 .spinner-inset {
   width: 48px;
   height: 48px;
-  border: 3px solid var(--primary);
+  border: 3px solid var(--secondary);
   border-radius: 50%;
   display: inline-block;
   position: relative;
@@ -158,13 +171,13 @@ body {
 
   50% {
     box-shadow:
-      10px 0 var(--primary),
+      10px 0 var(--secondary),
       20px 0 rgba(255, 255, 255, 0);
   }
   100% {
     box-shadow:
-      10px 0 var(--primary),
-      20px 0 var(--primary);
+      10px 0 var(--secondary),
+      20px 0 var(--secondary);
   }
 }
 

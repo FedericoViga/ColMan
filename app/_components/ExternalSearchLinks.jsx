@@ -12,7 +12,7 @@ function ExternalSearchLinks({
 }) {
   return (
     <>
-      <span className="text-primary mt-4">Cerca su:</span>
+      <span className="text-secondary mt-4">Cerca su:</span>
       <div className="flex items-center gap-3">
         <div className="flex items-center gap-3">
           {/* Google */}
@@ -22,23 +22,23 @@ function ExternalSearchLinks({
             target="_blank"
           >
             <GoogleLogoIcon />
-            <ArrowTopRightOnSquareIcon className="text-primary h-3 w-3" />
+            <ArrowTopRightOnSquareIcon className="text-subtle h-3 w-3" />
           </a>
 
-          <span className="text-primary w-0.5" aria-hidden="true">
+          <span className="text-subtle w-0.5" aria-hidden="true">
             |
           </span>
 
           {/* Ebay */}
           <a href={ebayUrl} className="flex items-center gap-1" target="_blank">
             <EbayLogoIcon />
-            <ArrowTopRightOnSquareIcon className="text-primary h-3 w-3" />
+            <ArrowTopRightOnSquareIcon className="text-subtle h-3 w-3" />
           </a>
 
           {/* DoesItPlay */}
           {isGameCard && (
             <>
-              <span className="text-primary w-0.5" aria-hidden="true">
+              <span className="text-subtle w-0.5" aria-hidden="true">
                 |
               </span>
 
@@ -49,7 +49,7 @@ function ExternalSearchLinks({
               >
                 <DoesItPlayLogoIcon />
                 <span>DoesItPlay?</span>
-                <ArrowTopRightOnSquareIcon className="text-primary h-3 w-3" />
+                <ArrowTopRightOnSquareIcon className="text-subtle h-3 w-3" />
               </a>
             </>
           )}

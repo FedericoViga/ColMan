@@ -29,7 +29,7 @@ function SearchWrapper({ platforms }) {
       {/* Filtro piattaforme */}
       <div className="w-full">
         <div className="flex items-center gap-3">
-          <span className="text-primary">Piattaforma</span>
+          <span className="text-secondary">Piattaforma</span>
 
           <PlatformSelectorButton
             onOpenFilters={setOpenFilters}
@@ -62,7 +62,7 @@ function SearchWrapper({ platforms }) {
               ))}
             </>
           ) : (
-            <p className="text-primary mt-4">
+            <p className="text-secondary mt-4">
               Non ci sono ancora piattaforme,{" "}
               <Link
                 className="text-foreground underline underline-offset-2"
@@ -76,7 +76,7 @@ function SearchWrapper({ platforms }) {
         </div>
       </div>
       <hr
-        className={`${isExpanded ? "border-accent" : "border-slate-600"} w-full`}
+        className={`${isExpanded ? "border-accent" : "border-line"} w-full`}
       />
     </div>
   );

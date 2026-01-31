@@ -21,15 +21,15 @@ function PlatformsWrapperSettings({ globalPlatformsByOwner, userPlatforms }) {
         <p className="text-foreground my-7 text-center text-2xl">
           Lista piattaforme
         </p>
-        <p className="text-primary text-center">
+        <p className="text-secondary text-center">
           Aggiungi o rimuovi piattaforme, così potrai aggiungere nuovi giochi
           per le relative piattaforme, filtri e giochi alla tua wishlist.
         </p>
-        <p className="border-b pt-3 pb-5 text-center text-slate-500">
+        <p className="text-subtle border-line border-b pt-3 pb-5 text-center">
           Puoi cambiarle in qualsiasi momento
         </p>
         <form action={updateUserPlatforms}>
-          <p className="mt-7 mb-4 text-sm text-slate-500">Ordine alfabetico</p>
+          <p className="text-subtle mt-7 mb-4 text-sm">Ordine alfabetico</p>
           {globalAndUserPlatforms.map((platform, i) => (
             <PlatformsAccordionSettings
               platformDetails={platform}
@@ -54,7 +54,7 @@ function Button({ onOpen }) {
       <button
         onClick={() => onOpen(null)}
         disabled={pending}
-        className={`bg-background flex w-2xs items-center justify-center gap-1 ${pending ? "text-primary pointer-events-none border-slate-500" : "border-accent"} rounded border-2 p-1`}
+        className={`bg-background flex w-2xs items-center justify-center gap-1 ${pending ? "text-subtle border-subtle pointer-events-none" : "border-accent"} rounded border-2 p-1`}
       >
         <ArrowPathIcon className={`h-4 w-4 ${pending ? "animate-spin" : ""}`} />
         <span className={`${pending ? "dots-loader animate-pulse" : ""}`}>

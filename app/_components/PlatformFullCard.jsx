@@ -11,7 +11,7 @@ async function PlatformFullCard({ platformDetails }) {
     <div className="mt-3 mb-10 flex flex-col gap-4">
       <h1 className="text-center text-2xl">Dettagli piattaforma</h1>
 
-      <p className="text-primary mt-2 text-center text-lg">
+      <p className="text-secondary mt-2 text-center text-lg">
         Hai{" "}
         <Link
           href={`/games?platform=${platformName}&page=1`}
@@ -26,29 +26,29 @@ async function PlatformFullCard({ platformDetails }) {
       </p>
 
       <div>
-        <p className="text-primary">Piattaforma</p>
-        <p className="font rounded border border-slate-800 bg-slate-900 p-1.5 text-lg">
+        <p className="text-secondary">Piattaforma</p>
+        <p className="font bg-surface border-surface rounded border p-1.5 text-lg">
           {platformName}
         </p>
       </div>
 
       <div>
-        <p className="text-primary">Produttore</p>
-        <p className="rounded border border-slate-800 bg-slate-900 p-1.5 text-lg">
+        <p className="text-secondary">Produttore</p>
+        <p className="bg-surface border-surface rounded border p-1.5 text-lg">
           {platformOwner}
         </p>
       </div>
 
       <div>
-        <p className="text-primary">Ciclo di vita</p>
-        <p className="rounded border border-slate-800 bg-slate-900 p-1.5 text-lg">
+        <p className="text-secondary">Ciclo di vita</p>
+        <p className="bg-surface border-surface rounded border p-1.5 text-lg">
           {lifeCycle}
         </p>
       </div>
 
       <div>
-        <p className="text-primary">Unità vendute</p>
-        <p className="rounded border border-slate-800 bg-slate-900 p-1.5 text-lg">
+        <p className="text-secondary">Unità vendute</p>
+        <p className="bg-surface border-surface rounded border p-1.5 text-lg">
           {unitsSold}
         </p>
       </div>

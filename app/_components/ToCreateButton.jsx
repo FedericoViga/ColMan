@@ -2,12 +2,17 @@
 
 import Link from "next/link";
 import { PlusIcon } from "@heroicons/react/24/solid";
+import { PencilIcon } from "@heroicons/react/24/outline";
 
-function ToCreateButton({ url }) {
+function ToCreateButton({ url, isEdit = false }) {
   return (
     <Link href={url}>
       <div className="bg-background border-accent fixed right-6 bottom-7 size-14 cursor-pointer items-center justify-center rounded-lg border-2 text-5xl not-even:flex">
-        <PlusIcon className="text-accent h-7 w-7" />
+        {isEdit ? (
+          <PencilIcon className="text-accent h-7 w-7" />
+        ) : (
+          <PlusIcon className="text-accent h-7 w-7" />
+        )}
       </div>
     </Link>
   );

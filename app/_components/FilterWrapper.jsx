@@ -18,8 +18,8 @@ function FilterWrapper({ platforms, numGamesByPlatform }) {
   return (
     <>
       <div className="mb-3 w-full">
-        <div className="flex items-baseline gap-3 rounded border border-slate-900 bg-slate-900 px-2 py-3">
-          <span className="text-primary">Piattaforma</span>
+        <div className="bg-surface border-surface flex items-baseline gap-3 rounded border px-2 py-3">
+          <span className="text-secondary">Piattaforma</span>
 
           <PlatformSelectorButton
             onOpenFilters={setOpenFilters}
@@ -30,7 +30,7 @@ function FilterWrapper({ platforms, numGamesByPlatform }) {
           {filterName !== "---" &&
             filterName !== "Tutte" &&
             numGamesByPlatform !== 0 && (
-              <span className="text-primary">
+              <span className="text-secondary">
                 {`${numGamesByPlatform} ${numGamesByPlatform === 1 ? "Gioco" : "Giochi"}`}
               </span>
             )}
@@ -60,7 +60,7 @@ function FilterWrapper({ platforms, numGamesByPlatform }) {
               ))}
             </>
           ) : (
-            <p className="text-primary mt-4">
+            <p className="text-secondary mt-4">
               Non ci sono ancora piattaforme,{" "}
               <Link
                 className="text-foreground underline underline-offset-2"

@@ -34,7 +34,7 @@ function PlatformFilterSelectorHome({
       <select
         required={isSelectedActive}
         name="platform"
-        className="focus:border-accent focus:ring-accent mt-1 cursor-pointer rounded border border-slate-700 bg-slate-900 p-1 focus-visible:outline-0"
+        className="focus:border-accent focus:ring-accent bg-surface border-line mt-1 cursor-pointer rounded border p-1 focus-visible:outline-0"
         value={!isSelectedActive ? isSelectedActive : undefined}
         onChange={(e) => {
           onActive(id);

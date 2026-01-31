@@ -44,12 +44,12 @@ function DeleteConfirmationModal({
                 </span>
               </div>
 
-              <p className="text-sm text-slate-500">
+              <p className="text-subtle text-sm">
                 Operazione irreversibile, i dati del gioco (compresa l'immagine)
                 non potranno essere recuperati
               </p>
             </div>
-            <p className="text-primary text-lg">
+            <p className="text-secondary text-lg">
               Sei sicuro di voler eliminare{" "}
               <span className="text-gray-50">{targetInfo.gameName}</span>?
             </p>
@@ -64,7 +64,7 @@ function DeleteConfirmationModal({
               Elimina
             </button>
             <button
-              className="border-primary rounded-lg border px-2.5 py-1"
+              className="border-secondary rounded-lg border px-2.5 py-1"
               onClick={onClose}
             >
               Annulla

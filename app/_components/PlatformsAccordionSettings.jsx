@@ -5,6 +5,10 @@ function PlatformsAccordionSettings({ platformDetails, id, curOpen, onOpen }) {
   const isSelectorOpen = id === curOpen;
   const listRef = useRef(null);
 
+  const countSelectedPlatforms = platformDetails[1].filter(
+    (p) => p.isActive,
+  ).length;
+
   const [formData, setFormData] = useState({ platforms: [] });
 
   function handleCheckbox(e) {
@@ -30,11 +34,16 @@ function PlatformsAccordionSettings({ platformDetails, id, curOpen, onOpen }) {
             onOpen(null);
           } else onOpen(id);
         }}
-        className={`${isSelectorOpen ? "border-accent border-2" : "border border-slate-700"} flex w-full justify-between rounded bg-slate-900 px-2 py-1.5 text-lg`}
+        className={`${isSelectorOpen ? "border-accent border-2" : "border-line border"} bg-surface flex w-full justify-between rounded px-2 py-1.5 text-lg`}
       >
-        <span className={`${isSelectorOpen ? "text-accent" : ""}`}>
-          {platformDetails[0]}
-        </span>
+        <p>
+          <span className={`${isSelectorOpen ? "text-accent" : ""}`}>
+            {`${platformDetails[0]} `}
+          </span>
+          {countSelectedPlatforms > 0 && (
+            <span className="text-subtle">{`(${countSelectedPlatforms})`}</span>
+          )}
+        </p>
         {isSelectorOpen ? (
           <span className="text-accent text-xl">+</span>
         ) : (
@@ -49,7 +58,7 @@ function PlatformsAccordionSettings({ platformDetails, id, curOpen, onOpen }) {
             ? `${listRef.current?.scrollHeight}px`
             : "0px",
         }}
-        className={`${isSelectorOpen ? "" : "border-y-0"} overflow-hidden rounded border border-slate-700 bg-slate-900 transition-[max-height] duration-300 ease-in-out`}
+        className={`${isSelectorOpen ? "" : "border-y-0"} bg-surface border-line overflow-hidden rounded border transition-[max-height] duration-300 ease-in-out`}
       >
         {platformDetails[1].map((elem) => (
           <li key={elem.id} className="flex items-center gap-1.5 px-2 py-3">
@@ -64,7 +73,7 @@ function PlatformsAccordionSettings({ platformDetails, id, curOpen, onOpen }) {
             />
             <label
               htmlFor={elem.platformName}
-              className="peer-checked:text-foreground text-slate-500"
+              className="peer-checked:text-foreground text-subtle"
             >
               {elem.platformName}
             </label>

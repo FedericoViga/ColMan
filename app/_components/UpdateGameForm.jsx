@@ -212,14 +212,14 @@ function UpdateGameForm({ gameDetails }) {
         {/* IMMAGINE */}
         <div className="mt-4">
           <div
-            className={`relative m-auto flex aspect-square max-w-60 flex-col items-center justify-center gap-2 ${selectedImage === null || selectedImage === placeholderImage ? "border-primary rounded border border-dashed" : ""}`}
+            className={`relative m-auto flex aspect-square max-w-60 flex-col items-center justify-center gap-2 ${selectedImage === null || selectedImage === placeholderImage ? "border-secondary rounded border border-dashed" : ""}`}
           >
             <label
               className={` ${isOpenInfo ? "pointer-events-none hidden" : ""} flex h-10 w-10 cursor-pointer items-center justify-center text-2xl ${selectedImage === null || selectedImage === placeholderImage ? "h-full w-full rounded border-0" : "bg-accent absolute right-2 bottom-2 z-50 rounded"}`}
               htmlFor="imageInput"
             >
               {selectedImage === null || selectedImage === placeholderImage ? (
-                <PlusIcon className="h-10 w-10 text-slate-500" />
+                <PlusIcon className="text-subtle h-10 w-10" />
               ) : (
                 <PencilIcon className="h-5 w-5" />
               )}
@@ -228,7 +228,7 @@ function UpdateGameForm({ gameDetails }) {
             {/* Testo box immagine */}
             {selectedImage === null || selectedImage === placeholderImage ? (
               <p
-                className={`absolute top-[60%] text-base ${imageSize?.rawSize > MAXIMUM_IMAGE_SIZE ? "text-amber-400" : "text-slate-500"}`}
+                className={`absolute top-[60%] text-base ${imageSize?.rawSize > MAXIMUM_IMAGE_SIZE ? "text-amber-400" : "text-subtle"}`}
               >
                 {`${imageSize?.rawSize > MAXIMUM_IMAGE_SIZE ? `File troppo grande (${imageSize.formattedSize})` : `Scegli Immagine (max 500KB)`}`}
               </p>
@@ -265,12 +265,12 @@ function UpdateGameForm({ gameDetails }) {
 
         {/* Cerca immagine */}
         {nameLength > 0 && (
-          <div className="mt-3.5 flex flex-col items-center justify-center gap-0.5">
-            <span className="text-sm text-slate-400">Cerca immagine</span>
+          <div className="text-secondary mt-3.5 flex flex-col items-center justify-center gap-0.5">
+            <span className="text-sm">Cerca immagine</span>
             <div className="flex gap-3">
-              <div className="flex items-center justify-center gap-1 text-sm text-slate-400">
+              <div className="flex items-center justify-center gap-1 text-sm">
                 <a
-                  className="decoration underline decoration-slate-500 underline-offset-2"
+                  className="decoration decoration-subtle underline underline-offset-2"
                   href={googleImagesUrl}
                   target="_blank"
                 >
@@ -279,9 +279,9 @@ function UpdateGameForm({ gameDetails }) {
                 <ArrowTopRightOnSquareIcon className="h-2.5 w-2.5" />
               </div>
 
-              <div className="flex items-center justify-center gap-1 text-sm text-slate-400">
+              <div className="flex items-center justify-center gap-1 text-sm">
                 <a
-                  className="decoration underline decoration-slate-500 underline-offset-2"
+                  className="decoration decoration-subtle underline underline-offset-2"
                   href={launchboxDbUrl}
                   target="_blank"
                 >
@@ -297,16 +297,16 @@ function UpdateGameForm({ gameDetails }) {
         <div className="mb-5 flex flex-col justify-items-start gap-4 py-5 text-lg">
           <div className="flex flex-col gap-1">
             <div className="flex items-baseline justify-between">
-              <label className="text-primary" htmlFor="gameName">
+              <label className="text-secondary" htmlFor="gameName">
                 Titolo
               </label>
-              <span className="text-primary text-sm">{nameLength}/100</span>
+              <span className="text-subtle text-sm">{nameLength}/100</span>
             </div>
             <input
               name="gameName"
               id="gameName"
               type="text"
-              className="focus-within:bg-background focus:bg-background focus-within:border-accent focus:ring-accent rounded border border-slate-700 bg-slate-900 p-1.5 text-base focus:ring-1 focus:outline-none"
+              className="focus-within:bg-background focus:bg-background focus-within:border-accent focus:ring-accent bg-surface border-line rounded border p-1.5 text-base focus:ring-1 focus:outline-none"
               defaultValue={gameName}
               autoComplete="off"
               maxLength="100"
@@ -318,7 +318,7 @@ function UpdateGameForm({ gameDetails }) {
           {/* REGIONE */}
           <div className="flex flex-col gap-1">
             <div className="flex items-center gap-1.5">
-              <label className="text-primary" htmlFor="gameRegion">
+              <label className="text-secondary" htmlFor="gameRegion">
                 Regione
               </label>
 
@@ -326,7 +326,7 @@ function UpdateGameForm({ gameDetails }) {
                 aria-label="Informazioni sulle regioni"
                 onClick={(e) => handleRegionInfo(e)}
               >
-                <QuestionMarkCircleIcon className="text-primary mt-0.5 h-4 w-4" />
+                <QuestionMarkCircleIcon className="text-subtle mt-0.5 h-4 w-4" />
               </button>
 
               {isOpenInfo && <InfoRegion onOpenClose={setIsOpenInfo} />}
@@ -335,7 +335,7 @@ function UpdateGameForm({ gameDetails }) {
             <select
               name="gameRegion"
               id="gameRegion"
-              className="focus:border-accent focus:ring-accent rounded border border-slate-800 bg-slate-900 p-1 text-base focus-visible:outline-0"
+              className="focus:border-accent focus:ring-accent bg-surface border-line rounded border p-1 text-base focus-visible:outline-0"
               defaultValue={gameRegion}
               key={gameRegion}
             >
@@ -348,7 +348,7 @@ function UpdateGameForm({ gameDetails }) {
           </div>
 
           {/* SIGILLATO */}
-          <div className="text-primary group mt-2.5 flex flex-row-reverse items-center justify-end gap-2">
+          <div className="text-subtle group mt-2.5 flex flex-row-reverse items-center justify-end gap-2">
             <label
               htmlFor="isSealed"
               className="group-has-[input:checked]:text-foreground"
@@ -365,7 +365,7 @@ function UpdateGameForm({ gameDetails }) {
           </div>
 
           {/* EDIZIONE SPECIALE */}
-          <div className="group text-primary mt-2.5 flex flex-row-reverse items-center justify-end gap-2">
+          <div className="group text-subtle mt-2.5 flex flex-row-reverse items-center justify-end gap-2">
             <label
               htmlFor="isSpecial"
               className="group-has-[input:checked]:text-foreground"
@@ -382,7 +382,7 @@ function UpdateGameForm({ gameDetails }) {
           </div>
 
           {/* COLLECTOR'S EDITION */}
-          <div className="text-primary group mt-2.5 flex flex-row-reverse items-center justify-end gap-2">
+          <div className="text-subtle group mt-2.5 flex flex-row-reverse items-center justify-end gap-2">
             <label
               htmlFor="isCollector"
               className="group-has-[input:checked]:text-foreground"
@@ -401,10 +401,13 @@ function UpdateGameForm({ gameDetails }) {
           {/* CONTENUTO */}
           <div className="flex flex-col gap-1">
             <div className="flex items-baseline justify-between">
-              <label className="text-primary mt-2" htmlFor="contentDescription">
+              <label
+                className="text-secondary mt-2"
+                htmlFor="contentDescription"
+              >
                 Contenuto
               </label>
-              <span className="text-primary text-sm">
+              <span className="text-subtle text-sm">
                 {descriptionLength}/500
               </span>
             </div>
@@ -413,7 +416,7 @@ function UpdateGameForm({ gameDetails }) {
               name="contentDescription"
               id="contentDescription"
               rows="6"
-              className="focus-within:bg-background focus:bg-background placeholder:text-primary/50 focus-within:border-accent focus:ring-accent max-h-80 min-h-40 resize-none rounded border border-slate-700 bg-slate-900 p-1.5 text-base focus:placeholder-transparent focus:ring-1 focus:outline-none"
+              className="focus-within:bg-background focus:bg-background placeholder:text-secondary/50 focus-within:border-accent focus:ring-accent bg-surface border-line max-h-80 min-h-40 resize-none rounded border p-1.5 text-base focus:placeholder-transparent focus:ring-1 focus:outline-none"
               defaultValue={contentDescription}
               minLength="2"
               maxLength="500"
@@ -425,11 +428,11 @@ function UpdateGameForm({ gameDetails }) {
           {/* NOTE */}
           <div className="mt-1.5 flex flex-col gap-1">
             <div className="flex items-center justify-between">
-              <label className="text-primary text-lg" htmlFor="gameNotes">
+              <label className="text-secondary text-lg" htmlFor="gameNotes">
                 Note
               </label>
 
-              <span className="text-primary just text-sm">
+              <span className="text-subtle just text-sm">
                 {notesLength}/300
               </span>
             </div>
@@ -438,7 +441,7 @@ function UpdateGameForm({ gameDetails }) {
               name="gameNotes"
               id="gameNotes"
               defaultValue={gameNotes}
-              className="focus-within:bg-background focus:bg-background placeholder:text-primary/50 focus-within:border-accent focus:ring-accent max-h-44 min-h-20 rounded border border-slate-700 bg-slate-900 p-1.5 text-base focus:placeholder-transparent focus:ring-1 focus:outline-none"
+              className="focus-within:bg-background focus:bg-background placeholder:text-secondary/50 focus-within:border-accent focus:ring-accent bg-surface border-line max-h-44 min-h-20 rounded border p-1.5 text-base focus:placeholder-transparent focus:ring-1 focus:outline-none"
               maxLength="300"
               onChange={(e) => setNotesLength(e.target.value.length)}
             ></textarea>
@@ -459,7 +462,7 @@ function Button({ imageSize }) {
   return (
     <button
       disabled={imageSize?.rawSize > MAXIMUM_IMAGE_SIZE || pending}
-      className={`flex w-full items-center justify-center gap-1 ${pending ? "text-primary" : "border-accent rounded border-2"} p-1`}
+      className={`flex w-full items-center justify-center gap-1 ${pending ? "text-subtle" : "border-accent rounded border-2"} p-1`}
     >
       <ArrowPathIcon className={`h-4 w-4 ${pending ? "animate-spin" : ""}`} />
       <span className={`${pending ? "dots-loader animate-pulse" : ""}`}>

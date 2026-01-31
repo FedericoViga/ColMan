@@ -6,15 +6,15 @@ async function SearchResultsList({ queryString, platformFilter }) {
 
   return (
     <div
-      className={`border-primary container mt-3 mb-10 flex w-full flex-col items-center justify-center ${fetchedGames && fetchedGames.length !== 0 && "border-b border-slate-600"} px-0!`}
+      className={`border-secondary container mt-3 mb-10 flex w-full flex-col items-center justify-center ${fetchedGames && fetchedGames.length !== 0 && "border-line border-b"} px-0!`}
     >
       {!queryString && (
-        <p className="text-primary mt-5 text-xl">Cerca un gioco...</p>
+        <p className="text-subtle mt-5 text-xl">Cerca un gioco...</p>
       )}
 
       {fetchedGames && (
         <>
-          <p className="text-primary mb-4 flex gap-1.5 self-start pr-3 pl-2.25 text-lg font-bold tracking-wide">
+          <p className="text-secondary mb-4 flex gap-1.5 self-start pr-3 pl-2.25 text-lg font-bold tracking-wide">
             <span className="text-foreground text-xl">
               {fetchedGames.length}
             </span>{" "}

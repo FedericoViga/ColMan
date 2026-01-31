@@ -35,7 +35,7 @@ function GameCard({ game }) {
       href={`/games/${normalizedId}-${normalizedPlatform}`}
       className="w-full px-2"
     >
-      <div className="flex min-h-48 w-full items-start gap-3 overflow-auto border-t border-slate-600">
+      <div className="border-line flex min-h-48 w-full items-start gap-3 overflow-auto border-t">
         {/* Immagine e nota */}
         <div className="flex flex-col gap-4">
           <div className="aspect relative min-h-32 min-w-32">
@@ -59,7 +59,7 @@ function GameCard({ game }) {
               <div className="shimmer-image" />
             </div> */}
           {gameNotes && (
-            <div className="text-primary flex items-center gap-1">
+            <div className="text-secondary flex items-center gap-1">
               <span className="text-sm">Note</span>
               <ChatBubbleLeftEllipsisIcon className="h-3 w-3" />
             </div>
@@ -92,7 +92,7 @@ function GameCard({ game }) {
           <h5 className="my-1.5 text-lg font-bold">{gameName}</h5>
 
           {/* Regione */}
-          <p className="text-primary my-1.5 font-normal dark:text-gray-400">
+          <p className="text-secondary my-1.5 font-normal dark:text-gray-400">
             {`${gameRegion} ${flag}`}
           </p>
 

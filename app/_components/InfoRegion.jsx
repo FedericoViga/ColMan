@@ -17,8 +17,8 @@ function InfoRegion({ onOpenClose }) {
   }
 
   return (
-    <div className="fixed top-0 right-0 bottom-0 left-0 z-10 container flex items-center justify-center bg-slate-700/25 backdrop-blur-md">
-      <div className="border-accent relative flex min-w-full flex-col justify-center gap-4 rounded-lg border-2 bg-slate-900 px-4 py-6">
+    <div className="bg-line/25 fixed top-0 right-0 bottom-0 left-0 z-10 container flex items-center justify-center backdrop-blur-md">
+      <div className="border-accent bg-surface relative flex min-w-full flex-col justify-center gap-4 rounded-lg border-2 px-4 py-6">
         <button
           onClick={(e) => closeRegionInfo(e)}
           className="absolute top-2 right-2"
@@ -29,27 +29,27 @@ function InfoRegion({ onOpenClose }) {
         <ul className="*:flex *:flex-col *:py-2">
           <li>
             <span>ITA 🇮🇹</span>
-            <span className="text-primary">Copertina solo in italiano.</span>
+            <span className="text-secondary">Copertina solo in italiano.</span>
           </li>
           <li>
             <span>PAL-ITA 🇪🇺🇮🇹</span>
-            <span className="text-primary">
+            <span className="text-secondary">
               Copertina con almeno una lingua europea e l'italiano.
             </span>
           </li>
           <li>
             <span>PAL 🇪🇺</span>
-            <span className="text-primary">
+            <span className="text-secondary">
               Copertina con una o più lingue europee, senza l'italiano.
             </span>
           </li>
           <li>
             <span>NTSC-U 🇺🇸</span>
-            <span className="text-primary">Nord America e Sud America</span>
+            <span className="text-secondary">Nord America e Sud America</span>
           </li>
           <li>
             <span>NTSC-J 🇯🇵</span>
-            <span className="text-primary">
+            <span className="text-secondary">
               Asia (Giappone, Cina, Corea del Sud ecc.)
             </span>
           </li>

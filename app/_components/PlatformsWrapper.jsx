@@ -17,7 +17,7 @@ function PlatformsWrapper({ platformsByOwners }) {
         </p>
         {platformsByOwners.length !== 0 ? (
           <>
-            <p className="text-primary text-center text-lg">
+            <p className="text-secondary text-center text-lg">
               Seleziona una piattaforma per visualizzare i dettagli.
             </p>
             {platformsByOwners.map((platform, i) => (
@@ -33,7 +33,7 @@ function PlatformsWrapper({ platformsByOwners }) {
         ) : (
           <div className="my-10 flex flex-col items-center justify-center gap-12">
             <div className="flex flex-col items-center justify-center gap-3">
-              <span className="text-primary text-lg font-bold tracking-wide">
+              <span className="text-secondary text-lg font-bold tracking-wide">
                 Non hai piattaforme
               </span>
               <Link
@@ -49,7 +49,7 @@ function PlatformsWrapper({ platformsByOwners }) {
       </div>
 
       {platformsByOwners.length !== 0 && (
-        <ToCreateButton url={"/settings/my-platforms"} />
+        <ToCreateButton url={"/settings/my-platforms"} isEdit={true} />
       )}
     </>
   );

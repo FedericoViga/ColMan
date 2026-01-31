@@ -53,7 +53,7 @@ function GameCount({ numGames }) {
         >
           {displayProps.initialText}
         </span>
-        <p className="text-primary text-3xl font-bold underline decoration-slate-500 decoration-2 underline-offset-4">
+        <p className="text-secondary decoration-subtle text-3xl font-bold underline decoration-2 underline-offset-4">
           {numGames === 1 ? "GIOCO" : "GIOCHI"}
         </p>
       </div>

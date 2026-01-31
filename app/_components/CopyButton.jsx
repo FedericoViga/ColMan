@@ -34,7 +34,7 @@ function CopyButton({ elemRef }) {
 
   return (
     <button
-      className="text-primary absolute top-1 right-1 text-sm"
+      className="text-secondary absolute top-1 right-1 text-sm"
       onClick={handleCopy}
     >
       {isClicked ? (

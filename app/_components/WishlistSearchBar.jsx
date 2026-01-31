@@ -15,12 +15,12 @@ function WishlistSearchBar({
   }
 
   return (
-    <div className="mt-7 flex gap-1">
+    <div className="mt-7 flex gap-0.5">
       <input
         ref={searchRef}
         value={searchGame}
         type="search"
-        className="focus-within:border-accent focus-within:bg-background focus:bg-background focus:ring-accent block w-full rounded-lg border border-slate-700 bg-slate-900 px-2 py-1.5 focus:ring-1 focus:outline-none"
+        className="focus-within:border-accent focus-within:bg-background focus:bg-background focus:ring-accent bg-surface border-line placeholder:text-subtle block w-full rounded-tl-lg rounded-bl-lg border px-2 py-1.5 focus:ring-1 focus:outline-none"
         placeholder={
           searchedWishlist.length === 0 && gameNotFound
             ? "Nessun gioco trovato"
@@ -33,9 +33,11 @@ function WishlistSearchBar({
       <button
         onClick={handleSearchGame}
         disabled={searchGame.length === 0}
-        className={`${searchGame.length === 0 ? "border-slate-500" : "border-accent"} inset-y-0 start-0 flex items-center rounded-lg border-2 px-2`}
+        className={`${searchGame.length === 0 ? "border-subtle" : "border-accent outline-accent outline-1"} inset-y-0 start-0 flex items-center rounded-tr-lg rounded-br-lg border px-2`}
       >
-        <MagnifyingGlassIcon className="h-5 w-5" />
+        <MagnifyingGlassIcon
+          className={`${searchGame.length === 0 ? "text-subtle" : "text-foreground"} h-5 w-5`}
+        />
       </button>
     </div>
   );

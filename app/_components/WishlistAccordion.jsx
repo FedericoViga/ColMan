@@ -26,7 +26,7 @@ function WishlistAccordion({
             onOpen(null);
           } else onOpen(accordionId);
         }}
-        className={`${expandAll || isSelectorOpen ? "border-accent rounded border" : "border-b border-slate-600"} flex w-full justify-between px-2 py-1 text-lg`}
+        className={`${expandAll || isSelectorOpen ? "border-accent rounded border" : "border-line border-b"} flex w-full justify-between px-2 py-1 text-lg`}
       >
         <div className="flex items-center gap-1.5">
           <HeartIcon
@@ -37,9 +37,7 @@ function WishlistAccordion({
           >
             {platform.platformName}
           </span>
-          <span className="text-primary text-sm">
-            ({platform.games.length})
-          </span>
+          <span className="text-subtle text-sm">({platform.games.length})</span>
         </div>
         {expandAll || isSelectorOpen ? (
           <span className="text-accent text-xl">+</span>
@@ -56,12 +54,12 @@ function WishlistAccordion({
               ? `${ulAccordion.current?.scrollHeight}px`
               : "0px",
         }}
-        className="flex w-full flex-col overflow-hidden rounded border border-t-0 border-slate-600 transition-[max-height] duration-300 ease-in-out"
+        className="border-line flex w-full flex-col overflow-hidden rounded border border-t-0 transition-[max-height] duration-300 ease-in-out"
       >
         {platform.games.map((elem) => (
           <li
             key={elem.id}
-            className="flex w-full items-center justify-between border-b border-slate-600 px-2 py-3 last:border-0"
+            className="border-line flex w-full items-center justify-between border-b px-2 py-3 last:border-0"
           >
             <span className="min-w-0 flex-1 wrap-break-word">
               {elem.gameName}

@@ -36,26 +36,29 @@ function ContentDescriptionInsert({
     <div className="mt-1.5">
       <div>
         <div className="flex justify-between">
-          <label className="text-primary text-lg" htmlFor="contentDescription">
+          <label
+            className="text-secondary text-lg"
+            htmlFor="contentDescription"
+          >
             Contenuto
           </label>
           <div className="flex justify-center">
             <button
               onClick={(e) => handleList(e)}
-              className={`rounded-tl rounded-bl px-2 text-sm ${listView ? "text-foreground border-accent ring-accent border ring-1" : "text-primary border-t border-b border-l"}`}
+              className={`rounded-tl rounded-bl px-2 text-sm ${listView ? "text-foreground border-accent ring-accent border ring-1" : "border-line ext-secondary border-t border-b border-l"}`}
             >
               Lista
             </button>
 
             <button
               onClick={(e) => handleOriginal(e)}
-              className={`rounded-tr rounded-br px-2 text-sm ${!listView ? "text-foreground border-accent ring-accent border ring-1" : "text-primary border-t border-r border-b"}`}
+              className={`rounded-tr rounded-br px-2 text-sm ${!listView ? "text-foreground border-accent ring-accent border ring-1" : "border-line text-secondary border-t border-r border-b"}`}
             >
               Testo
             </button>
 
             <div className="flex min-w-14 items-end justify-end">
-              <span className="text-primary text-sm">
+              <span className="text-subtle text-sm">
                 {descriptionValue.length}/500
               </span>
             </div>
@@ -67,9 +70,9 @@ function ContentDescriptionInsert({
         <>
           {/* se non c'è testo renderizza le informazioni */}
           {textToList.length === 1 && textToList[0] === "" && (
-            <p className="text-primary mt-1.5 h-39.5 rounded border border-slate-800 bg-slate-900 p-3 text-base">
+            <p className="text-subtle bg-surface border-line mt-1.5 h-39.5 rounded border p-3 text-base">
               Seleziona Testo e scrivi ogni contenuto del gioco{" "}
-              <span className="text-foreground font-semibold">
+              <span className="text-secondary font-semibold">
                 separato da una virgola
               </span>{" "}
               (manuale, flyer, punti vip). Qui verrà generata l'anteprima sotto
@@ -79,14 +82,14 @@ function ContentDescriptionInsert({
 
           {/* se è un solo elemento renderizza un paragrafo singolo */}
           {textToList.length === 1 && textToList[0] !== "" && (
-            <p className="text-primary mt-2 rounded border border-slate-800 bg-slate-900 p-3">
+            <p className="text-secondary bg-surface border-line mt-2 rounded border p-3">
               {textToList[0].charAt(0).toUpperCase() + textToList[0].slice(1)}
             </p>
           )}
 
           {/* se ci sono più elementi */}
           {textToList.length > 1 && (
-            <ul className="mt-2 rounded border border-slate-800 bg-slate-900 p-3 select-none">
+            <ul className="bg-surface border-line mt-2 rounded border p-3 select-none">
               {/* se sono più elementi: */}
               {/* se la stringa non termina con "." aggiunge ";" alla fine */}
               {/* converte la prima lettera di ogni stringa in maiuscola */}
@@ -114,7 +117,7 @@ function ContentDescriptionInsert({
             name="contentDescription"
             id="contentDescription"
             rows="6"
-            className="focus-within:bg-background focus:bg-background placeholder:text-primary/50 focus-within:border-accent focus:ring-accent max-h-80 min-h-40 rounded border border-slate-700 bg-slate-900 p-1.5 text-base focus:placeholder-transparent focus:ring-1 focus:outline-none"
+            className="focus-within:bg-background focus:bg-background placeholder:text-subtle/70 focus-within:border-accent focus:ring-accent bg-surface border-line max-h-80 min-h-40 rounded border p-1.5 text-base focus:placeholder-transparent focus:ring-1 focus:outline-none"
             minLength="2"
             maxLength="500"
           ></textarea>

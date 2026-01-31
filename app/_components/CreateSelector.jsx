@@ -58,7 +58,7 @@ function CreateSelector() {
           </span>
           <div className="flex flex-col gap-4 text-center">
             <h1 className="text-xl">Aggiungi giochi o piattaforme</h1>
-            <h2 className="text-primary">Cosa vuoi aggiungere?</h2>
+            <h2 className="text-secondary">Cosa vuoi aggiungere?</h2>
             <div className="decoration-accent flex flex-col items-center justify-center gap-4">
               <Link
                 href={"/games/insert-game"}

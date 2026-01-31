@@ -46,7 +46,7 @@ function SearchBar({ onOpenFilters }) {
           type="search"
           name="search-games"
           id="search-games"
-          className="focus-within:border-accent focus-within:bg-background focus:bg-background focus:ring-accent block w-full rounded-lg border border-slate-700 bg-slate-900 p-2.5 ps-10 focus:ring-1 focus:outline-none"
+          className="focus-within:border-accent focus-within:bg-background placeholder:text-subtle focus:bg-background focus:ring-accent bg-surface border-line block w-full rounded-lg border p-2.5 ps-10 focus:ring-1 focus:outline-none"
           placeholder="Cerca gioco"
           onChange={(e) => loadDataDebounced(e.target.value)}
           defaultValue=""

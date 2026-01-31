@@ -91,7 +91,7 @@ function GameFullCard({ gameDetails }) {
       <div className="flex items-baseline gap-1.5">
         <p className="text-xl">
           {platform}{" "}
-          <span className="text-primary ms-1.5 text-lg">
+          <span className="text-secondary ms-1.5 text-lg">
             {" "}
             {`${gameRegion} ${flag}`}
           </span>
@@ -101,7 +101,7 @@ function GameFullCard({ gameDetails }) {
           aria-label="Informazioni sulle regioni"
           onClick={(e) => handleRegionInfo(e)}
         >
-          <QuestionMarkCircleIcon className="text-primary h-4 w-4" />
+          <QuestionMarkCircleIcon className="text-subtle h-4 w-4" />
         </button>
 
         {isOpenInfo && <InfoRegion onOpenClose={setIsOpenInfo} />}
@@ -113,8 +113,8 @@ function GameFullCard({ gameDetails }) {
       {/* Note */}
       {gameNotes && (
         <div>
-          <span className="text-primary text-lg">Note</span>
-          <p className="mt-2 rounded border border-slate-800 bg-slate-900 p-3">
+          <span className="text-secondary text-lg">Note</span>
+          <p className="bg-surface border-line mt-2 rounded border p-3">
             {gameNotes}
           </p>
         </div>

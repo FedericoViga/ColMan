@@ -55,7 +55,7 @@ function CollectorCount({ numCollectors }) {
           {displayProps.initialText}
         </span>
         <p
-          className={`text-primary ${displayProps.fontSize} font-bold underline decoration-slate-500 decoration-2 underline-offset-4`}
+          className={`text-secondary ${displayProps.fontSize} decoration-subtle font-bold underline decoration-2 underline-offset-4`}
         >
           COLLECTOR'S ED.
         </p>

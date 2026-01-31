@@ -47,9 +47,9 @@ function downloadWishlistButton() {
       className="flex items-end gap-1"
     >
       <ArrowDownTrayIcon
-        className={`h-5 w-5 ${isLoading ? "text-accent animate-pulse" : "text-primary"}`}
+        className={`h-5 w-5 ${isLoading ? "text-accent animate-pulse" : "text-secondary"}`}
       />
-      <span aria-hidden={true} className="text-primary text-xs">
+      <span aria-hidden={true} className="text-secondary text-xs">
         .csv
       </span>
     </button>

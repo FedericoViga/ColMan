@@ -239,7 +239,7 @@ function InsertGameForm({ platforms, platformsIdAndName }) {
           {/* IMMAGINE */}
           <div className="mt-4">
             <div
-              className={`relative m-auto flex aspect-square max-w-60 flex-col items-center justify-center gap-2 ${selectedImage === null || selectedImage === placeholderImage ? "border-primary rounded border border-dashed" : ""}`}
+              className={`relative m-auto flex aspect-square max-w-60 flex-col items-center justify-center gap-2 ${selectedImage === null || selectedImage === placeholderImage ? "border-line rounded border border-dashed" : ""}`}
             >
               <label
                 className={`${isOpenInfo ? "pointer-events-none hidden" : ""} flex h-10 w-10 cursor-pointer items-center justify-center text-2xl ${selectedImage === null || selectedImage === placeholderImage ? "h-full w-full rounded border-0" : "bg-accent absolute right-2 bottom-2 z-50 rounded"}`}
@@ -247,7 +247,7 @@ function InsertGameForm({ platforms, platformsIdAndName }) {
               >
                 {selectedImage === null ||
                 selectedImage === placeholderImage ? (
-                  <PlusIcon className="h-10 w-10 text-slate-500" />
+                  <PlusIcon className="text-subtle h-10 w-10" />
                 ) : (
                   <PencilIcon className="h-5 w-5" />
                 )}
@@ -256,7 +256,7 @@ function InsertGameForm({ platforms, platformsIdAndName }) {
               {/* Testo box immagine */}
               {selectedImage === null || selectedImage === placeholderImage ? (
                 <p
-                  className={`absolute top-[60%] text-base ${imageSize?.rawSize > MAXIMUM_IMAGE_SIZE ? "text-amber-400" : "text-slate-500"}`}
+                  className={`absolute top-[60%] text-base ${imageSize?.rawSize > MAXIMUM_IMAGE_SIZE ? "text-amber-400" : "text-subtle"}`}
                 >
                   {isConverting && "Conversione immagine..."}
                   {!isConverting &&
@@ -287,14 +287,14 @@ function InsertGameForm({ platforms, platformsIdAndName }) {
           {/* input file nascosto che contiene il WebP pronto per la server action */}
           <input ref={hiddenInputRef} type="file" name="gameImages" hidden />
 
-          {/* Cerca immagine */}
+          {/* CERCA IMMAGINE */}
           {titleLength > 0 && (
-            <div className="flex flex-col items-center justify-center gap-0.5">
-              <span className="text-sm text-slate-400">Cerca immagine</span>
+            <div className="text-secondary flex flex-col items-center justify-center gap-0.5">
+              <span className="text-sm">Cerca immagine</span>
               <div className="flex gap-3">
-                <div className="flex items-center justify-center gap-1 text-sm text-slate-400">
+                <div className="flex items-center justify-center gap-1 text-sm">
                   <a
-                    className="decoration underline decoration-slate-500 underline-offset-2"
+                    className="decoration decoration-subtle underline underline-offset-2"
                     href={googleImagesUrl}
                     target="_blank"
                   >
@@ -303,9 +303,9 @@ function InsertGameForm({ platforms, platformsIdAndName }) {
                   <ArrowTopRightOnSquareIcon className="h-2.5 w-2.5" />
                 </div>
 
-                <div className="flex items-center justify-center gap-1 text-sm text-slate-400">
+                <div className="flex items-center justify-center gap-1 text-sm">
                   <a
-                    className="decoration underline decoration-slate-500 underline-offset-2"
+                    className="decoration decoration-subtle underline underline-offset-2"
                     href={launchboxDbUrl}
                     target="_blank"
                   >
@@ -320,17 +320,17 @@ function InsertGameForm({ platforms, platformsIdAndName }) {
           {/* TITOLO */}
           <div className="flex flex-col gap-1">
             <div className="flex items-baseline justify-between">
-              <label className="text-primary" htmlFor="gameName">
+              <label className="text-secondary" htmlFor="gameName">
                 Titolo
               </label>
-              <span className="text-primary text-sm">{titleLength}/100</span>
+              <span className="text-subtle text-sm">{titleLength}/100</span>
             </div>
             <input
               autoCapitalize="sentences"
               name="gameName"
               id="gameName"
               type="text"
-              className="focus-within:bg-background focus:bg-background focus-within:border-accent focus:ring-accent rounded border border-slate-700 bg-slate-900 p-1.5 text-base focus:ring-1 focus:outline-none"
+              className="focus-within:bg-background focus:bg-background focus-within:border-accent focus:ring-accent bg-surface border-line rounded border p-1.5 text-base focus:ring-1 focus:outline-none"
               autoComplete="off"
               maxLength="100"
               required
@@ -344,7 +344,7 @@ function InsertGameForm({ platforms, platformsIdAndName }) {
           {/* REGIONE */}
           <div className="flex flex-col gap-1">
             <div className="flex items-center gap-1.5">
-              <label className="text-primary" htmlFor="gameRegion">
+              <label className="text-secondary" htmlFor="gameRegion">
                 Regione
               </label>
 
@@ -352,7 +352,7 @@ function InsertGameForm({ platforms, platformsIdAndName }) {
                 aria-label="Informazioni sulle regioni"
                 onClick={(e) => handleRegionInfo(e)}
               >
-                <QuestionMarkCircleIcon className="text-primary mt-0.5 h-4 w-4" />
+                <QuestionMarkCircleIcon className="text-subtle mt-0.5 h-4 w-4" />
               </button>
 
               {isOpenInfo && <InfoRegion onOpenClose={setIsOpenInfo} />}
@@ -362,7 +362,7 @@ function InsertGameForm({ platforms, platformsIdAndName }) {
               required
               name="gameRegion"
               id="gameRegion"
-              className="focus:border-accent focus:ring-accent rounded border border-slate-800 bg-slate-900 p-1 text-base last:border focus-visible:outline-0"
+              className="focus:border-accent focus:ring-accent bg-surface border-line rounded border p-1 text-base last:border focus-visible:outline-0"
             >
               <option hidden></option>
               <option value="ITA">ITA</option>
@@ -374,7 +374,7 @@ function InsertGameForm({ platforms, platformsIdAndName }) {
           </div>
 
           {/* SIGILLATO */}
-          <div className="group text-primary mt-2.5 flex flex-row-reverse items-center justify-end gap-2">
+          <div className="group text-subtle mt-2.5 flex flex-row-reverse items-center justify-end gap-2">
             <label
               htmlFor="isSealed"
               className="group-has-[input:checked]:text-foreground"
@@ -393,7 +393,7 @@ function InsertGameForm({ platforms, platformsIdAndName }) {
           </div>
 
           {/* EDIZIONE SPECIALE */}
-          <div className="group text-primary mt-2.5 flex flex-row-reverse items-center justify-end gap-2">
+          <div className="group text-subtle mt-2.5 flex flex-row-reverse items-center justify-end gap-2">
             <label
               htmlFor="isSpecial"
               className="group-has-[input:checked]:text-foreground"
@@ -409,7 +409,7 @@ function InsertGameForm({ platforms, platformsIdAndName }) {
           </div>
 
           {/* COLLECTOR'S EDITION */}
-          <div className="group text-primary mt-2.5 flex flex-row-reverse items-center justify-end gap-2">
+          <div className="group text-subtle mt-2.5 flex flex-row-reverse items-center justify-end gap-2">
             <label
               htmlFor="isCollector"
               className="group-has-[input:checked]:text-foreground"
@@ -439,11 +439,11 @@ function InsertGameForm({ platforms, platformsIdAndName }) {
           {/* NOTE */}
           <div className="mt-1.5 flex flex-col gap-1">
             <div className="flex items-center justify-between">
-              <label className="text-primary text-lg" htmlFor="gameNotes">
+              <label className="text-secondary text-lg" htmlFor="gameNotes">
                 Note
               </label>
 
-              <span className="text-primary just text-sm">
+              <span className="text-subtle just text-sm">
                 {notesValue.length}/300
               </span>
             </div>
@@ -451,7 +451,7 @@ function InsertGameForm({ platforms, platformsIdAndName }) {
               autoCapitalize="sentences"
               name="gameNotes"
               id="gameNotes"
-              className="focus-within:bg-background focus:bg-background placeholder:text-primary/50 focus-within:border-accent focus:ring-accent max-h-44 min-h-20 rounded border border-slate-700 bg-slate-900 p-1.5 text-base focus:placeholder-transparent focus:ring-1 focus:outline-none"
+              className="focus-within:bg-background focus:bg-background placeholder:text-secondary/50 focus-within:border-accent focus:ring-accent bg-surface border-line max-h-44 min-h-20 rounded border p-1.5 text-base focus:placeholder-transparent focus:ring-1 focus:outline-none"
               maxLength="300"
               onChange={(e) => {
                 setNotesValue(e.target.value);
@@ -462,7 +462,7 @@ function InsertGameForm({ platforms, platformsIdAndName }) {
           {/* PIATTAFORMA */}
           {platforms.length !== 0 ? (
             <div>
-              <p className="text-primary mt-3">Piattaforma</p>
+              <p className="text-secondary mt-3">Piattaforma</p>
               {platformsByOwner.map((platform, i) => (
                 <PlatformSelector
                   platformDetails={platform}
@@ -475,8 +475,8 @@ function InsertGameForm({ platforms, platformsIdAndName }) {
             </div>
           ) : (
             <>
-              <p className="text-primary mt-3">Piattaforme</p>
-              <p className="text-primary">
+              <p className="text-secondary mt-3">Piattaforme</p>
+              <p className="text-secondary">
                 Non ci sono ancora piattaforme, prima di aggiungere un gioco
                 devi{" "}
                 <Link
@@ -511,7 +511,7 @@ function Button({ onListView, imageSize }) {
         onListView(false);
       }}
       disabled={imageSize?.rawSize > MAXIMUM_IMAGE_SIZE || pending}
-      className={`text-foreground mt-5 flex w-full items-center justify-center gap-1 ${pending ? "text-primary animate-pulse" : "border-accent rounded border-2"} px-5 py-1`}
+      className={`text-foreground mt-5 flex w-full items-center justify-center gap-1 ${pending ? "text-secondary animate-pulse" : "border-accent rounded border-2"} px-5 py-1`}
     >
       <span className={`${pending ? "dots-loader animate-pulse" : ""}`}>
         {pending ? "Creazione gioco" : "Crea gioco"}

@@ -46,7 +46,7 @@ function InsertWishlistGameForm({ platforms, onOpenClose }) {
   return (
     <div className="bg-foreground/10 fixed top-0 right-0 bottom-0 left-0 container flex items-center justify-center backdrop-blur-md">
       <div
-        className={`${selectedPlatform && titleText.length !== 0 ? "border-accent" : "border-slate-500"} bg-background relative min-w-11/12 rounded border px-3 py-9`}
+        className={`${selectedPlatform && titleText.length !== 0 ? "border-accent" : "border-line"} bg-background relative min-w-11/12 rounded border px-3 py-9`}
         role="dialog"
         aria-modal="true"
         aria-labelledby="wishlist-title"
@@ -60,7 +60,7 @@ function InsertWishlistGameForm({ platforms, onOpenClose }) {
           }}
           className="absolute top-2 right-2"
         >
-          <XMarkIcon className="text-primary h-6 w-6" />
+          <XMarkIcon className="text-secondary h-6 w-6" />
         </button>
         <div className="mb-6 flex items-center justify-center gap-2">
           <HeartIcon className="h-6 w-6" />
@@ -71,10 +71,10 @@ function InsertWishlistGameForm({ platforms, onOpenClose }) {
           {/* TITOLO */}
           <div className="mb-7 flex flex-col gap-1">
             <div className="flex items-baseline justify-between">
-              <label className="text-primary" htmlFor="gameName">
+              <label className="text-secondary" htmlFor="gameName">
                 Titolo
               </label>
-              <span className="text-primary text-sm">
+              <span className="text-secondary text-sm">
                 {titleText.length}/100
               </span>
             </div>
@@ -84,7 +84,7 @@ function InsertWishlistGameForm({ platforms, onOpenClose }) {
               id="gameName"
               type="text"
               value={titleText}
-              className="focus-within:border-accent focus:ring-accent focus-within:bg-background focus:bg-background rounded border border-slate-700 bg-slate-900 p-1.5 text-base focus:ring-1 focus:outline-none"
+              className="focus-within:border-accent focus:ring-accent focus-within:bg-background focus:bg-background bg-surface border-line rounded border p-1.5 text-base focus:ring-1 focus:outline-none"
               autoComplete="off"
               maxLength="100"
               required
@@ -96,13 +96,11 @@ function InsertWishlistGameForm({ platforms, onOpenClose }) {
           {platforms.length !== 0 ? (
             <>
               <div className="flex flex-col gap-1">
-                <span className="text-primary">Piattaforma</span>
-                <div className="flex gap-2 text-xs">
-                  <span className="text-slate-400">
-                    Non vedi la piattaforma?
-                  </span>
+                <span className="text-secondary">Piattaforma</span>
+                <div className="flex gap-2 text-sm">
+                  <span className="text-subtle">Non vedi la piattaforma?</span>
                   <Link
-                    className="text-slate-300 underline underline-offset-2"
+                    className="text-secondary underline underline-offset-2"
                     href="/settings/my-platforms"
                   >
                     Aggiungila
@@ -124,7 +122,7 @@ function InsertWishlistGameForm({ platforms, onOpenClose }) {
               </div>
             </>
           ) : (
-            <p className="text-primary mt-4">
+            <p className="text-secondary mt-4">
               Non ci sono ancora piattaforme, prima di aggiungere un gioco devi{" "}
               <Link
                 className="text-accent decoration-accent underline underline-offset-2"
@@ -154,17 +152,17 @@ function Button({ titleText, selectedPlatform }) {
       {isDisabled ? (
         <div
           aria-hidden="true"
-          className="pointer-events-none mt-9 flex w-full justify-center rounded border-2 border-slate-400 px-5 py-1 text-slate-400"
+          className="border-subtle text-subtle pointer-events-none mt-9 flex w-full justify-center rounded border-2 px-5 py-1"
         >
           Aggiungi
         </div>
       ) : (
         <button
           disabled={pending}
-          className={`${pending ? "border-primary pointer-events-none" : "border-accent"} mt-9 flex w-full justify-center gap-1 rounded border-2 px-5 py-1`}
+          className={`${pending ? "border-subtle pointer-events-none" : "border-accent"} mt-9 flex w-full justify-center gap-1 rounded border-2 px-5 py-1`}
         >
           <span
-            className={`${pending ? "dots-loader text-primary animate-pulse" : ""}`}
+            className={`${pending ? "dots-loader text-subtle animate-pulse" : ""}`}
           >
             {pending ? "Aggiunta gioco" : "Aggiungi"}
           </span>

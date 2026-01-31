@@ -29,13 +29,13 @@ async function Page({ searchParams }) {
 
   return (
     <div
-      className={`container my-5 flex flex-col gap-1 ${fetchedGames && count !== 0 && "border-b border-slate-600"}`}
+      className={`container my-5 flex flex-col gap-1 ${fetchedGames && count !== 0 && "border-line border-b"}`}
     >
       <h1 className="mb-7 text-center text-2xl">
         Tutte le Collector&apos;s Editions
       </h1>
 
-      <p className="text-primary mb-7 flex flex-col text-center text-lg">
+      <p className="text-secondary mb-7 flex flex-col text-center text-lg">
         <span>Hai {numCollectors} collector&apos;s editions</span>
       </p>
 
@@ -46,7 +46,7 @@ async function Page({ searchParams }) {
 
       {count === 0 ? (
         <div className="flex flex-col items-center justify-center gap-4">
-          <p className="text-primary mt-10 mb-5 flex min-h-14 flex-col text-center text-lg font-bold tracking-wide">
+          <p className="text-secondary mt-10 mb-5 flex min-h-14 flex-col text-center text-lg font-bold tracking-wide">
             <span>{`Nessuna Collector's Edition trovata`}</span>
             <span>{` ${pageParams.platform && pageParams.platform !== "all" ? `per ${pageParams.platform}` : ``}`}</span>
           </p>

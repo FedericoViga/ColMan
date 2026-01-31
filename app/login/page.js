@@ -10,8 +10,8 @@ function Page() {
 
   return (
     <div className="flex min-h-dvh flex-col items-center justify-center gap-10 text-center">
-      <h1 className="text-primary text-5xl font-bold">ColMan</h1>
-      <div className="text-primary flex flex-col gap-2 px-5">
+      <h1 className="text-secondary text-5xl font-bold">ColMan</h1>
+      <div className="text-secondary flex flex-col gap-2 px-5">
         <p>
           ColMan sta per Collection Manager:
           <br />È una Single Page Application sviluppata da{" "}
@@ -36,16 +36,16 @@ function Page() {
       </div>
 
       <div className="flex flex-col items-center gap-4 px-5">
-        <h2 className="text-primary text-lg font-bold">
+        <h2 className="text-secondary text-lg font-bold">
           Accedi per visualizzare ColMan
         </h2>
-        <p className="text-primary">
+        <p className="text-secondary">
           Accesso autorizzato solo ad uno specifico account Google
         </p>
         <SigninButton />
       </div>
 
-      <span className="text-primary fixed bottom-2">
+      <span className="text-secondary fixed bottom-2">
         {currentYear} ColMan by Federico Viganò
       </span>
     </div>
